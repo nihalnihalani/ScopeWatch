@@ -313,3 +313,20 @@ describe('receipt forms for every accepting state', () => {
     cleanup();
   });
 });
+
+describe('dialog never offers Approve while a non-rejected action exists', () => {
+  it.each(['approved', 'native_application_observed', 'verification_failed', 'verification_unknown', 'restriction_verified', 'scope_mismatch', 'disputed_stale_application'] as const)('state %s shows handoff status, not Approve', (st) => {
+    const d = makeDetail({ actions: [makeAction({ state: st })] });
+    for (const initial of ['review', 'handoff'] as const) {
+      render(<ReviewDialog detail={d} ops={fakeOps()} onClose={() => {}} initial={initial} />);
+      expect(screen.queryByRole('button', { name: 'Approve exact scope' })).toBeNull();
+      expect(screen.getByText('Human-native step required')).toBeTruthy();
+      cleanup();
+    }
+  });
+
+  it('a rejected action allows a fresh review', () => {
+    render(<ReviewDialog detail={makeDetail({ actions: [makeAction({ state: 'rejected' })] })} ops={fakeOps()} onClose={() => {}} />);
+    expect(screen.getByRole('button', { name: 'Approve exact scope' })).toBeTruthy();
+  });
+});

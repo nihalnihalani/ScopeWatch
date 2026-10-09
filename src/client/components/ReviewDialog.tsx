@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { ActionRecord, CaseDetail, ProposedScope } from '../../shared/contracts.js';
 import { RECEIPT_ACCEPTING_STATES } from '../../shared/contracts.js';
-import { actionEligibilityReason, latestAction, SIMULATED_LABEL } from '../format.js';
+import { actionEligibilityReason, labelOf, latestAction, SIMULATED_LABEL } from '../format.js';
 import { Dialog, GuardedButton, Id, Notice } from './common.js';
 import { ErrorNotice, useOp, type Ops } from './ops.js';
 
@@ -9,7 +9,7 @@ import { ErrorNotice, useOp, type Ops } from './ops.js';
 export function ReviewDialog({ detail, ops, onClose, initial = 'review' }: { detail: CaseDetail; ops: Ops; onClose: () => void; initial?: 'review' | 'handoff' }) {
   const scope = detail.proposedScope;
   const action = latestAction(detail, 'restriction');
-  const approved = !!action && (initial === 'handoff' ? (RECEIPT_ACCEPTING_STATES as string[]).includes(action.state) : action.state !== 'rejected' && action.state !== 'review_ready' && action.state !== 'none' && action.state !== 'stale');
+  const approved = !!action && action.state !== 'rejected' && action.state !== 'review_ready' && action.state !== 'none' && (action.state !== 'stale' || initial === 'handoff');
   return (
     <Dialog title={approved ? 'Native handoff' : 'Review restriction'} onClose={onClose} describedBy="dlg-desc">
       {detail.provenance === 'contract_test' ? (
@@ -130,7 +130,7 @@ function Handoff({ action, ops }: { action: ActionRecord; ops: Ops }) {
       <p className="small muted">Residual capability after the rule: {s.residualCapability.join('; ') || 'not stated'}</p>
       {action.nativeReceipt ? <ReceiptSummary action={action} /> : null}
       {canReceipt ? <NativeReceiptForm action={action} ops={ops} /> : (
-        <p className="small muted">State is “{action.state}”; a native receipt cannot be recorded in this state.</p>
+        <p className="small muted">Current state: {labelOf(action.state)}. No further native receipt is accepted in this state; use the Effect panel for verification or recovery.</p>
       )}
     </>
   );
