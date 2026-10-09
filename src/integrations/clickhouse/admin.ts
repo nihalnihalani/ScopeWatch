@@ -14,16 +14,17 @@ export function adminClient(url: string, username: string, password: string): Cl
   return createClient({ url, username, password, request_timeout: 30_000 });
 }
 
+/** Fixed prefix satisfies ClickHouse Cloud's complexity policy (upper, lower, digit, special); the hex carries the entropy. */
 export function randomPassword(): string {
-  return randomBytes(18).toString('hex');
+  return `Sw9-${randomBytes(18).toString('hex')}`;
 }
 
 const IDENT = /^[A-Za-z_][A-Za-z0-9_]*$/;
-const PW = /^[A-Za-z0-9]+$/;
+const PW = /^[A-Za-z0-9_-]+$/;
 
 export async function provisionNamespace(admin: ClickHouseClient, db: string, users: NamespaceUsers): Promise<{ queryLogGrant: boolean }> {
   for (const n of [db, users.ingest.username, users.query.username]) if (!IDENT.test(n)) throw new Error(`unsafe identifier ${n}`);
-  for (const pw of [users.ingest.password, users.query.password]) if (!PW.test(pw)) throw new Error('generated passwords must be alphanumeric');
+  for (const pw of [users.ingest.password, users.query.password]) if (!PW.test(pw)) throw new Error('generated passwords must be [A-Za-z0-9_-]');
   await admin.command({ query: `CREATE DATABASE IF NOT EXISTS ${db}` });
   for (const stmt of ddl()) await admin.command({ query: stmt.replace(/CREATE TABLE IF NOT EXISTS (\w+)/, `CREATE TABLE IF NOT EXISTS ${db}.$1`) });
   for (const u of [users.ingest, users.query]) {
