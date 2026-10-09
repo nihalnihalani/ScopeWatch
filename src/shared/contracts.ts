@@ -630,12 +630,15 @@ export interface SessionEvidence {
 /**
  * Native-receipt POST is accepted only from these action states (lead decision D8).
  * scope_mismatch allows recording a corrected native rule observation.
+ * stale is accepted ONLY to preserve an out-of-band application of an old scope: it is recorded as
+ * disputed_stale_application, never as an observed current-case action (ARCHITECTURE §8).
  */
 export const RECEIPT_ACCEPTING_STATES: ActionState[] = [
   'approved',
   'native_application_pending',
   'native_application_unknown',
   'scope_mismatch',
+  'stale',
 ];
 
 export interface CaseDetail extends CaseSummary {
