@@ -44,6 +44,19 @@ if [ -z "${SCOPEWATCH_OPERATOR_SECRET:-}" ]; then
   echo "==> Operator secret (local only, stored in runtime/operator-secret): $SCOPEWATCH_OPERATOR_SECRET"
 fi
 
+port="${SCOPEWATCH_PORT:-4317}"
+for pid in $(lsof -t -nP -iTCP:"$port" -sTCP:LISTEN 2>/dev/null); do
+  # Replace an earlier ScopeWatch server started from this checkout; refuse to touch anything else.
+  if ps -o command= -p "$pid" | grep -q 'dist/server/server/main.js' &&
+     [ "$(lsof -a -d cwd -p "$pid" -Fn 2>/dev/null | sed -n 's/^n//p')" = "$PWD" ]; then
+    echo "==> Stopping previous ScopeWatch server on port $port (pid $pid)"
+    kill "$pid"
+    for _ in $(seq 1 20); do kill -0 "$pid" 2>/dev/null || break; sleep 0.25; done
+  else
+    die "port $port is in use by another process: $(ps -o pid=,command= -p "$pid"). Stop it or set SCOPEWATCH_PORT."
+  fi
+done
+
 export SCOPEWATCH_MODE=replay
 echo "==> Starting ScopeWatch (replay mode) on http://127.0.0.1:${SCOPEWATCH_PORT:-4317}"
 exec npm start
