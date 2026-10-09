@@ -151,8 +151,8 @@ All results are for the same application code (`d5ed715`). Receipts are in [docs
 |---|---|
 | ✅ **Local platform** | Complete and tested end to end on replay data and against a mock of Guild's documented API |
 | ✅ **Guild account setup** | Private agents, fixture repository and API trigger created on a real account; adapter calibrated on real task and event shapes |
-| ⏳ **Live Guild run** | Pending: GitHub App authorization, trigger and collector keys (Guild web UI), then the first native containment run. No native result is claimed yet |
-| ⏳ **ClickHouse Cloud** | Not yet run; all SQL so far ran on local ClickHouse 25.8 |
+| ✅ **Live Guild run** | **Restriction verified natively** (2026-10-09, `charliegillet~scopewatch`): TicketAssist 5/3 breached, ReleaseReview 8/10 compliant; human-applied Guild DENY; fresh target refused `POLICY_DENIED`, fresh control returned its expected content. Recovery (G1b) and hosted investigator (G2) pending, so VERIFIED_LIVE is not yet claimed. [Evidence](evidence/sanitized/native-2026-10-09-charliegillet/README.md) |
+| ✅ **ClickHouse Cloud** | Native case evaluated on ClickHouse Cloud 26.6: readback 5/5, 13 anchors / 20 queries, oracle agrees (no latency claim) |
 
 Steps to the first live run: [BUILD_STATUS → To reach VERIFIED_LIVE](docs/BUILD_STATUS.md#to-reach-verified_live-human-owned-steps).
 

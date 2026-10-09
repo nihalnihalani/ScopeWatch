@@ -67,7 +67,7 @@ selector takes (definition vs installed); G1, G1b, G2 gates; investigator issue 
 8. Trial DENY (human, Guild UI, or a separately verified CLI such as `guild credentials policy create <credential-id> --decision DENY --operations <op> --agents <target> --workspaces <ws>`): apply to the TARGET subject only; record the native rule ID and selectors, and which ID form `--agents` accepted. The application never creates policies. **Pending.**
 9. Fresh target + control probes (the app does this; operator triggers it). Then remove only the trial rule through the same native control and repeat both probes for G1b.
 
-## G1 - native/projection trial proof (status: pending)
+## G1 - native/projection trial proof (status: **passed 2026-10-09**, see `evidence/sanitized/native-2026-10-09-charliegillet/README.md`)
 | Item | Needed evidence | What the app records | Status |
 |---|---|---|---|
 | Two actual launches | returned session ID, root task ID, workspace, session_type for target and control; agent/version from the root agent task (the launch response and `session.trigger.*` do not identify the agent that ran) | `LaunchReceipt` (preserved raw returned fields) | **observed** 2026-10-09 (calibration sessions above); not yet through the app's `LaunchReceipt` |
@@ -75,9 +75,9 @@ selector takes (definition vs installed); G1, G1b, G2 gates; investigator issue 
 | Shared credential | same `credentials_id` on target and control events | `credentialId` per observation | **observed** `01a122b4-50dc-c369-0000-8e61c35f6839` via `details.credentials_id` |
 | Unit/operation/clock | the native ALLOW decision is the counted unit; operation string; `created_at` precision | observation `createdAtRaw` / ns | **observed** operation `issues_get`, one ALLOW per read, microsecond `created_at`; event-ID domain (workspace vs session) pending |
 | Coverage | all event and task pages exhausted, sessions terminal | `SessionCoverage` page refs | **observed** single complete page each, root tasks `DONE`; not yet through the app collector |
-| Policy | native DENY rule on target only (rule ID or UI evidence); which ID `--agents` takes | operator-entered `NativeApplicationReceipt` | pending |
-| Trial effects | fresh target `DENY/POLICY_DENIED` for the bound subject, fresh control returns the expected fixture in the tool task's `runtime_done` `content.body` (tasks listing has no `response_data`) | `ProbeResult` x2 | pending |
-| Analytics | awaited insert + readback | backend | pending (not native adapter) |
+| Policy | native DENY rule on target only (rule ID or UI evidence); which ID `--agents` takes | operator-entered `NativeApplicationReceipt` | **observed**: rule `01a122fe-ccc1-02e7-0000-6841331a888e` (Guild UI, created 23:28:06Z after approval), agents selector = agent **definition** ID; receipt matches approved scope |
+| Trial effects | fresh target `DENY/POLICY_DENIED` for the bound subject, fresh control returns the expected fixture in the tool task's `runtime_done` `content.body` (tasks listing has no `response_data`) | `ProbeResult` x2 | **observed**: target session `01a122ff-57b0…` DENY/POLICY_DENIED; control `01a122ff-57f3…` ALLOW + marker present; action `restriction_verified` |
+| Analytics | awaited insert + readback | backend | **observed** on ClickHouse Cloud 26.6: readback 5/5, oracle agrees |
 
 ## G1b - restored baseline and main readiness (status: pending)
 Remove the known trial rule through the native control only; fresh target and control probes both succeed (control marker present); pin the main manifest after calibration. Pending the G1 results.
