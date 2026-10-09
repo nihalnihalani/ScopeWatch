@@ -28,3 +28,6 @@ secrets/
 # event build outputs
 test-results/
 playwright-report/
+
+# Local working notes
+HACKATHON_FIT_ANALYSIS.md
