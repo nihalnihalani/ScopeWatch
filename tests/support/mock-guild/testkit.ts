@@ -27,6 +27,10 @@ export function makeConfig(m: Mock, over: Partial<AppConfig['guild']> = {}): App
       workspaceId: o.workspace.id,
       workspaceOwner: o.workspace.owner,
       workspaceName: o.workspace.name,
+      // Launch refs are agent DEFINITION ids (native rejects installed ids); installed ids are informational.
+      targetAgentId: o.agents.target,
+      controlAgentId: o.agents.control,
+      investigatorAgentId: o.agents.investigator,
       targetInstalledAgentId: o.installed.target,
       controlInstalledAgentId: o.installed.control,
       investigatorInstalledAgentId: o.installed.investigator,
@@ -37,7 +41,7 @@ export function makeConfig(m: Mock, over: Partial<AppConfig['guild']> = {}): App
       ownedRepo: o.ownedRepo,
       controlExpectedMarker: o.controlMarker,
       targetExpectedMarker: o.targetMarker,
-      agentSubjectMap: { [o.installed.target]: o.subjects.target, [o.installed.control]: o.subjects.control },
+      agentSubjectMap: SUBJECT_MAP(m),
       identityDomain: 'workspace',
       probeTicketNumber: null,
       ...over,
@@ -64,9 +68,9 @@ export function regFor(mock: Mock, sessionId: string, profile: 'target' | 'contr
   };
 }
 
-export const SUBJECT_MAP = (mock: Mock): Record<string, string> => ({
-  [mock.options.installed.target]: mock.options.subjects.target,
-  [mock.options.installed.control]: mock.options.subjects.control,
-});
+/** Verified agent ref → policy subject. Native agent refs (task.agent.id) are agent DEFINITION ids. */
+export function SUBJECT_MAP(mock: Mock): Record<string, string> {
+  return { [mock.options.agents.target]: mock.options.subjects.target, [mock.options.agents.control]: mock.options.subjects.control };
+}
 
 export { MOCK_DEFAULTS };

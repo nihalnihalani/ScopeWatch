@@ -5,10 +5,14 @@
  * The root/requested subject is NEVER a fallback. Anything ambiguous is unresolved/conflict with a reason.
  * Installation, definition and version IDs are distinct key spaces: only exact agent refs map; version
  * refs must be supplied explicitly as `version:<id>` keys.
+ * Native events also name an agent (`details.agent_id`, the agent DEFINITION id), a session and a workspace; these only
+ * corroborate the graph: any disagreement fails closed. `session.trigger.*` (the trigger's configured default
+ * agent, not the agent that ran) and `acting_user` are never consulted.
  */
 import type { BindingInput, BindingResult, TaskNode } from '../../shared/ports.js';
 import type { BindingState, EventBinding, RawObservation } from '../../shared/contracts.js';
-import { canonicalJson } from './util.js';
+import { eventRefs, type EventRefs } from './collector.js';
+import { canonicalJson, isRecord } from './util.js';
 
 interface One {
   state: BindingState;
@@ -21,6 +25,20 @@ interface One {
 
 const METHOD = 'task_graph:security.task_id→agent_task→launch_registry';
 const METHOD_NESTED = 'task_graph:security.task_id→nested_agent_task→root_agent_task→launch_registry';
+
+/**
+ * Refs re-derived from the persisted semanticJson (survives publish/readback, unlike extra in-memory fields).
+ * Non-JSON or non-native semantic payloads (e.g. replay seeds) carry no refs and add no checks.
+ */
+function observationRefs(o: RawObservation): EventRefs {
+  try {
+    const parsed: unknown = JSON.parse(o.semanticJson);
+    if (isRecord(parsed)) return eventRefs(parsed);
+  } catch {
+    /* not JSON: nothing to corroborate */
+  }
+  return { taskId: null, credentialsId: null, agentRef: null, sessionRef: null, workspaceRef: null, conflicts: [] };
+}
 
 function subjectFor(node: TaskNode, map: Record<string, string>): string | null {
   if (node.agentRef && Object.prototype.hasOwnProperty.call(map, node.agentRef)) return map[node.agentRef] ?? null;
@@ -41,6 +59,12 @@ export function bindEvents(input: BindingInput): BindingResult {
     const bad = (state: BindingState, reason: string, proofRef = `task_graph:${o.sessionId}`): One => ({
       state, subject: null, actingTaskId: null, method: METHOD, proofRef, reason,
     });
+    const refs = observationRefs(o);
+    if (refs.conflicts.length > 0) return bad('conflict', `security event fields disagree across top-level/nested locations: ${refs.conflicts.join(', ')}`);
+    if (refs.sessionRef && refs.sessionRef !== o.sessionId) return bad('conflict', `event payload names session ${refs.sessionRef}, collected for ${o.sessionId}`);
+    // Native launch responses carry workspace.id (the same id form as details.workspace_id); a collection workspace
+    // in another form (config owner~name fallback) cannot corroborate the payload and fails closed here too.
+    if (refs.workspaceRef && refs.workspaceRef !== o.workspaceId) return bad('conflict', `event payload names workspace ${refs.workspaceRef}, collected for ${o.workspaceId}`);
     if (!o.nativeTaskId) return bad('unresolved', 'security event has no task_id');
     const r = reg.get(`${o.workspaceId}|${o.sessionId}`);
     if (!r) return bad('unresolved', 'session is not in the registered launch cohort');
@@ -70,6 +94,11 @@ export function bindEvents(input: BindingInput): BindingResult {
     const proofRef = `task_graph:${o.sessionId}:${chain.join('>')}`;
     if (!acting) return bad('unresolved', 'no agent task found in ancestry', proofRef);
     if (root.kind !== 'agent') return bad('unresolved', 'task graph root is not an agent task', proofRef);
+    if (refs.agentRef) {
+      // Conservative for nested sub-agents: the event's agent must be the nearest acting agent, else fail closed.
+      if (!acting.agentRef) return bad('unresolved', `event agent ${refs.agentRef} cannot be corroborated: acting agent task ${acting.taskId} has no agent ref`, proofRef);
+      if (acting.agentRef !== refs.agentRef) return bad('conflict', `event agent ${refs.agentRef} disagrees with acting agent task ${acting.taskId} ref ${acting.agentRef}`, proofRef);
+    }
     const subject = subjectFor(acting, input.subjectDomainMap);
     if (!subject) return bad('unresolved', `agent ref ${acting.agentRef ?? 'null'} is not mapped to a verified policy subject`, proofRef);
 

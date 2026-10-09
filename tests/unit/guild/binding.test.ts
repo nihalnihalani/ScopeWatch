@@ -4,8 +4,8 @@ import { normalizeSecurityEvent, normalizeTask } from '../../../src/integrations
 import type { RegisteredSession, TaskNode } from '../../../src/shared/ports.js';
 
 const WS = 'ws1', S = 'sess1';
-const obs = (id: string, taskId: string | null, session = S) =>
-  normalizeSecurityEvent({ id, type: 'security', created_at: '2026-10-09T12:00:00Z', task_id: taskId, decision: 'ALLOW', operation: 'issues_get', credentials_id: 'c1' }, {
+const obs = (id: string, taskId: string | null, session = S, extra: Record<string, unknown> = {}) =>
+  normalizeSecurityEvent({ id, type: 'security', created_at: '2026-10-09T12:00:00Z', task_id: taskId, decision: 'ALLOW', operation: 'issues_get', credentials_id: 'c1', ...extra }, {
     provenance: 'contract_test', generationId: 'g', workspaceId: WS, sessionId: session, pageRef: 'p', index: 0, domain: 'workspace', observedAt: '2026-10-09T12:00:00Z',
   });
 const agent = (id: string, parent: string | null, ref: string | null, version: string | null = null, session = S): TaskNode =>
@@ -78,6 +78,38 @@ describe('bindEvents', () => {
     expect(r.bindings).toHaveLength(1);
     expect(r.bindings[0]!.bindingState).toBe('conflict');
     expect(r.diagnostics.some((d) => d.nativeIdentityKey.startsWith('observation:'))).toBe(true);
+  });
+  it('event details.agent_id agreeing with the acting agent ref verifies; disagreeing is a conflict', () => {
+    const tasks = [agent('root', null, 'instA'), tool('tool1', 'root')];
+    expect(run([obs('e1', 'tool1', S, { details: { agent_id: 'instA' } })], tasks).bindings[0]!.bindingState).toBe('verified');
+    const r = run([obs('e1', 'tool1', S, { details: { agent_id: 'instB' } })], tasks);
+    expect(r.bindings[0]).toMatchObject({ bindingState: 'conflict', policySubjectId: null });
+    expect(r.diagnostics[0]!.reason).toContain('disagrees with acting agent task');
+  });
+  it('nested: event agent must be the nearest acting agent (conservative)', () => {
+    const tasks = [agent('root', null, 'instA'), agent('child', 'root', 'instB'), tool('tool1', 'child')];
+    expect(run([obs('e1', 'tool1', S, { details: { agent_id: 'instB' } })], tasks).bindings[0]!.bindingState).toBe('verified');
+    expect(run([obs('e1', 'tool1', S, { details: { agent_id: 'instA' } })], tasks).bindings[0]!.bindingState).toBe('conflict');
+  });
+  it('event agent ref with an acting agent that has no agent ref cannot be corroborated', () => {
+    const tasks = [agent('root', null, 'instA'), agent('child', 'root', null, 'defB'), tool('tool1', 'child')];
+    const r = run([obs('e1', 'tool1', S, { details: { agent_id: 'defB' } })], tasks, [reg()], { ...MAP, 'version:defB': 'subj-DEF' });
+    expect(r.bindings[0]!.bindingState).toBe('unresolved');
+  });
+  it('payload session differing from the collected session is a conflict', () => {
+    const tasks = [agent('root', null, 'instA'), tool('tool1', 'root')];
+    expect(run([obs('e1', 'tool1', S, { details: { session_id: 'other' } })], tasks).bindings[0]!.bindingState).toBe('conflict');
+    expect(run([obs('e1', 'tool1', S, { details: { session_id: S } })], tasks).bindings[0]!.bindingState).toBe('verified');
+  });
+  it('top-level vs nested field disagreement is a conflict, not silent precedence', () => {
+    const tasks = [agent('root', null, 'instA'), tool('tool1', 'root')];
+    const r = run([obs('e1', 'tool1', S, { details: { credentials_id: 'c-other' } })], tasks);
+    expect(r.bindings[0]).toMatchObject({ bindingState: 'conflict', policySubjectId: null });
+    expect(r.diagnostics[0]!.reason).toContain('credentials_id');
+  });
+  it('non-JSON semanticJson (e.g. replay seeds) adds no corroboration checks', () => {
+    const tasks = [agent('root', null, 'instA'), tool('tool1', 'root')];
+    expect(run([{ ...obs('e1', 'tool1'), semanticJson: 'not-json' }], tasks).bindings[0]!.bindingState).toBe('verified');
   });
   it('a root without entity_type is unknown and binding stays unresolved', () => {
     const root = normalizeTask({ id: 'root', parent_task_id: null, agent: { id: 'instA' }, status: 'DONE', session_id: S }, S)!;

@@ -25,7 +25,15 @@ export interface GuildConfig {
   workspaceId: string | null;
   workspaceOwner: string | null;
   workspaceName: string | null;
-  /** Allowlisted installed agents (launch profiles). */
+  /**
+   * Allowlisted launch agent refs per profile: agent DEFINITION id or "owner~agent-name". These are the
+   * only values ever sent as `agent_id`. Native observation 2026-10-09: an installed (workspace_agent) id
+   * is rejected with 400 InvalidInputError "Agent '<id>' not found".
+   */
+  targetAgentId: string | null;
+  controlAgentId: string | null;
+  investigatorAgentId: string | null;
+  /** Workspace installed-agent ids: informational only. Never sent as agent_id, never identity. */
   targetInstalledAgentId: string | null;
   controlInstalledAgentId: string | null;
   investigatorInstalledAgentId: string | null;
@@ -40,7 +48,7 @@ export interface GuildConfig {
   /** Server-held expected marker for the TARGET fixture, used only by recovery probes (devil P1-B). */
   targetExpectedMarker: string | null;
   /**
-   * Native agent ref (as observed in agent task nodes) → verified policy-subject ID. Recorded from
+   * Native agent ref (as observed in agent task nodes; natively the agent DEFINITION id) → verified policy-subject ID. Recorded from
    * native proof (docs/native/NATIVE_PROOF_LEDGER.md); never inferred from display names.
    * Env GUILD_AGENT_SUBJECT_MAP as JSON object.
    */
@@ -163,6 +171,9 @@ export function loadConfig(src: NodeJS.ProcessEnv = process.env): AppConfig {
     workspaceId: env('GUILD_WORKSPACE_ID', src),
     workspaceOwner: env('GUILD_WORKSPACE_OWNER', src),
     workspaceName: env('GUILD_WORKSPACE_NAME', src),
+    targetAgentId: env('GUILD_TARGET_AGENT_ID', src),
+    controlAgentId: env('GUILD_CONTROL_AGENT_ID', src),
+    investigatorAgentId: env('GUILD_INVESTIGATOR_AGENT_ID', src),
     targetInstalledAgentId: env('GUILD_TARGET_INSTALLED_AGENT_ID', src),
     controlInstalledAgentId: env('GUILD_CONTROL_INSTALLED_AGENT_ID', src),
     investigatorInstalledAgentId: env('GUILD_INVESTIGATOR_INSTALLED_AGENT_ID', src),
@@ -226,9 +237,9 @@ export function missingGuildSettings(g: GuildConfig): string[] {
     ['workspaceId', 'GUILD_WORKSPACE_ID'],
     ['workspaceOwner', 'GUILD_WORKSPACE_OWNER'],
     ['workspaceName', 'GUILD_WORKSPACE_NAME'],
-    ['targetInstalledAgentId', 'GUILD_TARGET_INSTALLED_AGENT_ID'],
-    ['controlInstalledAgentId', 'GUILD_CONTROL_INSTALLED_AGENT_ID'],
-    ['investigatorInstalledAgentId', 'GUILD_INVESTIGATOR_INSTALLED_AGENT_ID'],
+    ['targetAgentId', 'GUILD_TARGET_AGENT_ID'],
+    ['controlAgentId', 'GUILD_CONTROL_AGENT_ID'],
+    ['investigatorAgentId', 'GUILD_INVESTIGATOR_AGENT_ID'],
     ['verifiedTargetPolicySubjectId', 'GUILD_VERIFIED_TARGET_POLICY_SUBJECT_ID'],
     ['verifiedControlPolicySubjectId', 'GUILD_VERIFIED_CONTROL_POLICY_SUBJECT_ID'],
     ['verifiedCredentialId', 'GUILD_VERIFIED_CREDENTIAL_ID'],
@@ -242,6 +253,22 @@ export function missingGuildSettings(g: GuildConfig): string[] {
   if (Object.keys(g.agentSubjectMap).length === 0) out.push('GUILD_AGENT_SUBJECT_MAP');
   if (g.identityDomain === 'unverified') out.push('GUILD_IDENTITY_DOMAIN');
   return out;
+}
+
+/**
+ * Names-only warnings for launch agent refs that look like the wrong id domain: a launch ref equal to a
+ * configured installed-agent id is what native rejected on 2026-10-09 (400 "Agent '<id>' not found").
+ */
+export function launchRefWarnings(g: GuildConfig): string[] {
+  const installed = new Set([g.targetInstalledAgentId, g.controlInstalledAgentId, g.investigatorInstalledAgentId].filter((x): x is string => x !== null));
+  const refs: Array<[string | null, string]> = [
+    [g.targetAgentId, 'GUILD_TARGET_AGENT_ID'],
+    [g.controlAgentId, 'GUILD_CONTROL_AGENT_ID'],
+    [g.investigatorAgentId, 'GUILD_INVESTIGATOR_AGENT_ID'],
+  ];
+  return refs
+    .filter(([v]) => v !== null && installed.has(v))
+    .map(([, n]) => `${n} equals a configured installed-agent id; native launches require the agent DEFINITION id or owner~name`);
 }
 
 /** Safe description for doctor/status output: presence only, no secret values. */

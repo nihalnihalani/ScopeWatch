@@ -22,13 +22,26 @@ export interface LaunchReceipt {
   launchId: string;
   provenance: Provenance;
   profile: LaunchProfile;
-  /** Requested installed agent (intent only, never binding authority). */
+  /**
+   * Configured workspace installed-agent id for the profile, informational only ('' when not configured).
+   * Never sent as agent_id and never binding authority.
+   */
   requestedInstalledAgentId: string;
+  /**
+   * The allowlisted launch agent ref actually sent as agent_id (definition id or owner~name). Intent only,
+   * never binding authority: identity comes from the root agent task and security events. '' when no
+   * launch ref is configured for the profile (the launch then fails without a network call).
+   */
+  requestedAgentRef: string;
   route: 'api_trigger' | 'chat';
   nativeSessionId: string | null;
   nativeRootTaskId: string | null;
   workspaceId: string | null;
-  /** Corroborated subject/version from the RETURNED native record, if present. */
+  /**
+   * Agent/version that actually ran, ONLY when the returned record names the root task's agent. Never taken
+   * from session.trigger.agent / trigger.workspace_agent: natively those are the trigger's configured
+   * default agent, not the agent that ran (observed 2026-10-09). Usually null at launch time.
+   */
   returnedAgentRef: string | null;
   returnedVersionId: string | null;
   sessionType: string | null;
@@ -87,6 +100,7 @@ export interface RegisteredSession {
   profile: LaunchProfile;
   /** Verified policy subject expected for this launch profile (from config/manifest, server-side). */
   expectedPolicySubjectId: string;
+  /** Informational installed-agent id ('' when not configured). Never identity: binding uses the task graph. */
   installedAgentId: string;
 }
 

@@ -55,12 +55,13 @@ export async function startStack(mode: 'replay' | 'contract_test', opts: { launc
     Object.assign(base, {
       GUILD_API_BASE_URL: mock.url, GUILD_TRIGGER_KEY: o.triggerKey, GUILD_COLLECTOR_KEY: o.collectorKey,
       GUILD_WORKSPACE_ID: o.workspace.id, GUILD_WORKSPACE_OWNER: o.workspace.owner, GUILD_WORKSPACE_NAME: o.workspace.name,
+      GUILD_TARGET_AGENT_ID: o.agents.target, GUILD_CONTROL_AGENT_ID: o.agents.control, GUILD_INVESTIGATOR_AGENT_ID: o.agents.investigator,
       GUILD_TARGET_INSTALLED_AGENT_ID: o.installed.target, GUILD_CONTROL_INSTALLED_AGENT_ID: o.installed.control, GUILD_INVESTIGATOR_INSTALLED_AGENT_ID: o.installed.investigator,
       GUILD_VERIFIED_TARGET_POLICY_SUBJECT_ID: o.subjects.target, GUILD_VERIFIED_CONTROL_POLICY_SUBJECT_ID: o.subjects.control,
       GUILD_VERIFIED_CREDENTIAL_ID: o.credentialId, GUILD_VERIFIED_OPERATION: o.operation,
       OWNED_GITHUB_OWNER: o.ownedRepo.split('/')[0] as string, OWNED_GITHUB_REPO: o.ownedRepo.split('/')[1] as string,
       SCOPEWATCH_CONTROL_EXPECTED_MARKER: o.controlMarker, SCOPEWATCH_TARGET_EXPECTED_MARKER: o.targetMarker,
-      GUILD_AGENT_SUBJECT_MAP: JSON.stringify({ [o.installed.target]: o.subjects.target, [o.installed.control]: o.subjects.control }),
+      GUILD_AGENT_SUBJECT_MAP: JSON.stringify({ [o.agents.target]: o.subjects.target, [o.agents.control]: o.subjects.control }),
       GUILD_IDENTITY_DOMAIN: 'workspace', GUILD_PROBE_TICKET_NUMBER: '1', PINNED_MANIFEST_PATH: manifest, PINNED_MANIFEST_REF: 'adv:manifest',
     });
     secrets.push(o.triggerKey, o.collectorKey, o.triggerKey.split(':')[1] as string, o.collectorKey.split(':')[1] as string, o.controlMarker, o.targetMarker);

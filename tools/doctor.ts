@@ -5,7 +5,7 @@
  */
 import { execFileSync } from 'node:child_process';
 import { existsSync } from 'node:fs';
-import { ConfigError, describeConfig, loadConfig, missingGuildSettings } from '../src/server/config.js';
+import { ConfigError, describeConfig, launchRefWarnings, loadConfig, missingGuildSettings } from '../src/server/config.js';
 
 type Line = { item: string; status: 'ok' | 'missing' | 'unavailable' | 'pending' | 'info'; detail: string };
 
@@ -65,6 +65,9 @@ async function main(): Promise<number> {
   if (cfg.mode === 'native') {
     lines.push({ item: 'guild settings', status: missing.length ? 'missing' : 'ok', detail: missing.length ? `missing: ${missing.join(', ')}` : 'all present (values not shown)' });
     if (missing.length) localFail = true;
+    const warn = launchRefWarnings(cfg.guild);
+    lines.push({ item: 'guild launch refs', status: warn.length ? 'missing' : 'info', detail: warn.length ? warn.join('; ') : 'launch agent refs are distinct from installed ids (definition id or owner~name required; values not shown)' });
+    if (warn.length) localFail = true;
   } else {
     lines.push({ item: 'guild settings', status: 'info', detail: `${cfg.mode} mode does not use native Guild credentials` });
   }

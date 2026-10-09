@@ -1,7 +1,11 @@
-/** Real Guild adapter over HTTP against the loopback CONTRACT-TEST MOCK (documented schema, not observed account). */
+/**
+ * Real Guild adapter over HTTP against the loopback CONTRACT-TEST MOCK. Mock response shapes follow the 2026-10-09
+ * native capture (tests/unit/guild/fixtures/native-2026-10-09-charliegillet); mock behaviour is simulated, not native evidence.
+ */
+import { readFileSync } from 'node:fs';
 import { afterEach, describe, expect, it } from 'vitest';
 import { createGuildPort, GuildAdapter } from '../../../src/integrations/guild/index.js';
-import { makeConfig, regFor, setup, SUBJECT_MAP, type Mock } from '../../support/mock-guild/testkit.js';
+import { makeConfig, MOCK_DEFAULTS, regFor, setup, SUBJECT_MAP, type Mock } from '../../support/mock-guild/testkit.js';
 import { startMockGuild } from '../../support/mock-guild/server.js';
 import type { ProbeRequest } from '../../../src/shared/ports.js';
 
@@ -37,7 +41,8 @@ describe('launch + collection', () => {
     const { mock, adapter, config } = await env({}, { pageLimit: 3 });
     mock.control.setScenario({ targetCalls: 7 });
     const rcpt = await adapter.launch('target', 'read tickets', 'ref-1');
-    expect(rcpt).toMatchObject({ outcome: 'created', route: 'api_trigger', sessionType: 'api', provenance: 'contract_test', requestedInstalledAgentId: mock.options.installed.target });
+    expect(rcpt).toMatchObject({ outcome: 'created', route: 'api_trigger', sessionType: 'api', provenance: 'contract_test', requestedAgentRef: mock.options.agents.target });
+    expect(mock.control.launchAgentIds).toEqual([mock.options.agents.target]);
     expect(rcpt.nativeSessionId && rcpt.nativeRootTaskId && rcpt.workspaceId).toBeTruthy();
     expect(mock.control.requestLog.find((r) => r.method === 'POST')).toMatchObject({ path: `/v1/workspaces/acme/harbordesk/sessions`, auth: 'trigger' });
     expect(mock.control.requestLog.filter((r) => r.method === 'GET').every((r) => r.auth === 'collector')).toBe(true);
@@ -52,6 +57,9 @@ describe('launch + collection', () => {
     expect(col.pageRefs.some((p) => p.includes('offset=3'))).toBe(true);
     expect(col.observations.every((o) => o.credentialId === mock.options.credentialId && o.createdAtNs !== null && o.provenance === 'contract_test')).toBe(true);
     expect(col.coverage.requiredFieldGaps).toBe(0);
+    // native shape: the acting task is the security_event `task` object (a TOOL task), not a top-level task_id
+    const toolIds = new Set(col.tasks.filter((t) => t.kind === 'tool').map((t) => t.taskId));
+    expect(col.observations.every((o) => o.nativeTaskId !== null && toolIds.has(o.nativeTaskId))).toBe(true);
     // bind through the same adapter
     const b = adapter.bindEvents({ generationId: 'gen-1', observations: col.observations, tasks: col.tasks, registry: [regFor(mock, rcpt.nativeSessionId!)], subjectDomainMap: SUBJECT_MAP(mock) });
     expect(b.bindings).toHaveLength(7);
@@ -159,14 +167,15 @@ describe('launch ambiguity', () => {
     expect(mock.control.postCount()).toBe(1);
   });
 
-  it('only allowlisted installed agents can be launched; unconfigured profile never calls the network', async () => {
-    const { mock, adapter } = await env({}, {}, { investigatorInstalledAgentId: null });
+  it('only allowlisted launch agent refs can be launched; unconfigured profile never calls the network', async () => {
+    const { mock, adapter } = await env({}, {}, { investigatorAgentId: null });
     const r = await adapter.launch('investigator', 'x', 'ref-un');
     expect(r.outcome).toBe('failed');
     expect(mock.control.postCount()).toBe(0);
     const t = await adapter.launch('target', 'x', 'ref-ok');
     expect(JSON.stringify(mock.control.inputs)).not.toContain('agent_id');
-    expect(t.requestedInstalledAgentId).toBe(mock.options.installed.target);
+    expect(t.requestedAgentRef).toBe(mock.options.agents.target);
+    expect(mock.control.launchAgentIds).toEqual([mock.options.agents.target]);
   });
 });
 
@@ -179,7 +188,6 @@ describe('probes', () => {
     expect(t.nativeEventIds.length).toBeGreaterThan(0);
     const c = await adapter.runProbe(probeReq(mock, 'control', 'p-c1'));
     expect(c.outcome).toBe('succeeded_expected');
-    expect(c.inspection).toContain('response_data');
     expect(c.inspection).not.toContain(mock.options.controlMarker);
     // the marker is held server side only
     expect(mock.control.inputs.join('\n')).not.toContain(mock.options.controlMarker);
@@ -208,7 +216,7 @@ describe('probes', () => {
     b.mock.control.setScenario({ omitResponseData: true });
     const r = await b.adapter.runProbe(probeReq(b.mock, 'control', 'p-nd'));
     expect(r.outcome).toBe('missing');
-    expect(r.inspection).toContain('not inspectable');
+    expect(r.inspection).toMatch(/not inspectable/);
   });
 
   it('events from a nested sub-agent are not attributed to the probed target subject', async () => {
@@ -379,5 +387,79 @@ describe('recovery target probe', () => {
     const { mock, adapter } = await env();
     mock.control.applyDeny();
     expect((await adapter.runProbe(probeReq(mock, 'target', 'r-d', undefined, 'recovery'))).outcome).toBe('refused_policy');
+  });
+});
+
+const FIXTURE_DIR = 'tests/unit/guild/fixtures/native-2026-10-09-charliegillet';
+const fixture = (name: string): Record<string, any> => JSON.parse(readFileSync(`${FIXTURE_DIR}/${name}`, 'utf8')); // eslint-disable-line @typescript-eslint/no-explicit-any
+const keys = (o: object): string[] => Object.keys(o).sort();
+async function raw(mock: Mock, path: string): Promise<any> { // eslint-disable-line @typescript-eslint/no-explicit-any
+  const r = await fetch(`${mock.url}/v1${path}`, { headers: { authorization: `Basic ${Buffer.from(mock.options.collectorKey).toString('base64')}` } });
+  return r.json();
+}
+
+describe('mock fidelity to the 2026-10-09 native capture', () => {
+  it('security_event, task and session key sets match the sanitized native responses', async () => {
+    const { mock, adapter } = await env();
+    const rcpt = await adapter.launch('target', 'x', 'ref-shape');
+    const ev = (await raw(mock, `/sessions/${rcpt.nativeSessionId}/events?limit=1000`)).items;
+    const tk = (await raw(mock, `/sessions/${rcpt.nativeSessionId}/tasks?limit=1000`)).items;
+    const sess = await raw(mock, `/sessions/${rcpt.nativeSessionId}`);
+    const nev = fixture('target-events.json').items;
+    const ntk = fixture('target-tasks.json').items;
+    const nSec = nev.find((e: { type: string }) => e.type === 'security_event');
+    const mSec = ev.find((e: { type: string }) => e.type === 'security_event');
+    expect(keys(mSec)).toEqual(keys(nSec));
+    expect(keys(mSec.details)).toEqual(keys(nSec.details));
+    expect(mSec).not.toHaveProperty('task_id');
+    expect(mSec).not.toHaveProperty('credentials_id');
+    expect(mSec.details.agent_id).toBe(mock.options.agents.target);
+    expect(mSec.details.actor_type).toBe('HUMAN');
+    const pick = (items: Array<{ entity_type: string; tool_name?: string }>, et: string) => items.find((t) => t.entity_type === et && (et !== 'EntTaskTool' || t.tool_name?.endsWith('issues_get')));
+    expect(keys(pick(tk, 'EntTaskAgent')!)).toEqual(keys(pick(ntk, 'EntTaskAgent')!));
+    expect(keys(pick(tk, 'EntTaskTool')!)).toEqual(keys(pick(ntk, 'EntTaskTool')!));
+    expect(tk.every((t: object) => !('response_data' in t))).toBe(true);
+    expect(keys(sess)).toEqual(keys(fixture('target-session.json')));
+    // tool result content: runtime_done on the TOOL task, content is an object with `body`
+    const toolDone = ev.find((e: { type: string; task: { entity_type: string } }) => e.type === 'runtime_done' && e.task.entity_type === 'EntTaskTool');
+    const nToolDone = nev.find((e: { type: string; task: { entity_type: string; tool_name?: string } }) => e.type === 'runtime_done' && e.task.tool_name === 'github_issues_get');
+    expect(typeof toolDone.content.body).toBe(typeof nToolDone.content.body);
+    expect(toolDone.content.body).toContain(mock.options.targetMarker);
+  });
+
+  it('launch with an INSTALLED id is a definite 400 "Agent not found" failure, as observed natively', async () => {
+    const { mock, adapter } = await env({}, {}, { targetAgentId: MOCK_DEFAULTS.installed.target });
+    const r = await adapter.launch('target', 'x', 'ref-inst');
+    expect(r.outcome).toBe('failed');
+    expect(r.nativeSessionId).toBeNull();
+    expect(r.error).toContain('not found');
+    expect(mock.control.sessions.size).toBe(0);
+    expect(mock.control.postCount()).toBe(1);
+    const native = fixture('launch-rejected-installed-id.json');
+    expect(native.http_status).toBe(400);
+    expect(native.body.error).toBe('InvalidInputError');
+  });
+
+  it('owner~agent-name is accepted as a launch ref', async () => {
+    const { mock, adapter } = await env({}, {}, { targetAgentId: `${MOCK_DEFAULTS.workspace.owner}~${MOCK_DEFAULTS.agentNames.target}` });
+    const r = await adapter.launch('target', 'x', 'ref-name');
+    expect(r.outcome).toBe('created');
+    const col = await adapter.collectSession(regFor(mock, r.nativeSessionId!), 'g');
+    expect(col.tasks.find((t) => t.kind === 'agent' && t.parentTaskId === null)?.agentRef).toBe(mock.options.agents.target);
+  });
+
+  it('session.trigger.agent is the trigger DEFAULT agent and never the identity of the agent that ran', async () => {
+    const { mock, adapter } = await env();
+    const r = await adapter.launch('control', 'x', 'ref-trig');
+    expect(r.outcome).toBe('created');
+    const sess = await raw(mock, `/sessions/${r.nativeSessionId}`);
+    expect(sess.trigger.agent.id).toBe(mock.options.agents.target); // trigger default (TicketAssist analogue)
+    expect(sess.trigger.workspace_agent.id).toBe(mock.options.installed.target);
+    expect(r.returnedAgentRef).not.toBe(mock.options.agents.target);
+    const col = await adapter.collectSession(regFor(mock, r.nativeSessionId!, 'control'), 'g');
+    expect(col.tasks.find((t) => t.kind === 'agent' && t.parentTaskId === null)?.agentRef).toBe(mock.options.agents.control);
+    const b = adapter.bindEvents({ generationId: 'g', observations: col.observations, tasks: col.tasks, registry: [regFor(mock, r.nativeSessionId!, 'control')], subjectDomainMap: {} });
+    expect(b.bindings.length).toBeGreaterThan(0);
+    expect(b.bindings.every((x) => x.bindingState === 'verified' && x.policySubjectId === mock.options.subjects.control)).toBe(true);
   });
 });

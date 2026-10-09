@@ -44,6 +44,27 @@ describe('normalizeSecurityEvent', () => {
     expect(c.semanticJson).not.toBe(a.semanticJson);
     expect(Object.keys(JSON.parse(a.semanticJson))).not.toContain('updated_at');
   });
+  it('native shape: task object and details-nested credentials_id/agent_id fill the observation', () => {
+    const native = { id: 'e9', type: 'security_event', created_at: '2026-10-09T22:15:23.634925+00:00', decision: 'ALLOW', operation: 'issues_get',
+      reason_code: 'ACCESS_ALLOWED', credentials: null, integration: null, acting_user: { id: 'u1', name: 'creator' },
+      task: { id: 'tool-1', entity_type: 'EntTaskTool', status: 'STARTED' },
+      details: { credentials_id: 'c9', agent_id: 'def-9', session_id: 'sess1', actor_type: 'HUMAN' } };
+    const o = normalizeSecurityEvent(native, ctx());
+    expect(o).toMatchObject({ nativeTaskId: 'tool-1', credentialId: 'c9', operation: 'issues_get', decision: 'ALLOW', createdAt: '2026-10-09T22:15:23.634925Z' });
+    const sem = JSON.parse(o.semanticJson) as Record<string, unknown>;
+    expect(sem.task).toEqual({ id: 'tool-1' });
+    expect(sem.acting_user).toEqual({ id: 'u1' });
+    expect((sem.details as Record<string, unknown>).agent_id).toBe('def-9');
+  });
+  it('contradictory top-level vs nested refs normalize to null gaps', () => {
+    const o = normalizeSecurityEvent(ev({ task: { id: 'other' }, details: { credentials_id: 'c2' } }), ctx());
+    expect(o.nativeTaskId).toBeNull();
+    expect(o.credentialId).toBeNull();
+  });
+  it('documented-shape semanticJson is unchanged by the native-shape keys (absent keys dropped)', () => {
+    expect(Object.keys(JSON.parse(normalizeSecurityEvent(ev(), ctx()).semanticJson)).sort()).toEqual(
+      ['acting_user_id', 'capability', 'created_at', 'credentials_id', 'decision', 'details', 'id', 'operation', 'reason_code', 'task_id']);
+  });
   it('a spoofed agent label in the payload is preserved as data but never becomes identity/subject', () => {
     const o = normalizeSecurityEvent(ev({ details: { agent: 'control-agent' }, agent_label: 'control' }), ctx());
     expect(o.nativeIdentityKey).toBe('["ws1","e1"]');

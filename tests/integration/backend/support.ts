@@ -43,7 +43,7 @@ export class FakeGuildPort implements GuildPort {
     return { ok: true, detail: 'FAKE test double', missing: [] };
   }
   async launch(profile: LaunchProfile, _in: string, ref: string): Promise<LaunchReceipt> {
-    return { launchId: `l-${ref}`, provenance: this.provenance, profile, requestedInstalledAgentId: 'inst', route: 'api_trigger', nativeSessionId: `sess-${ref}`, nativeRootTaskId: null, workspaceId: 'ws-test', returnedAgentRef: null, returnedVersionId: null, sessionType: 'api_trigger', startedAt: nowUtcNano(), nativeCreatedAt: null, idempotencyRef: ref, outcome: 'created', error: null };
+    return { launchId: `l-${ref}`, provenance: this.provenance, profile, requestedInstalledAgentId: 'inst', requestedAgentRef: 'agentdef-fake', route: 'api_trigger', nativeSessionId: `sess-${ref}`, nativeRootTaskId: null, workspaceId: 'ws-test', returnedAgentRef: null, returnedVersionId: null, sessionType: 'api_trigger', startedAt: nowUtcNano(), nativeCreatedAt: null, idempotencyRef: ref, outcome: 'created', error: null };
   }
   async awaitCompletion() {
     return 'DONE';

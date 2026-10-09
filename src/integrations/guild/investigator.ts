@@ -48,7 +48,7 @@ export async function runInvestigation(a: AdapterContext, ctx: InvestigationCont
 
   const input = buildInvestigatorInput(ctx);
   if (Buffer.byteLength(input) > MAX_FACTS_BYTES) return done('failed', { unavailableReason: 'facts exceed the compact size limit' });
-  if (!a.config.guild.investigatorInstalledAgentId) return done('unavailable', { unavailableReason: 'investigator installed agent is not configured' });
+  if (!a.config.guild.investigatorAgentId) return done('unavailable', { unavailableReason: 'investigator launch agent ref (GUILD_INVESTIGATOR_AGENT_ID) is not configured' });
 
   const rcpt = await a.launcher.launch('investigator', input, ctx.idempotencyRef);
   if (rcpt.outcome === 'failed') return done('failed', { unavailableReason: rcpt.error });
@@ -81,7 +81,7 @@ export async function runInvestigation(a: AdapterContext, ctx: InvestigationCont
     return done('create_unknown', { ...withSession, narrative, nativeTaskId: issues[0]?.taskId ?? null, unavailableReason: `${issues.length} issue-create tasks observed; exactly one was requested` });
   }
   const url = urls[0] ?? null;
-  if (!url) return done('create_unknown', { ...withSession, narrative, nativeTaskId: issues[0]?.taskId ?? null, unavailableReason: 'issue-create task completed but response_data has no html_url' });
+  if (!url) return done('create_unknown', { ...withSession, narrative, nativeTaskId: issues[0]?.taskId ?? null, unavailableReason: 'issue-create task completed but its result content (runtime_done / response_data) has no html_url' });
   return done('created', { ...withSession, narrative, nativeTaskId: issues[0]?.taskId ?? null, incidentUrl: url });
 }
 

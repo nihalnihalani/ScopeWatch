@@ -2,7 +2,9 @@
  * Fresh-session probes. Every probe is a NEW session launched after `notBefore` with a fixed,
  * allowlisted instruction (only a validated operation name, owned repo and ticket number are
  * substituted). The outcome comes from native security events bound to the probe's subject plus,
- * for the control, the actual tool task response_data compared with the server-held marker. The
+ * for the control, the actual tool result content compared with the server-held marker. Natively
+ * (2026-10-09) that content is the tool task's `runtime_done` event (`content.body`), which the collector
+ * attaches as the tool TaskNode's responseData; the tasks listing has no response_data. The
  * marker is never sent to the agent and model prose is never consulted.
  */
 import type { ProbeRequest, RegisteredSession, TaskNode } from '../../shared/ports.js';
@@ -29,7 +31,7 @@ export function classifyDecision(d: Decision | null, reason: string | null): Pro
   return 'missing';
 }
 
-/** Does any tool task response_data (raw value) contain the marker? Returns tri-state. */
+/** Does the tool task's result content (TaskNode.responseData: native response_data or attached runtime_done content) contain the marker? Tri-state. */
 export function inspectMarker(node: TaskNode | undefined, marker: string): 'present' | 'absent' | 'no_data' {
   if (!node || node.responseData === null || node.responseData === undefined) return 'no_data';
   const text = typeof node.responseData === 'string' ? node.responseData : JSON.stringify(node.responseData);
@@ -59,8 +61,10 @@ export async function runProbe(a: AdapterContext, req: ProbeRequest, opt: ProbeO
   });
 
   const expectedSubject = req.role === 'target' ? g.verifiedTargetPolicySubjectId : g.verifiedControlPolicySubjectId;
-  const installed = req.role === 'target' ? g.targetInstalledAgentId : g.controlInstalledAgentId;
-  if (!expectedSubject || !installed || !g.workspaceId) return finish('missing', 'probe settings (verified subject / installed agent / workspace) not configured');
+  // Launch uses the allowlisted agent DEFINITION ref; the installed id is informational only.
+  const launchRef = req.role === 'target' ? g.targetAgentId : g.controlAgentId;
+  const installed = (req.role === 'target' ? g.targetInstalledAgentId : g.controlInstalledAgentId) ?? '';
+  if (!expectedSubject || !launchRef || !g.workspaceId) return finish('missing', 'probe settings (verified subject / launch agent ref / workspace) not configured');
   if (req.scope.workspaceId !== g.workspaceId) return finish('missing', 'scope workspace is not the configured workspace');
   if (req.role === 'target' && req.scope.policySubjectId !== expectedSubject) return finish('missing', 'scope subject is not the configured verified target subject');
   if (g.verifiedCredentialId && req.scope.credentialId !== g.verifiedCredentialId) return finish('missing', 'scope credential differs from the verified credential');
@@ -94,7 +98,9 @@ export async function runProbe(a: AdapterContext, req: ProbeRequest, opt: ProbeO
   const col = await a.collect(reg, `probe:${req.idempotencyRef}`);
   if (col.errors.length > 0 || col.coverage.coverageState !== 'complete') return finish('missing', `probe collection incomplete (${col.coverage.coverageState}): ${col.errors[0] ?? col.coverage.notes.join('; ')}`);
 
-  // Attribution uses ONLY the operator-verified map; nothing is derived from the launch itself.
+  // Attribution uses ONLY the operator-verified map keyed by the root agent task's agentRef (natively the
+  // agent definition id); nothing is derived from the launch request, the launch ref or session.trigger.agent
+  // (the trigger's default agent, not the agent that ran).
   const map: Record<string, string> = { ...(g.agentSubjectMap ?? {}) };
   const root = col.tasks.find((t) => t.kind === 'agent' && t.parentTaskId === null);
   if (!root?.agentRef || map[root.agentRef] !== expectedSubject) {
@@ -141,16 +147,16 @@ function inspectContent(
   const states = toolNodes.map((n) => inspectMarker(n, marker));
   if (states.includes('present')) {
     const n = toolNodes[states.indexOf('present')] as TaskNode;
-    return finish('succeeded_expected', `${who} tool task ${n.taskId} response_data contains the server-held marker (sha256 ${sha256Hex(marker).slice(0, 12)})`, patch);
+    return finish('succeeded_expected', `${who} tool task ${n.taskId} result content contains the server-held marker (sha256 ${sha256Hex(marker).slice(0, 12)})`, patch);
   }
   if (states.every((s) => s === 'no_data')) {
     return who === 'target'
-      ? finish('allowed', 'ALLOW observed but tool task response_data is absent; target content not inspectable, recovery not proven', patch)
-      : finish('missing', 'ALLOW observed but tool task response_data is absent (documented: stored only when projected); content not inspectable', patch);
+      ? finish('allowed', 'ALLOW observed but tool task result content (runtime_done / response_data) is absent; target content not inspectable, recovery not proven', patch)
+      : finish('missing', 'ALLOW observed but tool task result content (runtime_done / response_data) is absent; content not inspectable', patch);
   }
   return who === 'target'
-    ? finish('allowed', 'ALLOW observed but target response_data does not contain the expected marker; recovery not proven', patch)
-    : finish('succeeded_unexpected_content', 'ALLOW observed but tool response_data does not contain the expected marker', patch);
+    ? finish('allowed', 'ALLOW observed but target tool result content does not contain the expected marker; recovery not proven', patch)
+    : finish('succeeded_unexpected_content', 'ALLOW observed but tool result content does not contain the expected marker', patch);
 }
 
 function parseNs(t: string): bigint | null {

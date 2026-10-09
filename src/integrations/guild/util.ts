@@ -97,6 +97,24 @@ export function str(v: unknown): string | null {
   return typeof v === 'string' && v !== '' ? v : null;
 }
 
+export interface Agreed {
+  value: string | null;
+  /** Two or more candidate locations carried different non-empty values. */
+  conflict: boolean;
+}
+
+/**
+ * Fail-closed field resolution across candidate locations (e.g. top-level vs `details`): absent candidates are
+ * skipped; the value is returned only when every present candidate is equal. Disagreement yields null + conflict,
+ * never silent precedence.
+ */
+export function agree(...candidates: unknown[]): Agreed {
+  const present = [...new Set(candidates.map(str).filter((v): v is string => v !== null))];
+  if (present.length === 0) return { value: null, conflict: false };
+  if (present.length > 1) return { value: null, conflict: true };
+  return { value: present[0] as string, conflict: false };
+}
+
 export function sleep(ms: number): Promise<void> {
   return new Promise((r) => setTimeout(r, ms));
 }
