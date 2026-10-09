@@ -28,7 +28,7 @@ Working today (local): ingestion journal, ClickHouse publish with exact readback
 - Separately labeled replay and contract-test measurements: replay (harbordesk-v1: TicketAssist peak 30 vs allowance 20, ReleaseReview 40 vs 60, LabelSweeper 0; late-arrival-v1 historical crossing retained with current count 0) and contract_test results with `simulated_*` outcomes from the mock. Neither is native proof.
 - Verified (2026-10-09, committed tree `d819e75`): typecheck, lint, 246 unit/integration tests, 34 local-ClickHouse tests, 37 Playwright e2e, build, audit (see BUILD_STATUS receipts).
 - Unknown / not done: native security-event payload shape and subject-ID domain, `response_data` availability for control inspection, hosted investigator incident, native DENY and fresh refusal, recovery, Cloud ClickHouse, Semgrep finding.
-- Provenance: research and documentation templates predate the build; application source starts at commit `d79cdb0` (2026-10-09 ~12:20 UTC) on branch `codex/scopewatch-event-build`; see `git log` for actual history.
+- Provenance: research and documentation templates predate the build; application source starts at commit `d79cdb0` (2026-10-09 ~12:20 UTC) (built on branch `codex/scopewatch-event-build`, now merged into `main`); see `git log` for actual history.
 
 ## Team (HUMAN to fill, at most four)
 

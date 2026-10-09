@@ -1,6 +1,6 @@
 # ScopeWatch event build status
 
-Branch `codex/scopewatch-event-build` (private repo `nihalnihalani/ScopeWatch`). Build authorized by
+Default branch `main` (private repo `nihalnihalani/ScopeWatch`); personal working branches `nihal` and `charlie` branch from it. Built on `codex/scopewatch-event-build`, merged into `main` with all other branches on 2026-10-09. Build authorized by
 [BUILD_AUTHORIZATION.md](event/BUILD_AUTHORIZATION.md); first event-build source commit `d79cdb0` (2026-10-09 ~12:20 UTC).
 
 ## Status dimensions

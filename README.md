@@ -6,7 +6,7 @@
 
 This repository now contains **two separate things**:
 
-1. **The ScopeWatch application, built during the authorized event build** (branch `codex/scopewatch-event-build`, from commit `d79cdb0` on 9 October 2026): a local Node/TypeScript backend, React operator case page, SQLite control journal, ClickHouse analytical projection and Guild integration adapter. See [Run the application](#run-the-application) and [docs/BUILD_STATUS.md](docs/BUILD_STATUS.md) for exactly what is verified.
+1. **The ScopeWatch application, built during the authorized event build** (on `main`, from commit `d79cdb0` on 9 October 2026; originally built on branch `codex/scopewatch-event-build`): a local Node/TypeScript backend, React operator case page, SQLite control journal, ClickHouse analytical projection and Guild integration adapter. See [Run the application](#run-the-application) and [docs/BUILD_STATUS.md](docs/BUILD_STATUS.md) for exactly what is verified.
 2. **The pre-event research handoff** (architecture, sponsor contracts, plans, references, offline oracle, templates). It remains advisory reference material and is not application evidence.
 
 **Native status: NATIVE_PENDING.** No live Guild account run, ClickHouse Cloud query, hosted investigation, human native policy application or fresh native target/control probe has been performed. Every ClickHouse result in this repository comes from a local ClickHouse 25.8 server running in Docker against **synthetic replay data** or the **loopback mock Guild API** (contract tests) and is labeled that way in the UI, exports and screenshots.
