@@ -16,7 +16,7 @@ async function env(...args: Parameters<typeof setup>) {
   return e;
 }
 
-const probeReq = (mock: Mock, role: 'target' | 'control', ref: string, notBefore = '2026-10-09T11:00:00Z'): ProbeRequest => ({
+const probeReq = (mock: Mock, role: 'target' | 'control', ref: string, notBefore = '2000-01-01T00:00:00Z'): ProbeRequest => ({
   role,
   notBefore,
   idempotencyRef: ref,
@@ -320,5 +320,37 @@ describe('config-driven mapping', () => {
     expect(c2.observations.every((o) => o.identityDomain === 'unverified')).toBe(true);
     const b2 = e2.adapter.bindEvents({ ...input, observations: c2.observations, tasks: c2.tasks, registry: [regFor(e2.mock, r2.nativeSessionId!)] });
     expect(b2.bindings.every((b) => b.bindingState === 'unresolved')).toBe(true);
+  });
+});
+
+describe('probe freshness and attribution', () => {
+  it('a skewed Guild clock does not block a fresh probe (controller clock is used)', async () => {
+    const { mock, adapter } = await env();
+    mock.control.tick(-90 * 24 * 3600 * 1000); // Guild clock far in the past
+    const notBefore = new Date(Date.now() - 1000).toISOString();
+    mock.control.applyDeny();
+    const t = await adapter.runProbe(probeReq(mock, 'target', 'p-skew', notBefore));
+    expect(t.outcome).toBe('refused_policy');
+    const l = await adapter.launch('target', 'x', 'p-skew-2');
+    expect(Date.parse(l.startedAt)).toBeGreaterThan(Date.now() - 5000);
+    expect(l.nativeCreatedAt).toMatch(/Z$/);
+    expect(l.nativeCreatedAt).not.toBe(l.startedAt);
+  });
+
+  it('unmapped agent ref in the verified map yields missing, never launch-derived attribution', async () => {
+    const { mock, adapter } = await env({}, {}, { agentSubjectMap: {} });
+    mock.control.applyDeny();
+    const t = await adapter.runProbe(probeReq(mock, 'target', 'p-unmapped'));
+    expect(t.outcome).toBe('missing');
+    expect(t.inspection).toContain('agentSubjectMap');
+  });
+
+  it('a session ID already used by another launch is not a fresh probe', async () => {
+    const { adapter } = await env();
+    const first = await adapter.launch('target', 'x', 'ref-a');
+    // simulate a (hypothetical) vendor returning an existing session for a different ref
+    const l = (adapter as unknown as { launcher: { isFreshSession(s: string, r: string): boolean } }).launcher;
+    expect(l.isFreshSession(first.nativeSessionId!, 'ref-a')).toBe(true);
+    expect(l.isFreshSession(first.nativeSessionId!, 'ref-b')).toBe(false);
   });
 });

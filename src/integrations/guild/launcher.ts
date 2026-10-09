@@ -34,6 +34,7 @@ export function installedAgentFor(config: AppConfig, profile: LaunchProfile): st
 export class Launcher {
   private readonly receipts = new Map<string, LaunchReceipt>();
   private readonly profiles = new Map<string, LaunchProfile>();
+  private readonly sessionOwner = new Map<string, string>();
 
   constructor(private readonly d: LauncherDeps) {}
 
@@ -56,6 +57,7 @@ export class Launcher {
       returnedVersionId: null,
       sessionType: null,
       startedAt: started,
+      nativeCreatedAt: null,
       idempotencyRef: ref,
       outcome: 'failed',
       error: null,
@@ -76,14 +78,13 @@ export class Launcher {
       returnedAgentRef: agent ? (str(agent.id) ?? null) : null,
       returnedVersionId: agent ? (str(agent.version_id) ?? null) : null,
       sessionType: str(s.session_type),
-      startedAt: created?.text ?? rcpt.startedAt,
+      nativeCreatedAt: created?.text ?? null,
       outcome: str(s.id) ? 'created' : 'unknown',
       error: str(s.id) ? null : 'response had no session id',
     };
   }
 
   async launch(profile: LaunchProfile, agentInput: string, ref: string): Promise<LaunchReceipt> {
-    const started = nowUtcText(this.d.now);
     const prior = this.receipts.get(ref);
     if (prior?.outcome === 'created') return prior;
     if (prior?.outcome === 'unknown') {
@@ -94,7 +95,8 @@ export class Launcher {
     const g = this.d.config.guild;
     const installed = installedAgentFor(this.d.config, profile);
     const ws = this.workspaceRef();
-    const rcpt = this.base(profile, ref, installed ?? '', started);
+    // Controller clock, captured immediately before the POST (never Guild's clock).
+    const rcpt = this.base(profile, ref, installed ?? '', nowUtcText(this.d.now));
     if (!installed) return this.keep({ ...rcpt, error: `no allowlisted installed agent configured for profile ${profile}` });
     if (!g.workspaceOwner || !g.workspaceName || !g.triggerKey || !ws) return this.keep({ ...rcpt, error: 'trigger launch settings are not configured' });
     this.profiles.set(ref, profile);
@@ -111,7 +113,14 @@ export class Launcher {
 
   private keep(r: LaunchReceipt): LaunchReceipt {
     this.receipts.set(r.idempotencyRef, r);
+    if (r.nativeSessionId && !this.sessionOwner.has(r.nativeSessionId)) this.sessionOwner.set(r.nativeSessionId, r.idempotencyRef);
     return r;
+  }
+
+  /** A probe session is fresh only if no other launch reference already produced this session ID. */
+  isFreshSession(sessionId: string, ref: string): boolean {
+    const owner = this.sessionOwner.get(sessionId);
+    return owner === undefined || owner === ref;
   }
 
   async reconcileLaunch(ref: string): Promise<LaunchReceipt | null> {

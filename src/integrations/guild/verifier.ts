@@ -77,7 +77,8 @@ export async function runProbe(a: AdapterContext, req: ProbeRequest, opt: ProbeO
   if (rcpt.outcome === 'failed') return finish('failed', `launch failed: ${rcpt.error ?? 'unknown'}`);
   if (rcpt.outcome === 'unknown' || !rcpt.nativeSessionId) return finish('missing', `launch outcome ambiguous: ${rcpt.error ?? 'reconcile before retry'}`);
   const startNs = parseNs(rcpt.startedAt);
-  if (startNs === null || startNs <= notBeforeNs) return finish('missing', 'probe session was not started strictly after notBefore; not a fresh probe');
+  if (startNs === null || startNs <= notBeforeNs) return finish('missing', 'probe launch (controller clock) was not strictly after notBefore; not a fresh probe');
+  if (!a.launcher.isFreshSession(rcpt.nativeSessionId, req.idempotencyRef)) return finish('missing', 'probe session ID was already used by another launch; not a fresh probe');
 
   const status = await a.launcher.awaitCompletion(rcpt.nativeSessionId, a.completionTimeoutMs);
   if (status === null) return finish('missing', 'probe session did not reach a terminal state in time');
@@ -93,10 +94,12 @@ export async function runProbe(a: AdapterContext, req: ProbeRequest, opt: ProbeO
   const col = await a.collect(reg, `probe:${req.idempotencyRef}`);
   if (col.errors.length > 0 || col.coverage.coverageState !== 'complete') return finish('missing', `probe collection incomplete (${col.coverage.coverageState}): ${col.errors[0] ?? col.coverage.notes.join('; ')}`);
 
-  // Registry-derived mapping: the launched root agent ref maps to the subject we launched it as.
+  // Attribution uses ONLY the operator-verified map; nothing is derived from the launch itself.
+  const map: Record<string, string> = { ...(g.agentSubjectMap ?? {}) };
   const root = col.tasks.find((t) => t.kind === 'agent' && t.parentTaskId === null);
-  const map: Record<string, string> = {};
-  if (root?.agentRef) map[root.agentRef] = expectedSubject;
+  if (!root?.agentRef || map[root.agentRef] !== expectedSubject) {
+    return finish('missing', `root agent ref ${root?.agentRef ?? 'null'} is not mapped to the expected subject in the verified agentSubjectMap`);
+  }
   const bind = bindEvents({ generationId: `probe:${req.idempotencyRef}`, observations: col.observations, tasks: col.tasks, registry: [reg], subjectDomainMap: map });
   const verified = new Map(bind.bindings.filter((b) => b.bindingState === 'verified' && b.policySubjectId === expectedSubject).map((b) => [b.nativeIdentityKey, b]));
 
