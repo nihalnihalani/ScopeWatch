@@ -16,22 +16,29 @@ from the loopback mock Guild API; every ClickHouse receipt is from a **local** C
 
 ## Final check receipts (committed tree)
 
-Run by the lead on 2026-10-09 ~13:52 UTC at commit `d819e75` (+ this doc), after a clean `npm ci`:
+Re-run by the lead on 2026-10-09 ~17:00 UTC at commit `5302154` on `main` (+ the validator skip and this doc), after a
+clean `npm ci`. Docker's VM still returns I/O errors, so ClickHouse ran as the **official native macOS binary of the
+same version** (`clickhouse-macos-aarch64` from release `v25.8.33.6-lts`, SHA-256 `9643585c…659f198` matching the
+release digest), loopback-only on 127.0.0.1:18123 with the compose admin user, provisioned by `npm run ch:setup` (exit 0).
+Still **local** ClickHouse, not Cloud.
 
 | Command | Exit | Result |
 |---|---|---|
 | `npm ci` | 0 | lockfile install |
 | `npm run typecheck` | 0 | TypeScript strict, whole repo |
 | `npm run lint` | 0 | ESLint, 0 errors / 0 warnings |
-| `npm test` (unit + client + integration + adversarial) | 0 | 17 files, **246 passed** |
-| `npm run test:ch` (local ClickHouse 25.8.33.6) | 0 | 3 files, **34 passed** |
+| `npm test` (unit + client + integration + adversarial) | 0 | 18 files, **250 passed** |
+| `npm run test:ch` (local ClickHouse 25.8.33.6) | 0 | 4 files, **37 passed** |
 | `npm run build` | 0 | server (tsc) + client (vite) |
-| `npm run test:e2e` (Playwright, real local server) | 0 | **37 passed** |
-| `npm run doctor` (replay, local CH env) | 0 | local prerequisites present |
+| `npm run test:e2e` (Playwright, real local server) | 0 | **37 passed**; screenshots refreshed from this run |
+| `npm run doctor` (replay, local CH env) | 0 | local prerequisites present (`clickhouse_local db=scopewatch_replay ping=ok`) |
 | `npm run doctor` (native) | 1 | correctly reports missing Guild/ClickHouse settings; native gates pending |
-| `python3 tools/validate_handoff.py` | 0 | research handoff docs/links/imports intact |
+| `python3 tools/validate_handoff.py` | 0 | research handoff docs/links/imports intact (now skips gitignored `evidence/private/` raw captures) |
 | `npm audit --omit=dev` | 0 | 0 vulnerabilities |
-| `npm run replay` | 0 | readback 5/5, 57 anchors, 64 queries, oracle agrees (see evidence bundle) |
+| `npm run replay` | 0 | readback 5/5 components, 57 anchors, 64 queries, oracle agrees; TicketAssist 21/20 at 12:05:00Z, peak 30 |
+
+Earlier receipts at `d819e75` (13:52 UTC, Docker ClickHouse): 246 / 34 / 37 — the deltas are the +4 native-shape unit
+tests and the +3 bench ClickHouse tests added afterwards.
 
 Independent receipts: acceptance (Sonnet) 37 e2e / 120 integration; devil (Opus) re-review 205 unit+integration,
 24 client, 34 ClickHouse — reports in [docs/reviews/event-build/](reviews/event-build/).
@@ -47,7 +54,7 @@ Independent receipts: acceptance (Sonnet) 37 e2e / 120 integration; devil (Opus)
 | Replay benchmark | 20k-unit smoke only (SQL == oracle, 63 checks; 244/244 query ids reconciled); full scale **not run** | [bench-local-2026-10-09](../evidence/sanitized/bench-local-2026-10-09/README.md) |
 | Demo | 2:21 local recording (replay + contract test, captioned non-native); one caption corrected by overlay | [EVENT_DEMO](demo/EVENT_DEMO.md), [evidence/demo](../evidence/demo/README.md) |
 | Submission | Draft only; video upload, reviewer access, team names/emails and the submission itself are human steps | [SUBMISSION_DRAFT](demo/SUBMISSION_DRAFT.md) |
-| Environment | During the full-scale benchmark the host disk filled; the Docker VM now returns I/O errors and the local ClickHouse container is unhealthy. Human chose not to restart Docker. **ClickHouse tests, `npm run replay` and e2e cannot be re-run until Docker is restarted**; their passing receipts above predate the incident. Local CH data may need `npm run ch:down && npm run ch:up && npm run ch:setup` afterwards. | — |
+| Environment | During the full-scale benchmark the host disk filled; the Docker VM still returns I/O errors (container remove and image read fail). Human chose not to restart Docker Desktop. All ClickHouse-dependent checks were then **re-run green** against the same-version native ClickHouse binary (receipts above). After a Docker restart, `npm run ch:down && npm run ch:up && npm run ch:setup` restores the compose setup. | — |
 
 ## Team and models (actual)
 

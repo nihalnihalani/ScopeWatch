@@ -8,10 +8,13 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 # Event-build dependency/output/runtime directories are not packaged handoff documentation.
 GENERATED_DIRS = {'.git', 'node_modules', 'dist', 'runtime', 'test-results', 'playwright-report', '.scopewatch-run'}
+# Gitignored raw native captures (never committed; may hold non-JSON CLI output).
+PRIVATE_PREFIXES = {('evidence', 'private')}
 
 
 def skipped(path):
-    return any(part in GENERATED_DIRS for part in path.relative_to(ROOT).parts)
+    parts = path.relative_to(ROOT).parts
+    return any(part in GENERATED_DIRS for part in parts) or tuple(parts[:2]) in PRIVATE_PREFIXES
 
 
 errors = []
