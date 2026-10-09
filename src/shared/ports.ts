@@ -32,7 +32,14 @@ export interface LaunchReceipt {
   returnedAgentRef: string | null;
   returnedVersionId: string | null;
   sessionType: string | null;
+  /**
+   * CONTROLLER clock, captured immediately before the launch request is sent. Freshness checks
+   * (probe started strictly after the native receipt time) compare controller clock to controller
+   * clock only — never Guild `created_at` to server time (acceptance P2-2).
+   */
   startedAt: UtcNanoText;
+  /** Native session/record creation time as returned by Guild (vendor clock), if present. */
+  nativeCreatedAt: UtcNanoText | null;
   idempotencyRef: string;
   /** 'unknown' when the HTTP outcome was ambiguous (timeout); reconcile before retry. */
   outcome: 'created' | 'failed' | 'unknown';
