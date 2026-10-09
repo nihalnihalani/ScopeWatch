@@ -160,7 +160,8 @@ describe('App states', () => {
     await screen.findByText('Subject versus control');
     const strip = screen.getByRole('region', { name: 'Provenance' });
     expect(strip.textContent).toContain('Contract test — mock Guild API, not native evidence');
-    expect(screen.getByRole('button', { name: 'Review restriction' }).getAttribute('aria-disabled')).toBe('true');
+    expect(screen.getByRole('button', { name: 'Review restriction' }).getAttribute('aria-disabled')).toBe('false');
+    expect(screen.getAllByText(/Simulated — contract test against mock Guild API; not native evidence/).length).toBeGreaterThan(0);
   });
 
   it('shows login-required with the provenance strip when unauthenticated', async () => {
@@ -239,5 +240,25 @@ describe('contract-test investigation', () => {
     cleanup();
     render(<InvestigationPanel detail={makeDetail({}, 'contract_test')} ops={fakeOps()} />);
     expect(screen.getByRole('button', { name: 'Run investigation' }).getAttribute('aria-disabled')).toBe('false');
+  });
+});
+
+describe('contract-test review dialog', () => {
+  it('opens labeled simulated, traps focus and restores focus on Escape', async () => {
+    render(<App client={fakeClient()} />);
+    await screen.findByText('Subject versus control');
+    const opener = screen.getByRole('button', { name: 'Review restriction' });
+    opener.focus();
+    fireEvent.click(opener);
+    const dlg = await screen.findByRole('dialog');
+    expect(within(dlg).getAllByText(/Simulated — contract test against mock Guild API; not native evidence/).length).toBeGreaterThan(0);
+    expect(dlg.contains(document.activeElement)).toBe(true);
+    const f = Array.from(dlg.querySelectorAll<HTMLElement>('button, textarea'));
+    f[f.length - 1]!.focus();
+    fireEvent.keyDown(document, { key: 'Tab' });
+    expect(dlg.contains(document.activeElement)).toBe(true);
+    fireEvent.keyDown(document, { key: 'Escape' });
+    await waitFor(() => expect(screen.queryByRole('dialog')).toBeNull());
+    expect(document.activeElement).toBe(opener);
   });
 });

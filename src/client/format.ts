@@ -8,7 +8,6 @@ import type {
   Provenance,
   RecoveryState,
 } from '../shared/contracts.js';
-import { isNativeActionEligible } from '../shared/contracts.js';
 
 export type Tone = 'neutral' | 'ok' | 'warn' | 'bad' | 'info';
 
@@ -31,10 +30,8 @@ export const PROVENANCE_TEXT: Record<Provenance, { short: string; long: string }
 };
 
 export function actionEligibilityReason(c: CaseDetail): string | null {
-  if (!isNativeActionEligible(c.provenance)) {
-    return c.provenance === 'replay'
-      ? 'Replay provenance is not action eligible. Only native cases can be approved for a native restriction.'
-      : 'Contract-test provenance is not action eligible. It exercises code paths against a mock Guild API only.';
+  if (c.provenance === 'replay') {
+    return 'Replay provenance is not action eligible. Only native cases can be approved for a native restriction.';
   }
   if (c.evidenceState !== 'review_ready') return `Evidence state is ${labelOf(c.evidenceState)}; review needs a ready case.`;
   if (!c.readiness.ready) return 'Readiness gaps remain; required evidence is unknown, not assumed.';
@@ -102,6 +99,8 @@ export function toneOf(s: ActionState | RecoveryState | EvidenceState): Tone {
       return 'neutral';
   }
 }
+
+export const SIMULATED_LABEL = 'Simulated — contract test against mock Guild API; not native evidence';
 
 export const GLYPH: Record<Tone, string> = { neutral: '○', ok: '✓', warn: '!', bad: '✕', info: 'i' };
 

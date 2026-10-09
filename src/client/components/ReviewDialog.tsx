@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import type { ActionRecord, CaseDetail } from '../../shared/contracts.js';
 import { RECEIPT_ACCEPTING_STATES } from '../../shared/contracts.js';
-import { actionEligibilityReason, latestAction } from '../format.js';
+import { actionEligibilityReason, latestAction, SIMULATED_LABEL } from '../format.js';
 import { Dialog, GuardedButton, Id, Notice } from './common.js';
 import { ErrorNotice, useOp, type Ops } from './ops.js';
 
@@ -12,6 +12,11 @@ export function ReviewDialog({ detail, ops, onClose }: { detail: CaseDetail; ops
   const approved = !!action && action.state !== 'rejected' && action.state !== 'review_ready' && action.state !== 'none' && action.state !== 'stale';
   return (
     <Dialog title={approved ? 'Native handoff' : 'Review restriction'} onClose={onClose} describedBy="dlg-desc">
+      {detail.provenance === 'contract_test' ? (
+        <Notice tone="info" title={SIMULATED_LABEL} role="status">
+          <p className="small">Every step below is simulated. Nothing here changes a real Guild account, and any positive result is a simulated_* outcome, never verification.</p>
+        </Notice>
+      ) : null}
       <p id="dlg-desc" className="muted">
         {approved
           ? 'The scope below is approved. ScopeWatch does not change Guild policy; a human applies it natively and records what they observed.'

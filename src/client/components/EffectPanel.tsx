@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { RECEIPT_ACCEPTING_STATES } from '../../shared/contracts.js';
 import type { ActionRecord, CaseDetail, ProbeResult, VerificationReceipt } from '../../shared/contracts.js';
-import { actionEligibilityReason, labelOf, latestAction, toneOf } from '../format.js';
+import { actionEligibilityReason, labelOf, latestAction, SIMULATED_LABEL, toneOf } from '../format.js';
 import { Badge, GuardedButton, Id } from './common.js';
 import { ErrorNotice, useOp, type Ops } from './ops.js';
 import { ReceiptSummary } from './ReviewDialog.js';
@@ -179,6 +179,7 @@ export function EffectPanel({ detail, ops, onOpenReview, onOpenHandoff }: { deta
         <span className="hint">What was approved, recorded natively and verified. No overall “safe” verdict.</span>
       </header>
       <div className="panel-body">
+        {detail.provenance === 'contract_test' ? <p className="small" role="note"><strong>{SIMULATED_LABEL}</strong></p> : null}
         {restrOpenForReview ? (
           <div className="stack">
             <p className="small">{restr?.state === 'rejected' ? 'The previous review was rejected.' : restr?.state === 'stale' ? 'The previous approval is stale.' : 'No restriction has been approved for this case.'}</p>
