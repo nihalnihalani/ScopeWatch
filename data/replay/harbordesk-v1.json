@@ -1,0 +1,59 @@
+{
+  "schema": "scopewatch.replay-seed/v1",
+  "seedId": "harbordesk-v1",
+  "label": "HarborDesk (fictional) - SYNTHETIC REPLAY FIXTURE, not native evidence",
+  "synthetic": true,
+  "identityDomainStatus": "declared_fixture",
+  "captureCutoff": "2026-10-09T12:09:00Z",
+  "observedAt": "2026-10-09T12:09:00Z",
+  "manifest": {
+    "schema": "scopewatch.manifest/v1",
+    "policyVersion": "harbordesk-allowances-v1",
+    "workspaceId": "ws-harbordesk",
+    "credentialId": "cred-harbordesk-github",
+    "operation": "issues_get",
+    "unit": "native_allow_security_event_id",
+    "clock": "fixture.security_event.created_at",
+    "subjectIdDomain": "declared_fixture_policy_subject",
+    "identityDomain": "workspace",
+    "windowSeconds": 600,
+    "effectiveFrom": "2026-10-09T12:00:00Z",
+    "effectiveUntil": null,
+    "allowances": [
+      { "policySubjectId": "subj-ticketassist", "displayLabel": "TicketAssist", "maxUniqueAllowDecisions": "20", "approvalRef": "fixture:approval-ticketassist" },
+      { "policySubjectId": "subj-releasereview", "displayLabel": "ReleaseReview", "maxUniqueAllowDecisions": "60", "approvalRef": "fixture:approval-releasereview" },
+      { "policySubjectId": "subj-labelsweeper", "displayLabel": "LabelSweeper", "maxUniqueAllowDecisions": "15", "approvalRef": "fixture:approval-labelsweeper" }
+    ]
+  },
+  "cohort": [
+    { "sessionId": "ts-1", "launchId": "launch-ts-1", "profile": "target", "expectedPolicySubjectId": "subj-ticketassist", "installedAgentId": "inst-ticketassist" },
+    { "sessionId": "ts-2", "launchId": "launch-ts-2", "profile": "target", "expectedPolicySubjectId": "subj-ticketassist", "installedAgentId": "inst-ticketassist" },
+    { "sessionId": "ts-3", "launchId": "launch-ts-3", "profile": "target", "expectedPolicySubjectId": "subj-ticketassist", "installedAgentId": "inst-ticketassist" },
+    { "sessionId": "ts-4", "launchId": "launch-ts-4", "profile": "target", "expectedPolicySubjectId": "subj-ticketassist", "installedAgentId": "inst-ticketassist" },
+    { "sessionId": "ts-5", "launchId": "launch-ts-5", "profile": "target", "expectedPolicySubjectId": "subj-ticketassist", "installedAgentId": "inst-ticketassist" },
+    { "sessionId": "rr-1", "launchId": "launch-rr-1", "profile": "control", "expectedPolicySubjectId": "subj-releasereview", "installedAgentId": "inst-releasereview" },
+    { "sessionId": "rr-2", "launchId": "launch-rr-2", "profile": "control", "expectedPolicySubjectId": "subj-releasereview", "installedAgentId": "inst-releasereview" },
+    { "sessionId": "ls-1", "launchId": "launch-ls-1", "profile": "control", "expectedPolicySubjectId": "subj-labelsweeper", "installedAgentId": "inst-labelsweeper" }
+  ],
+  "bursts": [
+    { "idPrefix": "ta", "subject": "subj-ticketassist", "sessions": ["ts-1", "ts-2", "ts-3", "ts-4", "ts-5"], "count": 30, "start": "2026-10-09T12:00:00Z", "spacingMs": 15000, "decision": "ALLOW" },
+    { "idPrefix": "rr", "subject": "subj-releasereview", "sessions": ["rr-1", "rr-2"], "count": 40, "start": "2026-10-09T12:01:00Z", "spacingMs": 10000, "decision": "ALLOW" }
+  ],
+  "events": [
+    { "eventId": "ta-pre-001", "sessionId": "ts-1", "subject": "subj-ticketassist", "decision": "ALLOW", "createdAt": "2026-10-09T11:59:59.999999999Z", "note": "one nanosecond before manifest effective start: excluded" },
+    { "eventId": "ta-deny-001", "sessionId": "ts-2", "subject": "subj-ticketassist", "decision": "DENY", "createdAt": "2026-10-09T12:02:00Z", "reasonCode": "POLICY_DENIED" },
+    { "eventId": "ta-deny-002", "sessionId": "ts-2", "subject": "subj-ticketassist", "decision": "DENY", "createdAt": "2026-10-09T12:02:01Z", "reasonCode": "POLICY_DENIED" },
+    { "eventId": "ta-deny-003", "sessionId": "ts-3", "subject": "subj-ticketassist", "decision": "DENY", "createdAt": "2026-10-09T12:06:00Z", "reasonCode": "POLICY_DENIED" },
+    { "eventId": "rr-deny-001", "sessionId": "rr-1", "subject": "subj-releasereview", "decision": "DENY", "createdAt": "2026-10-09T12:03:00Z", "reasonCode": "POLICY_DENIED" },
+    { "eventId": "rr-deny-002", "sessionId": "rr-1", "subject": "subj-releasereview", "decision": "DENY", "createdAt": "2026-10-09T12:04:00Z", "reasonCode": "POLICY_DENIED" }
+  ],
+  "redeliveries": ["ta-001"],
+  "expected": {
+    "primary": "subj-ticketassist",
+    "candidates": {
+      "subj-ticketassist": { "breached": true, "firstCrossingAnchor": "2026-10-09T12:05:00Z", "firstCrossingCount": "21", "peakCount": "30", "peakAnchor": "2026-10-09T12:07:15Z", "currentCount": "30" },
+      "subj-releasereview": { "breached": false, "firstCrossingAnchor": null, "firstCrossingCount": null, "peakCount": "40", "peakAnchor": "2026-10-09T12:07:30Z", "currentCount": "40" },
+      "subj-labelsweeper": { "breached": false, "firstCrossingAnchor": null, "firstCrossingCount": null, "peakCount": "0", "peakAnchor": null, "currentCount": "0" }
+    }
+  }
+}

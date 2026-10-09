@@ -1,0 +1,46 @@
+{
+  "schema": "scopewatch.replay-seed/v1",
+  "seedId": "late-arrival-v1",
+  "label": "HarborDesk late arrival (fictional) - SYNTHETIC REPLAY FIXTURE, not native evidence",
+  "synthetic": true,
+  "identityDomainStatus": "declared_fixture",
+  "captureCutoff": "2026-10-09T12:30:00Z",
+  "observedAt": "2026-10-09T12:20:00Z",
+  "manifest": {
+    "schema": "scopewatch.manifest/v1",
+    "policyVersion": "harbordesk-allowances-v1",
+    "workspaceId": "ws-harbordesk",
+    "credentialId": "cred-harbordesk-github",
+    "operation": "issues_get",
+    "unit": "native_allow_security_event_id",
+    "clock": "fixture.security_event.created_at",
+    "subjectIdDomain": "declared_fixture_policy_subject",
+    "identityDomain": "workspace",
+    "windowSeconds": 600,
+    "effectiveFrom": "2026-10-09T12:00:00Z",
+    "effectiveUntil": null,
+    "allowances": [
+      { "policySubjectId": "subj-ticketassist", "displayLabel": "TicketAssist", "maxUniqueAllowDecisions": "20", "approvalRef": "fixture:approval-ticketassist" },
+      { "policySubjectId": "subj-releasereview", "displayLabel": "ReleaseReview", "maxUniqueAllowDecisions": "60", "approvalRef": "fixture:approval-releasereview" }
+    ]
+  },
+  "cohort": [
+    { "sessionId": "ts-1", "launchId": "launch-ts-1", "profile": "target", "expectedPolicySubjectId": "subj-ticketassist", "installedAgentId": "inst-ticketassist" },
+    { "sessionId": "ts-2", "launchId": "launch-ts-2", "profile": "target", "expectedPolicySubjectId": "subj-ticketassist", "installedAgentId": "inst-ticketassist" },
+    { "sessionId": "rr-1", "launchId": "launch-rr-1", "profile": "control", "expectedPolicySubjectId": "subj-releasereview", "installedAgentId": "inst-releasereview" }
+  ],
+  "bursts": [
+    { "idPrefix": "tl", "subject": "subj-ticketassist", "sessions": ["ts-1", "ts-2"], "count": 20, "start": "2026-10-09T12:00:00Z", "spacingMs": 10000, "decision": "ALLOW" },
+    { "idPrefix": "tb", "subject": "subj-ticketassist", "sessions": ["ts-1", "ts-2"], "count": 10, "start": "2026-10-09T12:04:00Z", "spacingMs": 0, "decision": "ALLOW" },
+    { "idPrefix": "rl", "subject": "subj-releasereview", "sessions": ["rr-1"], "count": 5, "start": "2026-10-09T12:01:00Z", "spacingMs": 30000, "decision": "ALLOW" }
+  ],
+  "events": [],
+  "redeliveries": [],
+  "expected": {
+    "primary": "subj-ticketassist",
+    "candidates": {
+      "subj-ticketassist": { "breached": true, "firstCrossingAnchor": "2026-10-09T12:04:00Z", "firstCrossingCount": "30", "peakCount": "30", "peakAnchor": "2026-10-09T12:04:00Z", "currentCount": "0" },
+      "subj-releasereview": { "breached": false, "firstCrossingAnchor": null, "firstCrossingCount": null, "peakCount": "5", "peakAnchor": "2026-10-09T12:03:00Z", "currentCount": "0" }
+    }
+  }
+}
