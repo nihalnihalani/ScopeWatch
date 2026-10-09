@@ -454,6 +454,8 @@ export interface NativeApplicationReceipt {
 }
 
 export type ProbeOutcome =
+  /** Target operation was ALLOWED (for a target probe after restriction: restriction failed). */
+  | 'allowed'
   | 'refused_policy'
   | 'refused_other'
   | 'succeeded_expected'

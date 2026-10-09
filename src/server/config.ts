@@ -37,6 +37,16 @@ export interface GuildConfig {
   ownedRepo: string | null;
   /** Expected control fixture marker. Server-side only: never put into a model prompt. */
   controlExpectedMarker: string | null;
+  /**
+   * Native agent ref (as observed in agent task nodes) → verified policy-subject ID. Recorded from
+   * native proof (docs/native/NATIVE_PROOF_LEDGER.md); never inferred from display names.
+   * Env GUILD_AGENT_SUBJECT_MAP as JSON object.
+   */
+  agentSubjectMap: Record<string, string>;
+  /** Verified native event identity domain; 'unverified' blocks native admission. */
+  identityDomain: 'workspace' | 'session' | 'unverified';
+  /** Synthetic ticket number the allowlisted probe instruction reads. */
+  probeTicketNumber: number | null;
 }
 
 export interface AppConfig {
@@ -157,6 +167,9 @@ export function loadConfig(src: NodeJS.ProcessEnv = process.env): AppConfig {
     verifiedOperation: env('GUILD_VERIFIED_OPERATION', src),
     ownedRepo: env('OWNED_GITHUB_OWNER', src) && env('OWNED_GITHUB_REPO', src) ? `${env('OWNED_GITHUB_OWNER', src)}/${env('OWNED_GITHUB_REPO', src)}` : null,
     controlExpectedMarker: env('SCOPEWATCH_CONTROL_EXPECTED_MARKER', src),
+    agentSubjectMap: parseSubjectMap(env('GUILD_AGENT_SUBJECT_MAP', src)),
+    identityDomain: parseIdentityDomain(env('GUILD_IDENTITY_DOMAIN', src)),
+    probeTicketNumber: env('GUILD_PROBE_TICKET_NUMBER', src) ? Number(env('GUILD_PROBE_TICKET_NUMBER', src)) : null,
   };
 
   return {
@@ -173,6 +186,26 @@ export function loadConfig(src: NodeJS.ProcessEnv = process.env): AppConfig {
     pinnedManifestPath: env('PINNED_MANIFEST_PATH', src),
     pinnedManifestRef: env('PINNED_MANIFEST_REF', src),
   };
+}
+
+function parseSubjectMap(raw: string | null): Record<string, string> {
+  if (!raw) return {};
+  let v: unknown;
+  try {
+    v = JSON.parse(raw);
+  } catch {
+    throw new ConfigError('GUILD_AGENT_SUBJECT_MAP must be a JSON object of string → string');
+  }
+  if (!v || typeof v !== 'object' || Array.isArray(v) || Object.values(v).some((x) => typeof x !== 'string')) {
+    throw new ConfigError('GUILD_AGENT_SUBJECT_MAP must be a JSON object of string → string');
+  }
+  return v as Record<string, string>;
+}
+
+function parseIdentityDomain(raw: string | null): 'workspace' | 'session' | 'unverified' {
+  if (raw === null) return 'unverified';
+  if (raw === 'workspace' || raw === 'session') return raw;
+  throw new ConfigError('GUILD_IDENTITY_DOMAIN must be workspace or session (set only after native proof)');
 }
 
 function joinKey(id: string | null, secret: string | null): string | null {
@@ -196,8 +229,12 @@ export function missingGuildSettings(g: GuildConfig): string[] {
     ['verifiedOperation', 'GUILD_VERIFIED_OPERATION'],
     ['ownedRepo', 'OWNED_GITHUB_OWNER/OWNED_GITHUB_REPO'],
     ['controlExpectedMarker', 'SCOPEWATCH_CONTROL_EXPECTED_MARKER'],
+    ['probeTicketNumber', 'GUILD_PROBE_TICKET_NUMBER'],
   ];
-  return required.filter(([k]) => g[k] === null).map(([, n]) => n);
+  const out = required.filter(([k]) => g[k] === null).map(([, n]) => n);
+  if (Object.keys(g.agentSubjectMap).length === 0) out.push('GUILD_AGENT_SUBJECT_MAP');
+  if (g.identityDomain === 'unverified') out.push('GUILD_IDENTITY_DOMAIN');
+  return out;
 }
 
 /** Safe description for doctor/status output: presence only, no secret values. */
