@@ -19,7 +19,7 @@ When older research differs, the corrected architecture/contracts govern evidenc
 
 ![ScopeWatch system architecture](docs/architecture/rendered/01-system.png)
 
-[Offline interactive diagram viewer](docs/architecture/architecture.html) · [SVG overview](docs/architecture/rendered/01-system.svg) · [seven diagrams and exports](docs/architecture/README.md) · [independent architecture review](docs/architecture/ARCHITECTURE_REVIEW.md).
+[All seven diagrams displayed in GitHub](DIAGRAMS.md) · [offline interactive viewer](docs/architecture/architecture.html) · [SVG overview](docs/architecture/rendered/01-system.svg) · [exports and regeneration](docs/architecture/README.md) · [independent architecture review](docs/architecture/ARCHITECTURE_REVIEW.md).
 
 Download/open the HTML viewer locally for tabs and zoom; GitHub displays its source rather than running it. It embeds the diagrams and works without an account or network connection.
 

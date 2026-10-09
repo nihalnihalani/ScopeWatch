@@ -16,6 +16,8 @@ The project choice is final: **one ScopeWatch workflow**, with ClickHouse/Guild 
 
 The full research archive is useful for a specific question; it is not prerequisite reading for the first event hour. Use [the seven-view atlas](docs/architecture/architecture.html) to inspect the relevant part of the design. The [independent architecture review](docs/architecture/ARCHITECTURE_REVIEW.md) records corrected defects and remaining gates.
 
+[DIAGRAMS.md](DIAGRAMS.md) displays all seven diagrams directly with editable-source and SVG/PNG links, and maps each view to implementation responsibilities.
+
 ## Technical precedence
 
 1. Current human instructions and actual organizer rules.
