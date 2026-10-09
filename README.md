@@ -4,7 +4,50 @@
 
 **Find suspicious permission use across AI-agent sessions, review the evidence, and restrict one matching capability while approved work keeps running.**
 
-This repository contains the researched **build handoff** for the 9 October 2026 Cyberdefense Hackathon. It includes architecture, exact sponsor-contract research, implementation tasks, reference sources, offline design checks, demo/submission plans and blank evidence templates. **The competition application is not implemented yet.** Start building the actual application now or anytime, without a cutoff, following [current build authorization](docs/event/BUILD_AUTHORIZATION.md) and replace illustrative counts with observed results.
+This repository now contains **two separate things**:
+
+1. **The ScopeWatch application, built during the authorized event build** (branch `codex/scopewatch-event-build`, from commit `d79cdb0` on 9 October 2026): a local Node/TypeScript backend, React operator case page, SQLite control journal, ClickHouse analytical projection and Guild integration adapter. See [Run the application](#run-the-application) and [docs/BUILD_STATUS.md](docs/BUILD_STATUS.md) for exactly what is verified.
+2. **The pre-event research handoff** (architecture, sponsor contracts, plans, references, offline oracle, templates). It remains advisory reference material and is not application evidence.
+
+**Native status: NATIVE_PENDING.** No live Guild account run, ClickHouse Cloud query, hosted investigation, human native policy application or fresh native target/control probe has been performed. Every ClickHouse result in this repository comes from a local ClickHouse 25.8 server running in Docker against **synthetic replay data** or the **loopback mock Guild API** (contract tests) and is labeled that way in the UI, exports and screenshots.
+
+## Run the application
+
+Requirements: Node ≥ 24 (built/tested on 25.2.1), Docker (for local ClickHouse), npm.
+
+```bash
+npm ci
+npm run ch:up && npm run ch:setup        # local ClickHouse 25.8 (pinned digest) + per-namespace users → runtime/clickhouse-local.env
+npm run build
+set -a; . runtime/clickhouse-local.env; set +a
+SCOPEWATCH_MODE=replay SCOPEWATCH_OPERATOR_SECRET='choose-a-16+-char-secret' npm start
+# open http://127.0.0.1:4317 → sign in with the secret → "Run replay pipeline"
+```
+
+| Mode (`SCOPEWATCH_MODE`) | What it is | Action eligibility |
+|---|---|---|
+| `replay` | Declared synthetic seeds (`data/replay/*.json`) run through the real pipeline: journal → seal → ClickHouse publish → exact readback → all-anchor SQL → independent oracle → case | Never action eligible (409 `not_eligible`) |
+| `contract_test` | Real Guild adapter against a **loopback mock** built from the documented API schema (`tests/support/mock-guild`); exercises launch/collect/bind/investigate/review/verify/recovery | Simulated only: positive outcomes are `simulated_*`, never `restriction_verified` |
+| `native` | Real Guild (`https://api.guild.ai` only) + configured ClickHouse | Requires the native gates in [docs/native/NATIVE_PROOF_LEDGER.md](docs/native/NATIVE_PROOF_LEDGER.md); missing settings show UNCONFIGURED, never replay |
+
+`npm run doctor` reports configuration presence and dependency reachability without printing secret values. `npm run replay` runs the replay pipeline headless and prints query receipts.
+
+### Checks
+
+| Command | What it runs |
+|---|---|
+| `npm run typecheck` / `npm run lint` | TypeScript strict / ESLint (incl. a guard that `src/**` cannot import the mock Guild API) |
+| `npm test` | unit (core semantics, Guild normalization/binding), client components (jsdom), integration (journal/HTTP security/pipeline/adapter-vs-mock) and adversarial tests |
+| `npm run test:ch` | real SQL against local ClickHouse: publish/readback (incl. double insert and altered binding → `readback_failed`), all-anchor SQL vs independent oracle on boundary/tie/effective-start/late/conflict fixtures |
+| `npm run test:e2e` | Playwright against the real local server: auth, replay case, contract-test review → receipt → verify → recovery, responsive 360/768/1440 |
+
+### What the application enforces
+
+- Counts distinct native **ALLOW permission decisions** per verified policy subject/credential/operation — not reads, records or data loss.
+- Compares **all versions of each event identity before any filter**; same-ID contradictions block admission. Coverage comes from the server-side launch registry/seed declaration, so a never-collected session is missing, not zero.
+- Window **(T−600s, T]**, exact nanosecond BigInt, whole tie groups, effective start inclusive; ClickHouse evaluates **every distinct anchor plus the cutoff for all candidates**; first crossing, peak and current count are stored separately; an independent sweep must agree.
+- Publication admits a generation only after **readback of IDs, semantics, row multiplicity, bindings, coverage and manifest**.
+- Approval binds case revision + manifest hash + exact scope digest (CAS); browsers send stored IDs only. **Native policy application is a human Guild UI / verified CLI step** recorded as a receipt; there is no policy-mutation endpoint. Verification launches fresh target/control probes after the receipt and inspects the control marker server-side; recovery has its own both-succeed predicate; nothing auto-releases.
 
 ## Start building from these files
 
@@ -59,11 +102,12 @@ Akash is excluded. The conditional top monetary face value is $2,000 for ClickHo
 | `research/offline-reference/` | Pre-event fixture oracle and saved offline verification; not the competition application |
 | `templates/` | Blank manifest, case/action, measurement, finding and submission records |
 | `provenance/` | Import/source hashes and original-to-packaged path map |
-| `evidence/` | Instructions for future sanitized event evidence; actual runtime evidence is absent |
+| `evidence/` | Sanitized event-build artifacts: labeled replay/contract-test screenshots and local receipts; **no native evidence yet** |
+| `src/`, `tests/`, `tools/*.ts`, `data/replay/`, `docker/` | Event-built application, tests, tools, replay seeds and local ClickHouse compose |
 | `tools/validate_handoff.py` | Offline link/JSON/template/import-hash/export and high-confidence secret-shape checks; documentation validation only |
 | `docs/prompts/` | Full agent-team build instructions, role briefs, loop/graph/QA contracts, launch guide and primary-source research |
 
-No `npm start` application is promised in this handoff. The only executable helpers are documentation validation/rendering and the inherited offline design oracle. [Environment template](.env.example) has blank values; never commit real credentials or raw sessions.
+The event-built application lives in `src/`, `tests/`, `tools/*.ts`, `data/replay/` and `docker/`. The research handoff's own helpers remain documentation validation/rendering and the inherited offline design oracle. [Environment template](.env.example) has blank values; never commit real credentials or raw sessions.
 
 Run `python3 tools/validate_handoff.py` to check the package and `python3 research/offline-reference/verify_reference.py` for the inherited offline fixture oracle. These checks neither call sponsors nor test a competition application.
 
