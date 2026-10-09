@@ -4,7 +4,7 @@ import { Comparison } from '../../../src/client/components/Comparison.js';
 import { EffectPanel } from '../../../src/client/components/EffectPanel.js';
 import { InvestigationPanel } from '../../../src/client/components/Misc.js';
 import { ReviewDialog } from '../../../src/client/components/ReviewDialog.js';
-import { ApiClientError, type ApiClient } from '../../../src/client/api.js';
+import { ApiClientError, type ApiClient } from '../../../src/client/http-client.js';
 import type { Ops } from '../../../src/client/components/ops.js';
 import { App } from '../../../src/client/App.js';
 import { makeAction, makeDetail, makeSession, makeStatus } from './fixtures.js';
@@ -24,6 +24,7 @@ function fakeClient(over: Partial<ApiClient> = {}): ApiClient {
     logout: async () => makeSession({ authenticated: false, csrfToken: null }),
     status: async () => makeStatus({ mode: 'contract_test' }),
     cases: async () => [detail],
+    generations: async () => [],
     caseDetail: async () => detail,
     runReplay: async () => ({ generationId: 'g', state: 'evaluated', caseId: null, readinessGaps: 0, detail: '' }),
     runPipeline: async () => ({ generationId: 'g', state: 'evaluated', caseId: null, readinessGaps: 0, detail: '' }),

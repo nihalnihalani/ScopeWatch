@@ -1,11 +1,13 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import type { GenerationSummary } from '../shared/api.js';
 import type { CaseDetail, CaseSummary, Provenance, SessionInfo, StatusReport } from '../shared/contracts.js';
-import { ApiClientError, createApiClient, type ApiClient } from './api.js';
+import { ApiClientError, createApiClient, type ApiClient } from './http-client.js';
 import { Comparison } from './components/Comparison.js';
 import { Badge, Notice, ProvenanceStrip } from './components/common.js';
 import { EffectPanel } from './components/EffectPanel.js';
 import { ExportPanel, GateList, InvestigationPanel, StatusNotices } from './components/Misc.js';
 import { ErrorNotice, type Ops } from './components/ops.js';
+import { GenerationsPanel } from './components/Generations.js';
 import { QueryPanel } from './components/QueryPanel.js';
 import { ReviewDialog } from './components/ReviewDialog.js';
 import { Timeline } from './components/Timeline.js';
@@ -24,6 +26,7 @@ export function App({ client: injected }: { client?: ApiClient }) {
   const [status, setStatus] = useState<StatusReport | null>(null);
   const [cases, setCases] = useState<CaseSummary[] | null>(null);
   const [caseId, setCaseId] = useState<string | null>(() => decodeURIComponent(window.location.hash.replace(/^#\/case\//, '')) || null);
+  const [gens, setGens] = useState<GenerationSummary[] | null>(null);
   const [detail, setDetail] = useState<CaseDetail | null>(null);
   const [detailError, setDetailError] = useState<ApiClientError | null>(null);
   const [listError, setListError] = useState<ApiClientError | null>(null);
@@ -57,6 +60,14 @@ export function App({ client: injected }: { client?: ApiClient }) {
       if (!caseIdRef.current && list[0]) setCaseId(list[0].caseId);
     } catch (e) {
       setListError(handleAuth(e));
+    }
+  }, [client, handleAuth]);
+
+  const loadGens = useCallback(async () => {
+    try {
+      setGens(await client.generations());
+    } catch (e) {
+      handleAuth(e);
     }
   }, [client, handleAuth]);
 
@@ -97,7 +108,8 @@ export function App({ client: injected }: { client?: ApiClient }) {
     if (!ready) return;
     void loadStatus();
     void loadCases();
-  }, [ready, loadStatus, loadCases]);
+    void loadGens();
+  }, [ready, loadStatus, loadCases, loadGens]);
 
   useEffect(() => {
     if (!ready || !caseId) {
@@ -126,11 +138,11 @@ export function App({ client: injected }: { client?: ApiClient }) {
       removalReceipt: (id, body) => client.removalReceipt(id, body),
       reload: async (note) => {
         const id = caseIdRef.current;
-        await Promise.all([id ? loadDetail(id) : null, loadCases(), loadStatus()]);
+        await Promise.all([id ? loadDetail(id) : null, loadCases(), loadStatus(), loadGens()]);
         if (note) announce(note);
       },
     }),
-    [client, loadDetail, loadCases, loadStatus, announce],
+    [client, loadDetail, loadCases, loadStatus, loadGens, announce],
   );
 
   const [railOpen] = useState(() => (typeof window !== 'undefined' && typeof window.matchMedia === 'function' ? window.matchMedia('(min-width: 1100px)').matches : true));
@@ -154,7 +166,7 @@ export function App({ client: injected }: { client?: ApiClient }) {
       const mode = status?.mode ?? (boot.phase === 'ready' ? boot.session.mode : 'native');
       const r = mode === 'replay' ? await client.runReplay() : await client.runPipeline();
       announce(`Pipeline finished: ${r.state}. ${r.readinessGaps} readiness gaps.`);
-      await Promise.all([loadCases(), loadStatus()]);
+      await Promise.all([loadCases(), loadStatus(), loadGens()]);
       if (r.caseId) {
         window.location.hash = `#/case/${encodeURIComponent(r.caseId)}`;
         setCaseId(r.caseId);
@@ -227,6 +239,7 @@ export function App({ client: injected }: { client?: ApiClient }) {
             {cases && cases.length === 0 && !listError ? (
               <EmptyState mode={mode} busy={runBusy} onRun={() => void runPipeline()} error={runError} status={status} />
             ) : null}
+            <GenerationsPanel items={gens} />
             {caseId && detailError ? <ErrorNotice error={detailError} onReload={() => caseId && void loadDetail(caseId)} /> : null}
             {caseId && !detail && !detailError ? <p className="spinner-text" role="status">Loading case</p> : null}
             {detail ? (

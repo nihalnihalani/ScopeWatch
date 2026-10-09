@@ -10,6 +10,7 @@ import type {
 import type {
   ActionReviewBody,
   NativeReceiptBody,
+  GenerationSummary,
   PipelineRunResult,
   RecoveryCreateBody,
   RemovalReceiptBody,
@@ -36,6 +37,7 @@ export interface ApiClient {
   logout(): Promise<SessionInfo>;
   status(): Promise<StatusReport>;
   cases(): Promise<CaseSummary[]>;
+  generations(): Promise<GenerationSummary[]>;
   caseDetail(id: string): Promise<CaseDetail>;
   runReplay(): Promise<PipelineRunResult>;
   runPipeline(): Promise<PipelineRunResult>;
@@ -97,6 +99,7 @@ export function createApiClient(getCsrf: () => string | null, base = ''): ApiCli
     logout: () => call('POST', '/api/logout', {}),
     status: () => call('GET', '/api/status'),
     cases: () => call('GET', '/api/cases'),
+    generations: () => call('GET', '/api/generations'),
     caseDetail: (id) => call('GET', `/api/cases/${enc(id)}`),
     runReplay: () => call('POST', '/api/replay/run', {}),
     runPipeline: () => call('POST', '/api/pipeline/run', {}),

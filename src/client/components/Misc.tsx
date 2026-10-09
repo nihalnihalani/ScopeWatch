@@ -1,7 +1,7 @@
 import { useState, type ReactElement } from 'react';
 import type { CaseDetail, SanitizedExport, StatusReport } from '../../shared/contracts.js';
-import type { ApiClient } from '../api.js';
-import { ApiClientError } from '../api.js';
+import type { ApiClient } from '../http-client.js';
+import { ApiClientError } from '../http-client.js';
 import { Badge, GuardedButton, Notice } from './common.js';
 import { ErrorNotice, useOp, type Ops } from './ops.js';
 

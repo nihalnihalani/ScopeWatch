@@ -1,7 +1,7 @@
 import { useCallback, useState, type ReactNode } from 'react';
 import type { ActionRecord, CaseDetail } from '../../shared/contracts.js';
 import type { ActionReviewBody, NativeReceiptBody, RecoveryCreateBody, RemovalReceiptBody, ReviewBody, VerifyBody } from '../../shared/api.js';
-import { ApiClientError } from '../api.js';
+import { ApiClientError } from '../http-client.js';
 import { Notice } from './common.js';
 
 /** Mutations the case workstation can request. All throw ApiClientError; callers show it with <ErrorNotice>. */

@@ -163,3 +163,8 @@ tr.row-primary th, tr.row-primary td { background: var(--warn-soft) !important; 
   color: var(--ink-muted); border: 1px dashed var(--line-strong); opacity: 1; cursor: not-allowed; filter: none;
 }
 .btn-primary[aria-disabled='true']:hover, .btn[aria-disabled='true']:hover { background: repeating-linear-gradient(135deg, var(--surface-2) 0 6px, var(--surface) 6px 12px); filter: none; }
+
+.scroll-box { max-height: 420px; overflow: auto; border: 1px solid var(--line); border-radius: var(--radius); padding: var(--s-2); display: grid; gap: var(--s-2); margin-top: var(--s-2); }
+.scroll-box details { border-bottom: 1px solid var(--line); padding-bottom: var(--s-2); }
+tbody th[scope='row'] { min-width: 170px; }
+tbody th[scope='row'] .id { word-break: normal; overflow-wrap: anywhere; }
