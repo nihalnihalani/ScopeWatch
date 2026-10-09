@@ -1,0 +1,8 @@
+{
+  "http_status": 400,
+  "request_agent_id_kind": "installed (workspace_agent) id",
+  "body": {
+    "error": "InvalidInputError",
+    "message": "Agent '01a12273-2db0-22ef-0000-45bb36e41906' not found"
+  }
+}
