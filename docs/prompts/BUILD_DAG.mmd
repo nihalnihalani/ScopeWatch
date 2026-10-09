@@ -1,5 +1,5 @@
 flowchart TD
-  H[T00 Harness / clock / account requirements] --> N[T01 Native first-hour proof]
+  H[T00 Harness / start authorization / account requirements] --> N[T01 Initial native proof]
   H --> C[T02 Shared contracts / local skeleton / run commands]
   C --> U[T03 Interface / actual API contract]
   N --> J[T04 Native admission / event bindings / cohort]
@@ -17,7 +17,7 @@ flowchart TD
   R --> S[T12 Evidence / demo / startup / submission handoff]
   C --> L[Independent local/replay implementation lane]
   L --> EL
-  N -. bounded before 1:30 .-> OC[Optional matched ticket-cause experiment]
-  C -. ordinary event source exists .-> OS[Optional same-codebase Semgrep discovery]
-  V -. G2 passed / before 1:45 .-> OO[Optional exact native outcome match]
-  R -. core passes / spare budget .-> OM[Optional measured replay]
+  N -. essential fixtures and native setup ready .-> OC[Optional matched ticket-cause experiment]
+  C -. ordinary generated project source exists .-> OS[Optional same-codebase Semgrep discovery]
+  V -. complete core loop verified .-> OO[Optional exact native outcome match]
+  R -. core accepted .-> OM[Optional measured replay]

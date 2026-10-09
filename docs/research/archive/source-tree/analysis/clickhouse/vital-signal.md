@@ -2,6 +2,8 @@
 
 # Vital Signal (VitalSignal) — ClickHouse 1st place, NYC AI Agents Hackathon (4 Oct 2025)
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../../../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 > Analyst: ClickHouse Team A. Read-only analysis, done 8 Oct 2026.
 > Evidence labels: **[V]** = verified (file:line, URL, timestamp); **[I]** = inference.
 > **New since the 7 Oct research snapshot:** a public repository that matches the submission was found: `richelgomez99/vitalsignal-backend`. The Google Drive demo was also downloaded and reviewed frame by frame. The earlier research recorded "no canonical public repo" and "recording access not checked." Both are now resolved.

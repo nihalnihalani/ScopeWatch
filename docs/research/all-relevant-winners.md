@@ -1,5 +1,7 @@
 # All verified historical awardees for the relevant sponsors
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Prepared 9 October 2026. This matrix consolidates the archived October 7 dataset; descriptions/rank evidence below are historical, not newly reverified live demonstrations. The October 8 code investigations in the linked analysis may correct implementation and access assumptions. Award membership is distinct from exact placement. Akash is excluded.
 
 The original descriptions below preserve the archive's account of what entrants built or claimed. They are not proof that every advertised feature worked. See [corrected winner-versus-loser analysis](winners/WHY_THEY_WON.md), [ClickHouse/Guild verification](clickhouse-guild.md) and [Semgrep/Pi verification](semgrep-pi.md).

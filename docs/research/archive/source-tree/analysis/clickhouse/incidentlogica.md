@@ -2,6 +2,8 @@
 
 # IncidentLogica: ClickHouse 2nd place at the MCP AWS Enterprise Agents Challenge (25 Jul 2025)
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../../../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 > Analyst: ClickHouse Team A. Read-only analysis, 8 Oct 2026.
 > Evidence labels: **[V]** = verified (file:line, URL, timestamp); **[I]** = inference.
 > **Headline finding: there is no evidence that ClickHouse was used.** ClickHouse is absent from the Devpost "Built With" list, the Devpost story, the demo narration and the only related repository we could locate. The sole source for ClickHouse usage is one bullet in the sponsor's blog, published about 4 months after the event.

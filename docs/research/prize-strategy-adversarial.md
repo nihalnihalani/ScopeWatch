@@ -1,5 +1,7 @@
 # Independent prize-strategy review
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Reviewed 9 October 2026. Scope: product planning and prize arithmetic against [RECOMMENDATION.md](archive/RECOMMENDATION.md), using its supplied current prize packet. No new source verification, technical security analysis or implementation. Akash excluded.
 
 **Recommendation: keep the evidence/investigation product direction, but make the sponsor order conditional. Do not commit to the specific case before a genuine eligible finding exists.** The brief's opening “Build BoundaryProof” is stronger than the present evidence supports. It has a proposed story, no implemented product and no authentic finding. Its later fallback gates are good; those conditions should lead the executive decision.

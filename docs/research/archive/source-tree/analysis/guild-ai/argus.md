@@ -2,6 +2,8 @@
 
 # Argus — Guild AI (Self-Evolving Agents Hackathon, 24 Jul 2026)
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../../../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 > Analyst: Guild AI Team B. Checked 8 Oct 2026. **First source inspection of this repo** (prior research only verified access). Read-only. **[fact]** = verified; **[inference]** = judgment.
 
 ## 1. Snapshot

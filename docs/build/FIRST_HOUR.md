@@ -1,35 +1,37 @@
-# ScopeWatch first hour: prove the native loop before encoding it
+# ScopeWatch initial preflight: prove the native loop before encoding it
 
-Prepared 9 October 2026. This is an event execution checklist, not a completed account test. Create competition source and runtime configuration during the official build window. The repository's pre-event documents/templates/oracle are research references; they do not prove runtime behavior and are not an existing competition implementation.
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
 
-The conservative clock starts **11:30 AM PT**. The first native gate is **12:15 PM PT (minute 45)**; by **12:30 PM PT (minute 60)** the trial must be restored to an allowed baseline and the main pinned epoch/cohort ready. Confirm the organizer's actual timing at kickoff. Use [BUILD_PLAN.md](BUILD_PLAN.md) for the full 300-minute plan and module contracts, [Guild contracts](../architecture/GUILD_CONTRACTS.md) for exact documented paths/fields, and [the architecture](../architecture/ARCHITECTURE.md) for authoritative boundaries.
+Prepared 9 October 2026; timing authority updated to the human's later correction. **Start implementation now or anytime: there is no global calendar gate, deadline or hard duration cap.** The event began earlier and old Luma/hack-page timing is stale. [Current build authorization](../event/BUILD_AUTHORIZATION.md) records the correction. This is an initial-preflight checklist, not a completed account test. Its historical `FIRST_HOUR.md` filename stays for existing links; it does not impose a one-hour limit. The research documents/templates/oracle do not prove runtime behavior.
 
-## First-hour goal and owner assignments
+Follow ordered source/effect readiness gates while completing independent local implementation in parallel. Record actual timestamps for evidence and measurements, not build permission. Use [BUILD_PLAN.md](BUILD_PLAN.md) for the milestone-driven plan and module contracts, [Guild contracts](../architecture/GUILD_CONTRACTS.md) for exact documented paths/fields, and [the architecture](../architecture/ARCHITECTURE.md) for authoritative boundaries. The current human correction overrides historical timing instructions anywhere in those references.
+
+## Initial-preflight goal and owner assignments
 
 Prove two hosted workloads' actual subjects, selected operation, decision unit/clock and same evaluated credential; capture finite completed evidence and tasks; apply one trial target-scoped native DENY; observe a genuine fresh target policy refusal and genuine fresh successful control result; prove a minimal ClickHouse publication/readback/query. Then deliberately remove only that trial rule and verify both allowed baselines before the main scenario starts.
 
-| Owner | First-hour responsibility | Must hand off |
+| Owner | Initial responsibility | Must hand off |
 |---|---|---|
 | **A — Guild/enforcement** | Account/key/installation/grant/mode access; native source; policy selector identity; UI trial and receipts | Actual native shapes/IDs/operation and mapping proof to B; target/control policy evidence to C/D |
-| **B — Collector/ClickHouse** | Connection/version/permissions; page/task traversal; exact identity and per-event binding; minimal event-built publisher/query after source shape is known | Sanitized source map and finite-capture ledger; queryable generation/readback/result to A/D |
+| **B — Collector/ClickHouse** | Connection/version/permissions; page/task traversal; exact identity and per-event binding; minimal build-generated publisher/query after source shape is known | Sanitized source map and finite-capture ledger; queryable generation/readback/result to A/D |
 | **C — Scenario/Semgrep** | Owned synthetic repo/tickets; marker inspection path; preflight/main boundaries; operator allowance preparation | Actual expected-content witness; trial restoration ledger; main pinned manifest/cohort; genuine scan evidence only if obtained |
 | **D — UI/evidence/submission** | Single empty factual case shell; source/receipt index; review labels; submission/access requirements | Sanitized evidence organization; no false live/action state; concrete screen contracts from B |
 
-Keep source proof first. B may check Cloud TLS/version and D may create an empty layout while A/C establish native facts. B must not implement a collector that invents mandatory actor/credential/outcome fields; D must not hardcode TicketAssist as a query-selected target. A trial can use native UI/manual authenticated fetches or minimal **event-built** tooling. All native application effects remain account tests.
+Keep source proof first for native attribution/admission. B may check Cloud TLS/version and implement tested local contracts, while D wires actual local API flows and honest unconfigured states and A/C establish native facts. B must not invent mandatory actor/credential/outcome fields; D must not hardcode TicketAssist as a query-selected target. A trial can use native UI/manual authenticated fetches or minimal build-generated tooling. All native application effects remain account tests. Pending native access does not block independent code/UI/local QA/review/handoff.
 
-## Minute-by-minute sequence
+## Ordered readiness stages
 
-| Elapsed / PT | A + C: native proof lane | B: source/analytics lane | D: evidence/view lane | Exit evidence |
+| Stage | A + C: native proof lane | B: source/analytics lane | D: evidence/view lane | Exit evidence |
 |---|---|---|---|---|
-| **0–8 / 11:30–11:38** | Confirm official start; owned repo/workspace; two installations and actual versions; selected launch route/key access; inspect credential associations, default policy and SHARED/MEMBER mode | Check actual event runtime and CH HTTPS SQL connection/version/grants; prepare a private receipt ledger | Confirm organizer form/deadline; initialize sanitized evidence index and empty case layout during event | Account/workspace/installation/integration IDs and launch authority recorded; secrets remain local/server-only |
-| **8–18 / 11:38–11:48** | Run one short selected ticket lookup for each subject; await actual completion; inspect returned fixture content | Retrieve actual events/tasks; identify security rows, native plural `credentials_id`, task relation, record clock and native unit/cardinality | Show unverified/pending labels until receipts arrive; index actual source artifacts | Two real launch/session/task receipts; actual evaluated same credential, operation and count unit or explicit unresolved gate |
-| **18–28 / 11:48–11:58** | Resolve installation/definition/policy subject domains; corroborate event acting subject against authenticated graph; choose exact trial scope | Exhaust event/task pages with tested order/cursor; preserve page/filter/failure/completion refs; establish event-ID uniqueness domain; record per-event bindings | Add source IDs/provenance and verified vs unknown context; no inferred successful-read count | Finite capture/mapping ledger; every trial counted event has one verified acting policy subject |
-| **28–38 / 11:58–12:08** | Operator reviews and applies trial native DENY to verified subject/workspace/credential/operation; repo/method only if tested; record native rule/readback or UI evidence | Build minimal actual-shape projection during event; insert small bounded preflight generation with events/bindings/coverage/context; await acknowledgement and exact readback | Provide “Review scope / open native policy configuration” and precise review display; record actual application as pending effects | Native trial rule evidence plus CH publication/readback matching expected semantics/bindings/context |
-| **38–45 / 12:08–12:15** | Launch fresh target matching request and fresh approved control; inspect target native `DENY`/`POLICY_DENIED` and actual control fixture result | Collect both completed probes completely; run bounded actual all-candidate query/readback sanity check; preserve query IDs/results | Put both actual receipts together; state narrow subsequent effect and trial status | **G1 pass/fail/unknown:** native source/binding/unit/credential; complete capture; selective trial effects; minimal CH proof |
-| **45–52 / 12:15–12:22** | Deliberately remove only known trial DENY using actual native controls; preserve removal/readback; start fresh target/control allowed baselines | Collect baseline probes, retain trial/preflight evidence separately; confirm no missing fields/pages from G1 | Mark restoration pending until both actual results; no “safe” badge | Trial rule restored/removed as intended, both baseline fixtures actually returned |
-| **52–60 / 12:22–12:30** | Operator pins main manifest with verified IDs/unit/clock, immutable ref and independent SHA-256; effective start before main calls; register planned short-session cohort | Agree actual event-built interfaces; start main journal/collector/publisher integration against native shapes; carry prior relevant source versions when generations evolve | Wire case DTO contracts and show planned main epoch as pending; retain gate report/access links | **G1b:** verified allowed baseline, pinned main context and registered cohort; no main misuse launched under stale trial policy |
+| **P0 — Begin authorized work** | Identify owned repo/workspace; two installations/actual versions; available launch/read route; credential associations, default policy and SHARED/MEMBER mode | Pin actual runtime and real startup/test commands; inspect CH HTTPS SQL connection/version/grants; prepare private receipt ledger | Initialize actual local API/client shell, sanitized evidence index and unconfigured states | No timing confirmation or wait required; account/scope/provenance known or explicitly pending; secrets stay server-only |
+| **P1 — Actual baseline operations** | Run one short selected ticket lookup per subject; await actual completion; inspect returned fixture content | Retrieve actual events/tasks; identify native `credentials_id`, task relation, record clock and decision-unit/cardinality | Show unverified/pending labels until receipts arrive; index actual source artifacts | Two real launch/session/task receipts; same evaluated credential/operation/unit or explicit unresolved gate |
+| **P2 — Finite capture and binding** | Resolve installation/definition/policy subject domains; corroborate event acting subject through authenticated graph; choose exact trial scope | Exhaust event/task pages with tested order/cursor; preserve page/filter/failure/completion refs; establish event-ID domain and per-event bindings | Add source IDs/provenance and verified vs unknown context; no inferred successful-read count | Complete finite capture/mapping ledger; every trial counted event has one verified actual acting subject |
+| **P3 — Reviewed trial and publication** | Human reviews/applies trial native DENY to verified subject/workspace/credential/operation; repo/method only if tested; record actual native rule/readback/UI evidence | Implement actual-shape projection; insert bounded preflight generation with events/bindings/coverage/context; await ACK and exact readback | Provide precise “Review scope / open native policy configuration”; mark observed application pending effects | Actual native trial evidence plus matching analytical semantics/bindings/context readback |
+| **P4 — Fresh selective effects** | Launch fresh target and approved control; inspect native target `DENY`/`POLICY_DENIED` and actual control fixture content | Collect both completed probes fully; run actual bounded all-candidate sanity query; preserve query IDs/results | Show both actual receipts together, narrow effect and trial status | **G1 pass/fail/unknown:** source/binding/unit/credential; finite capture; selective trial effects; minimal CH proof |
+| **P5 — Restore allowed baseline** | Deliberately remove only known trial DENY through actual native controls; preserve removal/readback; obtain fresh allowed target/control results | Collect baseline probes; retain preflight/trial history separately; reconcile remaining G1 gaps | Keep restoration pending until both actual expected results; no global safe badge | Known trial removed/restored as intended; both baseline fixtures actually returned |
+| **P6 — Pin main epoch and cohort** | Operator pins verified IDs/unit/clock/allowances and external immutable reference/SHA-256 provenance; effective start before main activity; register cohort | Integrate main journal/collector/publisher against observed shapes; carry prior relevant source versions into revised generations | Wire actual case DTO/state flow; retain gate report/evidence links; local QA proceeds independently | **G1b:** restored allowed baseline, pinned main context and registered cohort; no main misuse under stale trial DENY |
 
-The first 45 minutes are a feasibility test, not an excuse to spend the next hour redesigning. If a row is late, A/B report the exact unresolved contract and request sponsor help once. Continue independent fixture/evidence work, cut optional integrations, and narrow the same product's claims if the central native promise stays unproved.
+These stages are a feasibility and authority sequence, not a duration limit. If a stage fails, report its exact unresolved contract and use targeted logs/reproduction/owner or sponsor support. Continue independent implementation, fixture/evidence work and local acceptance while repairing the prerequisite. Withhold only the unsupported native claim; do not abandon the project because a stage took longer than an old schedule allowed.
 
 ## What to inspect before writing an adapter
 
@@ -57,11 +59,11 @@ The first 45 minutes are a feasibility test, not an excuse to spend the next hou
 - Re-fetch completed captures for reconciliation and retain exact redeliveries/changed copies. Stable repeated reads are useful observed practice; they do not prove the vendor can never append delayed events.
 - Compare all stable semantic versions of an identity before filtering ALLOW/actor/operation/time. An out-of-window conflicting DENY or changed session remains a conflict. Do not choose an arbitrary latest row.
 - Bind each admitted identity to one actual acting subject with proof, and inventory the finite cohort. Missing mappings/pages/clocks/credential/allowance remain explicit unknowns.
-- In the small CH proof, use event-built actual-shape schema/typed parameters and awaited inserts. Read back expected IDs **and** semantic fields, bindings, manifest/preflight context and qualified coverage. A matching ID set with changed actors is a failed publication; ACK alone is not readiness.
+- In the small CH proof, use build-generated actual-shape schema/typed parameters and awaited inserts. Read back expected IDs **and** semantic fields, bindings, manifest/preflight context and qualified coverage. A matching ID set with changed actors is a failed publication; ACK alone is not readiness.
 
 ## Native policy trial: exact review and effects
 
-The core native mutation is **a human action in Guild's policy UI**. The inspected public API does not establish a credential-policy mutation endpoint. Do not create an imaginary REST adapter, infer authority from `integrations:write`, or equate credential association deletion with selective DENY. Use the documented CLI only after the installed command/version/authentication and actual returned evidence are independently tested during the event. Exact UI controls and policy receipt fields must come from observation, not this checklist.
+The core native mutation is **a human action in Guild's policy UI**. The inspected public API does not establish a credential-policy mutation endpoint. Do not create an imaginary REST adapter, infer authority from `integrations:write`, or equate credential association deletion with selective DENY. Use the documented CLI only after its installed command/version/authentication and actual returned evidence are independently tested. Exact UI controls and policy receipt fields must come from observation, not this checklist.
 
 The trial review must bind:
 
@@ -80,7 +82,7 @@ Inspect the initial broad allow-all/fallback and other rules. A targeted DENY ca
 After actual application, start genuine fresh calls:
 
 1. **Target:** same actual subject/credential/operation and tested resource scope, preferably in a new session/task. Require native `DENY` with the actual policy reason such as `POLICY_DENIED`. Credential/platform failure is a different result.
-2. **Control:** other verified subject, same evaluated credential and selected operation. Inspect the expected synthetic ticket content in the actual tool/result path, preserving the authenticated result reference or audited event-built wrapper source version.
+2. **Control:** other verified subject, same evaluated credential and selected operation. Inspect the expected synthetic ticket content in the actual tool/result path, preserving the authenticated result reference or audited build-generated wrapper source version.
 
 | Target | Control | Trial decision |
 |---|---|---|
@@ -100,11 +102,11 @@ Pin the main manifest only after calibration and restored baseline. Record an im
 
 Register every main session/turn before evaluation, including any started earlier that can contribute within the declared horizon. Use short completed runs across several sessions. The 30/20 versus 40/60 targets are a planned fixture; display actual native count. If calibration makes those targets impractical, the operator declares a coherent revised envelope **before** the main activity, and documents it instead of editing allowances after seeing the result.
 
-## Gate report to hand off at minute 45 and 60
+## Gate reports after native trial and restored main readiness
 
-Store a short sanitized ledger with status **passed, failed or unresolved**, actual proof reference and next action for each item. This is a ScopeWatch event record, not a native vendor attestation.
+Store a short sanitized ledger with status **passed, failed or unresolved**, actual proof reference and next action for each item. This is a ScopeWatch application record, not a native vendor attestation. Report when the relevant stage's evidence is available; no elapsed-minute checkpoint is required.
 
-| Gate item | Minute 45 proof required | Minute 60 addition |
+| Gate item | G1: native/projection trial proof | G1b: restored baseline and main readiness |
 |---|---|---|
 | Hosted work | Two actual launches; actual installation/version/returned task/session | Both baseline calls succeed after trial restoration |
 | Binding | Per-event native graph proof of acting policy subject; tested policy identifier domain | Actual main candidate identities frozen |
@@ -113,12 +115,12 @@ Store a short sanitized ledger with status **passed, failed or unresolved**, act
 | Coverage | Complete finite event/task traversal and completion/reconciliation ledger | Main cohort registered and bounded |
 | Policy | Actual target-scoped trial native rule/readback/UI evidence | Known trial restored/removed, evidence retained |
 | Trial effects | Fresh native target policy refusal + fresh inspected control result | Fresh target + control allowed results |
-| Analytics | Awaited actual insert and exact ID/semantics/bindings/context/coverage readback; bounded query/result ID | Event-built interfaces agreed; main publication integration started |
+| Analytics | Awaited actual insert and exact ID/semantics/bindings/context/coverage readback; bounded query/result ID | Build-generated interfaces agreed; main publication integration started |
 | Context/evidence | Trial/preflight clearly labeled; sanitized receipt index | Immutable main manifest reference + SHA-256/effective start and operator approval |
 
 The gate is not fully passed if any required item is unknown. A verified individual lower-bound crossing can be shown with its uncertainty, but missing another candidate prevents “only offender” or whole-cohort compliance. The smallest final action demo requires whole declared cohort readiness.
 
-## Hard stops and safe progress when a gate fails
+## Dependent claim gates and continued progress
 
 | Unresolved condition | Do now | Withhold |
 |---|---|---|
@@ -131,6 +133,8 @@ The gate is not fully passed if any required item is unknown. A verified individ
 | Trial restoration fails | Retain known trial state; diagnose before main activity | Valid allowed main misuse scenario |
 | CH syntax/grants/readback fails | Simplify bounded ordinary SQL; reconcile exact input; preserve error | Authoritative all-candidate result |
 
-No account test failure authorizes invented source facts or a broad revoke described as selective restriction. If the first-hour primary gates remain blocked, retain an honest ScopeWatch monitoring/review outcome and cut every optional feature. The full live source → historical SQL selection → actual investigator → reviewed native action → both fresh effects remains due by **1:30 PT**, with scope freeze at **2:30 PT**.
+No account test failure authorizes invented source facts or a broad revoke described as selective restriction. If initial native gates remain blocked, keep those claims pending and complete independent code/UI/tests/review/handoff. Diagnose and revisit required native work when new evidence, access or a supported approach becomes available; elapsed time alone is not a stop condition. The full live source → historical SQL selection → actual investigator → reviewed native action → both fresh effects passes only when its actual receipts exist.
 
-The next implementation step must preserve **historical event anchors as well as current count**. Delayed completed-turn events can arrive after their 600-second window aged out. Evaluate every distinct selected-ALLOW native timestamp with the whole equal-time group in **(T−600s, T]**, plus the current cutoff; retain first crossing/peak/current separately. The first hour establishes the source authority on which that detector depends.
+Use finite request/test timeouts and bounded read retries to keep individual operations observable; log and diagnose timeouts. After two attempts with the same failure signature, change approach, inspect source/contract evidence and produce a minimal reproducer rather than repeat blindly. After three distinct unsuccessful fixes, record the unresolved prerequisite, consult the relevant owner/reviewer and continue independent ready work while planning the next supported repair. These controls govern requests and diagnostic attempts, not the total build duration or permission to stop required work. An unknown native mutation is reconciled before another attempt.
+
+The next implementation step must preserve **historical event anchors as well as current count**. Delayed completed-turn events can arrive after their 600-second window aged out. Evaluate every distinct selected-ALLOW native timestamp with the whole equal-time group in **(T−600s, T]**, plus the current cutoff; retain first crossing/peak/current separately. Initial preflight establishes the source authority on which that detector depends. The analytical cutoff is an evidence boundary, not a build deadline.

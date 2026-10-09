@@ -1,5 +1,7 @@
 > Advisory research snapshot. For current native authority, event attribution, window boundaries and recovery semantics follow [the corrected architecture](../architecture/ARCHITECTURE.md) and its contracts. Fixture alternatives below are not simultaneous build requirements.
 
+> Timing override: [current human build authorization](../event/BUILD_AUTHORIZATION.md) permits starting now or anytime, with no global cutoff or hard duration cap. The old calendar schedule is superseded; readiness and actual evidence govern progress. Request/test timeouts and diagnostic retry bounds remain operational controls, not permission to stop required work.
+
 # ScopeWatch: the strongest honest story and adversarial scenario matrix
 
 Prepared 9 October 2026 IST. Product and planning analysis only. No project implementation, source finding, account test, exploit, hosted session, policy action or benchmark was performed. This document independently challenges the current [ScopeWatch decision](FINAL_IDEA.md), [independent verdict](../research/debate-archive/07_devils_verdict.md) and earlier [CrossedLine decision](../research/debate-archive/06_FINAL_DECISION.md). It uses their existing primary-source audit; it adds no fresh web-retrieval claim. Akash is excluded.
@@ -84,7 +86,7 @@ A template can also create an issue from a simple counter. That remains a legiti
 
 ## 5. Adversarial scenario matrix
 
-**Core/live** means one of the deliberately small demonstrations that should actually run in five hours. **Core/design** means a required honest state/decision in the core contract, assessed by a focused fixture or walkthrough if time permits; it does not require implementing a new feature. **Stretch** means the stronger claim is withheld unless the extra trusted evidence and integration work exist. This is a coverage map, not an instruction to build or run 34 separate products.
+**Core/live** means one of the deliberately small demonstrations whose actual evidence must support the completed live claim. **Core/design** means a required honest state/decision in the core contract, assessed by a focused fixture or walkthrough; it does not require implementing a separate feature. **Stretch** means the stronger claim is withheld unless the extra trusted evidence and integration work exist. These are readiness/proof classifications, not duration caps. This is a coverage map, not an instruction to build or run 34 separate products.
 
 | # | Scenario | Expected decision | Evidence needed | Enforcement or operator action | Limit / priority |
 |---|---|---|---|---|---|
@@ -123,7 +125,7 @@ A template can also create an issue from a simple counter. That remains a legiti
 | 33 | The operator changes the allowance mid-window or a manifest/rollup contains stale budget context. | Apply the declared policy-version/effective-time semantics consistently; show any uncertainty. | Versioned approval record, effective interval, native event times and query version. | Recompute from native facts using the current declared semantics; do not depend on an old insert-time joined budget. | Changing right-side context does not retroactively update an incremental-view join. **Core/design.** |
 | 34 | Same breach is rediscovered by repeated queries, retries, or incident-create completion uncertainty. | One case per stable breach identity/versioned interval or a clearly documented lifecycle; no incident spam. | Stable native event evidence, query/case keys and actual issue-creation receipt. | Reconcile/reuse the existing issue and policy rather than repeating privileged changes blindly. | Idempotent presentation does not deduplicate genuine later permission events. **Core/design.** |
 
-### The five-hour minimum should actually prove these cases
+### The completed live core should actually prove these cases
 
 Run one normal workload case, one genuine approved bulk workflow, one multi-session breach, one duplicated native ID, one ALLOW followed by failure, and one containment sequence that includes new-session/repeated-call denial plus fresh successful bulk control. Together these directly cover rows 1, 2, 3, 5, 7, 12, 14, 27 and 30 without nine separate applications.
 
@@ -143,9 +145,9 @@ Cut in this order: automated recovery → actual prompt-influence demonstration 
 
 ## 7. The Semgrep lane belongs to this one workflow
 
-Generate the actual ScopeWatch collector, controller and case/approval UI during the event with the permitted Semgrep setup active. Preserve ordinary prompt/output/first-draft timestamps and hashes, the exact genuine hook/stock-scan result and rule/file/line before repair. Inspect relevant real security surfaces such as trust of actor labels, API authentication, SQL inputs, secrets handling and privileged policy actions. Those are review surfaces, not a list of flaws to introduce.
+Generate the actual ScopeWatch collector, controller and case/approval UI now under the current authorization, with the permitted Semgrep setup active. Preserve ordinary prompt/output/first-draft timestamps and hashes, the exact genuine hook/stock-scan result and rule/file/line before repair. Inspect relevant real security surfaces such as trust of actor labels, API authentication, SQL inputs, secrets handling and privileged policy actions. Those are review surfaces, not a list of flaws to introduce.
 
-Focused discovery receives **20–30 minutes total**, in parallel with the core. An actual candidate needs detector attribution, genuine generated provenance, a meaningful owned-lab consequence, and a repair with preserved legitimate behavior. If Guardian self-fixes a draft, retain that original result and confirm with the sponsor whether archived-draft evidence qualifies. CLI stock packs are a different surface from Guardian's fixed default; custom confirmation after human diagnosis must not be credited as original Semgrep discovery.
+Focused discovery stays in the same workflow's parallel lane and does not displace required implementation, fixture/control checks or independent acceptance. An actual candidate needs detector attribution, genuine generated provenance, a meaningful owned-lab consequence, and a repair with preserved legitimate behavior. If Guardian self-fixes a draft, retain that original result and confirm with the sponsor whether archived-draft evidence qualifies. CLI stock packs are a different surface from Guardian's fixed default; custom confirmation after human diagnosis must not be credited as original Semgrep discovery. No finding is a valid outcome, not a reason to run unrelated generation indefinitely.
 
 No finding means the identical ScopeWatch core continues. Routine clean scanning, public rule availability and an insecure-looking token decode do not themselves meet the interesting-finding prize. Do not run the earlier CrossedLine 28-generation search portfolio, produce a separate vulnerable Ledgerly app, reroll prompts until a chosen flaw appears, or force a source pattern to match a rule. Those would enlarge or change the product and revive the original discovery-dependent critical path.
 
@@ -173,7 +175,7 @@ The correct threat story is containment of subsequent permission use after a cum
 
 Correct. Neither documented event schema nor policy API establishes account-level behavior. Null identity/credential fields, broad allow-all, wrong scopes and shared-credential side effects can break the entire story. The optional finding has no known probability of appearing, and novelty/interestingness/acceptance are uncertain.
 
-The first-45-minute gate should prove real allowed work, native event mapping, an actual reviewed target DENY, target repeat refusal and successful control. In parallel, prove ClickHouse insert/query and preserve actual project-generation/scan artifacts. If scoped control fails, ask the sponsor mentor once, simplify within the same integration, and relabel the weaker monitoring result truthfully. If no authentic Semgrep finding exists, omit that finding-prize claim and preserve the same project.
+Initial source/effect readiness should prove real allowed work, per-event native acting-subject mapping, an actual reviewed target DENY, target repeat refusal and successful control. In parallel, prove ClickHouse insert/query and generation/binding/context readback, and preserve actual project-generation/scan artifacts. Remove only the known trial rule and inspect both fresh allowed baselines before pinning/running the main epoch. If scoped control fails, use targeted sponsor/owner diagnostics, correct the supported scope and repeat both probes; label the observed monitoring result truthfully while native proof remains pending. Continue independent local code/UI/tests/review/handoff. Finite request/test timeouts and repeated-failure diagnostic bounds change the approach rather than end the project. If no authentic Semgrep finding exists, omit that finding-prize claim and preserve the same project.
 
 **Concession:** ScopeWatch's selection is an evidence/scope judgment in the absence of an extraordinary real finding. A completed, genuinely surprising eligible source finding could have improved the earlier hybrid case; it does not currently exist.
 

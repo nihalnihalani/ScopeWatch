@@ -2,6 +2,8 @@
 
 # ClickHouse: devil's advocate review
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../../../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Reviewer: ClickHouse Devil's Advocate, 8 Oct 2026. Read-only. RedBot is out of scope.
 
 This review tests the conclusions in `_TEAM_A.md`, `_TEAM_B.md` and the ten per-project files against:

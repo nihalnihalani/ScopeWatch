@@ -1,5 +1,7 @@
 # ScopeWatch architecture artifacts
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Open [architecture.html](architecture.html) directly in a browser. It is an offline viewer with seven embedded SVGs, view tabs, fit/zoom and SVG/PNG/source links. No network dependency, account login or sponsor credential is required to view it. To serve it locally, run `python3 -m http.server 8769 --bind 127.0.0.1 --directory docs/architecture` from the repository root, then open `http://127.0.0.1:8769/architecture.html`. That optional server serves documentation only; it is not the proposed ScopeWatch application. The old research workspace's preview may occupy that port; choose another free port if needed.
 
 - [Detailed architecture](ARCHITECTURE.md): components, trust boundaries, records, canonicalization, historical windows, approval/native policy action, verification/recovery, failure cases and event gates.

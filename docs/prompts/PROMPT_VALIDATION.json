@@ -1,11 +1,15 @@
 {
   "kind": "static_prompt_contract_check",
-  "master_words": 4495,
-  "goal_characters": 1446,
+  "master_words": 4638,
+  "goal_characters": 1569,
   "shell_syntax": "passed",
   "task_status_mapping": "passed",
   "independent_local_native_paths": "passed",
   "scoped_role_briefs": 5,
   "model_sessions_started": false,
-  "application_tests": false
+  "application_tests": false,
+  "execution_policy": "immediate_or_anytime_no_build_cutoff",
+  "goal_timing_policy": "passed",
+  "embedded_editable_dag_match": "passed",
+  "dag_exports": "rendered_and_visually_checked"
 }

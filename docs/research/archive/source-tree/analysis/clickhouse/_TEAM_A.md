@@ -2,6 +2,8 @@
 
 # ClickHouse Team A: team summary
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../../../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 This summary covers the five projects with full write-ups in this folder: `rokko.md`, `policydiff.md`, `tc-pilot.md`, `incidentlogica.md` and `vital-signal.md`. RedBot is left out; §7 explains why.
 
 Labels: **[V]** means verified, with the citation in the per-project file. **[I]** means inference.

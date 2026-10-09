@@ -1,5 +1,7 @@
 # seconds ai (seconds.ai) — whole-project deep dive
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Analyst: ClickHouse Team A (deep-dive pass). Repo: `repos/clickhouse/seconds-ai` (`main`, HEAD `0ffad12`). The other branches were read from a read-only scratch clone of `https://github.com/txshah/seconds.ai` (all branches):
 - **`sajib/render-deploy-stub`**: the hosted demo at seconds-ai.onrender.com. Its `/health` string "seconds.ai polished demo backend" matches `render_backend/main.py:437`.
 - `sajib/render-telegram-integration`

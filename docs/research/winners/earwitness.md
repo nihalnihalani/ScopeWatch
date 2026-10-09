@@ -1,5 +1,7 @@
 # EARWITNESS: whole-project deep dive
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Round-1 file: [`analysis/clickhouse/earwitness.md`](../archive/source-tree/analysis/clickhouse/earwitness.md). Repo: `repos/clickhouse/earwitness` (https://github.com/gorajing/earwitness). All line refs are against the cloned HEAD `8337471`.
 
 Legend: **[V]** = verified at file:line (or git/command output). **[I]** = inference.

@@ -1,5 +1,7 @@
 # SynapseCRO: whole-codebase deep dive
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Round-1 file: [`analysis/clickhouse/synapsecro.md`](../archive/source-tree/analysis/clickhouse/synapsecro.md). Repo: https://github.com/ramstar3000/seo_tool (clone at `repos/clickhouse/synapsecro`). Everything below was read at **`1467ca9`**, the last event-day commit (2026-06-26 15:39 BST). The pre-event state was read at **`7eaf4b5`** (2026-06-25 09:35). Both were extracted with `git archive` into the scratchpad. Nothing was installed, run or deployed.
 
 **[V]** = verified with file:line or git. **[I]** = inference.

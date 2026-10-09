@@ -1,5 +1,7 @@
 # ClickHouse + Guild.ai: prize strategy for Cyberdefense, 9 October 2026
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 **October 9 expansion correction:** a Guild API-trigger key is issued for one trigger, but the same documentation describes access to sessions throughout that workspace and optional routing to another installed agent. Earlier trigger-scoping shorthand must not be read as investigator-only effective privilege. See [the corrected Guild audit](../spec/guild-capabilities.md) and [master specification](../spec/MASTER_SPEC.md). No account-level behavior has been tested.
 
 Checked 9 October 2026 IST. Research uses Firecrawl CLI v1.23.3, official current documentation and product announcements, and this repository's 7–8 October winner/code forensics. Akash excluded. This is a strategy recommendation, not an implementation or a claim of prize eligibility.

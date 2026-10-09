@@ -1,5 +1,7 @@
 # ScopeWatch evidence checklist
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Prepared 9 October 2026. **Every checkbox starts open. No runtime findings, policy effects, benchmark measurements or event-account tests are asserted by this handoff.** Planned fixtures and diagrams do not count as implementation evidence.
 
 Use this checklist with the [architecture](../architecture/ARCHITECTURE.md), [Guild contracts](../architecture/GUILD_CONTRACTS.md), [ClickHouse contracts](../architecture/CLICKHOUSE_CONTRACTS.md), and [demo script](DEMO_SCRIPT.md). Preserve one coherent case revision; stronger claims require additional evidence, not stronger narration.
@@ -138,7 +140,7 @@ Prefer a bounded repeated SQL sample, such as 20 runs if time permits, but repor
 - [ ] Do not script extra calls and attribute them to the model. Deterministic excess is labeled misuse simulation.
 - [ ] Claim influence only when the actual trace establishes consumption and expansion beyond the trusted job relative to the control; repeat a surprising result if feasible.
 - [ ] Record no influence or secure refusal honestly. A single comparison is not a robustness benchmark.
-- [ ] Cap at ten minutes within the existing scenario lane; stop by 1:30 PT or earlier if the core/probes/scan preservation need the time.
+- [ ] Run the focused comparison after essential fixture/native setup; prioritize the core/probes/scan preservation. No timed cap or scheduled stop applies.
 
 ## 11. Optional same-codebase Semgrep finding
 
@@ -150,7 +152,7 @@ Prefer a bounded repeated SQL sample, such as 20 runs if time permits, but repor
 - [ ] Retain corrected source/patch version, repeated consequence test, surviving legitimate behavior and actual rescan result, including remaining findings/errors.
 - [ ] Explain why this issue is interesting in this workflow. A raw finding count or generic severity label alone is weak evidence.
 - [ ] Confirm the actual discovery/scan/custom-rule route and one-project eligibility with the sponsor/event materials. Fixed remote `guardian-default` rules and OAuth setup differ from CLI configuration; organization Policies do not automatically apply there.
-- [ ] Cap focused discovery at 20–30 minutes total. No separate 28-generation app, manufactured vulnerability, late second project or mandatory finding quota.
+- [ ] Use focused same-codebase discovery with diagnostic checkpoints, without a time cap. No separate 28-generation app, manufactured vulnerability, late second project or mandatory finding quota.
 - [ ] If no authentic interesting eligible finding exists, mark **no finding obtained** and omit the finding-prize claim. Scanning for quality may still be described accurately.
 
 ## 12. Public evidence package and final review

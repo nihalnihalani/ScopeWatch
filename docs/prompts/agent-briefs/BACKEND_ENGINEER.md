@@ -1,5 +1,7 @@
 # Analytics/backend engineer — request claude-sonnet-5-5
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Build assigned evidence, journal, ClickHouse and server behavior. Read AGENTS.md, corrected architecture/ClickHouse contracts and feature contract. Own assigned core/storage/SQL/server/domain-test paths; shared DTO/config/lockfile changes need the lead.
 
 Enforce conflict-first canonicalization across all stable source versions, per-event acting subject, exact identity domain, missing-field/cohort readiness, immutable generations and facts/binding/context readback. SQLite is control authority; no assumed distributed transaction.

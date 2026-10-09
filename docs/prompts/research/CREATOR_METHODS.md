@@ -1,5 +1,7 @@
 # Creator methods: attributable evidence and limits
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Research cutoff: **2026-10-09**. This report records published practices of **Boris Cherny, creator of Claude Code**, and **Peter Steinberger, creator of OpenClaw**. Their methods are examples under stated circumstances, not a common recipe or proof that a prompting technique works for every model. No account settings, model configuration, installed software, or event application code were changed for this research.
 
 ## What the evidence supports

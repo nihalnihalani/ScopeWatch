@@ -1,12 +1,14 @@
 # Independent repository handoff review
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 9 October 2026. Scope: packaging, navigation, provenance, build completeness and claim boundaries in this repository. This review does not certify the proposed application, a sponsor account, executed SQL, a security finding, eligibility or an enforcement result.
 
 ## Verdict
 
 The repository provides a coherent ScopeWatch build handoff. A new coding agent can find the fixed product scope, dependency order, native account questions, exact evidence/query/action contracts, four owner lanes, failure paths and submission obligations without returning to the source research workspace. No unresolved packaging blocker was found in the reviewed tree.
 
-Two concrete corrections were completed during review. The optional cause comparison now runs in the existing scenario lane after essential fixture work and before 1:30, rather than impossibly starting after the 1:30 gate. The operator payload no longer contains its own exact-byte hash or containing commit reference: [an external provenance wrapper](../../templates/manifest-provenance.template.json) records the finalized manifest bytes and immutable containing commit/path. The case record retains those external references. This avoids a self-referential hash/commit requirement.
+Two concrete corrections were completed during review. The optional cause comparison now runs in the existing scenario lane after essential fixture work; the former clock cutoff is now superseded by current human authorization. The operator payload no longer contains its own exact-byte hash or containing commit reference: [an external provenance wrapper](../../templates/manifest-provenance.template.json) records the finalized manifest bytes and immutable containing commit/path. The case record retains those external references. This avoids a self-referential hash/commit requirement.
 
 The competition application remains unimplemented. Its account-dependent assumptions are explicitly open. The architecture review's acceptance of corrected design and the offline checks are useful preparation; neither establishes the event's intended result.
 
@@ -20,10 +22,10 @@ The competition application remains unimplemented. Its account-dependent assumpt
 | Native contract proof | [Guild contracts](../architecture/GUILD_CONTRACTS.md), [FIRST_HOUR](../build/FIRST_HOUR.md) | Real acting subject, evaluated shared credential, operation/unit/clock, pagination, authority and selectors are gates |
 | Analytical correctness | [ClickHouse contracts](../architecture/CLICKHOUSE_CONTRACTS.md), [offline reference](../../research/offline-reference/verify_reference.py) | Conflict-first canonicalization, per-event actor binding, readback admission, historical anchors and current count are specified |
 | Action and recovery | Architecture, [build plan](../build/BUILD_PLAN.md), [evidence checklist](../demo/EVIDENCE_CHECKLIST.md) | Exact revision/scope approval; manual native application; fresh target refusal plus inspected control result; separate two-result recovery |
-| Implementation order and cutoffs | Build plan and first-hour gate | Four lanes, explicit dependencies, trial restoration, full-loop gate and protected recording/submission margin |
+| Implementation order and readiness | Build plan and first-hour gate | Four lanes, explicit dependencies, trial restoration, full-loop evidence gate and evidence/submission readiness without clock cutoffs |
 | Sponsor contribution and honest failure wording | [Sponsor strategy](../sponsors/SPONSOR_STRATEGY.md), [demo script](../demo/DEMO_SCRIPT.md) | Actual necessary jobs and receipts; conditional finding/novelty/award claims |
 | Capture and delivery | [Templates](../../templates/README.md), [evidence destination](../../evidence/README.md), [submission checklist](../demo/SUBMISSION_CHECKLIST.md) | Blank scaffolds, sanitized evidence obligations, reviewer access and actual organizer-route confirmation |
-| Event rules and packet attribution | [Supplied event packet](../event/EVENT_RULES.md) | One project, four-person limit, event-built source, required artifacts, agenda/prizes and unresolved rule questions |
+| Event rules and packet attribution | [Supplied event packet](../event/EVENT_RULES.md) | One project, four-person limit, current authorized implementation, required artifacts, historical agenda/prizes and unresolved rule questions |
 | Offline reference and decision history | [References](../../references/README.md), [research index](../research/SOURCE_RESEARCH_INDEX.md), [curation](../../CURATION.md) | Current decisions and dated advisory material remain distinguishable |
 
 ## Precedence and stale-plan risks
@@ -45,7 +47,7 @@ Inherited research briefs are source material. Their historical read-only task i
 - Inspected package inventory and exclusions: no application package, runtime journal, live `.env`, cloned entrant repository or symlink is part of this handoff. The environment example has blank credential values and explicitly has no current consumer. Ignore rules cover local secrets, runtime databases and private/raw evidence.
 - Ran [the handoff validator](../../tools/validate_handoff.py): 210 Markdown files, 48 JSON files, 271 imported artifacts, seven diagram sources and 14 exports passed with no errors. Its checks are documentation/provenance/template checks; it made no sponsor calls and ran no application tests. Its secret-shape check is package hygiene, not a comprehensive security certification.
 
-The offline oracle tests fixture-level mathematical semantics. Its small subject-binding examples do not implement or test native task-graph traversal. It also does not test the proposed SQL joins, database NULL behavior, controller routes, approval state machine or frontend security. Those require event-built checks.
+The offline oracle tests fixture-level mathematical semantics. Its small subject-binding examples do not implement or test native task-graph traversal. It also does not test the proposed SQL joins, database NULL behavior, controller routes, approval state machine or frontend security. Those require checks against the actual implemented application.
 
 ## Reference copies and portability
 
@@ -55,7 +57,7 @@ Copied source manifests retain historical `.firecrawl` paths and original captur
 
 The atlas can be opened directly from a local checkout without accounts or a network connection. Regeneration is a separate documentation task requiring a local Mermaid 11.12.0 browser bundle, Playwright and a usable Chromium installation, supplied through the documented renderer arguments. Those dependencies are not vendored, and the renderer is not ScopeWatch application source. The optional local HTTP preview command serves documentation only.
 
-The package deliberately does not supply an application dependency lockfile, working server, deploy target or `npm start` command before the event. This is consistent with its stated preparation-only status and the supplied build-during-event requirement.
+The package does not yet supply an application dependency lockfile, working server, deploy target or `npm start` command because it is a documentation handoff. This status does not prohibit implementation: start now or anytime under current human authorization, without a build cutoff.
 
 ## Open implementation gates
 

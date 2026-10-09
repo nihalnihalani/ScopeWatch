@@ -1,5 +1,7 @@
 # Semgrep advocate: Code Vaccine, an admission gate for the next AI feature patch
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Prepared 9 October 2026 IST. Research and planning only. **[V]** means primary-source fact, **[U]** means the supplied event packet, and **[I]** means design judgment. No generated finding, scan, implementation, outcome or prize odds are claimed. The out-of-scope sponsor is excluded; there is no invented judging score or row-count floor.
 
 ## Position

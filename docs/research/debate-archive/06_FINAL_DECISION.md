@@ -1,5 +1,7 @@
 # 06 · Final decision: CrossedLine
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 [V] means verified in a repo file or at a cited URL. [I] means inference. **Every number is a target.** No result exists yet. Akash is excluded.
 
 ## 1. Verdict

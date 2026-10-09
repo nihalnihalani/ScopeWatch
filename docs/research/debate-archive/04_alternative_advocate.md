@@ -1,5 +1,7 @@
 # Third advocate: ToolTrust, a connector release review
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Prepared 9 October 2026. Independent affirmative case using the four requested research files and their verified sources. Akash excluded. Product and prize planning only: no target generation, scan, implementation, operational attack or new web research. No finding exists yet. Debate scores and a 10-million-row floor are not treated as official criteria.
 
 ## The affirmative case

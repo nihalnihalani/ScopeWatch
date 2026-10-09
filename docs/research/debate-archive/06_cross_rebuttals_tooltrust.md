@@ -1,5 +1,7 @@
 # ToolTrust: round-two rebuttal and comparative judgment
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Prepared 9 October 2026. Product/prize planning only; no new web research, implementation or obtained finding. Akash excluded. Responds to [the preliminary critique](../archive/source-tree/analysis/cyberdefense-2026-10-09/debate/05_devils_preliminary.md), [Code Vaccine](01_semgrep_advocate.md), and the latest ScopeWatch specification supplied for this round. The earlier GatewaySaidSo/PivotWatch drafts and their invented scores are not the operative alternatives.
 
 ## One concession

@@ -1,5 +1,7 @@
 # policyDiff — whole-project deep dive
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Analyst: ClickHouse Team A (deep-dive pass). Repo: `repos/clickhouse/policydiff` at HEAD `b07bab2`. The **judged version** is taken as `849221d` (last event-day commit, 2026-05-23 17:23 EDT). Every non-generated source file was read: all three services, infra, scripts, tests (names and assertions skimmed), frontend pages and components. Skimmed: `globals.css` (1,289 lines of styling), `context/*.md` specs (covered in round 1), `.claude/` and `.agents/` Senso skill copies (vendored, post-event). Labels: **[V]** verified with file:line, **[I]** inference.
 
 ---

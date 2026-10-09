@@ -2,6 +2,8 @@
 
 # Why they won: ClickHouse prize at Agentic Engineering Hack (NYC, 23 May 2026) and Multiagents Hackathon (London, 26 Jun 2026)
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Round-2 matched winner-vs-loser analysis. Round-1 code findings are cited, not redone: [policydiff.md](../../archive/source-tree/analysis/clickhouse/policydiff.md), [tc-pilot.md](../../archive/source-tree/analysis/clickhouse/tc-pilot.md), [licensetrace.md](../../archive/source-tree/analysis/clickhouse/licensetrace.md), [synapsecro.md](../../archive/source-tree/analysis/clickhouse/synapsecro.md), [_DEVILS_ADVOCATE.md](../../archive/source-tree/analysis/clickhouse/_DEVILS_ADVOCATE.md).
 
 Labels: **[V]** verified (source given), **[I]** inference. All work files (galleries, project pages, videos, frames) are in the session scratchpad and were not committed. Frame times are approximate (sampled every 4–19 s, depending on video length). Videos were read from frames as 4×4 contact sheets, with full-resolution re-reads of key moments.

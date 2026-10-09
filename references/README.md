@@ -1,5 +1,7 @@
 # Selected implementation references
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../docs/event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 These are dated public official documentation, schema, release and rule snapshots gathered for research. Start with the authored [Guild](../docs/architecture/GUILD_CONTRACTS.md) and [ClickHouse](../docs/architecture/CLICKHOUSE_CONTRACTS.md) contracts; use raw references to answer an exact field/route/setup question.
 
 - [34-page sponsor knowledge-base index](scopewatch-kb/index.md): ClickHouse, Guild, Semgrep/Pi and structured release records.

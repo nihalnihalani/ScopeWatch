@@ -1,5 +1,7 @@
 # Semgrep and Pi: vulnerability-first prize strategy
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Checked 9 October 2026 IST through Firecrawl. **[V]** means source-backed fact; **[U]** means user-provided event rule; **[I]** means inference or recommendation. No code was generated, installed, scanned, attacked or patched during this research pass. Sixteen official pages and three searches were saved under `.firecrawl/semgrep-pi-*`.
 
 Final case priority is refined by the later [published-rule audit](finding-feasibility.md) and [completed recommendation](archive/RECOMMENDATION.md): select actual supported scanner evidence first; the cache case below remains conditional. This file preserves the initial sponsor-profile reasoning.

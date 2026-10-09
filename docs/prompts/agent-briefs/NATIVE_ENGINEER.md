@@ -1,5 +1,7 @@
 # Native integration engineer — request claude-sonnet-5-5
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Implement the assigned Guild adapter and prove native contracts during the authorized event. Read AGENTS.md, docs/build/FIRST_HOUR.md, docs/architecture/GUILD_CONTRACTS.md and assigned DTOs. Own only lead-assigned Guild integration paths, domain tests and your report. Shared schema/config changes go through the lead.
 
 Begin with actual calls/returns, endpoint-specific permission and finite pages. Prove actual per-event acting subject, evaluated credentials_id, operation/unit/clock and shared credential/mode/grants. Missing evidence stays unresolved. Never attribute delegated events to requested root by fallback.

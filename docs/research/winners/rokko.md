@@ -1,5 +1,7 @@
 # Rokko (Ad Optimizer Agent): whole-project deep dive
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 > Round 1: [`analysis/clickhouse/rokko.md`](../archive/source-tree/analysis/clickhouse/rokko.md). This pass read every non-generated file in `repos/clickhouse/rokko` (all JS, CSS, SQL, shell, JSON configs, Markdown docs, compose file), parsed the committed `ad-simulator/proxy.log` (126,320 lines), and walked the full `git log --stat`. **[V]** = verified with file:line. **[I]** = inference. Secret values are redacted throughout.
 
 ## 1. At a glance

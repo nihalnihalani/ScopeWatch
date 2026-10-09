@@ -1,10 +1,12 @@
 # Cyberdefense Hackathon: supplied event packet
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Source: the human-provided updated event details for 9 October 2026, with [public Luma event](https://luma.com/cyberhack). Itemized prizes below come from that supplied packet, not an independently recovered judge scorecard or payout policy.
 
-**Theme:** build defensive AI that finds threats, understands attacks or helps fix vulnerabilities. Bring one useful idea to life and show a working project by the end of the day. Build the project during the event. One project per team; at most four people.
+**Theme:** build defensive AI that finds threats, understands attacks or helps fix vulnerabilities. One project per team; at most four people. The packet originally requested a working project by the end of the day and building during the event. Those historical timing statements are superseded for this project by [current human authorization](BUILD_AUTHORIZATION.md): the event is already underway, and implementation can begin now or anytime without a build cutoff.
 
-Portal opens **11:30 AM PT**; submission deadline **4:30 PM PT**. Agenda: doors 9:30 AM, kickoff/hack 11:00 AM, lunch 1:30 PM, demos/judging 5:00 PM, awards/closing 7:00 PM. ScopeWatch plans conservatively from 11:30 to 4:30; confirm actual organizer build/start instructions at kickoff.
+**Historical supplied schedule — not an execution gate:** portal 11:30 AM PT; submission 4:30 PM PT; doors 9:30 AM; kickoff/hack 11:00 AM; lunch 1:30 PM; demos/judging 5:00 PM; awards/closing 7:00 PM. The human reports that the event started a day ago and the public pages are stale. Do not wait for these times or apply them as start/deadline/cutoff conditions. This repository follows readiness milestones and sets no operative build cutoff.
 
 ## Required submission
 
@@ -31,7 +33,7 @@ The quantified in-scope monetary pool is $5,250 distributed among awardees. Cond
 
 ## Semgrep supplied quick setup
 
-The packet recommends `claude plugin install semgrep@claude-plugins-official`, then restarting Claude Code and signing in through the browser popup. It describes public beta/no credit card and says to ask the sponsor to enable access using the signup email if blocked. Actual OAuth/plugin/hook operation must be tested during the event; account metadata, rulesets and scan route remain distinct from a genuine finding.
+The packet recommends `claude plugin install semgrep@claude-plugins-official`, then restarting Claude Code and signing in through the browser popup. It describes public beta/no credit card and says to ask the sponsor to enable access using the signup email if blocked. Actual OAuth/plugin/hook operation must be tested during implementation; account metadata, rulesets and scan route remain distinct from a genuine finding.
 
 ## Questions not resolved by the packet/public trail
 

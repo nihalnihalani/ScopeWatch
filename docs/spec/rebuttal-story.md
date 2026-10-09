@@ -1,5 +1,7 @@
 > Advisory research snapshot. For current native authority, event attribution, window boundaries and recovery semantics follow [the corrected architecture](../architecture/ARCHITECTURE.md) and its contracts. Fixture alternatives below are not simultaneous build requirements.
 
+> Timing override: [current human build authorization](../event/BUILD_AUTHORIZATION.md) permits starting now or anytime, with no global cutoff or hard duration cap. The old calendar schedule is superseded; readiness and actual evidence govern progress. Request/test timeouts and diagnostic retry bounds remain operational controls, not permission to stop required work.
+
 # ScopeWatch: round-two story rebuttal
 
 9 October 2026 IST. Product planning only; no implementation, exploit, hosted run, policy test, scan finding or benchmark. This responds to the judge's objection that ScopeWatch is still a quota circuit breaker. It preserves the native approval-event metric and the single ScopeWatch project. Akash is excluded.
@@ -54,9 +56,9 @@ Guild's turn-end event persistence means several excess decisions may already ex
 | “Thirty documents were retrieved/stolen, or data reached an unapproved recipient.” | Unproved from thirty ALLOW decisions. Requires independently meaningful actual outcomes/resource/destination evidence. No native-schema field is invented to support it. |
 | “This task was semantically off scope.” | Unproved from a task name and budget. The core proves exceeding the operator's approval envelope, not why the individual calls were inappropriate. |
 
-## The optional native outcome join has one small gate
+## The optional native outcome join has an evidence gate
 
-Only after the entire core loop works by **1:30 PT**, allow a maximum **15 minutes**, ending at **1:45**, to try the exact native EventSecurity.task_id → tool task → parent/root → launched-workload relationship. Do not join by approximate timestamp, actor label or operation text. Ambiguous joins, absent fields and nullable responses remain **unmatched**, visibly.
+Only after the entire required core loop works, investigate the exact native EventSecurity.task_id → tool task → parent/root → actual acting-workload relationship as a scoped optional enhancement. Its readiness condition is authenticated identifiers and proved cardinality, not elapsed time. Do not join by approximate timestamp, actor label or operation text. Ambiguous joins, absent fields and nullable responses remain **unmatched**, visibly.
 
 A verified TaskTool match may add actual available status/response-size context and help distinguish a permitted-but-failed operation. It does not silently change the primary counter to documents, successful reads or bytes disclosed. Tool DONE or HTTP status alone is not a protected-object receipt. The actual inspected control fixture remains the minimum surviving-work witness.
 
@@ -99,7 +101,7 @@ A recording must be labeled. Two minutes is our communication target, not an est
 
 A small Semgrep lane helps because the actual generated collector/controller handles identity, evidence, credentials and privileged policy actions. A genuine security defect there would threaten the trustworthiness of this same containment workflow. Finding and repairing such an issue can improve the product and add an attributable sponsor evidence card without changing the user, repository or scenario.
 
-Preserve ordinary first-draft generation and actual hook/stock scan artifacts before repairs. Cap focused discovery at **20–30 minutes in parallel**. A real candidate needs generated provenance, detector attribution, a meaningful owned-lab consequence and repair verification. Do not manufacture one by changing code to match a rule. A clean scan or catalog entry is not an interesting finding. No finding means the same finished core remains; omit the finding-prize claim.
+Preserve ordinary first-draft generation and actual hook/stock scan artifacts before repairs. Keep focused discovery in the same workflow's parallel lane, with fixtures/control duties and required implementation still covered. A real candidate needs generated provenance, detector attribution, a meaningful owned-lab consequence and repair verification. Do not manufacture one by changing code to match a rule. A clean scan or catalog entry is not an interesting finding. No finding means the same finished core remains; omit the finding-prize claim. Finite request/test timeouts and repeated-failure diagnostic bounds trigger a revised approach, not an end to required project work.
 
 One project means no separate Ledgerly target, no 28-run generation tournament, no broad source-hunting framework and no second containment app. A separate vulnerable-app story would consume owner capacity and undermine the sponsor cohesion we are defending.
 
@@ -107,8 +109,8 @@ ClickHouse plus Guild top awards have a **$2,000 monetary face-value ceiling if 
 
 ## Four-person load and the cuts
 
-Four owners are already occupied: **Guild/native policy and verification; collector/ClickHouse; manifest/scenario/Semgrep provenance; case screen/evidence/video/submission**. The third owner must not become the operator of a new prompt tournament, and the fourth must reserve recording/submission time.
+Four owners are already occupied: **Guild/native policy and verification; collector/ClickHouse; manifest/scenario/Semgrep provenance; case screen/evidence/video/submission**. The third owner must not become the operator of a new prompt tournament, and the fourth owns complete recording/delivery artifacts after required flows and evidence are stable. Begin now; no calendar cutoff controls these responsibilities.
 
-If load is too high, cut optional native outcome enrichment first, then prompt-influence/resource/recipient work, recovery automation, large load-test ambitions and UI polish. Keep a modest diverse labeled replay workload and real query measurement where feasible. Use one static operator manifest, one investigator and one owned incident issue; manual reviewed policy application is acceptable if its native effect is proven and labeled accurately.
+If optional work competes with required completion, defer native outcome enrichment first, then prompt-influence/resource/recipient work, recovery automation and large load-test ambitions. Required UI behavior, accessibility and acceptance stay in the core. Keep a modest diverse labeled replay workload and real query measurement where feasible. Use one static operator manifest, one investigator and one owned incident issue; manual reviewed policy application is acceptable if its native effect is proven and labeled accurately. Pending native access does not block independent local code/UI/tests/review or handoff.
 
 Never cut the fresh post-policy bulk success or replace the target native denial with a local pause. If the native scoped-control gate fails, the remaining honest product is monitoring/review with unverified containment. If a real Semgrep issue is found, pursue only the small proof/repair that the existing team can finish; do not sacrifice the completed control loop for a third conditional prize.

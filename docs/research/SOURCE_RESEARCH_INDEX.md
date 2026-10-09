@@ -1,5 +1,7 @@
 # Completed Cyberdefense hackathon research
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 9 October 2026 IST. Akash excluded. Research is complete; the competition project and an authentic target finding remain event work.
 
 ## Start here

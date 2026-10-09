@@ -1,8 +1,10 @@
 > Advisory research snapshot. For current native authority, event attribution, window boundaries and recovery semantics follow [the corrected architecture](../architecture/ARCHITECTURE.md) and its contracts. Fixture alternatives below are not simultaneous build requirements.
 
+> Timing override: [current human build authorization](../event/BUILD_AUTHORIZATION.md) permits starting now or anytime, with no global cutoff or hard duration cap. The old calendar schedule is superseded; readiness and actual evidence govern progress. Request/test timeouts and diagnostic retry bounds remain operational controls, not permission to stop required work.
+
 # ScopeWatch: ClickHouse capability expansion and analytical decision
 
-Research-only decision, 9 October 2026. One project, up to four people, 11:30–4:30 PT; Akash excluded. No application, hosted run, SQL benchmark, alert or containment test was performed. The exact Guild event fields and enforceable scope remain account-proof gates. Source corpus: [ClickHouse KB](../../references/scopewatch-kb/clickhouse/index.md), eleven first-party pages with [manifest](../../references/scopewatch-kb/clickhouse/sources.json).
+Research-only decision, 9 October 2026. One project, up to four people; Akash excluded. No application, hosted run, SQL benchmark, alert or containment test was performed. The exact Guild event fields and enforceable scope remain account-proof gates. Source corpus: [ClickHouse KB](../../references/scopewatch-kb/clickhouse/index.md), eleven first-party pages with [manifest](../../references/scopewatch-kb/clickhouse/sources.json).
 
 ## Recommendation
 
@@ -42,7 +44,7 @@ Operation or resource diversity and newly observed scope are **stretch explanati
 
 An exact distinct aggregate can count composite native identities; `uniqExact` explicitly supports multiple arguments and returns an exact result, at the cost of memory that grows with cardinality. Use a stable key established from native metadata, potentially including workspace/session/decision identity, and bound the time and actor scope. Conflicting versions of the same identity must be flagged rather than letting two different payloads silently coexist. This design is proposed; no query was executed. [Exact aggregation docs](https://clickhouse.com/docs/reference/functions/aggregate-functions/uniqExact).
 
-Freeze each case's manifest context. A later allowance change can produce a new evaluation; it must not silently rewrite the old case. Decide explicitly whether the approved allowance is evaluated as of the case cutoff or per event's effective policy. The five-hour slice should use one unchanged manifest per scenario and retain its version. This avoids pretending a complicated historical policy interpretation has already been solved.
+Freeze each case's manifest context. A later allowance change can produce a new evaluation; it must not silently rewrite the old case. Decide explicitly whether the approved allowance is evaluated as of the case cutoff or per event's effective policy. The bounded core should use one unchanged manifest per scenario and retain its version. This avoids pretending a complicated historical policy interpretation has already been solved.
 
 Plain MergeTree plus a bounded exact query is sufficient initially. Background `ReplacingMergeTree` merges do not guarantee immediate deduplication; `count()` on it can overcount before merges. Query-time `FINAL` provides its dedup semantics, while exact native identity aggregation can preserve the count on immutable raw evidence. Do not treat an `ORDER BY` key as transactional uniqueness. [ReplacingMergeTree docs](https://clickhouse.com/docs/reference/engines/table-engines/mergetree-family/replacingmergetree).
 
@@ -59,7 +61,7 @@ The requested window is 9 September–9 October 2026. These are relevant **dated
 | **16 September** | LLM observability **beta**; TimeSeries/PromQL **private preview** in managed service, experimental OSS; standalone collector OIDC | LLM context optional; PromQL unnecessary; OIDC only relevant to a chosen standalone collector | Cut from mandatory slice |
 | **23 September**, ClickHouse **26.9** | `CREATE TOKEN`: time-limited credential restricted to a subset of existing user grants; default lifetime 30 minutes if omitted | Timebox SELECT-only evidence access without exposing a principal's main password | Stretch after version/access proof |
 | **23 September**, **26.9** | `LIMIT AFTER`/`UNTIL`, with `ALL`, select bounded ordered sequences around conditions | Optional drilldown after budget crossing and before a denial, after dedup/window calculation | Stretch; ordinary SQL can provide equivalent product evidence |
-| **23 September**, **26.9** | `APPEND INCREMENTAL` scheduled refreshable MVs; external-memory `DISTINCT` | Event archival/large exact dedup workflows later | Cut from five hours |
+| **23 September**, **26.9** | `APPEND INCREMENTAL` scheduled refreshable MVs; external-memory `DISTINCT` | Event archival/large exact dedup workflows later | Outside the required core |
 | **5 October** | Executable UDFs GA in Cloud across AWS/GCP/Azure; compiled Native runtimes, memory/deterministic controls, lifecycle APIs | Custom parsers/evaluators when SQL is insufficient | Cut for this scenario |
 
 [September ClickStack release](https://clickhouse.com/blog/whats-new-in-clickstack-august-2026), [26.9 release](https://clickhouse.com/blog/clickhouse-release-26-09), [October UDF announcement](https://clickhouse.com/blog/executable-udfs-generally-available-on-clickhouse-cloud).
@@ -86,7 +88,7 @@ MCP offers native investigation and dashboard tools, but introduces a real auth 
 
 Read/write annotations are useful metadata, not an authorization system. An investigator should not receive alert/dashboard editing power or arbitrary SQL simply because a server contains useful read tools. The native log-pattern tool is an optional explanation aid; the deterministic manifest/count query remains the authority for this declared-policy case.
 
-## Ingestion, timing and measurement budget
+## Ingestion, timing and measurement readiness
 
 Use one trusted collector, batch completed-turn event pages and confirm successful insertion before declaring coverage. Async inserts buffer data until a flush; buffered rows are not queryable. If async mode is chosen, `wait_for_async_insert=1` returns success after flush and propagates errors. Fire-and-forget acknowledgement is inadequate for a case claiming complete evidence. Current docs describe adaptive timeouts and a Cloud maximum default of roughly one second; these are configuration defaults, not an observed project latency guarantee. Block/query deduplication on retries also does not replace native identity deduplication across differently shaped overlapping fetches. [Async insert docs](https://clickhouse.com/docs/concepts/features/operations/insert/asyncinserts).
 
@@ -106,9 +108,9 @@ These are **proposed measurement targets**, all currently unmeasured:
 | Containment correctness | Native target denial plus successful approved control outcome after policy application |
 | Replay scale | Actual synthetic/replayed row count and query behavior; never counted as real customer activity |
 
-No latency SLA, cost saving, false-positive rate or security detection percentage is established. Roughly one million diverse replay rows are an optional scale demonstration after the working native loop, not a sponsor requirement. Do not claim the documentation's billion-row/MV benchmarks as our performance. Bounded exact queries may consume meaningful memory; increase replay volume only while query measurements and submission time remain under control.
+No latency SLA, cost saving, false-positive rate or security detection percentage is established. Roughly one million diverse replay rows are an optional scale demonstration after the working native loop, not a sponsor requirement. Do not claim the documentation's billion-row/MV benchmarks as our performance. Bounded exact queries may consume meaningful memory; increase replay volume only after small-fixture answer equality and resource measurements pass, without displacing required verification or delivery artifacts.
 
-## Essential, stretch and cut within five hours
+## Essential, stretch and excluded core scope
 
 | Essential | Stretch only after a complete loop | Cut |
 | --- | --- | --- |
@@ -119,9 +121,9 @@ No latency SLA, cost saving, false-positive rate or security detection percentag
 | Real query and action receipts; visible incomplete collection | Correct distinct-state rollup with raw-query equality check | Automatic denial based solely on volume/anomaly/model judgment |
 | One coherent screen and accessible recorded proof | Emerging-signal investigation on actual additional logs | Multi-integration/multi-agent swarm, lake export |
 
-With four people, one owner handles native Guild/enforcement, one collection/SQL, one scenario/manifest/Semgrep provenance, and one product/evidence/submission. ClickHouse's lane should prove insertion and raw exact evaluation in the first forty-five minutes alongside the Guild kill gate. By 1:30 PT there should be one complete evidence→investigation→approved action loop. By 2:30 freeze scope; finish verification, recording and submission with the final thirty-minute margin. With two people, remove native alerts/MCP/rollups and preserve raw aggregation plus the real hosted enforcement story.
+With four people, one owner handles native Guild/enforcement, one collection/SQL, one scenario/manifest/Semgrep provenance, and one product/evidence/submission. Start implementation immediately. Initial readiness requires actual native source/binding/credential proof alongside ClickHouse insertion, complete generation/context readback and raw exact evaluation. Remove only the known trial DENY with actual native evidence and verify both fresh allowed baselines before the main epoch. The next gate is one complete evidence→investigation→reviewed native action→fresh target/control loop. Complete required correctness, UI and independent acceptance before adding optional features; then verify recording and delivery artifacts. With two people, keep native alerts/MCP/rollups outside the core and preserve raw aggregation plus the real hosted enforcement story.
 
-These time boxes are a proposed work allocation, not completed milestones. Use limited query and SELECT grants for evidence readers even if the new token feature is unavailable. No new sponsor account, collector deployment, OAuth integration or UDF lifecycle should be discovered in the final hour.
+These are readiness milestones, not completed proofs or elapsed-time limits. Pending native access does not block independent local implementation, UI/tests/review or handoff. Use limited query and SELECT grants for evidence readers even if the new token feature is unavailable. Optional account/deployment/OAuth/UDF work needs a specific product benefit and a tested contract; it cannot substitute for an incomplete required loop. Request/test timeouts and repeated-failure diagnostics trigger reconciliation or a revised approach, not abandonment of the project.
 
 ## Scenario debate and three adversarial questions
 
@@ -137,4 +139,4 @@ The strongest alternative is a full ClickStack “AI SOC” with emerging signal
 
 C01–C11 are listed in the KB with URLs, publication dates where established, raw capture paths, hashes and Firecrawl metadata. Relevant new dated evidence is September 16, September 23 and October 5. Current docs are separately labeled and are not called newly launched features. Cached August/UDF/MV pages were inspected and copied without refetching or modifying originals. New map/search results are retained; one stale guessed `uniqExact` URL returned 404 and was replaced through mapped discovery.
 
-No claims here establish prize stacking, deployed versions, native field mapping, live collection completeness, exact operation units, working OAuth, hosted investigation or real selective containment. Those are explicit gates for the eventual event build. The recommendation is to deepen ScopeWatch's provenance, analytical explanation and measured control outcome while keeping the same two-sponsor core.
+No claims here establish prize stacking, deployed versions, native field mapping, live collection completeness, exact operation units, working OAuth, hosted investigation or real selective containment. Those are explicit gates for the authorized implementation. The recommendation is to deepen ScopeWatch's provenance, analytical explanation and measured control outcome while keeping the same two-sponsor core.

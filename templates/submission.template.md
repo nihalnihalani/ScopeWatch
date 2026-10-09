@@ -1,5 +1,8 @@
 # ScopeWatch submission — fill with actual event results
 
+> [Implementation is authorized now or anytime, with no build cutoff](../docs/event/BUILD_AUTHORIZATION.md). Fill this template only with actual work and evidence.
+
+
 ## What we built
 
 [Describe the actual working product, user decision and verified outcome.]
@@ -24,7 +27,7 @@
 - Separately labeled replay measurement:
 - What was verified and when:
 - What remains unknown / failed / outside scope:
-- Pre-event research/documentation versus during-event application source:
+- Prior research/documentation/imported artifacts versus newly implemented application source, using actual timestamps/history; current authorization permits an immediate or anytime start without a build cutoff:
 
 ## Team
 

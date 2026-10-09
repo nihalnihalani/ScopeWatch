@@ -1,5 +1,7 @@
 # ScopeWatch diagrams for implementation
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](docs/event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 All seven architecture views are included in this repository as **editable Mermaid, SVG and PNG**, together with the [offline interactive viewer](docs/architecture/architecture.html) and [renderer](docs/architecture/render-diagrams.cjs). This page displays the PNGs directly for GitHub readers. SVG or the viewer is better for zooming into labels.
 
 The diagrams describe the proposed project. Actual native identities, source fields, executed SQL and policy effects still need event proof. Follow the [corrected architecture/contracts](docs/architecture/ARCHITECTURE.md) and [build plan](docs/build/BUILD_PLAN.md) if an older advisory sketch differs.

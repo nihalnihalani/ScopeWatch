@@ -1,5 +1,7 @@
 # BoundaryProof: finding feasibility and revised case priority
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Primary-source catalog audit, 9 October 2026 IST. No target was generated or executed, no exploit was written, and no Semgrep scan was run. **There is no actual generated-code finding from this audit.** It establishes published rule availability and limitations so the team can select a real finding during the event.
 
 ## Revised decision

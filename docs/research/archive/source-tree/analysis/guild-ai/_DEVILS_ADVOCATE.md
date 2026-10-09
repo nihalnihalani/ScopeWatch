@@ -2,6 +2,8 @@
 
 # Guild AI: devil's advocate review
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../../../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 > Reviewer pass, 8 Oct 2026. It challenges `_TEAM_A.md`, `_TEAM_B.md`, `_GUILD_PLATFORM.md` and the per-project files, and `pi-security/_CYBERDEFENSE_EVENT.md`.
 > **[F]** = verified by me (file:line, commit, URL). **[I]** = inference.
 > Survivorship pages and repos were downloaded to the session scratchpad (`scratchpad/proj/`, `scratchpad/sv/`). Nothing was installed or run.

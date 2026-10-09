@@ -2,6 +2,8 @@
 
 # Harness Engineering Hack (12 Jun 2026): why the ClickHouse and Guild winners won
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Round-2 matched analysis. Analyst pass on 8 Oct 2026. Read-only. **[V]** = verified (source given). **[I]** = inference.
 Builds on round 1: `analysis/clickhouse/{seconds-ai,aerorider,earwitness}.md`, `analysis/clickhouse/_DEVILS_ADVOCATE.md`, `analysis/guild-ai/{magpie,dailygate,propr}.md`, `analysis/guild-ai/_DEVILS_ADVOCATE.md`. Code findings from round 1 are cited, not redone.
 

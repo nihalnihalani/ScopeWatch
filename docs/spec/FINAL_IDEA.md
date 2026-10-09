@@ -2,6 +2,8 @@
 
 # Final idea: ScopeWatch
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 **Detailed expansion:** [the current master specification](MASTER_SPEC.md) adds the operator story, newly researched sponsor capabilities, 42-scenario coverage, renewed debate and explicit native-outcome gate. Its API-trigger key-scope correction and evidence rules take precedence over shorthand in earlier notes. The core permission-use metric is unchanged.
 
 Final research decision, 9 October 2026, after three independent advocates, cross-rebuttals and a separate devil's advocate. Akash is excluded. This supersedes the earlier BoundaryProof recommendation as the current project choice. Research only: no competition project, native account test, source finding, hosted run, containment action or performance measurement has been completed.
@@ -14,7 +16,7 @@ The user is an operator running several AI workloads with shared integration cre
 
 The proposed opening line is: **“Every individual operation was permitted. Across sessions, this agent exceeded the budget its owner approved.”** It is a declared policy violation and investigation trigger, not proof of malicious intent.
 
-This is our strongest current plan for two substantive monetary tracks, with a third opportunity only if an authentic Semgrep finding appears. It is not the architecture with the largest hypothetical subtotal. It avoids making the entire demonstration depend on discovering a particular source flaw during a five-hour event. The independent verdict and objections are preserved in [the final adjudication](../research/debate-archive/07_devils_verdict.md).
+This is our strongest current plan for two substantive monetary tracks, with a third opportunity only if an authentic Semgrep finding appears. It is not the architecture with the largest hypothetical subtotal. It avoids making the entire demonstration depend on discovering a particular source flaw during this project build. The independent verdict and objections are preserved in [the final adjudication](../research/debate-archive/07_devils_verdict.md).
 
 ## Exactly what the evidence means
 
@@ -51,19 +53,19 @@ If only one of these monetary prizes may be won, each stated top monetary amount
 
 ## Semgrep's honest third-prize route
 
-Enable the supplied Guardian setup while generating the actual ScopeWatch project during the event. Preserve initial model output and actual hook/scan findings before repairs. Useful audit surfaces include authentication in the collector/controller, handling of untrusted event labels, credential exposure and repository operations. These are areas to inspect, not findings we have obtained or instructions to introduce a bug.
+Enable the supplied Guardian setup while generating the actual ScopeWatch project under current immediate/anytime authorization. Preserve initial model output and actual hook/scan findings before repairs. Useful audit surfaces include authentication in the collector/controller, handling of untrusted event labels, credential exposure and repository operations. These are areas to inspect, not findings we have obtained or instructions to introduce a bug.
 
-Give focused discovery at most twenty to thirty minutes, in parallel with building the core. A qualifying issue should have an actual source location and stock detector result, an interesting security consequence, and an honest discovery sequence. A scan error is not a clean scan. Catalog membership does not prove detection or exploitability. A human-discovered issue covered afterward by a custom rule must not be attributed retroactively to Semgrep.
+Use focused same-codebase discovery with diagnostic checkpoints, in parallel with building the core; no timed cap applies. A qualifying issue should have an actual source location and stock detector result, an interesting security consequence, and an honest discovery sequence. A scan error is not a clean scan. Catalog membership does not prove detection or exploitability. A human-discovered issue covered afterward by a custom rule must not be attributed retroactively to Semgrep.
 
 Remote Guardian uses a fixed default pack; the published MCP/Flask outbound rules audited earlier are not established in that pack. The stock CLI and Guardian are different surfaces. Ask the event sponsor about the actual route if using a nondefault scan or custom rule. The packet does not expressly say Guardian-only, but acceptance is not established here. [Exact rule/surface audit](../research/finding-feasibility.md), [Guardian configuration](https://docs.semgrep.dev/semgrep-guardian/rules-and-configuration).
 
-If no interesting eligible finding appears, **continue the identical ScopeWatch core** and omit the Semgrep finding-prize claim. Do not generate a separate vulnerable app, insert a flaw or spend an hour rerolling code. Routine scanning is useful quality work; it does not by itself satisfy this finding contest.
+If no interesting eligible finding appears, **continue the identical ScopeWatch core** and omit the Semgrep finding-prize claim. Do not generate a separate vulnerable app, insert a flaw or keep rerolling unchanged code without evidence of progress. Routine scanning is useful quality work; it does not by itself satisfy this finding contest.
 
 ## Minimum architecture
 
 ### Current sponsor capabilities to use deliberately
 
-ClickStack's September 16 release note includes beta LLM/tool observability, release markers, richer alert webhooks and emerging-log-pattern tools. They can improve later observability, but this five-hour minimum needs native permission events and real SQL rather than a new dashboard stack. The October 5 executable-UDF release is unnecessary here. [ClickStack update](https://clickhouse.com/blog/whats-new-in-clickstack-august-2026), [UDF release](https://clickhouse.com/blog/executable-udfs-generally-available-on-clickhouse-cloud).
+ClickStack's September 16 release note includes beta LLM/tool observability, release markers, richer alert webhooks and emerging-log-pattern tools. They can improve later observability, but this focused minimum needs native permission events and real SQL rather than a new dashboard stack. The October 5 executable-UDF release is unnecessary here. [ClickStack update](https://clickhouse.com/blog/whats-new-in-clickstack-august-2026), [UDF release](https://clickhouse.com/blog/executable-udfs-generally-available-on-clickhouse-cloud).
 
 Guild's current session API, dedicated API-trigger keys and credential policies are the relevant control-plane features. Its SDK/network constraints make built-in repository tools and compact real query input the faster path than arbitrary direct HTTP from an agent. These are current documented capabilities, not a verified new release date. [API triggers](https://docs.guild.ai/platform/api-triggers), [security architecture](https://docs.guild.ai/platform/security-architecture), [full integration audit](../research/clickhouse-guild.md).
 
@@ -112,20 +114,22 @@ Show the SQL and actual query identifier. Measure platform persistence/collector
 
 Two minutes is a recommendation, not a published hard video limit. Record a genuine successful run and label any replay or recorded session. Do not imply a recording is a live stage run. The short video and readable repository must explain the result without relying on a finalist presentation.
 
-## Five-hour execution plan
+## Readiness execution plan — start now or anytime
 
-| PT | Milestone |
+No scheduled start, overall duration cap, build deadline, phase cutoff or timed freeze applies. Follow [BUILD_PLAN](../build/BUILD_PLAN.md) and [current authorization](../event/BUILD_AUTHORIZATION.md).
+
+| Milestone | Required result |
 |---|---|
-| 11:30–12:00 | Confirm stacking/track entry and account access; generate project during event; agree on one event/manifest contract; capture actual Semgrep results. Stop focused discovery if no genuine candidate. |
-| 12:00–12:15 | Prove hosted operation, native event mapping, scoped DENY, denied repeat and actual successful control. Prove ClickHouse insert/query in parallel. |
-| 12:15–1:30 | Complete collection → aggregate → real hosted investigation → issue → reviewed policy action. One complete loop before expanding UI or volume. |
-| 1:30–2:30 | One case screen, bulk/duplicate/failed-execution controls, source links and measured replay workload. Freeze scope by 2:30. |
-| 2:30–4:00 | Verify, rehearse, record/upload, assemble README/build/tools and sponsor evidence. |
-| 4:00–4:30 | Verify repository/video access; add team names/emails; submit with margin. |
+| Initial setup | Account/model/owner preflight; agreed event/manifest contract; actual source-generation/scan provenance |
+| Native proof | Hosted call, per-event actor/shared credential/unit/clock, finite capture, native narrow DENY, fresh target/control effects and ClickHouse insert/query |
+| Main baseline | Restore only the known trial rule; prove both allowed baselines; pin the main manifest |
+| Core loop | Collection → historical all-candidate SQL → real hosted investigation/issue → human-reviewed native action → both fresh effects |
+| Quality | Complete case UI, meaningful adversarial/browser checks, independent review/repairs and optional measured replay after correctness |
+| Evidence/submission readiness | Actual demo, sanitized receipts, run/tools/sponsor docs, accessible repository/video, names/emails and actual submission confirmation |
 
-The phases total 300 minutes. Four owners: (1) Guild/credential enforcement; (2) collector/ClickHouse; (3) manifest/scenario/Semgrep provenance; (4) UI/evidence/video/submission. With two people, keep one integration, two observed workload identities and one investigator, and cut custom APIs, automatic policy editing, general sandboxing, agent swarms and fancy observability deployment.
+Four owners: Guild/credential enforcement; collector/ClickHouse; manifest/scenario/Semgrep provenance; UI/evidence/video/submission. With fewer people, reduce optional scope and preserve the same core. Missing native input does not block independent local implementation, QA or handoff. Required failures remain incomplete until resolved or truthfully blocked; no old clock ends the work.
 
-**First-45-minute kill gate:** the native evidence and actual selective subsequent-call denial must work. If blocked, ask the sponsor mentor once and simplify within the same integration. A monitoring/review prototype can still be submitted, but cannot claim completed containment. Do not disguise a failed account/integration or restart a different platform at 2 PM.
+**Initial native-readiness gate:** the native evidence and actual selective subsequent-call denial must work. If blocked, ask the sponsor mentor once and simplify within the same integration. A monitoring/review prototype can still be submitted, but cannot claim completed containment. Do not disguise a failed account/integration or launch an unrelated second platform to conceal the failed contract.
 
 Required controls: the approved bulk workload stays within its own allowance; replayed native event IDs do not increase counts; incomplete mapping is visible; an ALLOW followed by failed execution is never called a successful read; after containment the target is actually denied and the control actually succeeds. If both agents fail, the central selective-control promise failed.
 

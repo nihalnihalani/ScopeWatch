@@ -1,5 +1,7 @@
 # ScopeWatch Guild contracts and architecture gates
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Research verification: 9 October 2026. This is documentation research, not a Guild account test. No credential was created, session launched, policy changed, or runtime configured. New captures are in `.firecrawl/architecture-guild/`; `sources-manifest.json` records capture provenance, hashes, URLs and cache metadata. The authoritative machine-readable API was retrieved through Firecrawl from `https://api.guild.ai/v1/openapi.yaml` and preserved without Markdown damage as `public-openapi.yaml`.
 
 **The monitored-permission loop is documented; automated policy mutation through an account/trigger API key is not.** Make the core native enforcement step a reviewed Guild policy UI action. The documented CLI create command is another candidate after its installed version/authentication are tested. A ScopeWatch approval button prepares a precise review and records native application and verification; it must not claim to call an undocumented policy endpoint.

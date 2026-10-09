@@ -1,5 +1,7 @@
 # Darwin: whole-project deep dive
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Round 1: [`analysis/semgrep/darwin.md`](semgrep-darwin.md). This pass read every hand-written file in `repos/semgrep/darwin` and the persisted run log `backend/data/generations.json`. Paths below are relative to `repos/semgrep/darwin/` unless noted.
 
 ## 1. At a glance

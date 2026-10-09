@@ -1,5 +1,7 @@
 # MediCall: whole-project deep dive
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 > Guild AI deep-dive group. Checked 8 Oct 2026. Read-only: nothing installed, run or deployed. **[V]** = verified at file:line (paths are relative to `repos/guild-ai/medicall/`). **[I]** = inference. Round-1 file: [`analysis/guild-ai/medicall.md`](../archive/source-tree/analysis/guild-ai/medicall.md). This pass builds on round 1 and corrects it where noted.
 
 ## 1. At a glance

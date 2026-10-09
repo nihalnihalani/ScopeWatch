@@ -1,5 +1,7 @@
 🌐 last30days v3.23.0 · synced 2026-10-09
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 What I learned:
 
 **Working code and protected behavior need separate checks** - Semgrep's September 29 SusVibes experiment evaluates functionality and security separately on 186 CVE-derived tasks. Its benchmark-specific outcomes and memorization caveats support preserving legitimate behavior while testing the actual security boundary; they do not establish a vulnerability rate for ordinary generated applications.

@@ -1,5 +1,7 @@
 # Product/interface engineer — request claude-sonnet-5-5
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Build the full operator case UI against real backend contracts. Read AGENTS.md, current product/demo/architecture and master UI contract. Own client/style/assets/component checks; request DTO changes through the lead. No hardcoded counts masquerading as API data.
 
 Use a calm industrial security workstation: coherent typography/tokens/spacing and breached subject beside busier approved control. Required regions: provenance/freshness/state, actual count/allowance/window, contributing-session timeline, actual query versus labeled load, precise review and observed effects. No generic chat shell, arbitrary risk score or global-safe badge.

@@ -1,14 +1,16 @@
 # ScopeWatch submission checklist
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Prepared 9 October 2026 from the supplied event packet and research handoff. **No competition application has been built, no runtime findings or benchmarks have been measured, and no submission is claimed by this document.** The checklist is preparation for one event-built project.
 
-The packet requires **one project per team, at most four people, work built during the event, an accessible GitHub repository, a short shareable demo, what was built/tools used, and team names/contact emails**. Conservative event implementation window: **11:30 AM–4:30 PM PT on 9 October 2026**, a five-hour plan. Aim to submit by **4:15 PM PT**; the cited deadline is **4:30 PM PT**, with judging at 5:00 PM. If organizer instructions differ, save the actual instructions and update this checklist.
+The packet requires **one project per team, at most four people, an accessible GitHub repository, a short shareable demo, what was built/tools used, and team names/contact emails**. Current human correction: the event started a day ago and public pages are stale. Implementation is authorized now or anytime, with no build deadline or cutoff. See [BUILD_AUTHORIZATION](../event/BUILD_AUTHORIZATION.md). Use readiness milestones and record any later concrete organizer instructions without inventing a verified deadline update.
 
 Two-minute demo length is this project's recommendation. Official exact duration cap, actual submission portal, category opt-in, award stacking, payout terms and certain Semgrep eligibility interpretations remain unconfirmed. The [public event page](https://luma.com/cyberhack) supplies event/agenda context; the supplied packet is the itemized prize/submission source. A generic organizer publication form or a different event's portal is not evidence of this event's submission route.
 
 ## 1. Kickoff rule capture
 
-- [ ] Confirm the actual event/build start and deadline/timezone. Preserve the current organizer packet/rules reference.
+- [ ] Read current human authorization: implementation can start now or anytime, with no build cutoff. Preserve the packet as a historical source; do not wait for its old start/deadline or a public-page refresh.
 - [ ] Confirm the actual submission form/link from organizer materials at the event. Do not guess an event slug, assume Devpost or repurpose a generic tools/perks publication form.
 - [ ] Confirm demo duration/format, required access permissions and sponsor-category opt-in.
 - [ ] Confirm whether monetary awards may stack, whether all three monetary categories can be entered on the same project, and whether Pi can stack separately.
@@ -23,23 +25,22 @@ Do not wait for optional prize answers to build a useful core; keep claims condi
 - [ ] Enter **one project: ScopeWatch**, with one coherent case and codebase.
 - [ ] Record up to four actual team members; do not create a separate finding application to add a sponsor category.
 - [ ] Gather team names/contact emails for the actual organizer form. Avoid putting private contact emails into public evidence artifacts unnecessarily.
-- [ ] Mark pre-event docs/specs/reference material as planning/research. Create the competition implementation during the event and preserve actual source/build timestamps/history.
-- [ ] Keep a brief honest provenance note describing what existed before the event and what the team implemented during it.
+- [ ] Mark docs/specs/reference material as planning/research. Implement now or anytime under current authorization and preserve actual source/build timestamps/history.
+- [ ] Keep a brief honest provenance note distinguishing inherited research/planning from what the team actually implemented, without backdating work.
 - [ ] Record third-party libraries, AI coding/generation tools, sponsor tools and generated-source provenance accurately.
 
 ## 3. Build and evidence gates
 
-| PT checkpoint | Concrete gate | If incomplete |
+| Readiness milestone | Concrete gate | If incomplete |
 |---|---|---|
-| **12:15** | Hosted call; actual subject/shared credential/operation/unit/clock; finite native capture; ClickHouse insert/query; actual selected native DENY and fresh target/control proof; restore known preflight rule and verify baseline | Simplify the same integration/product. Remove unproved attribution/effect claims. Do not fabricate native mappings or REST policy mutation. |
-| **1:30** | Complete source → query-selected case → real context-read/issue → reviewed manual native action → both fresh effects | Freeze optional work, finish the honest strongest core. Monitoring/investigation is a weaker valid result if restriction fails. |
-| **1:30–1:45** | Optional exact historical outcome match, only after the loop works | Stop at 1:45; no new receipt server, bridge or service. |
-| **2:30** | Freeze demo path/features; preserve native evidence and measured replay if available | No new OAuth, account, SDK or feature family. Protect recording/submission owner. |
-| **2:30–4:00** | Verify claims, rehearse, record actual demo, upload and check source/evidence access | Use genuine prerecorded receipts if network fails; clearly label them. |
-| **4:00–4:15** | Final access/rules/team checks and actual submission | Keep deadline margin. Record submission confirmation. |
-| **4:30** | Hard deadline from current packet/agenda | Follow any actual updated organizer instruction; do not imply a late submission was accepted without confirmation. |
+| Initial native proof | Hosted call; actual subject/shared credential/operation/unit/clock; finite capture; ClickHouse insert/query; selected native DENY and fresh target/control proof | Diagnose the unsupported contract, retain real receipts and finish independent local work; never invent native mappings or a REST policy mutation. |
+| Main baseline | Restore only the known preflight rule, prove both allowed baselines, pin the main manifest | Do not begin/claim the main ALLOW scenario against a forgotten trial DENY. |
+| Complete core loop | Source → query-selected case → actual context read/issue → reviewed native action → both fresh effects | Repair required failures and keep native status truthful. Monitoring/investigation alone is a narrower result. |
+| Optional exact outcomes | Core already verified; tested native identifiers/cardinality/population | Omit unsupported joins; no new receipt server, bridge or second app. |
+| Quality and evidence | Complete tested UI/backend, adversarial/browser checks, independent review repairs, sanitized proof and actual measurements | Continue required repair and verification; no time-based feature freeze or build cutoff. |
+| Submission readiness | Actual demo/upload, repository/video access, rules/team/tools checks and real submission confirmation | Finish missing deliverables/access; label recorded receipts and claim acceptance only from confirmation. |
 
-Four parallel lanes: Guild/native policy; collector/ClickHouse; scenario/Semgrep; UI/evidence/submission. With fewer people, reduce optional work and finish the strongest real outcome. Focused Semgrep discovery is capped at 20–30 minutes total; a cause experiment gets at most ten minutes within the scenario lane and stops by 1:30. These are within the same five hours, not additional time.
+Four parallel lanes: Guild/native policy; collector/ClickHouse; scenario/Semgrep; UI/evidence/submission. With fewer people, reduce optional scope and finish the strongest real outcome. Same-codebase Semgrep discovery and optional cause experiments use narrow objectives and diagnostic checkpoints after their prerequisites; there is no timed cap or scheduled stop.
 
 ## 4. Repository readiness
 
@@ -80,7 +81,7 @@ Complete these using actual implemented results. Leave nothing in braces in the 
 |---|---|---|
 | Project name | ScopeWatch | Planned |
 | One-line pitch | “ScopeWatch turns captured cross-session permission evidence into an operator-reviewed matching-operation restriction, with a fresh proof that approved work still succeeds.” Use only after complete proof; otherwise describe the demonstrated monitoring/review result. | Conditional |
-| What was built | Actual components, actual hosted integration and exact operator flow implemented during event | Not built |
+| What was built | Actual components, actual hosted integration and exact operator flow actually implemented | Not built |
 | Tools used | ClickHouse and Guild only when actual substantive use is evidenced; actual Semgrep setup if used; AI coding/runtime/library tools; Pi prize-only without integration | Unverified |
 | Repository / revision | Actual accessible GitHub URL and demo revision | Not supplied |
 | Demo | Actual playable shareable video URL, recording date/run reference | Not recorded |
@@ -102,4 +103,4 @@ If restriction is unverified, replace the final action/effect sentence with: **�
 - [ ] If stacking is prohibited, choose the strongest eligible track; each known monetary top award is $1,000. Extra integrations still need real product value.
 - [ ] Pi is an innovation-prize opportunity with no supplied runtime access/integration requirement; novelty remains a judged claim. **Akash is excluded.**
 - [ ] Verify final source/video links, team/rules/category entries, sponsor evidence timestamps and factual claims in a last independent review.
-- [ ] Submit through the actual organizer route within the confirmed deadline and save the real confirmation. This planning document does not itself submit anything.
+- [ ] Submit through the actual available organizer route when the required deliverables are ready, and save the real confirmation. This plan sets no build cutoff. This planning document does not itself submit anything.

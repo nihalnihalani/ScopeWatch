@@ -1,5 +1,7 @@
 # ScopeWatch: two-minute demo script
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Prepared 9 October 2026. **This is a rehearsal plan. No native runtime results, policy effects, findings or benchmark latency have been measured for this repository.** Maya, HarborDesk, TicketAssist and ReleaseReview are fictional. The owned repository and its support/release tickets must contain synthetic data.
 
 The core story is one operator decision: **which shared-credential workload should lose this matching capability, while approved work continues?** The [architecture](../architecture/ARCHITECTURE.md) defines the evidence and manual native action; the [evidence checklist](EVIDENCE_CHECKLIST.md) defines what earns each sentence below. Two minutes is a planning target, not a verified official duration cap.
@@ -91,4 +93,4 @@ The finding need not be the cause of the controlled permission excess. Connect i
 
 If cloud/network access fails after a verified run, show the genuine sanitized recording and receipts with their run time, explicitly labeled prerecorded. If an essential gate never passed, use the corresponding weaker variant and show pending/failed states. Do not create simulated success screens or narrate planning values as observations.
 
-The sponsor proof positions are summarized in [SPONSOR_STRATEGY.md](../sponsors/SPONSOR_STRATEGY.md); finish the [submission checklist](SUBMISSION_CHECKLIST.md) before the event deadline.
+The sponsor proof positions are summarized in [SPONSOR_STRATEGY.md](../sponsors/SPONSOR_STRATEGY.md); finish the [submission checklist](SUBMISSION_CHECKLIST.md) when the required deliverables and access are ready, without a build cutoff.

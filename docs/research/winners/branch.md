@@ -1,5 +1,7 @@
 # Branch: whole-project deep dive
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Round 1: [`analysis/guild-ai/branch.md`](../archive/source-tree/analysis/guild-ai/branch.md). Repo: `repos/guild-ai/branch` (upstream `github.com/chinesepowered/hack-apr24`). I read every tracked hand-written file in full: 104 files. I skipped `pnpm-lock.yaml` (3,609 lines), the two agent `package-lock.json` files (1,040 lines each), the three `sbom-*.spdx.json` files (6,008 lines, apko output, headers and package lists only), `packages/db/migrations/meta/*.json` (drizzle-kit output), `favicon.ico` and the five empty create-next-app SVGs.
 
 ## 1. At a glance

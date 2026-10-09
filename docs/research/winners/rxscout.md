@@ -1,5 +1,7 @@
 # RxScout: whole-project deep dive
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Round 1: [`analysis/guild-ai/rxscout.md`](../archive/source-tree/analysis/guild-ai/rxscout.md). Repo: `repos/guild-ai/rxscout` (https://github.com/bvsbharat/RxScot1). There is 1 commit, `a6ffb56`, at 13:14 PT on 24 Apr 2026. Every source file was read (27 tracked text files).
 
 ## 1. At a glance

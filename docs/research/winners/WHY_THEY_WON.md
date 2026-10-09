@@ -1,5 +1,7 @@
 # Why they won: findings across all events
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 **Round 2, 8 Oct 2026.** This combines two sets of work:
 - [5 event reports](why-they-won/) that compare each sponsor prize's winners with 3–6 losers at the same event that used the same sponsor. The teams looked at demo video frames and transcripts, the Devpost text, and the rubric, and scored every project.
 - [17 whole-codebase deep dives](.) that read every source file of each winning project.

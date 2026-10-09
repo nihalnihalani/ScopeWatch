@@ -2,6 +2,8 @@
 
 # Deep research: a money-oriented Cyberdefense hackathon project
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 **Superseded default project choice:** the fresh October 9 three-advocate debate and independent final review selected [ScopeWatch](../../spec/FINAL_IDEA.md). This document preserves the earlier BoundaryProof recommendation and its evidence. Use the linked current brief for the final build/prize plan.
 
 Completed expanded research, 9 October 2026 IST, for the 9 October San Francisco event. Research and planning only; no competition project has been implemented or genuine target finding obtained. Akash excluded. Current prize details are the user's supplied event packet; public Luma independently confirms the theme, sponsors, judges and agenda, but does not publish those itemized prizes. The supplied packet supersedes the older archive's uncertainty about Pi and Guild awards.

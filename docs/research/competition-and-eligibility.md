@@ -1,5 +1,7 @@
 # Competition and current-event eligibility audit
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Checked 9 October 2026 IST. Exhaustive follow-up to the initial research/build brief; no competition project was built, scanned, deployed or tested. This pass uses official product documentation, vendor product announcements, official project submissions, and the existing archive's primary-source code/award forensics. Akash excluded.
 
 ## What changes after checking competitors

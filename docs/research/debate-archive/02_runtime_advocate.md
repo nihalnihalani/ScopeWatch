@@ -1,5 +1,7 @@
 # Runtime advocate: ScopeWatch
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Prepared 9 October 2026 IST. Planning and research only: no generated target, exploit, scan, benchmark, hosted agent or containment action has been exercised. Akash excluded. The debate's numerical scores and a ten-million-row floor are not official criteria and are not used here. **[V]** marks source-supported capability/fact; **[I]** marks the proposed product or planning judgment; **[G]** marks an event-time gate that remains untested.
 
 ## My concrete affirmative case

@@ -1,5 +1,7 @@
 # AeroRider: whole-project deep dive
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Round-1 file: [`analysis/clickhouse/aerorider.md`](../archive/source-tree/analysis/clickhouse/aerorider.md). Repo: `repos/clickhouse/aerorider` (https://github.com/ybavgito/AeroRider). Every tracked source file was read in full except `frontend/styles.css` (1,301 lines of presentation CSS, which I only skimmed). I viewed both screenshots and re-pulled the demo captions (YouTube `8JmDTt5OFw4`, 2:19 of speech) on 8 Oct 2026.
 
 Labels: **[V]** = verified at a file:line, URL or caption timestamp. **[I]** = inference.

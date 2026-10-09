@@ -2,6 +2,8 @@
 
 # Why they won: Best Use of Semgrep, AWS AI Agents Hackathon (10 Oct 2025)
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Round 2, matched winner-vs-loser analysis. Builds on [darwin.md](../semgrep-darwin.md), [commitdna.md](../semgrep-commitdna.md), [udon-cat.md](../semgrep-udon-cat.md), [_TEAM.md](../../archive/source-tree/analysis/semgrep/_TEAM.md) and [_DEVILS_ADVOCATE.md](../../archive/source-tree/analysis/semgrep/_DEVILS_ADVOCATE.md). Written 8 Oct 2026. **[V]** = verified with the source named; **[I]** = inference.
 
 **One-paragraph answer.** The Semgrep prize did not go to the best projects at the event, and it did not go to the most genuine Semgrep integrations. It went to the three projects where **Semgrep had a new, nameable job inside an AI-coding workflow**, and where that job was **visible on screen with a Semgrep label** in a short, polished demo:

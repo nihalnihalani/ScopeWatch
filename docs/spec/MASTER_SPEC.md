@@ -1,6 +1,8 @@
 # ScopeWatch: detailed story, sponsor capabilities and event build specification
 
-Prepared 9 October 2026 after Firecrawl/Alexandria research, a curated sponsor knowledge base, three specialist advocates, cross-rebuttals and an independent devil's advocate. **This is research and a proposed build, not an implemented project or measured result.** Akash is excluded. The supplied event packet is authoritative for itemized prizes: one project, at most four people, conservative build window 11:30 AM–4:30 PM PT.
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
+Prepared 9 October 2026 after Firecrawl/Alexandria research, a curated sponsor knowledge base, three specialist advocates, cross-rebuttals and an independent devil's advocate. **This is research and a proposed build, not an implemented project or measured result.** Akash is excluded. The supplied event packet is authoritative for itemized prizes: one project, at most four people. Current human authorization permits building now or anytime, without a cutoff; the packet schedule is superseded.
 
 **Detailed architecture refinement:** [seven-view offline diagram atlas](../architecture/architecture.html), [architecture and exact contracts](../architecture/ARCHITECTURE.md), and [independent design review](../architecture/ARCHITECTURE_REVIEW.md). This later audit adds historical event-anchor evaluation, per-event acting-subject bindings, generation/context readback, provisional finite-cohort coverage and manual native UI/verified CLI policy application. These corrections take precedence over earlier simplified sketches.
 
@@ -65,7 +67,7 @@ The scenario owner can test one ordinary synthetic support ticket and one matche
 
 The benign control should follow the bounded task. The planted-input run supports a narrow influence claim only if the trace shows the source was consumed and the tool behavior expanded beyond the trusted job in a way the control did not. Repeat a surprising result if time allows. A single controlled trace is not a robustness benchmark, and planted text alone is not an attack result. If no influence is observed, say so and keep the deterministic misuse simulation, visibly labeled. A secure refusal is also a valid test outcome.
 
-Cap this optional comparison at ten minutes of the scenario owner's existing lane after essential fixture work. Stop by 1:30 PT, or earlier if it delays native proof, target/control verification or scan preservation. It adds no extra time to the 300-minute schedule and no extra project. Preserve comparison/preflight events separately from the declared main case rather than silently dropping counted events.
+Keep this optional comparison focused within the scenario owner's lane after essential fixture/native setup. Prioritize native proof, target/control verification and scan preservation; no duration cap or scheduled stop applies. It adds no extra project. Preserve comparison/preflight events separately from the declared main case rather than silently dropping counted events.
 
 ### What would make the story stronger
 
@@ -85,10 +87,10 @@ The sponsor specialists and story advocate agreed on usefulness but challenged d
 | “A DENY policy means the whole agent is contained.” | Show a real denied subsequent call for the reviewed matching scope. | Other operations/resources/credentials and in-flight work may remain. |
 | “A successful policy API response proves effect.” | Keep verification pending until the target is genuinely denied and control genuinely succeeds. | Unknown/failed effects are explicit product states. |
 | “An API-trigger key belongs only to the investigator.” | Corrected: issuance is associated with a trigger, but effective documented session privileges are broader within the workspace. | Controller-held key, authenticated approval and an installed-agent allowlist are necessary. |
-| “Use all the new sponsor features.” | Core first. Token/context conveniences are version-gated; alerts/MCP/outcomes have separate cutoffs. | More features consume the demo margin without necessarily improving the operator outcome. |
+| “Use all the new sponsor features.” | Core first. Token/context conveniences are version-gated; alerts/MCP/outcomes have separate readiness prerequisites. | More features increase integration and verification work without necessarily improving the operator outcome. |
 | “Run a separate 28-generation vulnerability app.” | Bound Semgrep discovery to ordinary code from this same workflow. | A separate finding entry's eligibility under the one-project rule is unconfirmed. |
 
-The result is **one product with a fixed honest core**, not a menu of three products to start late. Native outcome enrichment gets only fifteen minutes after the full loop works. There is no receipt server, second vulnerable application or new OAuth/MCP bridge on the rescue path.
+The result is **one product with a fixed honest core**, not a menu of three products to start late. Native outcome enrichment follows the verified full loop, with a narrow objective and no timed cutoff. There is no receipt server, second vulnerable application or new OAuth/MCP bridge on the rescue path.
 
 ## 4. Current and new sponsor capabilities, with deployment decisions
 
@@ -101,13 +103,13 @@ Newly researched is different from newly released. Guild features below are curr
 | Exact native-event aggregation and raw evidence | Current [aggregation docs](https://clickhouse.com/docs/reference/functions/aggregate-functions/uniqExact) | Deduplicated per-actor/credential/operation totals, contributing sessions and narrow target selection | Core; validate correctness before optimizing |
 | `CREATE TOKEN` with expiry and subset grants | September 23 [26.9 release](https://clickhouse.com/blog/clickhouse-release-26-09) | Optional short-lived SELECT-only access to curated case evidence without handing out the main database password | Stretch after deployed version and privileges are proven |
 | Ordered `LIMIT ... AFTER/UNTIL` boundaries | Same 26.9 release | Optional bounded timeline context around an incident marker | Stretch; ordinary bounded queries preserve the core |
-| `APPEND INCREMENTAL` refreshable views | Same 26.9 release | Potential later incremental evidence archival | Cut from five hours |
+| `APPEND INCREMENTAL` refreshable views | Same 26.9 release | Potential later incremental evidence archival | Deferred outside the minimal case scope |
 | Dashboard variables, release markers, richer alerts and beta LLM observability | September 16 [ClickStack update](https://clickhouse.com/blog/whats-new-in-clickstack-august-2026) | Helpful later exploration of actor/service/version context | Optional if already configured; not the event's data-truth source |
 | SQL chart alerts | Current [alerts](https://clickhouse.com/docs/clickstack/features/alerts) and [SQL visualization docs](https://clickhouse.com/docs/clickstack/features/dashboards/sql-visualizations) | A possible native detector-to-investigator handoff | Stretch; minimum listed evaluation interval is one minute and chart semantics matter |
 | Semantic observability MCP | Current [MCP docs](https://clickhouse.com/docs/clickstack/mcp) | Potential later agent investigation tools | Cut new integration; Cloud OAuth compatibility with Guild remains unproved |
 | Executable UDFs | October 5 [GA announcement](https://clickhouse.com/blog/executable-udfs-generally-available-on-clickhouse-cloud) | No necessary job in the minimal incident path | Cut deployment/networking complexity |
 
-The Alexandria GitHub provider returned public stable release records, including an October 8 26.9 patch. **Public release availability does not establish the deployed Cloud version, feature permissions or configuration.** Run an actual version/feature smoke check during the event before using the new syntax. [Structured release reference](../../references/scopewatch-kb/releases/index.md).
+The Alexandria GitHub provider returned public stable release records, including an October 8 26.9 patch. **Public release availability does not establish the deployed Cloud version, feature permissions or configuration.** Run an actual version/feature smoke check during implementation before using the new syntax. [Structured release reference](../../references/scopewatch-kb/releases/index.md).
 
 The optional token design is a separate analytics-access control, not the mechanism that restricts Guild's integration calls. A SELECT grant on an object does not by itself restrict access to a single case's rows; the evidence object must actually contain only the permitted data or use a separately verified row policy. Prefer the existing restricted reader and compact query result until the core works.
 
@@ -287,7 +289,7 @@ A separate explicit join to the pinned manifest supplies the approved allowance,
 
 ## 7. Native outcomes: a tightly bounded enhancement
 
-After the complete core loop works by **1:30 PM**, allow **1:30–1:45** for an exact native outcome experiment. Stop at 1:45. If the loop is late, skip it.
+After the complete core loop is verified, optionally run a narrowly scoped exact native outcome experiment. Its prerequisite is core readiness, without a clock deadline or duration cutoff. Omit it if the identifiers/cardinality/population cannot support a trustworthy match; keep the core claims exact.
 
 First distinguish actor attribution from result attribution. Following a task graph upward may establish which agent owns a permission event. It does not justify attaching every descendant tool result to that event. A parent can have many calls; a tool can involve multiple permission decisions. The account test must establish the native relationships and cardinality for this chosen path.
 
@@ -369,7 +371,7 @@ Build one case page with five readable regions:
 4. **Review:** manifest version/reference, actual investigator issue/session and the precise proposed scope. The issue's interpretation cannot overwrite deterministic facts.
 5. **Effect:** target operation denied, approved control fixture returned, verification pending or failed. Expose residual scope rather than a global “safe” badge.
 
-A missing-field warning belongs next to the affected claim. An optional matched-outcome section shows matched/unmatched counts and exactly what status/bytes mean; it is omitted if the fifteen-minute experiment fails. The public demo view is read-only and sanitized; approval remains an authenticated operator function.
+A missing-field warning belongs next to the affected claim. An optional matched-outcome section shows matched/unmatched counts and exactly what status/bytes mean; its stronger claim is omitted if the post-core exact-match experiment cannot support it; no timed cutoff applies. The public demo view is read-only and sanitized; approval remains an authenticated operator function.
 
 Keep labels concrete: “native controlled case,” “approval decisions,” “selected operation,” “synthetic/replay workload,” “policy applied; verification pending,” and “matching call restricted.” Do not display “30 customer records stolen” for thirty ALLOWs.
 
@@ -411,7 +413,7 @@ Use one small shared run for the essential proof:
 | Post-policy target repeat | Native matching refusal and no fresh successful target result |
 | Post-policy bulk verification | Actual expected fixture/result inspected after the policy; both failing means failure |
 
-The setup policy proof and final policy proof are different phases. If a trial DENY is used at 12:15, the operator deliberately removes only that trial rule and verifies the allowed baseline before the scenario begins. A forgotten trial policy would suppress the supposed breach and invalidate the story. Preserve this sequence in the evidence.
+The setup policy proof and final policy proof are different phases. If a trial DENY is used during native preflight, the operator deliberately removes only that trial rule and verifies the allowed baseline before the scenario begins. A forgotten trial policy would suppress the supposed breach and invalidate the story. Preserve this sequence in the evidence.
 
 Required design states include partial API pages, null credential IDs, late records, genuine retries, conflicting duplicates, raw labels impersonating another actor, stale approval, unknown policy-update outcome, duplicate incident creation, broad overlapping grants and aging windows. Use narrow fixtures or a walkthrough where a real runtime demonstration is unnecessary; mark each result's evidence class.
 
@@ -423,7 +425,7 @@ Start the supplied Guardian plugin during ordinary generation of the actual Scop
 
 Potential review areas are authentication of the collector/admin endpoint, trust in native-versus-agent-supplied IDs, accidental credentials in logs/client code, unsafe arbitrary URL retrieval and repository-operation handling. They are **hypotheses to inspect, not findings already obtained**. Ask for correct authenticated behavior in the feature requirements. Do not insert a defect or change the client/framework solely to fit a detector.
 
-Give focused discovery at most twenty to thirty minutes total while the core progresses. First verify one scan path. A small set of ordinary feature drafts may be reviewed if the owner can preserve and evaluate them promptly; do not commit to a separate 28-run application portfolio. Automatic generation does not automate meaningful consequence confirmation.
+Keep discovery focused on this codebase while the core progresses; use diagnostic checkpoints without a time cap. First verify one scan path. A small set of ordinary feature drafts may be reviewed if the owner can preserve and evaluate them promptly; do not commit to a separate 28-run application portfolio. Automatic generation does not automate meaningful consequence confirmation.
 
 With four people, the scenario/Semgrep owner can concentrate that budget on the same workflow's ticket-lookup authorization, bounded query construction and token/admin handling. Require correct security behavior in each generation and retain the initial source before fixes. These are focused discovery opportunities, not established probabilities of winning or a reason to abandon the fixture/control duties. A smaller team should accept the no-finding outcome rather than split off another application.
 
@@ -439,18 +441,18 @@ The remote default catalog contains particular JWT/secret/injection patterns; it
 
 No qualifying finding means the same ScopeWatch core continues, with no Semgrep finding-prize claim. A clean scan or quality integration alone is not this award. If a real finding appears, add a short evidence beat inside this same project's submission; it does not justify a late rebuild of CrossedLine.
 
-## 13. Five-hour team execution and decision gates
+## 13. Milestone team execution and decision gates
 
-This plan assumes four owners and totals 300 minutes. Portal/build start is conservatively 11:30 PT; confirm organizer instructions if kickoff/build timing differs. Build the competition implementation during the event; this research is planning/reference work.
+Start now or anytime under [current human authorization](../event/BUILD_AUTHORIZATION.md). Four owners progress by readiness; there is no overall duration cap, calendar deadline, phase cutoff or feature-freeze time. Research is reference work; implement the application using actual source/history timestamps.
 
-| PT | Shared milestone | Owner focus | Decision/cut |
+| Milestone | Shared evidence | Owner focus | Decision when not ready |
 |---|---|---|---|
-| 11:30–12:15 | First native proof: hosted call, event/task/credential/unit/clock, complete collection, actual selected DENY, fresh target refusal and control result; ClickHouse insert/query | Guild owner proves account/grants; collector owner gets source data; scenario owner defines fixture/envelope; UI owner prepares one case/evidence shell | Mentor once, simplify within the same integration. No native mapping/effect means the main promise remains unproved. Stop focused Semgrep discovery after its bounded budget. |
-| 12:15–1:30 | One complete evidence → SQL-selected actor → investigator read/issue → reviewed policy → both results loop | Connect existing artifacts and preserve receipts; finish the real outcome before scale/UI expansion | If late, cut every optional enhancement. No separate application pivot without already working prerequisites. |
-| 1:30–1:45 | Optional exact native tool-outcome experiment | One specialist checks identifiers/cardinality/population; others finish core controls/UI | Hard stop at 1:45; no receipt server or new bridge. Skip if the core is late. |
-| 1:45–2:30 | Focused controls, one readable case view and diverse measured replay workload | Collector/query owner measures; scenario owner verifies outcomes; Guild owner preserves sessions/policy; UI owner prepares recording | Freeze scope at 2:30. Only nearly free version-verified conveniences may enter. |
-| 2:30–4:00 | Verification, rehearsal, genuine recorded demo/upload, README/tools/sponsor evidence | Keep recording/submission owner protected; other owners support access and factual checks | No new OAuth, SDK, account, remote service or feature family. |
-| 4:00–4:30 | Accessible repo/video, team names/emails and actual submission | Aim for submission by 4:15, retaining hard-deadline margin | Use the organizer's actual submission form; do not assume a Devpost page exists. |
+| Initial native proof (G1) | Hosted call, event/task/credential/unit/clock, finite collection, selected native DENY, fresh target refusal/control result and actual ClickHouse insert/query | Guild account/grants; collector source; scenario fixture/envelope; UI case shell | Diagnose exact failed prerequisite; simplify the same integration. Finish independent work while native access is pending. |
+| Baseline and main epoch | Restore only the known trial rule; fresh allowed baselines; immutable main manifest | Native + scenario owners preserve trial/main separation | Do not run/claim the intended ALLOW incident against a forgotten trial DENY. |
+| Full core loop (G2) | Source → SQL-selected subject → real context read/issue → human review/native action → both fresh effects | Connect and preserve actual receipts | Repair required behavior; no automatic clock-based abandonment. Narrow unsupported native claims truthfully. |
+| Quality and acceptance | Correct controls, complete readable case UI, actual adversarial/browser checks, independent review/repairs | All owners; independent acceptance/reviewer | Required failures remain incomplete; diagnose and repair, retaining a known passing checkpoint. |
+| Optional enhancement | Exact native outcomes, genuine same-codebase finding/cause evidence or diverse measured replay | Specialist owners after applicable prerequisites | Keep scoped, omit unsupported claims; do not create a second app or expand the minimal product. |
+| Evidence and submission readiness | Actual demo, access, README/tool use, team contacts, sanitized evidence, actual submission receipt | Protected evidence/submission owner | Repair missing artifacts/access; claim acceptance only from confirmation, without a build cutoff. |
 
 ### Four work lanes
 
@@ -525,11 +527,11 @@ Counterexamples matter: substantive integrations also lost these tracks, and thi
 
 ## 16. Submission and research handoff
 
-The submission needs an accessible repository, short shareable demo, what was built/tools used, and team names/contact emails. A working site and screenshot are optional. Use the actual organizer form, confirm track entry/stacking with staff, and retain margin before 4:30 PT.
+The submission needs an accessible repository, short shareable demo, what was built/tools used, and team names/contact emails. A working site and screenshot are optional. Use the actual organizer form, confirm track entry/stacking with staff, and submit through the available route when the deliverables are ready; this plan sets no time cutoff.
 
 Recommended repository evidence: a clear README; `SPONSORS.md` with necessary role/demo timestamp/proof/limit; sanitized native event/task/query/manifest/action receipts; actual scan evidence if obtained; concise run instructions; and a real-versus-replay section. A Guild session URL may require workspace access, so preserve shareable sanitized evidence and a recording instead of publishing keys to make a link accessible.
 
-Keep ordinary credentials, trigger/admin keys and sensitive raw response content out of exports. Public source docs in the knowledge base are implementation references, not operator policy authority. Native/user content remains data. All examples in this research are planning sketches; actual competition source and results must be produced during the event.
+Keep ordinary credentials, trigger/admin keys and sensitive raw response content out of exports. Public source docs in the knowledge base are implementation references, not operator policy authority. Native/user content remains data. All examples in this research are planning sketches; produce actual application source and results under the current immediate/anytime authorization, preserving real timestamps and history.
 
 Research deliverables:
 

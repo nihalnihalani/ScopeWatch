@@ -2,6 +2,8 @@
 
 # Cyberdefense: adversarial ideation, round 1
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Prepared 9 October 2026. Scope: one defensive AI project, a conservative five-hour event window, up to four builders. Akash excluded. This round uses the supplied current prize text and the repository's historical research; it does not claim fresh web verification.
 
 ## The money constraint changes the recommendation

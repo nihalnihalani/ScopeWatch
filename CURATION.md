@@ -1,14 +1,16 @@
 # What was packaged and why
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](docs/event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 This is a curated ScopeWatch build handoff assembled on 9 October 2026 from the `sponsor-winners-research` workspace. The original source repository is preserved. The new repository has its own Git history and project authority; historical read-only analysis briefs are not current operational instructions.
 
 ## Usefulness and authority
 
 | Material | Why it belongs | How to use it |
 |---|---|---|
-| Corrected architecture + Guild/ClickHouse contracts | Closes missed historical crossings, event/root identity mistakes, unsupported policy automation and incorrect recovery checks | Current technical authority; confirm account behavior during the event |
+| Corrected architecture + Guild/ClickHouse contracts | Closes missed historical crossings, event/root identity mistakes, unsupported policy automation and incorrect recovery checks | Current technical authority; confirm actual account behavior during implementation |
 | Master spec + scenario playbook | Defines one useful workflow, story, UI, scope and edge cases | Product/event scope, with architecture corrections overriding old sketches |
-| Build plan + first-hour gates | Turns research into dependency-ordered work with explicit cutoffs | Start here before spending time on dashboards or optional experiments |
+| Build plan + first-hour gates | Turns research into dependency-ordered work with readiness milestones without time cutoffs | Start here before spending time on dashboards or optional experiments |
 | Demo/evidence/submission plans | Ensures actual sponsor decisions and useful results are reviewable | Preserve receipts while building; do not reconstruct a pretend run afterward |
 | Sponsor strategy + exact rule/eligibility research | Distinguishes cash-equivalent targets, scan coverage and unresolved eligibility | Spend effort on working proof; never assume a finding or stacked award |
 | Historical winners/counterexamples | Shows substantive sponsor roles and compact demos without inventing a winning formula | Advisory reference, not a benchmark of prize probability |
@@ -35,6 +37,6 @@ The original vendor/source manifests under `references/` retain their historical
 
 ## What remains event work
 
-Actual application source, dependency lockfiles, account-native field/unit/identity proof, same evaluated credential, real SQL/equality/readback, native policy matching/application, genuine target/control effects, optional scanner finding or prompt influence, real benchmark measurements and the actual submission are absent. Build them during the event, preserve evidence and label failures/unknowns honestly.
+Actual application source, dependency lockfiles, account-native field/unit/identity proof, same evaluated credential, real SQL/equality/readback, native policy matching/application, genuine target/control effects, optional scanner finding or prompt influence, real benchmark measurements and the actual submission are absent. Build them now or anytime under current authorization, without a cutoff, preserve evidence and label failures/unknowns honestly.
 
 The [repository review](docs/reviews/REPOSITORY_REVIEW.md) checks this handoff's completeness and portability. It cannot establish sponsor eligibility, prize stacking, novelty or live runtime behavior.

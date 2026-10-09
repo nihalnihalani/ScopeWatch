@@ -2,6 +2,8 @@
 
 # Guild AI Team A: summary of the Ship to Prod Guild winners (24 Apr 2026)
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../../../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Six projects won "Most Innovative Use of Guild.ai Platform": Phalanx, Branch, RxScout, MediCall, WildFire Response and tracepath. Each has a per-project file in this folder. The Guild API surface, prize wording and judges are in `_GUILD_PLATFORM.md`.
 
 ## 1. Headline findings

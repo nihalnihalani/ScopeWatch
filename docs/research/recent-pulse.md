@@ -1,5 +1,7 @@
 🌐 last30days v3.23.0 · synced 2026-10-09
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 What I learned:
 
 **Teams are asking where agent permissions and audit evidence live** - Recent r/AskNetsec and r/cybersecurity discussions ask how to secure agent credentials and account for actions that bypass a gateway. These are concrete practitioner questions, not evidence of a universal consensus or a measured incident rate. The useful hackathon implication is to show authenticated identity, the served resource and an inspectable action trace.

@@ -2,6 +2,8 @@
 
 # Cyberdefense Hackathon #SFTechWeek: event intel
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../../../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Checked 8 Oct 2026, the day before the event. **[F]** = verified, with source. **[I]** = inference.
 
 **Bottom line: no prize list, prize wording or event-specific judging criteria have been published anywhere I could reach.** That covers Pi, ClickHouse, Guild and Semgrep alike. The Devpost page probably exists but is private (see §6). Everything about prizes and judging below is either missing or inferred from past tokens& events.

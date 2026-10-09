@@ -1,5 +1,7 @@
 # DailyGate: whole-project deep dive
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 > Guild deep-dive team, 8 Oct 2026. Read-only. **[V]** = verified at file:line or with git. **[I]** = inference.
 > Two code states are analysed:
 > - **Judged** = merge commit `42b8648` (12 Jun 2026 16:55 PT; parents `f0d4f2f` and `21c6b12`). Read through `git archive 42b8648` into scratch. Nothing was checked out.

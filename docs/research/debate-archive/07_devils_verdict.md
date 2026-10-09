@@ -1,5 +1,7 @@
 # Independent final verdict: choose ScopeWatch
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Prepared 9 October 2026 after reading the full [Code Vaccine brief and rebuttal](01_semgrep_advocate.md), [ScopeWatch brief and rebuttal](02_runtime_advocate.md), [ToolTrust brief](04_alternative_advocate.md), [ToolTrust cross-response](06_cross_rebuttals_tooltrust.md), and the [fresh permissions pulse](05_fresh_permissions_pulse.md). Research and product/prize planning only; no implementation, generated finding, operational test, hosted run or benchmark was performed. Akash excluded.
 
 ## Decision

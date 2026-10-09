@@ -1,10 +1,12 @@
 # ScopeWatch ClickHouse contracts and deterministic decision architecture
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Research and proposed contracts, 9 October 2026. No account, database, Guild runtime, grant, insert, or SQL execution was performed. The SQL below is a reviewable design and requires a syntax/account proof before use. An isolated Python reference algorithm passed 19 contract checks and 1,000 randomized comparisons against a brute-force reference; that establishes the stated window algorithm on fixtures, not ClickHouse performance or integration correctness. [Offline checks](../../research/offline-reference/verification.json), [reference implementation](../../research/offline-reference/verify_reference.py).
 
 ## Decision and necessary corrections
 
-Use four small immutable inputs: raw native event versions, verified event-specific acting-subject bindings, the complete controller-owned session cohort with collection status, and pinned operator allowances. Evaluate all manifest candidates. Keep **current permission count**, **historical rolling-window crossing**, **coverage**, and **action eligibility** separate. Plain MergeTree, exact grouping and a bounded query are enough; materialized views are unnecessary for the five-hour build.
+Use four small immutable inputs: raw native event versions, verified event-specific acting-subject bindings, the complete controller-owned session cohort with collection status, and pinned operator allowances. Evaluate all manifest candidates. Keep **current permission count**, **historical rolling-window crossing**, **coverage**, and **action eligibility** separate. Plain MergeTree, exact grouping and a bounded query are enough; materialized views are unnecessary for the minimal case workflow.
 
 The canonical fixture is MASTER_SPEC's **600 seconds, TicketAssist 30/20, ReleaseReview 40/60**. The capability expansion's fifteen-minute/120-versus-200 illustration is a different proposed fixture and must not leak into the same case. The exact clock is verified native security-record creation time. The analytical interval is **(anchor_time − 600 seconds, anchor_time]**, with all records tied at the anchor included. A record exactly 600 seconds old is excluded. Manifest effective start is independently inclusive.
 
@@ -324,7 +326,7 @@ No inequality JOIN or Cartesian historical cross-pair query is necessary. Query 
 
 ## Manifest version and effective-time semantics
 
-The five-hour contract is a **frozen policy epoch**. Pin one operator-owned manifest before applicable activity; select it by immutable repository reference and exact content hash. Effective start is inclusive; events before it are separate preflight activity under another declared context. Count all applicable activity from the declared epoch, including retries. The rolling window is `(anchor−600s,anchor] ∩ [effective_from, cutoff]`; the short initial portion of an epoch is explicit rather than padded with prior unapproved activity.
+The minimal-case analytics contract is a **frozen policy epoch**. Pin one operator-owned manifest before applicable activity; select it by immutable repository reference and exact content hash. Effective start is inclusive; events before it are separate preflight activity under another declared context. Count all applicable activity from the declared epoch, including retries. The rolling window is `(anchor−600s,anchor] ∩ [effective_from, cutoff]`; the short initial portion of an epoch is explicit rather than padded with prior unapproved activity.
 
 Do not treat the event's collector-assigned `policy_version` as native evidence. Allowance is evaluation context joined by the declared subject/credential/operation. The case receipt records M, G, effective boundary, clock, unit version, cutoff and witness. A Git blob ID is not a SHA-256 content hash. A human-friendly version label is not an immutable manifest.
 

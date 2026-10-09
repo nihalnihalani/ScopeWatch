@@ -1,5 +1,7 @@
 # ScopeWatch scenario playbook: 42 material cases
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Research and planned verification, 9 October 2026. No case has been executed in this research. Core/live, core/design and stretch have different evidence obligations. Seven selected scenario classes share a small controlled run; the matrix is not a request to build 42 features.
 
 The source story advocate supplied cases 1–34. The root consolidated cases 35–42 from sponsor-capability research and independent rebuttals. This is comprehensive planning for the selected scope, not an exhaustive proof against every production failure.
@@ -8,7 +10,7 @@ The source story advocate supplied cases 1–34. The root consolidated cases 35�
 
 ## 5. Adversarial scenario matrix
 
-**Core/live** means one of the deliberately small demonstrations that should actually run in five hours. **Core/design** means a required honest state/decision in the core contract, assessed by a focused fixture or walkthrough if time permits; it does not require implementing a new feature. **Stretch** means the stronger claim is withheld unless the extra trusted evidence and integration work exist. This is a coverage map, not an instruction to build or run 34 separate products.
+**Core/live** means one of the deliberately small demonstrations that should actually run in the focused core workflow. **Core/design** means a required honest state/decision in the core contract, assessed by a focused fixture or walkthrough if time permits; it does not require implementing a new feature. **Stretch** means the stronger claim is withheld unless the extra trusted evidence and integration work exist. This is a coverage map, not an instruction to build or run 34 separate products.
 
 | # | Scenario | Expected decision | Evidence needed | Enforcement or operator action | Limit / priority |
 |---|---|---|---|---|---|
@@ -47,7 +49,7 @@ The source story advocate supplied cases 1–34. The root consolidated cases 35�
 | 33 | The operator changes the allowance mid-window or a manifest/rollup contains stale budget context. | Apply the declared policy-version/effective-time semantics consistently; show any uncertainty. | Versioned approval record, effective interval, native event times and query version. | Recompute from native facts using the current declared semantics; do not depend on an old insert-time joined budget. | Changing right-side context does not retroactively update an incremental-view join. **Core/design.** |
 | 34 | Same breach is rediscovered by repeated queries, retries, or incident-create completion uncertainty. | One case per stable breach identity/versioned interval or a clearly documented lifecycle; no incident spam. | Stable native event evidence, query/case keys and actual issue-creation receipt. | Reconcile/reuse the existing issue and policy rather than repeating privileged changes blindly. | Idempotent presentation does not deduplicate genuine later permission events. **Core/design.** |
 
-### The five-hour minimum should actually prove these cases
+### The required core workflow should actually prove these cases
 
 Run one normal workload case, one genuine approved bulk workflow, one multi-session breach, one duplicated native ID, one ALLOW followed by failure, and one containment sequence that includes new-session/repeated-call denial plus fresh successful bulk control. Together these directly cover rows 1, 2, 3, 5, 7, 12, 14, 27 and 30 without nine separate applications.
 
@@ -60,7 +62,7 @@ These extend the original 34 to 42. They are design/verification cases, not eigh
 
 | # | Scenario | Expected decision | Evidence needed | Enforcement/operator action | Limit / priority |
 |---|---|---|---|---|---|
-| 35 | A permission event references an agent task with several descendant tool results. | Actor attribution may be valid while result attribution remains ambiguous. Never cross-join descendants into success/bytes. | Exact native identifiers, parent/root graph, observed cardinality and actual populated fields. | Retain the approval metric; leave unmatched outcomes visible. | Exact outcome experiment only after the full loop, capped 1:30–1:45. **Stretch.** |
+| 35 | A permission event references an agent task with several descendant tool results. | Actor attribution may be valid while result attribution remains ambiguous. Never cross-join descendants into success/bytes. | Exact native identifiers, parent/root graph, observed cardinality and actual populated fields. | Retain the approval metric; leave unmatched outcomes visible. | Exact outcome experiment only after the full loop, with no timed cap or scheduled cutoff. **Stretch.** |
 | 36 | Newest-first pagination returns only the tail; the collector advances past unfetched older events. | Evidence incomplete; no compliant zero or definitive target from a truncated session. | Completed-session snapshot, page/cursor receipts and actual endpoint ordering. | Finish/reconcile traversal before advancing the durable high-water mark. | The specific default order matters; UUID database sorting is not an API pagination contract. **Core/design.** |
 | 37 | A trigger key or browser-supplied routing chooses another installed agent or session. | Controller uses authenticated operator input and fixed allowed routing; reject an unapproved target. | Actual documented key scope, server launch allowlist, trusted registry and response identity. | Keep the workspace-capable key server-side; no model/frontend administrative credentials. | Issued for one trigger is not investigator-only effective privilege. **Core/design.** |
 | 38 | Agent prompt/version is edited after a task began; the UI assumes the old task changed. | Attribute the actual resolved version; do not treat a prompt edit as containment. | Native task/version metadata, published version and action timing. | Use the proved native operation policy for subsequent requests; separately review lifecycle controls. | Native prompt is fixed for the existing task lifetime. **Core/design.** |

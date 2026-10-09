@@ -2,6 +2,8 @@
 
 # Why they won: ClickHouse 2025 (AWS MCP, NYC AI Agents) and Guild at Self-Evolving (Argus)
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 > Round 2, matched winner-vs-loser analysis. Analyst: `why-clickhouse-2025`. Done 8 Oct 2026. Read-only.
 > **[V]** = verified, with source. **[I]** = inference. Round-1 files are cited rather than re-derived: [`clickhouse/rokko.md`](../../archive/source-tree/analysis/clickhouse/rokko.md), [`clickhouse/incidentlogica.md`](../../archive/source-tree/analysis/clickhouse/incidentlogica.md), [`clickhouse/vital-signal.md`](../../archive/source-tree/analysis/clickhouse/vital-signal.md), [`guild-ai/argus.md`](../../archive/source-tree/analysis/guild-ai/argus.md).
 > Working files (videos, frames, galleries, clones) are in the session scratchpad only. Nothing was committed.

@@ -1,16 +1,18 @@
 # ScopeWatch
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](docs/event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 **Find suspicious permission use across AI-agent sessions, review the evidence, and restrict one matching capability while approved work keeps running.**
 
-This repository contains the researched **build handoff** for the 9 October 2026 Cyberdefense Hackathon. It includes architecture, exact sponsor-contract research, implementation tasks, reference sources, offline design checks, demo/submission plans and blank evidence templates. **The competition application is not implemented yet.** Build the actual event source during the event and replace illustrative counts with observed results.
+This repository contains the researched **build handoff** for the 9 October 2026 Cyberdefense Hackathon. It includes architecture, exact sponsor-contract research, implementation tasks, reference sources, offline design checks, demo/submission plans and blank evidence templates. **The competition application is not implemented yet.** Start building the actual application now or anytime, without a cutoff, following [current build authorization](docs/event/BUILD_AUTHORIZATION.md) and replace illustrative counts with observed results.
 
 ## Start building from these files
 
-**Agent-team execution:** [complete Opus/Sonnet build prompt](docs/prompts/BUILD_SCOPEWATCH.md), [Cursor-terminal launch and continuation goal](docs/prompts/RUN_IN_CLAUDE_CODE.md), and [independent prompt review](docs/prompts/PROMPT_REVIEW.md). Use during the authorized event window; these files do not launch/build the app themselves.
+**Agent-team execution:** [complete Opus/Sonnet build prompt](docs/prompts/BUILD_SCOPEWATCH.md), [Cursor-terminal launch and continuation goal](docs/prompts/RUN_IN_CLAUDE_CODE.md), and [independent prompt review](docs/prompts/PROMPT_REVIEW.md). Implementation is already authorized now or anytime, with no cutoff; these files do not launch/build the app themselves.
 
 1. [START_HERE.md](START_HERE.md): reading order, fixed scope, authority and first decisions.
 2. [First-hour gates](docs/build/FIRST_HOUR.md): prove actual Guild actors, shared evaluated credential, evidence access, SQL and narrow policy effect before expanding scope.
-3. [Build plan](docs/build/BUILD_PLAN.md): four owners, dependency order, modules, acceptance checks and the 300-minute schedule.
+3. [Build plan](docs/build/BUILD_PLAN.md): four owners, dependency order, modules, acceptance checks and readiness milestones without clock deadlines.
 4. [Architecture](docs/architecture/ARCHITECTURE.md), [Guild contracts](docs/architecture/GUILD_CONTRACTS.md) and [ClickHouse contracts](docs/architecture/CLICKHOUSE_CONTRACTS.md): authoritative technical contracts.
 5. [Master specification](docs/spec/MASTER_SPEC.md) and [42-scenario playbook](docs/spec/SCENARIO_PLAYBOOK.md): product scope, controlled story, material failures and cut lines.
 6. [Demo script](docs/demo/DEMO_SCRIPT.md), [evidence checklist](docs/demo/EVIDENCE_CHECKLIST.md) and [submission checklist](docs/demo/SUBMISSION_CHECKLIST.md): finish the proof and deliver a reviewable entry.
@@ -65,4 +67,4 @@ No `npm start` application is promised in this handoff. The only executable help
 
 Run `python3 tools/validate_handoff.py` to check the package and `python3 research/offline-reference/verify_reference.py` for the inherited offline fixture oracle. These checks neither call sponsors nor test a competition application.
 
-The repository starts private. Before submission, give reviewers actual repository access or deliberately make the intended submission public after checking its contents. The one-project rule, team limit of four, build-during-event rule and 4:30 PM PT deadline are preserved in the submission plan.
+The repository starts private. Before submission, give reviewers actual repository access or deliberately make the intended submission public after checking its contents. Keep one project and up to four human teammates. The human reports that the event is already underway and public schedules are stale; [current authorization](docs/event/BUILD_AUTHORIZATION.md) permits an immediate or later start without a build deadline or cutoff. The submission plan follows readiness and actual access/confirmation.

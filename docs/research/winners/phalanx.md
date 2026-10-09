@@ -1,5 +1,7 @@
 # Phalanx: whole-project deep dive
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Round 1: [`analysis/guild-ai/phalanx.md`](../archive/source-tree/analysis/guild-ai/phalanx.md). Repo: `repos/guild-ai/phalanx` (https://github.com/ElijahUmana/phalanx). Paths below are relative to that repo unless noted.
 
 ## 1. At a glance

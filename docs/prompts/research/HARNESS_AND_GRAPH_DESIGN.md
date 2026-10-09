@@ -1,10 +1,12 @@
 # Harness, graph and UI-loop design for ScopeWatch
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Research cutoff: 9 October 2026. Firecrawl developer discovery was followed by selective primary-source extraction. This report explains the prompt's design; it does not measure that prompt, run a team or implement the application.
 
 ## New evidence worth applying
 
-Anthropic's **24 March 2026** application-harness article describes planner, generator and separate evaluator stages, feature-level agreements and an evaluator interacting with the actual app through Playwright. Its examples also show cost/complexity tradeoffs and cases where a later subjective iteration was not the preferred result. ScopeWatch borrows independent evaluation and testable feature contracts, not the article's broad scope expansion or 5–15 design rounds. Our three-round UI cap is a deadline choice, not a researched optimum. [Primary article](https://www.anthropic.com/engineering/harness-design-long-running-apps).
+Anthropic's **24 March 2026** application-harness article describes planner, generator and separate evaluator stages, feature-level agreements and an evaluator interacting with the actual app through Playwright. Its examples also show cost/complexity tradeoffs and cases where a later subjective iteration was not the preferred result. ScopeWatch borrows independent evaluation and testable feature contracts, not the article's broad scope expansion or 5–15 design rounds. UI refinement follows concrete acceptance criteria with diagnostic checkpoints; the current plan imposes no round cap or time cutoff. [Primary article](https://www.anthropic.com/engineering/harness-design-long-running-apps).
 
 The **26 November 2025** long-running-agent article identifies premature completion, half-built features and missing end-to-end verification. It uses progress artifacts and incremental feature work to support later sessions. ScopeWatch consequently requires actual feature receipts and durable handoff, while treating the inherited fixture oracle as research rather than implemented-product proof. [Primary article](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents).
 
@@ -33,7 +35,7 @@ Neither reviewed creator source endorses a named graph-prompting algorithm. Our 
 3. **UI-quality loop:** agreed rubric → working real-endpoint page → independent interaction/screenshots → specific refinements. Preserve the best passing checkpoint; aesthetics never override functionality or source honesty.
 4. **Continuation/handoff loop:** actual Task/proof state → next ready work → concise transcript evidence → checkpoint/resume. Native `/goal` can continue turns but its evaluator does not independently run checks.
 
-Each has a termination condition, resource/deadline bound and unknown/failed state. Native unknown mutation outcomes are reconciled before retry. A fixed attempt count can trigger diagnosis/replanning, but it cannot turn a core failure into success.
+Each has an acceptance/termination condition, bounded per-operation resources and unknown/failed state. The build itself has no clock deadline or duration cutoff. Native unknown mutation outcomes are reconciled before retry. A fixed attempt count can trigger diagnosis/replanning, but it cannot turn a core failure into success.
 
 ## UI and acceptance are observable
 

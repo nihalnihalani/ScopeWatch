@@ -2,6 +2,8 @@
 
 # Why they won: Ship to Prod (24 Apr 2026), Guild.ai prize
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 > Round 2, matched winner-vs-loser analysis. Builds on round-1 files in `analysis/guild-ai/` (per-project files, `_TEAM_A.md`, `_GUILD_PLATFORM.md`, `_DEVILS_ADVOCATE.md`). Round-1 code findings are cited, not redone.
 > **[V]** = verified (source given). **[I]** = inference. Analysed on 8 Oct 2026. Videos, frames, storyboards and Devpost HTML are in the session scratchpad (`scratchpad/stp/`, `scratchpad/proj/`). Nothing was committed.
 >

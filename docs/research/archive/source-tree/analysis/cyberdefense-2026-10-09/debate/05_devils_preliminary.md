@@ -2,6 +2,8 @@
 
 # Independent preliminary critique
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../../../../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Prepared 9 October 2026. Product/prize planning only. This memo selects no winner; the final verdict follows all advocates' briefs and cross-rebuttals. Akash excluded. Prior BoundaryProof recommendations have no incumbent advantage. No real generated-code finding, scan, benchmark or hosted session exists in the inspected research.
 
 ## The decision that matters

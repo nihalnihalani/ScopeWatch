@@ -1,5 +1,7 @@
 # ScopeWatch independent adversarial architecture review
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 9 October 2026. This review attacks the proposed architecture and its evidence obligations. It does **not** certify a Guild account, ClickHouse service, integration, enforcement effect, security finding or production system. The reviewed sources are [ARCHITECTURE.md](ARCHITECTURE.md), the seven [editable diagrams](diagrams/01-system.mmd), [Guild contracts](GUILD_CONTRACTS.md), [ClickHouse contracts](CLICKHOUSE_CONTRACTS.md), [MASTER_SPEC](../spec/MASTER_SPEC.md) and the [42-scenario playbook](../spec/SCENARIO_PLAYBOOK.md). Preliminary objections were sent before the architecture draft; the final verdict below distinguishes corrections from account gates and residual limits.
 
 ## Verdict
@@ -49,7 +51,7 @@ The newest-first first page is not a snapshot. Every required event/task page, c
 
 **Native finality is a residual limit.** The fresh Guild report establishes turn-end persistence but finds no atomic snapshot token or bounded late-arrival guarantee. Completion, exhausted pages and repeated stable reads establish observed reconciliation, not proof that no later record can appear. The final architecture correctly says “captured native approvals” and “within observed envelope.” Later facts reopen the evidence generation. It must not turn a temporarily empty poll into global compliance. [Guild event contract](https://docs.guild.ai/api-reference/sessions/fetch-session-events).
 
-Missing-only data can sometimes prove a trustworthy lower-bound breach, but that does not establish the only offender or a complete target/control comparison. The live core's conservative requirement for the entire declared cohort is a reasonable five-hour choice. It must remain separate from any future lower-bound alert mode.
+Missing-only data can sometimes prove a trustworthy lower-bound breach, but that does not establish the only offender or a complete target/control comparison. The live core's conservative requirement for the entire declared cohort is a reasonable bounded-case choice. It must remain separate from any future lower-bound alert mode.
 
 ## 3. Exact deduplication and contradictions
 
@@ -115,9 +117,9 @@ A planted support ticket beside a deterministic extra-call sequence proves neith
 
 Semgrep's lane also earns its claims from actual discovery. The fixed Guardian scan route cannot be assumed to detect the main cross-file identity or approval semantics. A clean scan is not proof of correctness. A custom rule written after manually finding a flaw is confirmation unless it actually originated discovery. No manufactured vulnerability, independent 28-run app, generic severity count or source-only patch substitutes for an authentic same-project finding, owned consequence, positive control, fix and rescan.
 
-## 9. Five-hour feasibility and sponsor fit
+## 9. Readiness feasibility and sponsor fit
 
-The critical path is not the seven rendered diagrams. It is the first native account proof: real hosted calls, actual acting subjects, same evaluated credential, selected unit/operation/clock, complete captured pages, real reviewed DENY, actual target refusal and successful fresh control. If that fails by the 12:15 gate, the UI cannot rescue the main claim.
+The critical path is not the seven rendered diagrams. It is the first native account proof: real hosted calls, actual acting subjects, same evaluated credential, selected unit/operation/clock, complete captured pages, real reviewed DENY, actual target refusal and successful fresh control. If that proof fails, the UI cannot establish the main native claim. Continue independent implementation and diagnose the account gate; no scheduled cutoff applies.
 
 The design is reasonably bounded for four owners because it uses one local process/journal, one database projection, one integration, one case view and one investigator. Historical/conflict fixtures are correctness requirements rather than 42 new product features. Outcome enrichment, new token syntax, new MCP/OAuth bridges, dashboards, automated recovery and elaborate replay should be cut before the central proof. Native authentication/setup and unknown CLI support remain schedule risks.
 

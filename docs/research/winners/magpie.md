@@ -1,5 +1,7 @@
 # Magpie: whole-project deep dive
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 > Guild AI prize winner ("Most Innovative Use of Agents", Harness Engineering Hack, 12 Jun 2026). Repo: `repos/guild-ai/magpie` (HEAD `085eaab`). Round 1: [`analysis/guild-ai/magpie.md`](../archive/source-tree/analysis/guild-ai/magpie.md). Read-only review, 8 Oct 2026. **[V]** = verified with file:line, **[I]** = inference. Paths are relative to the repo root unless noted.
 
 ## 1. At a glance

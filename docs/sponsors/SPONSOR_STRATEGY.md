@@ -1,6 +1,8 @@
 # ScopeWatch sponsor strategy
 
-Prepared 9 October 2026. **Evidence-gated plan: no runtime integrations have been tested and no findings, policy effects or benchmarks have been measured in this handoff.** One project, one codebase, at most four people; competition implementation must be built during the event. Akash is excluded.
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
+Prepared 9 October 2026. **Evidence-gated plan: no runtime integrations have been tested and no findings, policy effects or benchmarks have been measured in this handoff.** One project, one codebase, at most four people; implementation is authorized now or anytime, without a build cutoff. Akash is excluded.
 
 The product is an inspectable operator decision over shared-credential use: ClickHouse selects the workload exceeding its pinned native-approval allowance; Guild hosts a useful investigation and supplies native evidence/policy; the operator manually applies the reviewed scope; fresh target/control results establish the observed effect. The [architecture](../architecture/ARCHITECTURE.md) is authoritative for exact scope, historical-window and native-action contracts.
 
@@ -25,17 +27,17 @@ Build the strongest feasible ClickHouse/Guild core first, with a real decision a
 |---|---|
 | ClickHouse/Guild access works; no genuine finding | Complete their substantive companion roles. Keep Semgrep discovery bounded and Pi as an innovation pitch. |
 | Genuine interesting same-codebase issue and actual route confirmed eligible | Give Semgrep a focused evidence beat; lead with it only if it makes this project's case stronger and already works. |
-| Semgrep route/custom-rule interpretation unresolved at cutoff or no finding | Omit the finding-prize claim; accurate quality-scanning use may remain. |
+| Semgrep route/custom-rule interpretation unresolved at submission readiness or no finding | Omit the finding-prize claim; accurate quality-scanning use may remain. |
 | Guild useful hosted result works; ClickHouse only stores rows | Lead with Guild. Do not manufacture another use case just to add a logo. |
 | ClickHouse makes a meaningful decision; Guild hosted/action gates fail | Lead with the actual analytical/review result. Remove completed hosted/restriction claims that never worked. |
 | Stacking prohibited | Focus on the strongest eligible $1,000 monetary track; companions must improve the product, not hypothetical prize arithmetic. |
 | Fewer than four people / loop late | Reduce optional outcomes/new syntax/load/cause testing. Protect complete proof, recording and submission. |
 
-By **12:15 PT**, prove hosted calls, exact subject/shared credential/operation/unit/clock, qualified source capture, actual native selected DENY and both fresh effects, plus ClickHouse insert/query. By **1:30**, complete the full case loop. Optional outcome matching stops **1:45**. Freeze scope **2:30**; record/upload/verify access; aim to submit **4:15** ahead of **4:30**. These gates fit the conservative **11:30–4:30 PT, 300-minute** event build window.
+First prove hosted calls, exact subject/shared credential/operation/unit/clock, qualified finite source capture, selected native DENY, both fresh effects and actual ClickHouse insert/query. Restore the known trial rule and prove the main baseline. Then complete the full case loop, independently test/review the UI/backend and preserve actual demo/evidence/access. Optional outcome matching and measured replay follow their readiness prerequisites. Start now or anytime and continue until the required work is complete; no scheduled start, overall duration cap, phase deadline or build cutoff applies.
 
 ## Semgrep: evidence earns the third track
 
-Focused discovery receives **20–30 minutes total** within the scenario owner's lane. Start the supplied Guardian setup during ordinary generation of this product's support/controller/collector code. Ask for correct authenticated behavior, bounded query handling and sound token/admin handling. Candidate review areas are hypotheses, not existing findings. Do not insert a defect, request an insecure implementation, switch framework just to trigger a rule, create a separate vulnerable app or run a 28-generation portfolio.
+Focused discovery remains within the scenario owner's lane, with narrow objectives and diagnostic checkpoints rather than a timed cap. Start the supplied Guardian setup during ordinary generation of this product's support/controller/collector code. Ask for correct authenticated behavior, bounded query handling and sound token/admin handling. Candidate review areas are hypotheses, not existing findings. Do not insert a defect, request an insecure implementation, switch framework just to trigger a rule, create a separate vulnerable app or run a 28-generation portfolio.
 
 Preserve the initial source before remediation and the real scan artifacts. Explain detector-first versus manual-first discovery honestly. A later custom rule is confirmation unless it performed original discovery. An eligible finding needs meaningful owned consequence, a legitimate positive control, repair and actual rescan evidence; a severity badge or many hits does not substitute.
 
@@ -75,4 +77,4 @@ Avoid “world first,” “all agents contained,” “no false positives,” �
 
 Use the [evidence checklist](../demo/EVIDENCE_CHECKLIST.md) and [submission checklist](../demo/SUBMISSION_CHECKLIST.md) to prepare a clear README/tools description, short accessible video, team names/contact emails and actual GitHub revision. Each claimed sponsor beat should link to a shareable sanitized receipt; private workspace URLs need an accessible recording/trace alternative.
 
-One final case is enough: pinned envelope → captured native cohort → actual historical/candidate query → real contextual incident → reviewed manual native action → both fresh outcomes. Any stronger finding, cause or latency claim must earn separate evidence within the same project and event window.
+One final case is enough: pinned envelope → captured native cohort → actual historical/candidate query → real contextual incident → reviewed manual native action → both fresh outcomes. Any stronger finding, cause or latency claim must earn separate evidence within the same authorized project.

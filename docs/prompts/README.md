@@ -1,7 +1,9 @@
 # Complete ScopeWatch agent-team prompt pack
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 1. [RUN_IN_CLAUDE_CODE.md](RUN_IN_CLAUDE_CODE.md): exact later-event interactive command and short continuation goal to paste in Cursor's terminal.
-2. [BUILD_SCOPEWATCH.md](BUILD_SCOPEWATCH.md): complete lead prompt covering model/team checks, dependency/evidence graphs, full app/UI/test/review work, bounded loops, deadlines and honest completion.
+2. [BUILD_SCOPEWATCH.md](BUILD_SCOPEWATCH.md): complete lead prompt covering model/team checks, dependency/evidence graphs, full app/UI/test/review work, diagnostic loops, readiness milestones without a build cutoff, and honest completion.
 3. [Scoped teammate briefs](agent-briefs/README.md): native/backend/interface/acceptance Sonnet roles and independent Opus devil's advocate.
 4. [PROMPT_REVIEW.md](PROMPT_REVIEW.md): independent adversarial review and corrections.
 5. Research: [current models/teams/goal/permissions](research/CLAUDE_CAPABILITIES.md), [creator methods](research/CREATOR_METHODS.md), [harness/graph synthesis](research/HARNESS_AND_GRAPH_DESIGN.md), [source ledger](research/SOURCES.json).

@@ -2,6 +2,8 @@
 
 # Pi Security: devil's advocate review
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../../../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Reviewed 8 Oct 2026 (the day before the event). Inputs: `_PI_PROFILE.md`, `_CYBERDEFENSE_EVENT.md`, `_PI_WINNER_MODEL.md`, plus `clickhouse/_TEAM_A.md`, `clickhouse/_TEAM_B.md`, `guild-ai/_TEAM_B.md`, `semgrep/_TEAM.md`, `semgrep/_SEMGREP_PLATFORM.md`. Akash is out of scope.
 
 Labels: **[F]** = I re-fetched it myself today (curl or Firecrawl, 8 Oct 2026). **[I]** = inference. **[U]** = I could not re-verify it.

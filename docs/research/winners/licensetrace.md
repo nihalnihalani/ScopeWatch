@@ -1,5 +1,7 @@
 # LicenseTrace — whole-project deep dive
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Round 1: [`analysis/clickhouse/licensetrace.md`](../archive/source-tree/analysis/clickhouse/licensetrace.md). Repo: `repos/clickhouse/licensetrace` (all 14 tracked files read in full).
 
 ## 1. At a glance

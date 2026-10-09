@@ -1,5 +1,7 @@
 # TC Pilot — whole-project deep dive (Top Overall + Best Use of ClickHouse)
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Analyst: ClickHouse Team A (deep-dive pass). Repo: `repos/clickhouse/tc-pilot` at HEAD `ac57e18` (20 commits, full history).
 
 **Every source file was read:**

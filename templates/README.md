@@ -1,5 +1,7 @@
 # Blank build/evidence templates
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../docs/event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 These are ScopeWatch-designed record examples, **not Guild payloads, runtime results or operator approval**. JSON defaults deliberately keep identifiers/counts/evidence null and action flags false. The only numeric examples are separately marked illustrative fixture parameters.
 
 - [Operator manifest](operator-manifest.template.json): fill verified subjects/credential/operation, identity domain, finite cohort, effective start and pinned approval before the main case.

@@ -2,6 +2,8 @@
 
 # ClickHouse — Team B summary (2026 tokens& events)
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../../../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Projects: [seconds ai](seconds-ai.md), [AeroRider](aerorider.md), [EARWITNESS](earwitness.md) (Harness Engineering Hack, SF, 12 Jun 2026), [LicenseTrace](licensetrace.md), [SynapseCRO](synapsecro.md) (Multiagents Hackathon, London, 26 Jun 2026).
 
 ## Prize and judging facts (verified on Devpost, 8 Oct 2026)

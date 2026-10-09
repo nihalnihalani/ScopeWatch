@@ -1,5 +1,7 @@
 # Vital Signal (VitalSignal): whole-project deep dive
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 > Round 2 deep dive. Read-only analysis, 8 Oct 2026. Round-1 file: [`analysis/clickhouse/vital-signal.md`](../archive/source-tree/analysis/clickhouse/vital-signal.md).
 > **[V]** = verified (file:line in `repos/clickhouse/vital-signal`, a URL, or a git hash). **[I]** = inference.
 > All file:line references are to HEAD `4f2ae60` unless a commit hash is given.

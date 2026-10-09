@@ -2,6 +2,8 @@
 
 # Semgrep team summary: Best Use of Semgrep winners (AWS AI Agents Hackathon, 10 Oct 2025)
 
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../../../../../event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice below is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+
 Per-project files: [darwin.md](../../../../winners/semgrep-darwin.md) · [commitdna.md](../../../../winners/semgrep-commitdna.md) · [udon-cat.md](../../../../winners/semgrep-udon-cat.md) · platform guide: [_SEMGREP_PLATFORM.md](_SEMGREP_PLATFORM.md)
 
 ## Headline findings
