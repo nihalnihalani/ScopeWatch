@@ -8,8 +8,27 @@ As of this file's creation every item is **pending**: `guild auth status` report
 - **Contract-test**: real adapter vs loopback mock. Not evidence of account behavior.
 - **CLI-surface finding**: `guild ... --help` output. Shows the command exists; says nothing about what the account allows. Not executed against an account.
 
+## Native observations recorded (account `nihal.nihalani`, 2026-10-09 ~14:10–14:25 UTC)
+
+Native controlled evidence (CLI as the human user; raw responses kept in ignored `evidence/private/`):
+
+| Observation | Value / consequence |
+|---|---|
+| CLI auth | `guild auth status`: authenticated as `nihal.nihalani` after the human's `guild auth login` |
+| Workspaces visible | `nihal.nihalani~home` (`019dc129-fab3-3bb9-0000-5549ef568e99`), `understudy~my-workspace`; `required_credentials_mode` null, `should_restrict_members` false |
+| Pre-existing credentials / triggers / installs | none (0 credentials for both owners, 0 triggers, 0 installed agents) |
+| Agents created by the build (private) | see `guild-agents/README.md`; **installed-agent IDs differ from agent definition IDs** |
+| API trigger created via CLI | `01a1210d-481f-3d51-0000-e8193501dc4a`; the CLI response contains **no key/secret** (key is web-UI only, as documented) |
+| Event type name | events endpoint's valid types list **`security_event`**, not the documented `security` → adapter fixed to accept both |
+| Calibration session `01a1210e-1f93-351a-0000-3bb41b85f91f` (chat, ticketassist, read #3) | tool task `github_issues_get` status ERROR, runtime error "Integration credentials not configured for github-oauth"; **no `security_event` recorded** (0 with `types=security_event`) → missing credential fails before a permission decision |
+| Task shapes | agent task: `entity_type: EntTaskAgent`, `parent_task_id: null`, `agent.id` = **agent definition ID**, `version` object (not `version_id`); tool task: `entity_type: EntTaskTool`, **`parent_task` object** (not `parent_task_id`), `http_status_code/request_bytes/response_bytes` null on error, no `response_data` key → adapter fixed for `parent_task.id` / `version.id` |
+| Pagination | `{has_more, limit, offset, total_count}` present on events and tasks |
+
+Still unobserved: an actual `security_event` payload (needs the GitHub credential), its `credentials_id`/operation
+string/clock precision, the policy-subject ID domain, and `response_data` availability on successful tool tasks.
+
 ## Human steps (in order)
-1. `! guild auth login` (interactive browser). Then `guild auth status` must show authenticated.
+1. ~~`! guild auth login`~~ **done 2026-10-09** (authenticated as `nihal.nihalani`).
 2. Create the three installed workloads in the Guild workspace: target agent, control agent, investigator. Record, for each, the installed-agent ID (what a trigger `agent_id` accepts) and separately the agent definition/version ID. Do not assume they are the same.
 3. Create an **API trigger** (Triggers > Add Trigger > API) and copy the one-time `<key_id>:<key_secret>` string into `GUILD_TRIGGER_ID` / `GUILD_TRIGGER_SECRET`. Trigger keys are web-UI only (no CLI/API).
 4. Create an **account API key** with `workspaces:read` and `agents:read` (missing `agents:read` makes the events/tasks reads return 500). Put it in `GUILD_COLLECTOR_KEY_ID` / `GUILD_COLLECTOR_KEY_SECRET`. Never give the investigator or any model these keys.

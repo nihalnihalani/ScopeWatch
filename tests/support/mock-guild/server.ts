@@ -172,7 +172,7 @@ export async function startMockGuild(opts: MockOptions = {}): Promise<{ url: str
     };
     const security = (taskId: string, decision: string, reason: string): Record<string, unknown> => {
       const ev: Record<string, unknown> = {
-        id: nextId(), type: 'security', updated_at: stamp(), task_id: taskId, decision, operation: o.operation, reason_code: reason,
+        id: nextId(), type: 'security_event', updated_at: stamp(), task_id: taskId, decision, operation: o.operation, reason_code: reason,
         capability: 'read', acting_user_id: null, details: { note: 'mock', agent_label: 'spoofed-label-in-payload' },
         credentials_id: scenario.missingCredentialsId ? null : o.credentialId,
       };

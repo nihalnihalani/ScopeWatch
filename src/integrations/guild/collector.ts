@@ -35,8 +35,24 @@ export interface NormalizeCtx {
   observedAt: string;
 }
 
+/**
+ * Native observation 2026-10-09 (account nihal.nihalani): the events endpoint's valid type list names
+ * `security_event`; the documented schema said `security`. Both are accepted.
+ */
 export function isSecurityEvent(e: unknown): e is Record<string, unknown> {
-  return isRecord(e) && typeof e.type === 'string' && e.type.toLowerCase() === 'security';
+  if (!isRecord(e) || typeof e.type !== 'string') return false;
+  const t = e.type.toLowerCase();
+  return t === 'security_event' || t === 'security';
+}
+
+/**
+ * Security fields may be top-level (documented EventSecurity) or nested under `security`/`content`
+ * (not yet observed natively). Nested values are flattened over the envelope; envelope id/type/created_at win.
+ */
+export function securityFields(e: Record<string, unknown>): Record<string, unknown> {
+  const nested = isRecord(e.security) ? e.security : isRecord(e.content) ? e.content : null;
+  if (!nested) return e;
+  return { ...nested, ...Object.fromEntries(Object.entries(e).filter(([k, v]) => v !== undefined && v !== null && k !== 'security' && k !== 'content')) };
 }
 
 function decisionOf(v: unknown): Decision | null {
@@ -59,7 +75,8 @@ export function semanticOf(e: Record<string, unknown>): Record<string, unknown> 
   };
 }
 
-export function normalizeSecurityEvent(e: Record<string, unknown>, c: NormalizeCtx): RawObservation {
+export function normalizeSecurityEvent(envelope: Record<string, unknown>, c: NormalizeCtx): RawObservation {
+  const e = securityFields(envelope);
   const eventId = str(e.id);
   const created = parseUtcNano(e.created_at);
   const semanticJson = canonicalJson(semanticOf(e));
@@ -118,10 +135,12 @@ export function normalizeTask(t: Record<string, unknown>, sessionId: string): Ta
   return {
     taskId: id,
     sessionId: str(t.session_id) ?? sessionId,
-    parentTaskId: str(t.parent_task_id),
+    // Native observation: tool tasks carry `parent_task` (object), agent tasks `parent_task_id`.
+    parentTaskId: str(t.parent_task_id) ?? (isRecord(t.parent_task) ? str(t.parent_task.id) : null),
     kind: isTool ? 'tool' : isAgent ? 'agent' : 'unknown',
     agentRef: isAgent ? agentRefOf(t) : null,
-    versionId: isTool ? null : str(t.version_id),
+    // Native observation: agent tasks carry `version` (object with id), not `version_id`.
+    versionId: isTool ? null : str(t.version_id) ?? (isRecord(t.version) ? str(t.version.id) : null),
     toolName: str(t.tool_name),
     toolCallId: str(t.tool_call_id),
     status: str(t.status),
