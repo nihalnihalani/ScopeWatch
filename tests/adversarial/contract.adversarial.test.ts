@@ -52,7 +52,7 @@ describe('contract_test revision/state guards', () => {
     expect(r1.status, r1.text).toBe(409);
     const r2 = await s.post(`/api/actions/${a.actionId}/verify`, { expectedVersion: a.version });
     expect(r2.status, r2.text).toBe(409);
-    const r3 = await s.post(`/api/actions/${a.actionId}/removal-receipt`, { expectedVersion: a.version, method: 'guild_ui', nativeRuleId: null, removedAt: iso(), evidenceNote: 'probe' });
+    const r3 = await s.post(`/api/actions/${a.actionId}/removal-receipt`, { expectedVersion: a.version, method: 'guild_ui', nativeRuleId: null, observedSelectors: receipt(d.proposedScope, 1).observedSelectors, removedAt: iso(), evidenceNote: 'probe' });
     expect([404, 409], r3.text).toContain(r3.status);
     expect((await action()).state).toBe('rejected');
   });
@@ -130,6 +130,7 @@ describe('contract_test verdicts are never native', () => {
 
   it('recovery needs removal + successful target AND control; a falling count / bare receipt never releases', async () => {
     const r = await action();
+    const d = (await s.get(`/api/cases/${caseId}`)).body;
     const rec = await s.post(`/api/actions/${r.actionId}/recovery`, { expectedVersion: r.version, reason: 'adversarial recovery review' });
     expect(rec.status, rec.text).toBe(200);
     expect(rec.body.state).toBe('review_ready');
@@ -141,7 +142,7 @@ describe('contract_test verdicts are never native', () => {
     const early = await s.post(`/api/actions/${rec.body.actionId}/verify`, { expectedVersion: appr.body.version });
     expect(early.status, early.text).toBe(409);
     await sleep(30);
-    const rem = await s.post(`/api/actions/${rec.body.actionId}/removal-receipt`, { expectedVersion: appr.body.version, method: 'guild_ui', nativeRuleId: 'mock-rule-1', removedAt: iso(), evidenceNote: 'operator says removed; mock deny still applied' });
+    const rem = await s.post(`/api/actions/${rec.body.actionId}/removal-receipt`, { expectedVersion: appr.body.version, method: 'guild_ui', nativeRuleId: 'mock-rule-1', observedSelectors: receipt(d.proposedScope, 1).observedSelectors, removedAt: iso(), evidenceNote: 'operator says removed; mock deny still applied' });
     expect(rem.status, rem.text).toBe(200);
     await sleep(30);
     const v1 = await s.post(`/api/actions/${rec.body.actionId}/verify`, { expectedVersion: rem.body.version });

@@ -209,17 +209,61 @@ test('recovery is a separate review: start, approve, record removal, fail withou
   await page.locator('#arv').fill('e2e: approve recovery scope');
   await page.getByRole('button', { name: 'Approve recovery scope' }).click();
   await expect(page.locator('#rm-submit')).toBeVisible();
-  // removal receipt recorded but the mock DENY is STILL applied -> recovery verification must fail
-  await page.locator('#rm-a').fill(new Date().toISOString());
-  await page.locator('#rm-n').fill('e2e: operator says removed (mock deny still applied)');
+  const scope = (await detail(page)).proposedScope;
+  const fillRemoval = async (subject: string, note: string) => {
+    await page.locator('#rm-ws').fill(scope.workspaceId);
+    await page.locator('#rm-sub').fill(subject);
+    await page.locator('#rm-cred').fill(scope.credentialId);
+    await page.locator('#rm-op').fill(scope.operation);
+    await page.locator('#rm-dec').fill('DENY');
+    await page.locator('#rm-a').fill(new Date().toISOString());
+    await page.locator('#rm-n').fill(note);
+  };
+  // 1) removal receipt whose observed selectors do NOT match the restriction scope -> mismatch, recovery cannot be verified
+  await fillRemoval('some-other-subject-id', 'e2e: observed removal of a different subject rule');
   await page.locator('#rm-submit').click();
+  await expect.poll(async () => (await recoveryAction(page)).state).not.toBe('approved');
+  rec = await recoveryAction(page);
+  expect(rec.state).toBe('scope_mismatch');
+  const blocked = await apiPost(page, CONTRACT, `/api/actions/${rec.actionId}/verify`, { expectedVersion: rec.version });
+  expect(blocked.status()).toBe(409);
+  await page.screenshot({ path: `${SHOTS}/contract-test-removal-mismatch-1440.png`, fullPage: true });
+  // 2) correct removal receipt, but the mock DENY is STILL applied -> recovery verification must fail
+  if (await page.locator('#rm-submit').isVisible()) {
+    await fillRemoval(scope.policySubjectId, 'e2e: operator says removed (mock deny still applied)');
+    await page.locator('#rm-submit').click();
+  } else {
+    // FINDING (P2): server accepts a corrected removal receipt from scope_mismatch, but the UI offers no form in that state.
+    test.info().annotations.push({ type: 'finding', description: 'UI: no removal-receipt form after scope_mismatch; corrected via API' });
+    const cur = await recoveryAction(page);
+    const r = await apiPost(page, CONTRACT, `/api/actions/${cur.actionId}/removal-receipt`, {
+      expectedVersion: cur.version, method: 'guild_ui', nativeRuleId: null,
+      observedSelectors: { workspaceId: scope.workspaceId, policySubjectId: scope.policySubjectId, credentialId: scope.credentialId, operation: scope.operation, decision: 'DENY', resources: null },
+      removedAt: new Date().toISOString(), evidenceNote: 'e2e: corrected removal receipt (mock deny still applied)',
+    });
+    expect(r.status(), await r.text()).toBe(200);
+    await page.reload();
+  }
   await expect(page.getByRole('button', { name: 'Verify recovery with fresh sessions' })).toBeVisible();
   await page.getByRole('button', { name: 'Verify recovery with fresh sessions' }).click();
   await expect(page.getByTestId('action-recovery').getByText(/Recovery verification failed|recovery failed|Recovery could not be decided/i).first()).toBeVisible({ timeout: 60_000 });
   rec = await recoveryAction(page);
   expect(['recovery_failed', 'recovery_unknown']).toContain(rec.state);
-  // human removes the mock rule; verify again
+  // 3) human removes the mock rule, but the target's content is wrong: a bare ALLOW is NOT recovery
   await mockControl('undeny', {});
+  await mockControl('scenario', { targetWrongContent: true });
+  try {
+    await page.getByRole('button', { name: 'Verify recovery with fresh sessions' }).click();
+    await expect.poll(async () => (await recoveryAction(page)).version, { timeout: 60_000 }).toBeGreaterThan(rec.version);
+    const bare = await recoveryAction(page);
+    expect(['recovery_failed', 'recovery_unknown']).toContain(bare.state);
+    expect(bare.state).not.toBe('simulated_recovered');
+    rec = bare;
+  } finally {
+    await mockControl('scenario', { targetWrongContent: false });
+  }
+  // 4) expected target AND control content -> simulated recovery
+  await page.reload();
   await page.getByRole('button', { name: 'Verify recovery with fresh sessions' }).click();
   await expect(page.getByTestId('action-recovery').getByText(/SIMULATED recovery/).first()).toBeVisible({ timeout: 60_000 });
   rec = await recoveryAction(page);
@@ -234,4 +278,14 @@ test('contract_test export is marked non-evidence and carries no native verdicts
   expect(b.limits.join(' ')).toMatch(/NOT NATIVE EVIDENCE/);
   const s = JSON.stringify(b);
   expect(s).not.toContain('"restriction_verified"');
+});
+
+test('status separates configuration checks (presence only) from native proof gates', async ({ page }) => {
+  await signInOk(page, CONTRACT);
+  await expect(page.getByText(/Configuration checks \(\d+ missing\)/)).toBeVisible();
+  await expect(page.getByText(/Native proof gates/)).toBeVisible();
+  await expect(page.locator('body')).not.toContainText(/\d+ of \d+ passed/);
+  const st = await apiGet<any>(page, CONTRACT, '/api/status');
+  expect(st.configChecks.length).toBeGreaterThan(0);
+  for (const g of st.nativeGates) expect(g.status).not.toBe('passed');
 });

@@ -26,7 +26,12 @@ test('a not-ready generation (mock events endpoint 500) is listed as not admitte
   }
   const after = await apiGet<any[]>(page, CONTRACT, '/api/cases');
   expect(after.length).toBe(before.length);
-  expect(JSON.stringify(await apiGet<any>(page, CONTRACT, `/api/cases/${before[0].caseId}`))).toBe(caseBefore);
+  const caseAfter = await apiGet<any>(page, CONTRACT, `/api/cases/${before[0].caseId}`);
+  const b = JSON.parse(caseBefore);
+  const diff = Object.keys({ ...b, ...caseAfter }).filter((k) => JSON.stringify(b[k]) !== JSON.stringify(caseAfter[k]));
+  // evidence, actions and revision stay untouched; only the action-blocked note may change (newer generation exists)
+  expect(diff, `case fields changed by a not-ready generation: ${diff.join(',')}`).toEqual(diff.length ? ['actionBlockedReason'] : []);
+  if (diff.length) expect(String(caseAfter.actionBlockedReason)).toMatch(/newer|superseded|generation/i);
   expect(w.unexpected()).toEqual([]);
 });
 

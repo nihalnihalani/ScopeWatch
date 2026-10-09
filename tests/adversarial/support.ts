@@ -59,11 +59,11 @@ export async function startStack(mode: 'replay' | 'contract_test', opts: { launc
       GUILD_VERIFIED_TARGET_POLICY_SUBJECT_ID: o.subjects.target, GUILD_VERIFIED_CONTROL_POLICY_SUBJECT_ID: o.subjects.control,
       GUILD_VERIFIED_CREDENTIAL_ID: o.credentialId, GUILD_VERIFIED_OPERATION: o.operation,
       OWNED_GITHUB_OWNER: o.ownedRepo.split('/')[0] as string, OWNED_GITHUB_REPO: o.ownedRepo.split('/')[1] as string,
-      SCOPEWATCH_CONTROL_EXPECTED_MARKER: o.controlMarker,
+      SCOPEWATCH_CONTROL_EXPECTED_MARKER: o.controlMarker, SCOPEWATCH_TARGET_EXPECTED_MARKER: o.targetMarker,
       GUILD_AGENT_SUBJECT_MAP: JSON.stringify({ [o.installed.target]: o.subjects.target, [o.installed.control]: o.subjects.control }),
       GUILD_IDENTITY_DOMAIN: 'workspace', GUILD_PROBE_TICKET_NUMBER: '1', PINNED_MANIFEST_PATH: manifest, PINNED_MANIFEST_REF: 'adv:manifest',
     });
-    secrets.push(o.triggerKey, o.collectorKey, o.triggerKey.split(':')[1] as string, o.collectorKey.split(':')[1] as string, o.controlMarker);
+    secrets.push(o.triggerKey, o.collectorKey, o.triggerKey.split(':')[1] as string, o.collectorKey.split(':')[1] as string, o.controlMarker, o.targetMarker);
   }
   const config = loadConfig(base as NodeJS.ProcessEnv);
   const svc = await buildServices(config);
