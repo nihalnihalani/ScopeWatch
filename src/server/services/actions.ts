@@ -110,7 +110,10 @@ export function recordNativeReceipt(svc: Services, actionId: string, body: Nativ
       if (!c) throw notFound('case');
       const mismatches = compareSelectors(a, body.observedSelectors);
       const approvedNs = tryParseUtcNano(a.approvedAt);
-      const outOfBand = approvedNs !== null && appliedNs < approvedNs;
+      // compare at the precision the operator supplied: truncate approvedAt to appliedAt's fractional digits
+      const digits = (/\.(\d+)Z$/.exec(body.appliedAt)?.[1] ?? '').length;
+      const unit = 10n ** BigInt(9 - digits);
+      const outOfBand = approvedNs !== null && appliedNs < (approvedNs / unit) * unit;
       const staleCase = a.state === 'stale' || c.revision !== a.caseRevision;
       if (outOfBand) mismatches.push('rule application time precedes approval (out-of-band application)');
       if (staleCase) mismatches.push(`approval was for case revision ${a.caseRevision}; case is now revision ${c.revision}`);
@@ -291,7 +294,8 @@ export function recordRemovalReceipt(svc: Services, actionId: string, body: Remo
   return wrapStale(() =>
     j.tx(() => {
       const a = j.getAction(actionId);
-      if (!a || a.kind !== 'recovery') throw notFound('recovery action');
+      if (!a) throw notFound('action');
+      if (a.kind !== 'recovery') throw conflict('removal receipts apply only to recovery actions; this is a restriction action');
       if (a.version !== body.expectedVersion) throw new StaleVersionError(body.expectedVersion, a.version);
       if (a.state !== 'approved') throw conflict(`recovery is ${a.state}; a removal receipt is accepted only after approval`);
       if (tryParseUtcNano(body.removedAt) === null) throw invalid('removedAt must be strict UTC RFC3339 text');

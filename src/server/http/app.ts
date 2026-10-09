@@ -86,6 +86,8 @@ export async function buildApp(config: AppConfig, svc: Services): Promise<Fastif
     ajv: { customOptions: { removeAdditional: false, coerceTypes: false, useDefaults: false, allErrors: false } },
   });
   await app.register(fastifyCookie);
+  // instance-scoped so several local instances (different ports) do not clobber each other's cookie
+  const cookieName = `${SESSION_COOKIE}_${config.port}`;
   const hosts = new Set(config.allowedOrigins.map((o) => new URL(o).host));
   const origins = new Set(config.allowedOrigins);
   const j = svc.journal;
@@ -113,7 +115,7 @@ export async function buildApp(config: AppConfig, svc: Services): Promise<Fastif
       if (!origin || !origins.has(origin)) throw new HttpError(403, 'origin', 'Origin is not in the allowlist');
     }
     if (!path.startsWith('/api/')) return;
-    const sid = req.cookies[SESSION_COOKIE];
+    const sid = req.cookies[cookieName];
     const s = sid ? j.getOperatorSession(sid) : null;
     if (s && sid) req.auth = { sessionId: sid, operator: s.operator, csrf: s.csrf };
     if (PUBLIC.has(`${req.method} ${path}`)) return;
@@ -161,13 +163,13 @@ export async function buildApp(config: AppConfig, svc: Services): Promise<Fastif
       throw new HttpError(401, 'unauthenticated', 'invalid operator secret');
     }
     const s = j.createOperatorSession(config.operatorName);
-    void reply.setCookie(SESSION_COOKIE, s.sessionId, { httpOnly: true, sameSite: 'strict', path: '/', maxAge: 8 * 3600 });
+    void reply.setCookie(cookieName, s.sessionId, { httpOnly: true, sameSite: 'strict', path: '/', maxAge: 8 * 3600 });
     return { authenticated: true, operator: config.operatorName, csrfToken: s.csrf, mode: config.mode } satisfies SessionInfo;
   });
 
   app.post('/api/logout', { schema: { body: SCHEMAS.empty } }, async (req, reply) => {
     if (req.auth) j.deleteOperatorSession(req.auth.sessionId);
-    void reply.clearCookie(SESSION_COOKIE, { path: '/' });
+    void reply.clearCookie(cookieName, { path: '/' });
     return { authenticated: false, operator: null, csrfToken: null, mode: config.mode } satisfies SessionInfo;
   });
 

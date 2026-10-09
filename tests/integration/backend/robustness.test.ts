@@ -144,3 +144,45 @@ describe('route shapes and static client', () => {
     await app.close();
   });
 });
+
+describe('receipt precision and routing fixes', () => {
+  const rc = (v: number, appliedAt: string) => ({ expectedVersion: v, method: 'guild_ui' as const, nativeRuleId: 'r', observedSelectors: sel, appliedAt, evidenceNote: '' });
+  function approved() {
+    const svc = services('contract_test', new FakeGuildPort());
+    const { caseId, revision } = seedCase(svc);
+    reviewCase(svc, caseId, { expectedRevision: revision, decision: 'approve', reason: 'ok' }, 'op');
+    return { svc, a: svc.journal.listActions(caseId)[0] as ActionRecord };
+  }
+  it('appliedAt at second precision within the approval second is NOT stale; strictly earlier second is', () => {
+    const { svc, a } = approved();
+    const sec = a.approvedAt!.replace(/\.\d+Z$/, 'Z');
+    expect(recordNativeReceipt(svc, a.actionId, rc(a.version, sec), 'op').state).toBe('native_application_observed');
+    const b = approved();
+    const earlier = new Date(Date.parse(b.a.approvedAt!) - 2000).toISOString().replace(/\.\d+Z$/, 'Z');
+    expect(recordNativeReceipt(b.svc, b.a.actionId, rc(b.a.version, earlier), 'op').state).toBe('disputed_stale_application');
+    // millisecond precision stays exact: one ms before approval is out of band
+    const c = approved();
+    const oneMs = new Date(Date.parse(c.a.approvedAt!) - 1).toISOString();
+    expect(recordNativeReceipt(c.svc, c.a.actionId, rc(c.a.version, oneMs), 'op').state).toBe('disputed_stale_application');
+  });
+  it('removal-receipt on a restriction action is 409 conflict, unknown id is 404', async () => {
+    const { svc, a } = approved();
+    const app = await buildApp(testConfig('contract_test'), svc);
+    const login = await app.inject({ method: 'POST', url: '/api/login', headers: { host: HOST, origin: 'http://127.0.0.1:4317' }, payload: { secret: 'test-operator-secret-0123456789' } });
+    const headers = { host: HOST, origin: 'http://127.0.0.1:4317', cookie: `${login.cookies[0]!.name}=${login.cookies[0]!.value}`, 'x-csrf-token': login.json().csrfToken };
+    const body = { expectedVersion: a.version, method: 'guild_ui', nativeRuleId: null, removedAt: '2099-01-01T00:00:00Z', evidenceNote: '' };
+    expect((await app.inject({ method: 'POST', url: `/api/actions/${a.actionId}/removal-receipt`, headers, payload: body })).statusCode).toBe(409);
+    expect((await app.inject({ method: 'POST', url: '/api/actions/nope/removal-receipt', headers, payload: body })).statusCode).toBe(404);
+    await app.close();
+  });
+  it('session cookie name is instance-scoped by port and old unscoped cookies are ignored', async () => {
+    const svc = services('replay');
+    const app = await buildApp(testConfig('replay'), svc);
+    const login = await app.inject({ method: 'POST', url: '/api/login', headers: { host: HOST, origin: 'http://127.0.0.1:4317' }, payload: { secret: 'test-operator-secret-0123456789' } });
+    const c = login.cookies[0]!;
+    expect(c.name).toBe('sw_session_4317');
+    const bare = await app.inject({ method: 'GET', url: '/api/cases', headers: { host: HOST, cookie: `sw_session=${c.value}` } });
+    expect(bare.statusCode).toBe(401);
+    await app.close();
+  });
+});
