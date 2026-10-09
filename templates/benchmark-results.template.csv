@@ -1,0 +1,1 @@
+run_id,dataset_kind,query_class,generation_id,query_id,sample_index,rows_stored,distinct_events,candidates,rows_read,server_duration_ms,client_round_trip_ms,service_version,region,warm_or_cold,correctness_result

@@ -1,0 +1,25 @@
+flowchart TB
+  subgraph LAP["Local operator process"]
+    BR["Browser · loopback operator UI<br/>HttpOnly session; no sponsor keys"]
+    SRV["Node 24 / TypeScript controller<br/>Bound 127.0.0.1; Host / Origin / CSRF checks"]
+    DB[("SQLite control journal<br/>Prepared statements; local transactions / revisions")]
+    SEC["Server-only secret configuration<br/>Guild trigger/read + ClickHouse writer/reader"]
+    POLL["Bounded collector / evaluator / verifier<br/>No separate queue / orchestration service"]
+    BR -->|"Read cases / POST references + revision"| SRV
+    SRV --> DB
+    SEC --> SRV
+    SRV --> POLL
+  end
+  subgraph CLOUD["Sponsor / integration APIs"]
+    GU["Guild API + hosted agents<br/>Native policy owned by operator"]
+    CH["ClickHouse Cloud HTTPS<br/>Least-required insert / select identities"]
+    GH["Owned GitHub repository<br/>Synthetic content + pinned policy context"]
+    GU --> GH
+  end
+  POLL -->|"Allowlisted session launch / collection"| GU
+  POLL -->|"TLS + parameterized SQL"| CH
+  ADMIN["Operator's native Guild UI / verified CLI<br/>Separate interactive administrative authority"] --> GU
+  SRV -->|"Sanitized export only"| PUB["Read-only recording / static demo evidence<br/>No action endpoint or keys"]
+  RPL["Replay generator / benchmark identity<br/>Separate namespace; no native action authority"] --> CH
+  SG["Development IDE + Guardian OAuth<br/>Same application source / authentic findings"] -.-> SRV
+  FC["Firecrawl research credentials<br/>Source discovery only; absent from runtime"] -.-> REF["Source-indexed architecture references"]

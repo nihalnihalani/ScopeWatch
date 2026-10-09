@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "research_checked_date": "2026-10-07",
+  "derivative_export": true,
+  "derivation": "Structured transcription of complete Library text reads of the authoritative October 7, 2026 REPOSITORY_INDEX.txt and Sponsor_Winners_Research.docx. The saved PDF is a companion original report; no separate source-note archive was recovered.",
+  "included_in_verified_winner_totals": false,
+  "participant_reported_award_claims": [
+    {
+      "id": "guild-ai-argus",
+      "name": "Argus",
+      "sponsor": "Guild AI",
+      "event": "Self-Evolving Agents Hackathon",
+      "event_date": "2026-07-24",
+      "event_url": "https://luma.com/swarmhack",
+      "official_event_url": "https://self-evolving-agents.devpost.com/",
+      "official_gallery_url": "https://self-evolving-agents.devpost.com/project-gallery",
+      "award_wording": "First prize participant claim; official award publication unavailable",
+      "award_verified": false,
+      "rank_claim": 1,
+      "rank_evidence_category": "participant_reported_only",
+      "rank_independently_confirmed": false,
+      "claim_url": "https://www.linkedin.com/posts/ashna-parekh-50b025110_guildai-senso-googledeepmind-activity-7486852658482511872-vALk",
+      "project_follow_up_url": "https://www.linkedin.com/posts/ashna-parekh-50b025110_pm-productidea-automatetesting-activity-7496749512976248832-jz-5",
+      "repository_url": "https://github.com/Ashna16/Argus",
+      "repository_identity_verified": true,
+      "repository_access_at_research_date": "readable",
+      "source_inspected": false,
+      "access_and_inspection_text": "Public identity/access verified; code not inspected",
+      "demo_url": "https://youtu.be/ybS23YwBhHQ",
+      "project_description": "The participant describes a product-test workflow: product evidence generates tests, recordings support human acceptance, and a scoped Guild connector files approved issues without placing Jira credentials in the application.",
+      "why_it_may_have_stood_out_inference": "The useful defensive pattern is a controlled handoff from an accepted finding to a system of record.",
+      "limitations_text": "The official gallery was unpublished. No official recipient list was recovered. A visible demo description does not prove backend execution. The two advertised second-place recipients remain unidentified.",
+      "advertised_awards": {
+        "first_prize_count": 1,
+        "first_prize_usd": 1000,
+        "second_prize_count": 2,
+        "second_prize_usd_each": 500
+      },
+      "ledger_caveat": "The organizer-side challenge ledger showed zero submissions; that field is not evidence the competition received no entries."
+    }
+  ],
+  "evidence_gaps": [
+    {
+      "sponsor": "Guild AI",
+      "event": "Self-Evolving Agents Hackathon",
+      "event_date": "2026-07-24",
+      "unidentified_advertised_second_place_recipients": 2,
+      "official_gallery_url": "https://self-evolving-agents.devpost.com/project-gallery",
+      "explanation": "The official gallery was unpublished and no official recipient list was recovered."
+    },
+    {
+      "sponsor": "Pi Security",
+      "verified_historical_winners": 0,
+      "company_identity_url": "https://www.pi.security/about",
+      "upcoming_event_url": "https://luma.com/cyberhack",
+      "upcoming_event_date": "2026-10-09",
+      "explanation": "No past matching sponsor event, awardee, winning repository or judging explanation was verified in the bounded organizer-series research. This is an evidence gap, not proof none exist. An upcoming Pi prize does not establish past winners or an SDK integration requirement."
+    }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "/accounts/{account_id_or_name}/skills": [
+    "get",
+    "post"
+  ],
+  "/accounts/{account_id_or_name}/workspaces": [
+    "get"
+  ],
+  "/agents": [
+    "get",
+    "post"
+  ],
+  "/agents/{agent_id_or_name}": [
+    "get"
+  ],
+  "/agents/{agent_id_or_name}/configure-llm": [
+    "post"
+  ],
+  "/agents/{agent_id_or_name}/versions": [
+    "get",
+    "post"
+  ],
+  "/me": [
+    "get"
+  ],
+  "/oauth/authorize": [
+    "get"
+  ],
+  "/oauth/register": [
+    "post"
+  ],
+  "/oauth/token": [
+    "post"
+  ],
+  "/sessions/{session_id}": [
+    "get"
+  ],
+  "/sessions/{session_id}/events": [
+    "get",
+    "post"
+  ],
+  "/sessions/{session_id}/runtimes": [
+    "get"
+  ],
+  "/sessions/{session_id}/tasks": [
+    "get"
+  ],
+  "/skills/{skill_id_or_name}": [
+    "get"
+  ],
+  "/skills/{skill_id_or_name}/versions": [
+    "post"
+  ],
+  "/versions/{version_id}": [
+    "get"
+  ],
+  "/versions/{version_id}/code": [
+    "get"
+  ],
+  "/versions/{version_id}/publish": [
+    "post"
+  ],
+  "/versions/{version_id}/publish/steps": [
+    "get"
+  ],
+  "/versions/{version_id}/validation/steps": [
+    "get"
+  ],
+  "/workspace_agents/{workspace_agent_id}/credential-associations": [
+    "get",
+    "post"
+  ],
+  "/workspace_agents/{workspace_agent_id}/credential-associations/{association_id}": [
+    "delete"
+  ],
+  "/workspace_agents/{workspace_agent_id}/credentials/api-key": [
+    "post"
+  ],
+  "/workspaces": [
+    "post"
+  ],
+  "/workspaces/{workspace_id_or_name}": [
+    "get"
+  ],
+  "/workspaces/{workspace_id_or_name}/sessions": [
+    "get",
+    "post"
+  ],
+  "/workspaces/{workspace_id_or_name}/triggers": [
+    "post"
+  ],
+  "/workspaces/{workspace_id_or_name}/workspace_agents": [
+    "get",
+    "post"
+  ]
+}

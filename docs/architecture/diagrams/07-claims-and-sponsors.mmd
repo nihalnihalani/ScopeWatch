@@ -1,0 +1,21 @@
+flowchart LR
+  G["Actual controlled Guild sessions"] --> C["Canonical permission facts<br/>Qualified generation / coverage"]
+  C --> Q["ClickHouse selects actual candidate<br/>Own allowance + historical witness"]
+  Q --> I["Guild investigator reads pinned context<br/>Creates real bounded incident"]
+  I --> H["Human reviews exact native scope"]
+  H --> V["Native DENY + fresh target/control probes"]
+  V --> PAY["Claim: this matching call restricted<br/>This approved control result returned"]
+  BEN["Separate diverse replay workload"] --> LAT["Measured query p50 / p95 + n<br/>Version / region / warm state / rows read"]
+  LAT -.-> CH["ClickHouse award evidence<br/>Scale + latency + defense decision"]
+  Q --> CH
+  I --> GU["Guild award evidence<br/>Actually host / run agents + useful action"]
+  V --> GU
+  DEV["Ordinary AI-generated ScopeWatch source"] --> SCAN["Actual Semgrep finding if obtained<br/>Original source / detector / consequence"]
+  SCAN --> FIX["Correction + rescan + legitimate control"]
+  FIX --> SG["Conditional Semgrep finding award<br/>No manufactured bug / unrelated app"]
+  PAY -.-> PI["Pi innovation story<br/>No product access; novelty uncertain"]
+  INJ["Optional matched planted-ticket test"] -.-> INF["Claim influence only with source-read<br/>Changed behavior + benign control"]
+  INF -.-> I
+  NO["ALLOW ≠ successful read<br/>2xx ≠ distinct records<br/>SQL latency ≠ containment latency<br/>Policy applied ≠ effect verified"]
+  classDef optional fill:#f5f6f8,stroke:#8e98a8,color:#475163,stroke-dasharray:5 4;
+  class BEN,LAT,DEV,SCAN,FIX,SG,PI,INJ,INF optional;

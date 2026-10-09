@@ -1,0 +1,335 @@
+{
+  "workflow": "firecrawl-knowledge-base",
+  "goal": "reference",
+  "depth": "exhaustive curated sponsor subset",
+  "source": "ClickHouse/ClickStack, Guild.ai, Semgrep Guardian and Pi official docs/releases for ScopeWatch",
+  "created_at": "2026-10-09T08:01:06.250777+00:00",
+  "canonical_pages": 34,
+  "unique_urls": 34,
+  "sources": [
+    {
+      "section": "clickhouse",
+      "url": "https://clickhouse.com/blog/whats-new-in-clickstack-august-2026",
+      "capture": ".firecrawl/clickhouse.com/blog/whats-new-in-clickstack-august-2026/index.md",
+      "sha256_current_file": "1bd089415e7c4d5761a9dc2b13443741ba17334c7f52ecc10791a3bd683b144b",
+      "publication_date": "2026-09-16",
+      "collection": "reused-cache",
+      "section_manifest": ".firecrawl/scopewatch-kb/clickhouse/sources.json"
+    },
+    {
+      "section": "clickhouse",
+      "url": "https://clickhouse.com/blog/executable-udfs-generally-available-on-clickhouse-cloud",
+      "capture": ".firecrawl/clickhouse.com/blog/executable-udfs-generally-available-on-clickhouse-cloud/index.md",
+      "sha256_current_file": "ccb2b05a4006e372391c3996116e5e9f88cebbba0fd58ef295ec6d65f76cc2ca",
+      "publication_date": "2026-10-05",
+      "collection": "reused-cache",
+      "section_manifest": ".firecrawl/scopewatch-kb/clickhouse/sources.json"
+    },
+    {
+      "section": "clickhouse",
+      "url": "https://clickhouse.com/docs/concepts/features/materialized-views/incremental-materialized-view",
+      "capture": ".firecrawl/clickhouse.com/docs/concepts/features/materialized-views/incremental-materialized-view/index.md",
+      "sha256_current_file": "53e344bfb47631a30ea00ba68612813dac8c97d728ae3fc73966821aaec57432",
+      "publication_date": null,
+      "collection": "reused-cache",
+      "section_manifest": ".firecrawl/scopewatch-kb/clickhouse/sources.json"
+    },
+    {
+      "section": "clickhouse",
+      "url": "https://clickhouse.com/blog/clickhouse-release-26-09",
+      "capture": ".firecrawl/clickhouse.com/blog/clickhouse-release-26-09/index.md",
+      "sha256_current_file": "9e1584490f1d315fce2f4dd76a7cd905768ea4266af8c017a9ecff0f37b34fe2",
+      "publication_date": "2026-09-23",
+      "collection": "fresh-firecrawl",
+      "section_manifest": ".firecrawl/scopewatch-kb/clickhouse/sources.json"
+    },
+    {
+      "section": "clickhouse",
+      "url": "https://clickhouse.com/docs/reference/system-tables/query_log",
+      "capture": ".firecrawl/clickhouse.com/docs/reference/system-tables/query_log/index.md",
+      "sha256_current_file": "06d176c281812c46b90ce29fe92f677eec3c6b08a39e76cf0216bce1592b515a",
+      "publication_date": null,
+      "collection": "fresh-firecrawl",
+      "section_manifest": ".firecrawl/scopewatch-kb/clickhouse/sources.json"
+    },
+    {
+      "section": "clickhouse",
+      "url": "https://clickhouse.com/docs/clickstack/features/alerts",
+      "capture": ".firecrawl/clickhouse.com/docs/clickstack/features/alerts/index.md",
+      "sha256_current_file": "ca11324d596c2f0012fb0d94a89fb82b6d3b6b0610db0338f49ac5c3d20cc7a2",
+      "publication_date": null,
+      "collection": "fresh-firecrawl",
+      "section_manifest": ".firecrawl/scopewatch-kb/clickhouse/sources.json"
+    },
+    {
+      "section": "clickhouse",
+      "url": "https://clickhouse.com/docs/clickstack/mcp",
+      "capture": ".firecrawl/clickhouse.com/docs/clickstack/mcp/index.md",
+      "sha256_current_file": "2d06ccd7c40bc50d6e442d5fa28af8fee2b4abbda23c44d7a73f1d4614d37ee6",
+      "publication_date": null,
+      "collection": "fresh-firecrawl",
+      "section_manifest": ".firecrawl/scopewatch-kb/clickhouse/sources.json"
+    },
+    {
+      "section": "clickhouse",
+      "url": "https://clickhouse.com/docs/concepts/features/operations/insert/asyncinserts",
+      "capture": ".firecrawl/clickhouse.com/docs/concepts/features/operations/insert/asyncinserts/index.md",
+      "sha256_current_file": "903907926cfc0d5744886b4cc0a668c4bd6c0ceb55842422d1960a16405ffabf",
+      "publication_date": null,
+      "collection": "fresh-firecrawl",
+      "section_manifest": ".firecrawl/scopewatch-kb/clickhouse/sources.json"
+    },
+    {
+      "section": "clickhouse",
+      "url": "https://clickhouse.com/docs/reference/engines/table-engines/mergetree-family/replacingmergetree",
+      "capture": ".firecrawl/clickhouse.com/docs/reference/engines/table-engines/mergetree-family/replacingmergetree/index.md",
+      "sha256_current_file": "233324216aae91c8ec2783c351fea0e38d97668bc622677d0d7e6efd0e96a11e",
+      "publication_date": null,
+      "collection": "fresh-firecrawl",
+      "section_manifest": ".firecrawl/scopewatch-kb/clickhouse/sources.json"
+    },
+    {
+      "section": "clickhouse",
+      "url": "https://clickhouse.com/docs/clickstack/features/dashboards/sql-visualizations",
+      "capture": ".firecrawl/clickhouse.com/docs/clickstack/features/dashboards/sql-visualizations/index.md",
+      "sha256_current_file": "60712f6ca5e08a68d248234782743abb0d4fb74019fc19f0e0d747248a11ab4e",
+      "publication_date": null,
+      "collection": "fresh-firecrawl",
+      "section_manifest": ".firecrawl/scopewatch-kb/clickhouse/sources.json"
+    },
+    {
+      "section": "clickhouse",
+      "url": "https://clickhouse.com/docs/reference/functions/aggregate-functions/uniqExact",
+      "capture": ".firecrawl/clickhouse.com/docs/reference/functions/aggregate-functions/uniqExact/index.md",
+      "sha256_current_file": "5ef757c9b5f9bc9b450772e5a031e1dcd81117d0e9043d73df39f34e4987d1af",
+      "publication_date": null,
+      "collection": "fresh-firecrawl",
+      "section_manifest": ".firecrawl/scopewatch-kb/clickhouse/sources.json"
+    },
+    {
+      "section": "guild",
+      "url": "https://docs.guild.ai/api-reference/sessions/fetch-session-events",
+      "capture": ".firecrawl/docs.guild.ai/api-reference/sessions/fetch-session-events/index.md",
+      "sha256_current_file": "81256aafc8dbe6145bb697fc8c3457e3ddfc2b07ef3ebed3d9dae06625a7d3ed",
+      "publication_date": null,
+      "collection": "reused_prior_capture",
+      "section_manifest": ".firecrawl/scopewatch-kb/guild/sources-manifest.json"
+    },
+    {
+      "section": "guild",
+      "url": "https://docs.guild.ai/platform/api-triggers",
+      "capture": ".firecrawl/docs.guild.ai/platform/api-triggers/index.md",
+      "sha256_current_file": "6f9b5d3c6a7de1b47869db2e5f4c908db47d94be583b15d64500544ad7642c10",
+      "publication_date": null,
+      "collection": "reused_prior_capture",
+      "section_manifest": ".firecrawl/scopewatch-kb/guild/sources-manifest.json"
+    },
+    {
+      "section": "guild",
+      "url": "https://docs.guild.ai/platform/credential-policies",
+      "capture": ".firecrawl/docs.guild.ai/platform/credential-policies/index.md",
+      "sha256_current_file": "ac3f428c38fbbc84520fd53646762a5ef233a40d5a439f9178c80ccc6d045489",
+      "publication_date": null,
+      "collection": "reused_prior_capture",
+      "section_manifest": ".firecrawl/scopewatch-kb/guild/sources-manifest.json"
+    },
+    {
+      "section": "guild",
+      "url": "https://docs.guild.ai/platform/security-architecture",
+      "capture": ".firecrawl/docs.guild.ai/platform/security-architecture/index.md",
+      "sha256_current_file": "1d487f6c4cffaac0874368f13aa289ae1f942deabe82bab827bd6c8db63537e2",
+      "publication_date": null,
+      "collection": "reused_prior_capture",
+      "section_manifest": ".firecrawl/scopewatch-kb/guild/sources-manifest.json"
+    },
+    {
+      "section": "guild",
+      "url": "https://docs.guild.ai/quickstart",
+      "capture": ".firecrawl/docs.guild.ai/quickstart/index.md",
+      "sha256_current_file": "ed18e9a83f3ff5af5c85d0c00bb3ea724dc0d5a9fd1f7b7889479a849bb5dda4",
+      "publication_date": null,
+      "collection": "reused_prior_capture",
+      "section_manifest": ".firecrawl/scopewatch-kb/guild/sources-manifest.json"
+    },
+    {
+      "section": "guild",
+      "url": "https://docs.guild.ai/guide/coded-agents",
+      "capture": ".firecrawl/docs.guild.ai/guide/coded-agents/index.md",
+      "sha256_current_file": "8af139ce70086cba7c20ddf23dececad5190c2b1ae36c1dd65afac726fd892cb",
+      "publication_date": null,
+      "collection": "reused_prior_capture",
+      "section_manifest": ".firecrawl/scopewatch-kb/guild/sources-manifest.json"
+    },
+    {
+      "section": "guild",
+      "url": "https://docs.guild.ai/api-reference/sessions/fetch-session-sub-tasks",
+      "capture": ".firecrawl/docs.guild.ai/api-reference/sessions/fetch-session-sub-tasks/index.md",
+      "sha256_current_file": "11e1245ec8776d04d1570ea02d2afc755abfb64127902b1d42135d65606f959b",
+      "publication_date": null,
+      "collection": "fresh_primary_capture",
+      "section_manifest": ".firecrawl/scopewatch-kb/guild/sources-manifest.json"
+    },
+    {
+      "section": "guild",
+      "url": "https://docs.guild.ai/integrations/github",
+      "capture": ".firecrawl/docs.guild.ai/integrations/github/index.md",
+      "sha256_current_file": "96bdec5713d998933cf762d90fe0a12bab1d446aa226ce908642c636a405c1fe",
+      "publication_date": null,
+      "collection": "fresh_primary_capture",
+      "section_manifest": ".firecrawl/scopewatch-kb/guild/sources-manifest.json"
+    },
+    {
+      "section": "guild",
+      "url": "https://docs.guild.ai/platform/llm-settings",
+      "capture": ".firecrawl/docs.guild.ai/platform/llm-settings/index.md",
+      "sha256_current_file": "342c63e6e584eeee6328d40f8496c85b5e539309c7fe734d51f74ae2553d622b",
+      "publication_date": null,
+      "collection": "fresh_primary_capture",
+      "section_manifest": ".firecrawl/scopewatch-kb/guild/sources-manifest.json"
+    },
+    {
+      "section": "guild",
+      "url": "https://docs.guild.ai/platform/sessions",
+      "capture": ".firecrawl/docs.guild.ai/platform/sessions/index.md",
+      "sha256_current_file": "bd98c31ec29a1a7981343e9efaff712819798e2e2a07bb1e28350575cfeaa02a",
+      "publication_date": null,
+      "collection": "fresh_primary_capture",
+      "section_manifest": ".firecrawl/scopewatch-kb/guild/sources-manifest.json"
+    },
+    {
+      "section": "guild",
+      "url": "https://docs.guild.ai/guide/native-agents",
+      "capture": ".firecrawl/docs.guild.ai/guide/native-agents/index.md",
+      "sha256_current_file": "616774a45535cd97341cb6b90057ebad7b329c7ace9c227305922f580c8ae727",
+      "publication_date": null,
+      "collection": "fresh_primary_capture",
+      "section_manifest": ".firecrawl/scopewatch-kb/guild/sources-manifest.json"
+    },
+    {
+      "section": "guild",
+      "url": "https://docs.guild.ai/guide/versions",
+      "capture": ".firecrawl/docs.guild.ai/guide/versions/index.md",
+      "sha256_current_file": "4f94d3c33353d5678ebaf2f18317fd07b047e458150d0a1c15c006fce7f123c6",
+      "publication_date": null,
+      "collection": "fresh_primary_capture",
+      "section_manifest": ".firecrawl/scopewatch-kb/guild/sources-manifest.json"
+    },
+    {
+      "section": "semgrep-pi",
+      "url": "https://docs.semgrep.dev/semgrep-guardian/overview",
+      "capture": ".firecrawl/docs.semgrep.dev/semgrep-guardian/overview/index.md",
+      "sha256_current_file": "cedbdf6efe505f9f4f861cdfd3c9fc3b8927c9d8ea54d409480672a0e6be1169",
+      "publication_date": null,
+      "collection": "normalized-cache-reuse",
+      "section_manifest": ".firecrawl/scopewatch-kb/semgrep-pi/sources.json"
+    },
+    {
+      "section": "semgrep-pi",
+      "url": "https://docs.semgrep.dev/semgrep-guardian/quickstart",
+      "capture": ".firecrawl/docs.semgrep.dev/semgrep-guardian/quickstart/index.md",
+      "sha256_current_file": "ab007741429079380df4e25fc22117ce27ef2a881b630e04e6df278f019d0ba5",
+      "publication_date": null,
+      "collection": "normalized-cache-reuse",
+      "section_manifest": ".firecrawl/scopewatch-kb/semgrep-pi/sources.json"
+    },
+    {
+      "section": "semgrep-pi",
+      "url": "https://docs.semgrep.dev/semgrep-guardian/rules-and-configuration",
+      "capture": ".firecrawl/docs.semgrep.dev/semgrep-guardian/rules-and-configuration/index.md",
+      "sha256_current_file": "dea728fc4ce8b9dc500bd60489d2dfb4536116d9a38293dcb5765dbcc1fe3a10",
+      "publication_date": null,
+      "collection": "normalized-cache-reuse",
+      "section_manifest": ".firecrawl/scopewatch-kb/semgrep-pi/sources.json"
+    },
+    {
+      "section": "semgrep-pi",
+      "url": "https://docs.semgrep.dev/semgrep-code/semgrep-pro-engine-intro",
+      "capture": ".firecrawl/docs.semgrep.dev/semgrep-code/semgrep-pro-engine-intro/index.md",
+      "sha256_current_file": "334c7f1631ae179b66c70599f6071ee8a8bac51df735af7898e223e9662ef103",
+      "publication_date": null,
+      "collection": "normalized-cache-reuse",
+      "section_manifest": ".firecrawl/scopewatch-kb/semgrep-pi/sources.json"
+    },
+    {
+      "section": "semgrep-pi",
+      "url": "https://semgrep.dev/blog/2026/introducing-semgrep-custom-workflows/",
+      "capture": ".firecrawl/semgrep.dev/blog/2026/introducing-semgrep-custom-workflows/index.md",
+      "sha256_current_file": "503e046766f7b39f80ba1f93a2c15fb0ad5cee3a3ff75f3b372b19b8e60943df",
+      "publication_date": "2026-03-18",
+      "collection": "normalized-cache-reuse",
+      "section_manifest": ".firecrawl/scopewatch-kb/semgrep-pi/sources.json"
+    },
+    {
+      "section": "semgrep-pi",
+      "url": "https://semgrep.dev/blog/2026/introducing-semgrep-agentic-workflows-automate-deep-vulnerability-hunting-at-scale/",
+      "capture": ".firecrawl/semgrep.dev/blog/2026/introducing-semgrep-agentic-workflows-automate-deep-vulnerability-hunting-at-scale/index.md",
+      "sha256_current_file": "00a5b23ee190be5667df11af7559fb7beff4d3baf988a10d656eadcd36c33ef3",
+      "publication_date": "2026-07-28",
+      "collection": "normalized-cache-reuse",
+      "section_manifest": ".firecrawl/scopewatch-kb/semgrep-pi/sources.json"
+    },
+    {
+      "section": "semgrep-pi",
+      "url": "https://semgrep.dev/blog/2026/introducing-malware-detection-and-response-automation",
+      "capture": ".firecrawl/semgrep.dev/blog/2026/introducing-malware-detection-and-response-automation/index.md",
+      "sha256_current_file": "5897e029d7115b5b0c705d841d326c6fb86a31e8edf07b002c0b76410cb19e49",
+      "publication_date": "2026-09-24",
+      "collection": "normalized-cache-reuse",
+      "section_manifest": ".firecrawl/scopewatch-kb/semgrep-pi/sources.json"
+    },
+    {
+      "section": "semgrep-pi",
+      "url": "https://www.pi.security/blog/powering-every-builder-with-security-context-pi-integrates-with-anthropics-compliance-api",
+      "capture": ".firecrawl/www.pi.security/blog/powering-every-builder-with-security-context-pi-integrates-with-anthropics-compliance-api/index.md",
+      "sha256_current_file": "1916a321acb3b6dfd2d65bf299a1f496ce19227ed2092b54d82376df77a9c81e",
+      "publication_date": "2026-09-29",
+      "collection": "normalized-cache-reuse",
+      "section_manifest": ".firecrawl/scopewatch-kb/semgrep-pi/sources.json"
+    },
+    {
+      "section": "semgrep-pi",
+      "url": "https://www.pi.security/customers/lemonade",
+      "capture": ".firecrawl/www.pi.security/customers/lemonade/index.md",
+      "sha256_current_file": "839aa606a4dda54ec90a8d9fd2ab4cb12b5f810d322d3ec28488ab20bbf9a6ea",
+      "publication_date": null,
+      "collection": "normalized-cache-reuse",
+      "section_manifest": ".firecrawl/scopewatch-kb/semgrep-pi/sources.json"
+    },
+    {
+      "section": "semgrep-pi",
+      "url": "https://semgrep.dev/blog/2026/claude-opus-5-5-susvibes-benchmark/",
+      "capture": ".firecrawl/semgrep.dev/blog/2026/claude-opus-5-5-susvibes-benchmark/index.md",
+      "sha256_current_file": "cf1a47c22d611e183bbccffe99bb4423dc90666e1805b5b9a8255502fb0be6eb",
+      "publication_date": "2026-09-29",
+      "collection": "normalized-cache-reuse",
+      "section_manifest": ".firecrawl/scopewatch-kb/semgrep-pi/sources.json"
+    },
+    {
+      "section": "semgrep-pi",
+      "url": "https://docs.semgrep.dev/semgrep-guardian/choose-your-setup",
+      "capture": ".firecrawl/docs.semgrep.dev/semgrep-guardian/choose-your-setup/index.md",
+      "sha256_current_file": "9b014f0bfcffefea32ad3ef038a9b1f436a4fe149bc3852a3920834cd6be26c2",
+      "publication_date": null,
+      "collection": "normalized-cache-reuse",
+      "section_manifest": ".firecrawl/scopewatch-kb/semgrep-pi/sources.json"
+    }
+  ],
+  "structured_release_data": {
+    "path": ".firecrawl/scopewatch-kb/releases/releases.json",
+    "provider": "github-com",
+    "capability": "repositories/releases",
+    "retrieved_records": 120,
+    "window_records": 68,
+    "window": [
+      "2026-09-09",
+      "2026-10-09"
+    ]
+  },
+  "limitations": [
+    "Curated capability reference, not complete mirrors of each vendor website.",
+    "Many existing Firecrawl captures reused with provenance; normalized today does not mean newly published or freshly fetched.",
+    "No product account, API-field population, performance, scanner detection or containment was tested.",
+    "One optional new Semgrep blog scrape reset; no excerpt-based date/ruleset conclusions adopted.",
+    "Pi event product access is unavailable; staging/version/auth facts require event-time checks."
+  ]
+}

@@ -1,0 +1,28 @@
+flowchart TB
+  N["Native event pages + task metadata<br/>Opaque IDs; native and observed clocks"] --> RAW["Persist raw observations + content hashes<br/>Source scope / generation; never overwrite"]
+  REG["Authenticated launch registry<br/>Actual acting subject, not root label"] --> MAP["Resolve actual subject / credential / operation<br/>Nested caller chain checked or unresolved"]
+  RAW --> KEY["Determine native identity domain<br/>Same-ID differing semantic fields = conflict"]
+  KEY --> DUP{"Exact repeat or conflict?"}
+  DUP -->|"Same fact"| ONE["One canonical event; delivery repeats retained"]
+  DUP -->|"Changed actor/session/decision/time/credential"| BAD["Quarantine + invalidate dependent revision<br/>Never choose an arbitrary latest fact"]
+  ONE --> MAP
+  MAP --> READY{"Required mapping, clock and coverage proven?"}
+  READY -->|"No"| GAP["INCOMPLETE / UNKNOWN<br/>No safe zero; no privileged target selection"]
+  READY -->|"Yes"| G["Freeze trusted native generation G<br/>Closed finite monitored cohort only"]
+  MAN["Operator-owned immutable manifest M<br/>20 / 60 illustrative allowances; W=600s"] --> SQL
+  G --> ACK["Publish / await ACK / exact ID-set readback<br/>Generation + manifest + coverage must match"]
+  ACK --> SQL["All-candidate aggregate at each required anchor<br/>(T-W,T]; count unique ALLOW identities"]
+  SQL --> RES["Manifest LEFT JOIN counts<br/>Includes zero actors and busier approved control"]
+  RES --> HIST["First historical crossing + peak witness<br/>Current count stored separately"]
+  HIST --> CASE["Immutable case/evidence revision<br/>Source IDs / window / allowance / query / coverage"]
+  LATE["Late fact / correction / conflict"] --> NEW["New generation; invalidate action eligibility<br/>Recompute affected candidate anchors"]
+  NEW --> G
+  BAD --> GAP
+  OUT["Optional exact native tool-outcome match<br/>Proven ID relationship + cardinality only"] -.-> CASE
+  REP["Replay ingestion, table namespace and role<br/>Cannot mint native provenance or approval"] -.-> BENCH["Labeled correctness/load experiment<br/>Never eligible for native policy action"]
+  classDef good fill:#eaf6f1,stroke:#28785e,color:#153e31;
+  classDef gap fill:#fff0ef,stroke:#bb5d55,color:#6e2c27;
+  classDef opt fill:#f5f6f8,stroke:#8e98a8,color:#475163,stroke-dasharray:5 4;
+  class ONE,G,ACK,SQL,RES,HIST,CASE good;
+  class BAD,GAP gap;
+  class OUT,REP,BENCH opt;

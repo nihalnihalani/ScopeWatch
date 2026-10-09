@@ -1,0 +1,466 @@
+{
+  "indexed_at_utc": "2026-10-09T09:55:50.834741+00:00",
+  "purpose": "ScopeWatch Guild contract research; no runtime/account operations",
+  "primary_public_openapi_url": "https://api.guild.ai/v1/openapi.yaml",
+  "raw_openapi_path": ".firecrawl/architecture-guild/public-openapi.yaml",
+  "no_public_policy_crud_path_observed": true,
+  "discovery_zero_result_query": "site:docs.guild.ai session security events credentials_id TaskAgent agent workspaces:read agents:read",
+  "files": [
+    {
+      "path": ".firecrawl/architecture-guild/account-api-keys.json",
+      "bytes": 10596,
+      "sha256": "ef503fef78ff2ea58e7874bc5f325e6045eec46d7b3988ba7c46b254f4348525",
+      "source_url": "https://docs.guild.ai/platform/api-keys",
+      "scrape_id": "01a1200e-8f1e-70cf-8de9-55ebc4c80908",
+      "status_code": 200,
+      "cache_state": "miss",
+      "cached_at": null,
+      "requested_max_age_ms": "default"
+    },
+    {
+      "path": ".firecrawl/architecture-guild/account-api-keys.md",
+      "bytes": 6098,
+      "sha256": "7edd438d40ca9dba42c2e9a2b04f80d70b53ddd936846540c8e111e497b31f92"
+    },
+    {
+      "path": ".firecrawl/architecture-guild/api-introduction-fresh.json",
+      "bytes": 9066,
+      "sha256": "bd131466badf06f0ff8c97aca594ef03012d8fc008fdc64701249b616cb20768",
+      "source_url": "https://docs.guild.ai/api-reference/introduction.md",
+      "scrape_id": "01a12010-fb29-7527-b18c-1926a94091c8",
+      "status_code": 200,
+      "cache_state": null,
+      "cached_at": null,
+      "requested_max_age_ms": 0
+    },
+    {
+      "path": ".firecrawl/architecture-guild/api-introduction-fresh.md",
+      "bytes": 7993,
+      "sha256": "cd3f41e4ac539fc3ad94029b706e237ca9b4457223d02353bf6e2c67b8449e7a"
+    },
+    {
+      "path": ".firecrawl/architecture-guild/api-introduction.json",
+      "bytes": 21901,
+      "sha256": "eb8b33a6f36e6f2e42b9e40ca756e1d70779c9779d546baf9503e464010d9a0e",
+      "source_url": "https://docs.guild.ai/api-reference/introduction",
+      "scrape_id": "01a1200e-597f-729f-ae36-82a1848b35ef",
+      "status_code": 200,
+      "cache_state": "miss",
+      "cached_at": null,
+      "requested_max_age_ms": "default"
+    },
+    {
+      "path": ".firecrawl/architecture-guild/api-introduction.md",
+      "bytes": 15056,
+      "sha256": "52b3301c9b8cc4798ded2f871c21691fb5ff8b46244a90fdcbb076e99fd4f759"
+    },
+    {
+      "path": ".firecrawl/architecture-guild/api-triggers-fresh.json",
+      "bytes": 17405,
+      "sha256": "7a9511d9e7aff987e7c491647fcf34bc78286f0ca7ed83f2e3fa9347c0c267d9",
+      "source_url": "https://docs.guild.ai/platform/api-triggers.md",
+      "scrape_id": "01a1200f-8062-71fc-85c2-9ca5c8fb8635",
+      "status_code": 200,
+      "cache_state": null,
+      "cached_at": null,
+      "requested_max_age_ms": 0
+    },
+    {
+      "path": ".firecrawl/architecture-guild/api-triggers-fresh.md",
+      "bytes": 15924,
+      "sha256": "9b59f415f41654af8a4f315ad5baf4a4cfe8bcdf86838fd67250da142e229f0d"
+    },
+    {
+      "path": ".firecrawl/architecture-guild/api-triggers.json",
+      "bytes": 29571,
+      "sha256": "8e072709eceabe95b6b9ad0bf6c2cdf3e336be6f1e7d251044ad85fe914687a1",
+      "source_url": "https://docs.guild.ai/platform/api-triggers",
+      "scrape_id": "01a1200d-ae8a-725f-9e06-4a1d4524017e",
+      "status_code": 200,
+      "cache_state": "miss",
+      "cached_at": null,
+      "requested_max_age_ms": "default"
+    },
+    {
+      "path": ".firecrawl/architecture-guild/api-triggers.md",
+      "bytes": 22686,
+      "sha256": "f1cd1c3355d1059a9d51bc5b75033119a8f39e171691044d1b2c32997840e83b"
+    },
+    {
+      "path": ".firecrawl/architecture-guild/audit-logs-fresh.json",
+      "bytes": 5213,
+      "sha256": "97543d9d1c5958379a96c705b8515b1a88e38fad9abbcee074f78f968501fab6",
+      "source_url": "https://docs.guild.ai/insights/audit-logs.md",
+      "scrape_id": "01a12011-9014-712c-90ee-dd0f03485eed",
+      "status_code": 200,
+      "cache_state": null,
+      "cached_at": null,
+      "requested_max_age_ms": 0
+    },
+    {
+      "path": ".firecrawl/architecture-guild/audit-logs-fresh.md",
+      "bytes": 4523,
+      "sha256": "2136079e64e6be3bebf065d1efa66eb38539f91c8a0d36802f4bc5a326813d09"
+    },
+    {
+      "path": ".firecrawl/architecture-guild/caller-identity-schema.json",
+      "bytes": 10690,
+      "sha256": "dd43be189f88dd53f0cc8ffc1a17ce7635d0e26df6ed5bc7f982c8ece1a566cc",
+      "source_url": "https://docs.guild.ai/api-reference/accounts/identify-the-calling-key.md",
+      "scrape_id": "01a12015-da05-73dd-863c-2ae22ff18750",
+      "status_code": 200,
+      "cache_state": null,
+      "cached_at": null,
+      "requested_max_age_ms": 0
+    },
+    {
+      "path": ".firecrawl/architecture-guild/caller-identity-schema.md",
+      "bytes": 9857,
+      "sha256": "f6142b70e217a68885f034b4d89aafc608a8b134733cd842ce065467d83c4d3d"
+    },
+    {
+      "path": ".firecrawl/architecture-guild/credential-policies-fresh.json",
+      "bytes": 9019,
+      "sha256": "e96af714e1b8f59ad84f88aff968724e97df6eb687c99bca2a29007f8aa75136",
+      "source_url": "https://docs.guild.ai/platform/credential-policies.md",
+      "scrape_id": "01a1200f-3064-738e-8fe0-0f922664e1a4",
+      "status_code": 200,
+      "cache_state": null,
+      "cached_at": null,
+      "requested_max_age_ms": 0
+    },
+    {
+      "path": ".firecrawl/architecture-guild/credential-policies-fresh.md",
+      "bytes": 8272,
+      "sha256": "0ae079d9ab1ff79651bd7b017f1bda61595d8420258a9406545e4cdd00aae5a9"
+    },
+    {
+      "path": ".firecrawl/architecture-guild/credential-policies.json",
+      "bytes": 19371,
+      "sha256": "a6c4f09f8441bc99a7809318a8bedada979ceba6cc9ec5956a1c319f38bf34ef",
+      "source_url": "https://docs.guild.ai/platform/credential-policies",
+      "scrape_id": "01a1200d-ae7c-772c-b670-10acf6b0a60e",
+      "status_code": 200,
+      "cache_state": "miss",
+      "cached_at": null,
+      "requested_max_age_ms": "default"
+    },
+    {
+      "path": ".firecrawl/architecture-guild/credential-policies.md",
+      "bytes": 13989,
+      "sha256": "7763f5a5d17bbb0ec85284d075ebf256414a434acc617c838524bc831c1240f9"
+    },
+    {
+      "path": ".firecrawl/architecture-guild/credentials-fresh.json",
+      "bytes": 11088,
+      "sha256": "b7ad882a57e5fd19a7504d8e88e6190e6ed1edde212c3cf081d138fd7cf78d58",
+      "source_url": "https://docs.guild.ai/platform/credentials.md",
+      "scrape_id": "01a12010-fb1a-7519-8fa8-6ee83d7f3fd0",
+      "status_code": 200,
+      "cache_state": null,
+      "cached_at": null,
+      "requested_max_age_ms": 0
+    },
+    {
+      "path": ".firecrawl/architecture-guild/credentials-fresh.md",
+      "bytes": 10121,
+      "sha256": "0a92f57f1c5eb096d7db69336ad1529718eca59bcd017cbd5a26ba609f1a6131"
+    },
+    {
+      "path": ".firecrawl/architecture-guild/credentials.json",
+      "bytes": 22515,
+      "sha256": "63214b80c67992b2867bcafef646a3666cec4358dbe646ace4238a48926894b2",
+      "source_url": "https://docs.guild.ai/platform/credentials",
+      "scrape_id": "01a1200e-596b-7479-9a97-570fe39d9208",
+      "status_code": 200,
+      "cache_state": "miss",
+      "cached_at": null,
+      "requested_max_age_ms": "default"
+    },
+    {
+      "path": ".firecrawl/architecture-guild/credentials.md",
+      "bytes": 16555,
+      "sha256": "cd6a96fbf0daa26039e406ad0e8db7f5b091139f7b355c1d3998454a5516b7fd"
+    },
+    {
+      "path": ".firecrawl/architecture-guild/developer-contracts.json",
+      "bytes": 10429,
+      "sha256": "4789854f391573cf4b245de8110a429aff32f67f50d81b1a6ad74f98c0c8fad9",
+      "discovery_source_urls": [
+        "https://github.com/triggerdotdev/trigger.dev/blob/f9595b55ec3462eece67becf6e59ab43775111a0/docs/ai-chat/sessions.mdx",
+        "https://trigger.dev/docs/ai-chat/sessions",
+        "https://www.guild.ai/blog/ai-insights/how-to-manage-ai-agents-at-scale-without-losing-control",
+        "https://www.guild.ai/blog/engineering/guild-api-announcement",
+        "https://github.com/traderalice/openalice/blob/87bc415260aaac92a072d89a1c6440268a3efdf1/docs/managed-workspace-runtime.md",
+        "https://www.guild.ai/solutions/developers",
+        "https://github.com/openclaw/openclaw/issues/165330",
+        "https://github.com/rmusser01/tldw_server/blob/75cc3eed14d550aee08d47cd6373c0509dfa84a8/Docs/superpowers/specs/2026-07-10-single-user-api-key-device-persistence-design.md"
+      ]
+    },
+    {
+      "path": ".firecrawl/architecture-guild/developer-policy-mutation.json",
+      "bytes": 11947,
+      "sha256": "fc3c7bb544ea6354fbca9d6a1c9631af12fbe6c1e399838038b0cee7b08cd3c8",
+      "discovery_source_urls": [
+        "https://docs.cloud.google.com/iam/docs/reference/rest",
+        "https://www.guild.ai/product/ai-governance",
+        "https://docs.guild.ai/platform/credentials",
+        "https://www.guild.ai/blog/engineering/guild-api-announcement",
+        "https://github.com/deckhouse/website-stronghold/blob/0131431ab1e79db3cf1d572b7f5a73f7af39542f/content/documentation/reference/api/auth.md",
+        "https://www.guild.ai/blog/product/guild-works-with-your-credentials",
+        "https://github.com/fullsend-ai/fullsend/blob/d3a153a2fb16fc557160dde31b79b6ce3c9d0e23/docs/ADRs/0025-provider-credential-delivery-for-sandboxed-agents.md",
+        "https://github.com/simstudioai/sim/blob/b1b084ddb2262385dfba07e359818d084604e532/apps/docs/content/docs/api-reference/workflow-sync.mdx"
+      ]
+    },
+    {
+      "path": ".firecrawl/architecture-guild/discovery-notes.md",
+      "bytes": 1574,
+      "sha256": "dcf877bc76aa0b38427ddcf17feacc5d3a3ee7b74202a31226615dc5cfcd309e"
+    },
+    {
+      "path": ".firecrawl/architecture-guild/follow-up-schema.json",
+      "bytes": 23230,
+      "sha256": "a1f2a3d9fe242d562852d3f8e362d32f890213ea7d6d7e3616f919adf9f48add",
+      "source_url": "https://docs.guild.ai/api-reference/sessions/post-a-follow-up-event-to-a-session.md",
+      "scrape_id": "01a12015-aa01-7662-80b0-06bcc36bd2c9",
+      "status_code": 200,
+      "cache_state": null,
+      "cached_at": null,
+      "requested_max_age_ms": 0
+    },
+    {
+      "path": ".firecrawl/architecture-guild/follow-up-schema.md",
+      "bytes": 21894,
+      "sha256": "2013919f5ada1f33b323a37b86acf5be5aa0ab3f844f1c331fe51160a4655b97"
+    },
+    {
+      "path": ".firecrawl/architecture-guild/get-session-schema.json",
+      "bytes": 12588,
+      "sha256": "af4dc7432600b0c635a3d34f1567ffe1757570119c1c3d7eaca1e85d58a6119e",
+      "source_url": "https://docs.guild.ai/api-reference/sessions/get-a-session.md",
+      "scrape_id": "01a12015-a9b8-72cb-be17-0ce0a12ddc9c",
+      "status_code": 200,
+      "cache_state": null,
+      "cached_at": null,
+      "requested_max_age_ms": 0
+    },
+    {
+      "path": ".firecrawl/architecture-guild/get-session-schema.md",
+      "bytes": 11742,
+      "sha256": "168e99be6828940529c1edd3e258908887994e2df0b0a4242cdf553fc3851bde"
+    },
+    {
+      "path": ".firecrawl/architecture-guild/get-workspace-schema.json",
+      "bytes": 13108,
+      "sha256": "894ee9714b417132f35d13151ad3f0edc2a26a8ea5a091145cda35ba200ded93",
+      "source_url": "https://docs.guild.ai/api-reference/workspaces/get-a-workspace.md",
+      "scrape_id": "01a12011-8ff9-72c9-8890-6288eaf69973",
+      "status_code": 200,
+      "cache_state": null,
+      "cached_at": null,
+      "requested_max_age_ms": 0
+    },
+    {
+      "path": ".firecrawl/architecture-guild/get-workspace-schema.md",
+      "bytes": 12223,
+      "sha256": "0eef8b6ee88195ac78f505e21c49eb7d439b1f2b2c7bedc9c99f853c7eda5f72"
+    },
+    {
+      "path": ".firecrawl/architecture-guild/github-fresh.json",
+      "bytes": 15797,
+      "sha256": "378acb6590339f80041ea150be5a8625aa17f7111d040c05ed7c83b5eabcabc3",
+      "source_url": "https://docs.guild.ai/integrations/github.md",
+      "scrape_id": "01a1200f-8099-7696-a0a1-1f37f1f2c23b",
+      "status_code": 200,
+      "cache_state": null,
+      "cached_at": null,
+      "requested_max_age_ms": 0
+    },
+    {
+      "path": ".firecrawl/architecture-guild/github-fresh.md",
+      "bytes": 14943,
+      "sha256": "00c29d11b9dcf2a308291aa65e31783ca38b9238c43d9fa5a7be78fdcb891e4c"
+    },
+    {
+      "path": ".firecrawl/architecture-guild/installed-agents-schema.json",
+      "bytes": 26292,
+      "sha256": "05eae9d8b396d78d1fcc691548d6569f877bb6ade8be508b233662c463cbfe76",
+      "source_url": "https://docs.guild.ai/api-reference/workspaces/list-a-workspaces-installed-agents.md",
+      "scrape_id": "01a1200f-d431-74ab-95d1-e2143d5cd4e3",
+      "status_code": 200,
+      "cache_state": null,
+      "cached_at": null,
+      "requested_max_age_ms": 0
+    },
+    {
+      "path": ".firecrawl/architecture-guild/installed-agents-schema.md",
+      "bytes": 24941,
+      "sha256": "328a63dd592ccbfce69d57212efc0c296331d8f5db784612539467c36206beda"
+    },
+    {
+      "path": ".firecrawl/architecture-guild/public-endpoints.json",
+      "bytes": 1703,
+      "sha256": "a58203645f3a376fe838dccc1d49caf0394e8bae58b59836e63f42c125823b4a"
+    },
+    {
+      "path": ".firecrawl/architecture-guild/public-openapi-raw.json",
+      "bytes": 146570,
+      "sha256": "5cf0a12cb7bf66e28b7e9f966719068f81a40a3a88c3cbfcfb30314d10fd1594",
+      "source_url": "https://api.guild.ai/v1/openapi.yaml",
+      "scrape_id": "01a12010-5ac8-729f-b70d-dcc2ba65515c",
+      "status_code": 200,
+      "cache_state": null,
+      "cached_at": null,
+      "requested_max_age_ms": 0
+    },
+    {
+      "path": ".firecrawl/architecture-guild/public-openapi.json",
+      "bytes": 104615,
+      "sha256": "bcb7343d284729999053060eed0c1d7bf2f6758238b405c7e9d18cf9001569a3",
+      "source_url": "https://api.guild.ai/v1/openapi.yaml",
+      "scrape_id": "01a1200f-305d-772d-aeb5-73dd51354a6f",
+      "status_code": 200,
+      "cache_state": null,
+      "cached_at": null,
+      "requested_max_age_ms": 0
+    },
+    {
+      "path": ".firecrawl/architecture-guild/public-openapi.md",
+      "bytes": 97604,
+      "sha256": "1f2658e2c6b33ba116b7ee492781d52ffefba702a1af93e5d0d591e01f565549"
+    },
+    {
+      "path": ".firecrawl/architecture-guild/public-openapi.yaml",
+      "bytes": 141112,
+      "sha256": "b564ee5a23a21cc0c7e7ac01ffd3f27a459935e72dfe78a0bf1969e821499012"
+    },
+    {
+      "path": ".firecrawl/architecture-guild/search-policy-auth.json",
+      "bytes": 4938,
+      "sha256": "02703be6528695f5254c2a83aa034313a104ea45ff53db9d4a3a065126d6f7b0",
+      "search_id": "01a1200d-8b8c-72d5-a31d-824c929ef1c3",
+      "discovery_source_urls": [
+        "https://docs.guild.ai/platform/credentials",
+        "https://docs.guild.ai/",
+        "https://docs.guild.ai/insights/connect-platforms",
+        "https://docs.guild.ai/integrations/overview",
+        "https://docs.guild.ai/sdk/tools",
+        "https://docs.guild.ai/quickstart",
+        "https://docs.guild.ai/cli/getting-started",
+        "https://docs.guild.ai/platform/integrations"
+      ]
+    },
+    {
+      "path": ".firecrawl/architecture-guild/security-architecture-fresh.json",
+      "bytes": 5540,
+      "sha256": "1faaf0d6238aa4f55a1db5c0ba696006080f6897aef0f7d506abe3e34d8f8576",
+      "source_url": "https://docs.guild.ai/platform/security-architecture.md",
+      "scrape_id": "01a1200f-d40f-778b-a8dd-64f2d17e05d6",
+      "status_code": 200,
+      "cache_state": null,
+      "cached_at": null,
+      "requested_max_age_ms": 0
+    },
+    {
+      "path": ".firecrawl/architecture-guild/security-architecture-fresh.md",
+      "bytes": 4333,
+      "sha256": "585170fa7f33cdd61afb75643d5e015d90f37a7ca7d47c70909b153274a3c452"
+    },
+    {
+      "path": ".firecrawl/architecture-guild/session-events-schema.json",
+      "bytes": 21223,
+      "sha256": "928796e948be42a3d0ca401383b22a5d31857b99af53dd94b8a027e146a12bdb",
+      "source_url": "https://docs.guild.ai/api-reference/sessions/fetch-session-events.md",
+      "scrape_id": "01a1200e-f676-7498-88db-1409116bbced",
+      "status_code": 200,
+      "cache_state": null,
+      "cached_at": null,
+      "requested_max_age_ms": 0
+    },
+    {
+      "path": ".firecrawl/architecture-guild/session-events-schema.md",
+      "bytes": 20023,
+      "sha256": "417694a6510af9e9fd3b3bbbc40c4145db4d424731b4ce42b7b651ba2ee76748"
+    },
+    {
+      "path": ".firecrawl/architecture-guild/session-events.json",
+      "bytes": 24838,
+      "sha256": "b7a75b63f5b28603e9f3635304855391abca8efa4986f07b14e8a44b49e60e3a",
+      "source_url": "https://docs.guild.ai/api-reference/sessions/fetch-session-events",
+      "scrape_id": "01a1200e-15f7-712b-a133-e4210cc0027d",
+      "status_code": 200,
+      "cache_state": "hit",
+      "cached_at": "2026-10-09T07:09:38.367Z",
+      "requested_max_age_ms": "default"
+    },
+    {
+      "path": ".firecrawl/architecture-guild/session-events.md",
+      "bytes": 14204,
+      "sha256": "594376854d78d23b4869a173a595c32b84646f3802f0435629d6eabfbc5d5b97"
+    },
+    {
+      "path": ".firecrawl/architecture-guild/session-tasks-schema.json",
+      "bytes": 8189,
+      "sha256": "2414dd887ed73f5aea30f5f40445725e1a92b1c8f599a4e221b30345a3ce7b02",
+      "source_url": "https://docs.guild.ai/api-reference/sessions/fetch-session-sub-tasks.md",
+      "scrape_id": "01a1200e-f72e-77f8-9696-1b8fab25bf90",
+      "status_code": 200,
+      "cache_state": null,
+      "cached_at": null,
+      "requested_max_age_ms": 0
+    },
+    {
+      "path": ".firecrawl/architecture-guild/session-tasks-schema.md",
+      "bytes": 7438,
+      "sha256": "ee18ab68d362ec613903178aabf59c8707d2b53dd6a4de81dc0e55f35bc7b740"
+    },
+    {
+      "path": ".firecrawl/architecture-guild/session-tasks.json",
+      "bytes": 21795,
+      "sha256": "a1f35d5f76fd92b60f557b7886d1efe88e51680432e22343ae9e59d69b282050",
+      "source_url": "https://docs.guild.ai/api-reference/sessions/fetch-session-sub-tasks",
+      "scrape_id": "01a1200e-1630-777b-b44c-96e435b96053",
+      "status_code": 200,
+      "cache_state": "hit",
+      "cached_at": "2026-10-09T07:33:43.958Z",
+      "requested_max_age_ms": "default"
+    },
+    {
+      "path": ".firecrawl/architecture-guild/session-tasks.md",
+      "bytes": 14136,
+      "sha256": "8aa2c6fe29e423a70c8058d5b8f4011fdbddb17d254543acfb4c9f8ba74d8be5"
+    },
+    {
+      "path": ".firecrawl/architecture-guild/start-session-account-schema.json",
+      "bytes": 14174,
+      "sha256": "ac71ee914d3b303cb8082eaabc5815c089d3075fb0ea1c96e6c54d6dd5a57cb2",
+      "source_url": "https://docs.guild.ai/api-reference/workspaces/start-a-session-in-a-workspace.md",
+      "scrape_id": "01a12010-5ab7-72ac-9691-e60f56af4cbe",
+      "status_code": 200,
+      "cache_state": null,
+      "cached_at": null,
+      "requested_max_age_ms": 0
+    },
+    {
+      "path": ".firecrawl/architecture-guild/start-session-account-schema.md",
+      "bytes": 13255,
+      "sha256": "2cf4cc8905849a9b9551828d363f228072a09466528dd1c83dee8374111508e7"
+    },
+    {
+      "path": ".firecrawl/architecture-guild/start-session-account.json",
+      "bytes": 29300,
+      "sha256": "51c2fafcb7b8f2ce08ebd2c7257c46658704ea95bc177fda81f59f1788313d3c",
+      "source_url": "https://docs.guild.ai/api-reference/workspaces/start-a-session-in-a-workspace",
+      "scrape_id": "01a1200e-8ee7-7682-aaf8-97e825ca1a95",
+      "status_code": 200,
+      "cache_state": "miss",
+      "cached_at": null,
+      "requested_max_age_ms": "default"
+    },
+    {
+      "path": ".firecrawl/architecture-guild/start-session-account.md",
+      "bytes": 18937,
+      "sha256": "cdcf7b08eadfee108c47aa5761250dd023f375dc524ef74a6612dbfc9041a943"
+    }
+  ]
+}

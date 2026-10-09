@@ -1,0 +1,45 @@
+stateDiagram-v2
+  [*] --> Collecting
+  Collecting --> EvidenceUnknown: missing page / mapping / active cohort
+  EvidenceUnknown --> Collecting: reconcile source evidence
+  Collecting --> Evaluated: complete frozen G + acknowledged analytical projection
+  Evaluated --> WithinObservedEnvelope: all qualified counts within allowances
+  Evaluated --> BreachRecorded: exact current or historical witness
+  BreachRecorded --> InvestigationPending
+  InvestigationPending --> ReviewReady: actual hosted context read + issue
+  InvestigationPending --> ReviewOnly: investigator unavailable / ungrounded
+  ReviewReady --> Rejected: human declines action
+  ReviewReady --> ApprovedAwaitingNativeAction: exact revision / scope approved
+  ApprovedAwaitingNativeAction --> Stale: evidence or scope revision changes
+  Stale --> Collecting: re-evaluate and require new review
+  ApprovedAwaitingNativeAction --> ApplyUnknown: native action reported / outcome unknown
+  ApprovedAwaitingNativeAction --> VerificationPending: native rule evidence recorded
+  ApplyUnknown --> VerificationPending: reconcile actual native rule state
+  VerificationPending --> VerifiedMatchingRestriction: target refused + fresh control succeeds
+  VerificationPending --> VerificationFailed: target succeeds / both fail / wrong scope
+  VerificationPending --> VerificationUnknown: missing genuine outcome
+  VerificationFailed --> ReviewReady: corrected concrete scope requires review
+  VerificationUnknown --> VerificationPending: retry bounded fresh probes
+  VerifiedMatchingRestriction --> RecoveryReview: human requests restoration
+  VerifiedMatchingRestriction --> EvidenceDisputed: late integrity conflict / changed dependent evidence
+  EvidenceDisputed --> ReviewOnly: preserve effect receipt / operator re-evaluates scope
+  RecoveryReview --> RecoveryVerificationPending: reviewed removal + native readback
+  RecoveryVerificationPending --> RestoredMatchingCapability: fresh target AND control expected results
+  RecoveryVerificationPending --> RecoveryFailed: either expected operation fails
+  RecoveryVerificationPending --> RecoveryUnknown: genuine result missing
+  RecoveryUnknown --> RecoveryVerificationPending: reconcile / bounded fresh probes
+  RecoveryFailed --> RecoveryReview: review corrected restoration scope
+  note right of WithinObservedEnvelope
+    Provisional for captured finite cohort.
+    No finality / global-safe / malicious-intent claim.
+  end note
+  note right of VerifiedMatchingRestriction
+    Verified at observed time for matching calls.
+    No in-flight rollback or universal sandbox.
+    Aging count never automatically removes policy.
+  end note
+  note right of EvidenceDisputed
+    Do not erase the historical effect receipt.
+    Do not automatically remove the native DENY.
+    Its supporting case now requires new review.
+  end note

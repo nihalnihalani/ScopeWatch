@@ -1,0 +1,169 @@
+{
+  "goal": "reference",
+  "depth": "thorough",
+  "sources": [
+    {
+      "source_url": "https://docs.semgrep.dev/semgrep-guardian/overview",
+      "capture_time_basis": "existing raw file mtime",
+      "captured_at": "2026-10-08T19:25:36.675599+00:00",
+      "normalized_at": "2026-10-09T07:47:21.932048+00:00",
+      "reuse_of": ".firecrawl/semgrep-pi-guardian-overview.md",
+      "source_kind": "current documentation",
+      "published_date": null,
+      "normalization": "trim preamble before first level-one heading; preserve remaining markdown examples/tables",
+      "raw_sha256": "36c039c8672d113061164fcefb8e32ad4eb2803a3cc1877cf5d9011f0ca47123",
+      "body_sha256": "0f08eabf3affa43e02fa9c2f63ab0ecc4da58dd3340ceeab07641d1e7fb2a1f2",
+      "path": ".firecrawl/docs.semgrep.dev/semgrep-guardian/overview/index.md",
+      "purpose": "Guardian integration and generation-time findings"
+    },
+    {
+      "source_url": "https://docs.semgrep.dev/semgrep-guardian/quickstart",
+      "capture_time_basis": "existing raw file mtime",
+      "captured_at": "2026-10-08T19:25:27.199797+00:00",
+      "normalized_at": "2026-10-09T07:47:21.932869+00:00",
+      "reuse_of": ".firecrawl/semgrep-pi-guardian-quickstart.md",
+      "source_kind": "current documentation",
+      "published_date": null,
+      "normalization": "trim preamble before first level-one heading; preserve remaining markdown examples/tables",
+      "raw_sha256": "a03839a85fc44deac414fd11490ac8ec211314621343e00c1c1eeb7bd486b061",
+      "body_sha256": "2967ea934ced53e93ce7023911c5687d15d6a17636f6f496cf90d72a14414e67",
+      "path": ".firecrawl/docs.semgrep.dev/semgrep-guardian/quickstart/index.md",
+      "purpose": "Remote OAuth plugin setup and surfaces"
+    },
+    {
+      "source_url": "https://docs.semgrep.dev/semgrep-guardian/rules-and-configuration",
+      "capture_time_basis": "existing raw file mtime",
+      "captured_at": "2026-10-08T19:25:44.055561+00:00",
+      "normalized_at": "2026-10-09T07:47:21.933286+00:00",
+      "reuse_of": ".firecrawl/semgrep-pi-guardian-rules.md",
+      "source_kind": "current documentation",
+      "published_date": null,
+      "normalization": "trim preamble before first level-one heading; preserve remaining markdown examples/tables",
+      "raw_sha256": "6b25e1f49f3cae14f9457c244d990272c21b5550bf6b7a9d16df4efb24d65a68",
+      "body_sha256": "d86740fa3bd3e13adf42982d446c94f65d92cdc4747d6854b84dd91aca7e645b",
+      "path": ".firecrawl/docs.semgrep.dev/semgrep-guardian/rules-and-configuration/index.md",
+      "purpose": "Fixed remote default versus policy-aware local paths"
+    },
+    {
+      "source_url": "https://docs.semgrep.dev/semgrep-code/semgrep-pro-engine-intro",
+      "capture_time_basis": "existing raw file mtime",
+      "captured_at": "2026-10-08T19:26:03.854505+00:00",
+      "normalized_at": "2026-10-09T07:47:21.933868+00:00",
+      "reuse_of": ".firecrawl/semgrep-pi-pro-analysis.md",
+      "source_kind": "current documentation",
+      "published_date": null,
+      "normalization": "trim preamble before first level-one heading; preserve remaining markdown examples/tables",
+      "raw_sha256": "5f6b2abd7746b9058d32c929ebe55486212c75c4d18c658781ae23d9e2a6e2cf",
+      "body_sha256": "3488b7c9426e0683bfc5047c12a1e77cbfa2b9432bbb290cb23d229489fff5dc",
+      "path": ".firecrawl/docs.semgrep.dev/semgrep-code/semgrep-pro-engine-intro/index.md",
+      "purpose": "CE versus proprietary analysis scope"
+    },
+    {
+      "source_url": "https://semgrep.dev/blog/2026/introducing-semgrep-custom-workflows/",
+      "capture_time_basis": "existing raw file mtime",
+      "captured_at": "2026-10-08T19:25:52.199853+00:00",
+      "normalized_at": "2026-10-09T07:47:21.934546+00:00",
+      "reuse_of": ".firecrawl/semgrep-pi-custom-workflows.md",
+      "source_kind": "dated release",
+      "published_date": "2026-03-18",
+      "normalization": "trim preamble before first level-one heading; preserve remaining markdown examples/tables",
+      "raw_sha256": "733e9eb34685e7a3b578cba6e742562d9434f8a17b86e3a33c5a1d704e6e8b67",
+      "body_sha256": "9cbc570505a92e1c68f9742e8f0954c8170dd61a6ad8c8fa63c332a5b34740ba",
+      "path": ".firecrawl/semgrep.dev/blog/2026/introducing-semgrep-custom-workflows/index.md",
+      "purpose": "Private-beta custom workflow SDK; outside recent window"
+    },
+    {
+      "source_url": "https://semgrep.dev/blog/2026/introducing-semgrep-agentic-workflows-automate-deep-vulnerability-hunting-at-scale/",
+      "capture_time_basis": "existing raw file mtime",
+      "captured_at": "2026-10-08T19:26:10.463308+00:00",
+      "normalized_at": "2026-10-09T07:47:21.935123+00:00",
+      "reuse_of": ".firecrawl/semgrep-pi-agentic-workflows.md",
+      "source_kind": "dated release",
+      "published_date": "2026-07-28",
+      "normalization": "trim preamble before first level-one heading; preserve remaining markdown examples/tables",
+      "raw_sha256": "5b8a1aca164482ef313b934c3dc1a8b2597ce7863fa19fa22826e07147f6aca0",
+      "body_sha256": "cfbf4c7b108d84f41ddc124c9ab02a5319cfdd72742dd286cef1fc8159ae47d0",
+      "path": ".firecrawl/semgrep.dev/blog/2026/introducing-semgrep-agentic-workflows-automate-deep-vulnerability-hunting-at-scale/index.md",
+      "purpose": "Public-beta prebuilt workflows for customers; outside recent window"
+    },
+    {
+      "source_url": "https://semgrep.dev/blog/2026/introducing-malware-detection-and-response-automation",
+      "capture_time_basis": "existing raw file mtime",
+      "captured_at": "2026-10-08T19:26:59.164905+00:00",
+      "normalized_at": "2026-10-09T07:47:21.935554+00:00",
+      "reuse_of": ".firecrawl/semgrep-pi-malware-sep24.md",
+      "source_kind": "dated release",
+      "published_date": "2026-09-24",
+      "normalization": "trim preamble before first level-one heading; preserve remaining markdown examples/tables",
+      "raw_sha256": "17f26a01c7ce98cdc63d36931d1c448fb4961de9ce5bcef0f4834d3819a32c9a",
+      "body_sha256": "31fdae8519d4c3169cf442cb49ed20d9ca73f05a5513c5d004261996a221a1a9",
+      "path": ".firecrawl/semgrep.dev/blog/2026/introducing-malware-detection-and-response-automation/index.md",
+      "purpose": "Malware automation and private-beta Guardian firewall"
+    },
+    {
+      "source_url": "https://www.pi.security/blog/powering-every-builder-with-security-context-pi-integrates-with-anthropics-compliance-api",
+      "capture_time_basis": "existing raw file mtime",
+      "captured_at": "2026-10-08T19:26:39.241581+00:00",
+      "normalized_at": "2026-10-09T07:47:21.935961+00:00",
+      "reuse_of": ".firecrawl/semgrep-pi-compliance-sep29.md",
+      "source_kind": "dated release",
+      "published_date": "2026-09-29",
+      "normalization": "trim preamble before first level-one heading; preserve remaining markdown examples/tables",
+      "raw_sha256": "481dd388de6c2b570df59fdd2afabba06c7bed5f226e797273db420d3cf5d8b0",
+      "body_sha256": "2390d0a7afdff7dc5845559f6fdc9de415fa9a8397e406ee58ab0bd5b55818d9",
+      "path": ".firecrawl/www.pi.security/blog/powering-every-builder-with-security-context-pi-integrates-with-anthropics-compliance-api/index.md",
+      "purpose": "Session context and guidance; no event product access"
+    },
+    {
+      "source_url": "https://www.pi.security/customers/lemonade",
+      "capture_time_basis": "existing raw file mtime",
+      "captured_at": "2026-10-08T19:26:45.061080+00:00",
+      "normalized_at": "2026-10-09T07:47:21.936295+00:00",
+      "reuse_of": ".firecrawl/semgrep-pi-lemonade.md",
+      "source_kind": "customer/vendor case study",
+      "published_date": null,
+      "normalization": "trim preamble before first level-one heading; preserve remaining markdown examples/tables",
+      "raw_sha256": "93386a39988c5df4dd073719845e787d858a9e2be9f9481eba0d3af5604552fa",
+      "body_sha256": "524a4fdb8f75fd63157369c5dea411db936e5ae8fd952f68d53ca54bbb5cf5bc",
+      "path": ".firecrawl/www.pi.security/customers/lemonade/index.md",
+      "purpose": "Reproduction, variants and recurrence prior art"
+    },
+    {
+      "source_url": "https://semgrep.dev/blog/2026/claude-opus-5-5-susvibes-benchmark/",
+      "capture_time_basis": "existing raw file mtime",
+      "captured_at": "2026-10-08T20:00:32.463977+00:00",
+      "normalized_at": "2026-10-09T07:47:21.936759+00:00",
+      "reuse_of": ".firecrawl/completion-root-susvibes-september.md",
+      "source_kind": "dated research",
+      "published_date": "2026-09-29",
+      "normalization": "trim preamble before first level-one heading; preserve remaining markdown examples/tables",
+      "raw_sha256": "b135f253647cc0b1e364c8ef378de8527e617ab142061cf09d9fa4f24fd422ca",
+      "body_sha256": "efa9a3275699b6394ecdae068732ebc9e91ba733cfa8ba6dff9fcbbb78f2d79f",
+      "path": ".firecrawl/semgrep.dev/blog/2026/claude-opus-5-5-susvibes-benchmark/index.md",
+      "purpose": "Separate functional/security checks; limited benchmark"
+    },
+    {
+      "source_url": "https://docs.semgrep.dev/semgrep-guardian/choose-your-setup",
+      "captured_at": "2026-10-09T07:57:20.048321+00:00",
+      "capture_time_basis": "raw CLI output file mtime",
+      "source_kind": "current documentation",
+      "published_date": null,
+      "raw_capture": ".firecrawl/scopewatch-kb/semgrep-pi/choose-your-setup-new.md",
+      "raw_sha256": "887638a733c6b816fb8ff01ff685bec786465e9acdf508706d3f68786375159e",
+      "body_sha256": "e2cab847dc46ddb7e34683188ddc5ccfac2e679f074e6b7a8762bb2c2cd0cf2f",
+      "normalization": "trim preamble before first H1; preserve examples and tables",
+      "path": ".firecrawl/docs.semgrep.dev/semgrep-guardian/choose-your-setup/index.md",
+      "purpose": "Remote versus local authentication, credential and ruleset selection"
+    }
+  ],
+  "failed_fetches": [
+    {
+      "url": "https://semgrep.dev/blog/2026/getting-ready-for-mythos-with-semgrep/",
+      "error": "CLI read ECONNRESET; only discovery search excerpt was inspected; no release-date or exact-rule claims adopted."
+    },
+    {
+      "url": "https://docs.semgrep.dev/semgrep-guardian/choose-your-setup",
+      "error": "Initial parallel scrape reset; one sequential retry succeeded."
+    }
+  ]
+}

@@ -1,0 +1,111 @@
+[
+  {
+    "url": "https://docs.guild.ai/api-reference/sessions/fetch-session-events",
+    "capture": ".firecrawl/docs.guild.ai/api-reference/sessions/fetch-session-events/index.md",
+    "original_capture": ".firecrawl/runtime-guild-events.md",
+    "status": "reused_prior_capture",
+    "sha256": "81256aafc8dbe6145bb697fc8c3457e3ddfc2b07ef3ebed3d9dae06625a7d3ed"
+  },
+  {
+    "url": "https://docs.guild.ai/platform/api-triggers",
+    "capture": ".firecrawl/docs.guild.ai/platform/api-triggers/index.md",
+    "original_capture": ".firecrawl/click-guild-guild-api-triggers.md",
+    "status": "reused_prior_capture",
+    "sha256": "6f9b5d3c6a7de1b47869db2e5f4c908db47d94be583b15d64500544ad7642c10"
+  },
+  {
+    "url": "https://docs.guild.ai/platform/credential-policies",
+    "capture": ".firecrawl/docs.guild.ai/platform/credential-policies/index.md",
+    "original_capture": ".firecrawl/click-guild-guild-policies.md",
+    "status": "reused_prior_capture",
+    "sha256": "ac3f428c38fbbc84520fd53646762a5ef233a40d5a439f9178c80ccc6d045489"
+  },
+  {
+    "url": "https://docs.guild.ai/platform/security-architecture",
+    "capture": ".firecrawl/docs.guild.ai/platform/security-architecture/index.md",
+    "original_capture": ".firecrawl/click-guild-guild-security.md",
+    "status": "reused_prior_capture",
+    "sha256": "1d487f6c4cffaac0874368f13aa289ae1f942deabe82bab827bd6c8db63537e2"
+  },
+  {
+    "url": "https://docs.guild.ai/quickstart",
+    "capture": ".firecrawl/docs.guild.ai/quickstart/index.md",
+    "original_capture": ".firecrawl/click-guild-guild-quickstart.md",
+    "status": "reused_prior_capture",
+    "sha256": "ed18e9a83f3ff5af5c85d0c00bb3ea724dc0d5a9fd1f7b7889479a849bb5dda4"
+  },
+  {
+    "url": "https://docs.guild.ai/guide/coded-agents",
+    "capture": ".firecrawl/docs.guild.ai/guide/coded-agents/index.md",
+    "original_capture": ".firecrawl/click-guild-guild-coded-agents.md",
+    "status": "reused_prior_capture",
+    "sha256": "8af139ce70086cba7c20ddf23dececad5190c2b1ae36c1dd65afac726fd892cb"
+  },
+  {
+    "url": "https://docs.guild.ai/api-reference/sessions/fetch-session-sub-tasks",
+    "fetched_url": "https://docs.guild.ai/api-reference/sessions/fetch-session-sub-tasks",
+    "capture": ".firecrawl/docs.guild.ai/api-reference/sessions/fetch-session-sub-tasks/index.md",
+    "raw_json": ".firecrawl/scopewatch-guild-subtasks-2026-10-09.json",
+    "status": "fresh_primary_capture",
+    "collected_on": "2026-10-09",
+    "http_status": 200,
+    "scrape_id": "01a11f95-0050-70d9-88bc-96271ad04080",
+    "sha256": "11e1245ec8776d04d1570ea02d2afc755abfb64127902b1d42135d65606f959b",
+    "full_schema_capture": ".firecrawl/docs.guild.ai/api-reference/sessions/fetch-session-sub-tasks/index-schema.md"
+  },
+  {
+    "url": "https://docs.guild.ai/integrations/github",
+    "fetched_url": "https://docs.guild.ai/integrations/github",
+    "capture": ".firecrawl/docs.guild.ai/integrations/github/index.md",
+    "raw_json": ".firecrawl/scopewatch-guild-github-2026-10-09.json",
+    "status": "fresh_primary_capture",
+    "collected_on": "2026-10-09",
+    "http_status": 200,
+    "scrape_id": "01a11f95-5201-76f1-aa29-24d4a7eea211",
+    "sha256": "96bdec5713d998933cf762d90fe0a12bab1d446aa226ce908642c636a405c1fe"
+  },
+  {
+    "url": "https://docs.guild.ai/platform/llm-settings",
+    "fetched_url": "https://docs.guild.ai/platform/llm-settings",
+    "capture": ".firecrawl/docs.guild.ai/platform/llm-settings/index.md",
+    "raw_json": ".firecrawl/scopewatch-guild-llm-settings-rendered-2026-10-09.json",
+    "status": "fresh_primary_capture",
+    "collected_on": "2026-10-09",
+    "http_status": 200,
+    "scrape_id": "01a11f97-faad-702b-aa03-287a70d1eb1f",
+    "sha256": "342c63e6e584eeee6328d40f8496c85b5e539309c7fe734d51f74ae2553d622b"
+  },
+  {
+    "url": "https://docs.guild.ai/platform/sessions",
+    "fetched_url": "https://docs.guild.ai/platform/sessions.md",
+    "capture": ".firecrawl/docs.guild.ai/platform/sessions/index.md",
+    "raw_json": ".firecrawl/scopewatch-guild-sessions-2026-10-09.json",
+    "status": "fresh_primary_capture",
+    "collected_on": "2026-10-09",
+    "http_status": 200,
+    "scrape_id": "01a11f96-5ba1-768e-ad2e-1e34cbf6119f",
+    "sha256": "bd98c31ec29a1a7981343e9efaff712819798e2e2a07bb1e28350575cfeaa02a"
+  },
+  {
+    "url": "https://docs.guild.ai/guide/native-agents",
+    "fetched_url": "https://docs.guild.ai/guide/native-agents",
+    "capture": ".firecrawl/docs.guild.ai/guide/native-agents/index.md",
+    "raw_json": ".firecrawl/scopewatch-guild-native-2026-10-09.json",
+    "status": "fresh_primary_capture",
+    "collected_on": "2026-10-09",
+    "http_status": 200,
+    "scrape_id": "01a11f96-9aa9-7669-a7cb-e54a6c65dae7",
+    "sha256": "616774a45535cd97341cb6b90057ebad7b329c7ace9c227305922f580c8ae727"
+  },
+  {
+    "url": "https://docs.guild.ai/guide/versions",
+    "fetched_url": "https://docs.guild.ai/guide/versions.md",
+    "capture": ".firecrawl/docs.guild.ai/guide/versions/index.md",
+    "raw_json": ".firecrawl/scopewatch-guild-versions-2026-10-09.json",
+    "status": "fresh_primary_capture",
+    "collected_on": "2026-10-09",
+    "http_status": 200,
+    "scrape_id": "01a11f96-e5cc-77ac-bcf4-b8e212aca8b7",
+    "sha256": "4f94d3c33353d5678ebaf2f18317fd07b047e458150d0a1c15c006fce7f123c6"
+  }
+]

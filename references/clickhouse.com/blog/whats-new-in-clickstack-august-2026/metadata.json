@@ -1,0 +1,14 @@
+{
+  "id": "C01",
+  "url": "https://clickhouse.com/blog/whats-new-in-clickstack-august-2026",
+  "title": "ClickStack August 2026 update",
+  "publication_date": "2026-09-16",
+  "observed_on": "2026-10-09",
+  "source_type": "first-party",
+  "recency_class": "recent-release",
+  "collection": "reused-cache",
+  "raw_markdown": ".firecrawl/clickhouse.com/blog/whats-new-in-clickstack-august-2026/index.md",
+  "capture_origin": ".firecrawl/click-guild-clickstack-aug26.md",
+  "sha256_original_markdown": "ab7c5a052c3aaf7a200852892fb4c3850a7e064a300a8f44373f05df29139866",
+  "firecrawl_metadata": {}
+}

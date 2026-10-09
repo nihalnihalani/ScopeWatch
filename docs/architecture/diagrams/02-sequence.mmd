@@ -1,0 +1,58 @@
+sequenceDiagram
+  autonumber
+  actor O as Operator
+  participant C as Controller / journal
+  participant W as Two Guild workloads
+  participant G as Guild policy / native API
+  participant R as Owned GitHub
+  participant D as ClickHouse
+  participant I as Guild investigator
+  O->>C: Pin manifest, actual identities, allowances, operation, start
+  C->>G: Launch allowlisted fresh tasks with server-held trigger key
+  G-->>C: Actual session / task identity
+  C->>C: Persist verified launch registry
+  loop Controlled finite short turns
+    W->>G: Request selected operation
+    G->>G: Resolve actual subject / credential — evaluate native policy
+    G->>R: Execute only when permitted
+    R-->>W: Actual result or failure
+  end
+  Note over W,G: ALLOW is permission, not successful content retrieval.<br/>Durable event visibility follows completed turns.
+  C->>G: Collect complete event pages + required task graph
+  G-->>C: Native facts, nullable fields, task links
+  C->>C: Verify actor / credential — detect equal-ID conflicts<br/>Freeze cohort coverage and generation G
+  C->>D: Publish canonical G + pinned manifest/coverage — await ACK
+  C->>D: Read back generation / canonical IDs / semantic digest
+  D-->>C: Exact expected analytical projection or admission fails
+  loop Exact current / historical event anchors
+    C->>D: Parameterized all-candidate query over (T-600s,T]
+    D-->>C: Every candidate, own allowance, count, source witness
+  end
+  C->>C: Persist immutable case/revision — keep historical breach
+  C->>I: Facts + pinned manifest reference + evidence limits
+  I->>G: Request allowed manifest read
+  G->>R: Read immutable version
+  R-->>I: Trusted manifest/context
+  I->>G: Request bounded incident creation
+  G->>R: Create explanatory issue
+  R-->>I: Actual issue-create tool result
+  C->>G: Collect investigator task/result evidence
+  G-->>C: Actual context-read / issue / native session evidence
+  C-->>O: Deterministic case + separate model narrative + exact scope
+  O->>C: Approve case revision / scope digest
+  C->>C: Local CAS — recheck evidence, manifest and coverage
+  O->>G: Apply reviewed native policy through UI / verified CLI
+  Note over C,G: No public credential-policy mutation REST contract assumed.<br/>Local CAS is not atomic with external native policy edits.
+  O->>C: Record applied-rule evidence
+  par Fresh target probe
+    C->>W: New target task requesting matching operation
+    W->>G: Actual request
+    G-->>W: Native DENY / real refusal
+  and Fresh legitimate control
+    C->>W: New approved task requesting expected fixture
+    W->>G: Actual request
+    G->>R: Allowed GitHub operation
+    R-->>W: Actual expected synthetic result
+  end
+  C->>C: Inspect both receipts — VERIFIED or FAILED / UNKNOWN
+  C-->>O: Restriction verified at observed time — residual scope explicit

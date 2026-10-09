@@ -1,0 +1,14 @@
+{
+  "id": "C03",
+  "url": "https://clickhouse.com/docs/concepts/features/materialized-views/incremental-materialized-view",
+  "title": "Incremental materialized views",
+  "publication_date": null,
+  "observed_on": "2026-10-09",
+  "source_type": "first-party",
+  "recency_class": "current-docs",
+  "collection": "reused-cache",
+  "raw_markdown": ".firecrawl/clickhouse.com/docs/concepts/features/materialized-views/incremental-materialized-view/index.md",
+  "capture_origin": ".firecrawl/click-guild-clickhouse-mv.md",
+  "sha256_original_markdown": "3aaf2c45f5067f72d0582517564ca14b75b4fb93f21aa695afedb779f07240dc",
+  "firecrawl_metadata": {}
+}

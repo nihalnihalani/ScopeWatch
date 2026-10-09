@@ -1,0 +1,14 @@
+{
+  "id": "C02",
+  "url": "https://clickhouse.com/blog/executable-udfs-generally-available-on-clickhouse-cloud",
+  "title": "Executable UDFs GA",
+  "publication_date": "2026-10-05",
+  "observed_on": "2026-10-09",
+  "source_type": "first-party",
+  "recency_class": "recent-release",
+  "collection": "reused-cache",
+  "raw_markdown": ".firecrawl/clickhouse.com/blog/executable-udfs-generally-available-on-clickhouse-cloud/index.md",
+  "capture_origin": ".firecrawl/click-guild-clickhouse-udf.md",
+  "sha256_original_markdown": "e14191748f93ff39fe3bd72bbfb9cde81e25f9b178dbaa45d07c1504da351b48",
+  "firecrawl_metadata": {}
+}

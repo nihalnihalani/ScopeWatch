@@ -1,0 +1,58 @@
+[
+  {
+    "slug": "01-system",
+    "file": "01-system.mmd",
+    "title": "System / trust boundaries",
+    "description": "Complete proposed path: lower-trust synthetic tickets, Guild-mediated credential use, trusted collection, exact ClickHouse evidence, contextual investigation, human native policy action and fresh effect verification. Separate development/research lanes never authorize runtime actions.",
+    "width": 3445,
+    "height": 975
+  },
+  {
+    "slug": "02-sequence",
+    "file": "02-sequence.mmd",
+    "title": "Execution / evidence / action",
+    "description": "Exact order of calls and observations. Durable evidence follows completed turns; generation readback precedes case admission. Native policy action is human UI or separately verified CLI. Both actual fresh outcomes are required.",
+    "width": 1517,
+    "height": 2862
+  },
+  {
+    "slug": "03-evidence",
+    "file": "03-evidence.mmd",
+    "title": "Evidence admission / analytics",
+    "description": "Canonicalize all source versions before actor, decision or time filters. Missing coverage and equal-ID conflicts never become compliant zero. Publish an immutable generation, verify readback, then calculate current and historical witnesses.",
+    "width": 944,
+    "height": 2482
+  },
+  {
+    "slug": "04-identity",
+    "file": "04-identity.mmd",
+    "title": "Native identity / credential scope",
+    "description": "Actual acting subject is proven through native event/task relationships, not copied from a root label. Credential resolver mode, grants and operation names are preflight gates. Both workloads must actually evaluate the same credential.",
+    "width": 2111,
+    "height": 768
+  },
+  {
+    "slug": "05-action-state",
+    "file": "05-action-state.mmd",
+    "title": "Action / recovery states",
+    "description": "Approval, observed native action and verified effect are distinct. Recovery has its own target-and-control success predicate. New integrity disputes preserve past effect receipts and require review; no automatic policy removal.",
+    "width": 2157,
+    "height": 1936
+  },
+  {
+    "slug": "06-deployment",
+    "file": "06-deployment.mmd",
+    "title": "Deployment / secrets / permissions",
+    "description": "One local backend and SQLite control journal; ClickHouse provides analytical evidence, Guild hosts agents, GitHub contains owned fixtures. Loopback operator interface and sanitized read-only export keep sponsor keys outside the browser and model.",
+    "width": 1601,
+    "height": 948
+  },
+  {
+    "slug": "07-claims-and-sponsors",
+    "file": "07-claims-and-sponsors.mmd",
+    "title": "Proof / sponsor contribution",
+    "description": "Native controlled case and labeled replay are separate. ClickHouse selects from actual evidence; Guild runs useful hosted work; Semgrep needs an authentic finding. Optional prompt influence requires a matched control. Pi has no runtime access dependency.",
+    "width": 2358,
+    "height": 758
+  }
+]

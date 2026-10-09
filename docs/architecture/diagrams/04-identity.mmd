@@ -1,0 +1,18 @@
+flowchart LR
+  L["Server-selected installed agent<br/>Verified workspace + returned native launch"] --> S["Actual session / root task<br/>Stored launch registry"]
+  S --> GRAPH["Native event.task_id → task graph<br/>Inspect acting agent and caller chain"]
+  GRAPH --> ACT{"Actual evaluated policy subject proven?"}
+  ACT -->|"Yes"| A["policy_subject_id<br/>Definition / installation IDs not interchangeable"]
+  ACT -->|"No"| U["Unresolved attribution<br/>Do not copy root agent label"]
+  EV["Native security event<br/>decision / operation / credentials_id"] --> CR["Actual evaluated credential binding<br/>Both workloads must match same ID"]
+  CR --> SEL["Credential selection context<br/>Grant → dedicated → acting member → workspace → account"]
+  SEL --> MODE["Verify SHARED / MEMBER mode<br/>Trigger has no human acting user"]
+  MODE --> K["Case key and action scope<br/>Workspace + actual subject + credential + operation"]
+  A --> K
+  EV --> OP["Evaluated operation contract<br/>SDK github_issues_get ≠ policy issues_get"]
+  OP --> K
+  MAN["Operator manifest reference + hash<br/>Explicit declared scope and allowance"] --> K
+  K --> POLICY["Human-reviewed native DENY<br/>Resource/method selectors only if evaluated"]
+  TXT["Untrusted model IDs / labels / purpose / ticket instructions"] -.-> IGN["Never identity or authorization authority"]
+  classDef gap fill:#fff0ef,stroke:#bb5d55,color:#6e2c27;
+  class U,IGN gap;

@@ -1,0 +1,94 @@
+{
+  "kind": "offline_algorithm_contract_check",
+  "database_queries_executed": false,
+  "guild_calls_executed": false,
+  "checks_passed": 19,
+  "checks": [
+    "30/20 target; busier 40/60 control stays compliant",
+    "identical repeated native IDs do not add units",
+    "new retry ID adds unit",
+    "conflict rejected before filtering: changed time",
+    "conflict rejected before filtering: changed session",
+    "conflict rejected before filtering: changed decision",
+    "null identity is a gap",
+    "strict lower boundary and inclusive upper tie group",
+    "all same-time events included in crossing witness",
+    "expired current window retains historical crossing",
+    "effective start inclusive excludes earlier preflight",
+    "empty complete candidate is exactly zero",
+    "failed ALLOW counts; DENY ERROR other operation credential excluded",
+    "nested B event in root A session attributes to event subject B",
+    "unresolved event binding cannot be an eligible actor",
+    "conflicting event actor bindings rejected",
+    "input order does not change witness",
+    "late unique records produce new historical crossing",
+    "1000 randomized sweep results equal independent brute-force windows"
+  ],
+  "support": {
+    "first": [
+      300,
+      21,
+      [
+        "s0",
+        "s1",
+        "s10",
+        "s11",
+        "s12",
+        "s13",
+        "s14",
+        "s15",
+        "s16",
+        "s17",
+        "s18",
+        "s19",
+        "s2",
+        "s20",
+        "s3",
+        "s4",
+        "s5",
+        "s6",
+        "s7",
+        "s8",
+        "s9"
+      ]
+    ],
+    "max": 30,
+    "current": 30
+  },
+  "control": {
+    "first": null,
+    "max": 40,
+    "current": 40
+  },
+  "late": {
+    "first": [
+      300,
+      21,
+      [
+        "s0",
+        "s1",
+        "s10",
+        "s11",
+        "s12",
+        "s13",
+        "s14",
+        "s15",
+        "s16",
+        "s17",
+        "s18",
+        "s19",
+        "s2",
+        "s20",
+        "s3",
+        "s4",
+        "s5",
+        "s6",
+        "s7",
+        "s8",
+        "s9"
+      ]
+    ],
+    "max": 30,
+    "current": 0
+  }
+}

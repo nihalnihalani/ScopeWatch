@@ -1,0 +1,22 @@
+{
+  "schema_version": "scopewatch-action/v1",
+  "template_only": true,
+  "action_id": null,
+  "case_id": null,
+  "case_revision": null,
+  "evidence_generation": null,
+  "manifest_sha256": null,
+  "scope": {"workspace_id": null, "actual_policy_subject_id": null, "evaluated_credential_id": null, "evaluated_operation": null, "verified_resource_selectors": null},
+  "scope_digest": null,
+  "scope_ready": false,
+  "operator_approval": {"operator": null, "time_utc": null, "approved_revision": null},
+  "native_application": {"route": null, "native_rule_id": null, "selector_readback": null, "actual_receipt_reference": null, "observed_at_utc": null},
+  "application_state": "not_applied",
+  "target_probe": {"native_session": null, "actual_subject_binding": null, "evaluated_credential_id": null, "decision": null, "reason_code": null, "result_evidence": null},
+  "control_probe": {"native_session": null, "actual_subject_binding": null, "evaluated_credential_id": null, "actual_expected_fixture_result": null, "inspected_evidence": null},
+  "verification_state": "unverified",
+  "verified_at_utc": null,
+  "residual_scope": [],
+  "external_admin_or_stale_manual_action_race": "not_atomic",
+  "recovery": {"separate_review": null, "native_removal_readback": null, "target_expected_result": null, "control_expected_result": null, "state": "not_requested"}
+}

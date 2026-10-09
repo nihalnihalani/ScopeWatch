@@ -1,0 +1,77 @@
+flowchart LR
+  subgraph GU["1 · Guild execution"]
+    direction TB
+    T["Owned GitHub synthetic tickets<br/>Lower-trust content; optional planted instruction"]
+    A["TicketAssist<br/>Illustrative allowance: 20 / 600s"]
+    B["ReleaseReview<br/>Illustrative allowance: 60 / 600s"]
+    V["Platform-held credential<br/>Both evaluated calls must use same actual ID"]
+    X["Native resolver + policy<br/>Actual acting subject / credential / operation"]
+    E["Native events + task graph<br/>Durable evidence after turn completion"]
+    T --> A
+    T --> B
+    A --> X
+    B --> X
+    V --> X
+    X --> E
+  end
+  subgraph CT["2 · Trusted controller"]
+    direction TB
+    L["Server-held launch / read keys<br/>Allowlisted native launch registry"]
+    C["Collector + event-specific binding<br/>Complete captured cohort; unknowns stay unknown"]
+    J[("SQLite control journal<br/>Raw snapshots · revisions · approval / action states")]
+    S["Canonical generation admission<br/>All-version conflict check before filters"]
+    L --> C
+    C --> J
+    J --> S
+  end
+  subgraph CH["3 · ClickHouse evidence"]
+    direction TB
+    D[("Raw / canonical generation + context<br/>Publish ACK + exact ID-set readback")]
+    Q["Parameterized all-candidate SQL<br/>Unique ALLOW count / own allowance"]
+    W["Historical event anchors + current window<br/>(T-600s,T]; preserve breach witness"]
+    M["Separate labeled diverse replay<br/>Measured query p50 / p95 / n; no action authority"]
+    D --> Q
+    Q --> W
+    M -.-> Q
+  end
+  subgraph IV["4 · Investigation / review"]
+    direction TB
+    PM["Operator-owned pinned manifest<br/>Immutable reference + content hash"]
+    K["Immutable actual case / revision<br/>Subject · credential · count · source witness"]
+    I["Real Guild-hosted investigator<br/>Read exact pinned context; create owned-repo issue"]
+    H["Operator browser / review gate<br/>Facts separate from narrative; exact scope digest"]
+    PM --> K
+    K --> I
+    I --> H
+  end
+  subgraph OP["5 · Native action / effect"]
+    direction TB
+    P["Human applies exact Guild DENY<br/>Native UI / verified CLI; no assumed REST mutation"]
+    F["Fresh target operation<br/>Actual native refusal for matching scope"]
+    B2["Fresh approved control<br/>Inspect actual expected synthetic result"]
+    Z["Receipt in journal + sanitized read-only demo<br/>Observed matching restriction / residual scope"]
+    P --> F
+    P --> B2
+    F --> Z
+    B2 --> Z
+  end
+  GU -->|"Authenticated finite snapshot fetch"| CT
+  CT -->|"TLS; trusted native publisher"| CH
+  CH -->|"Actual query-selected evidence"| IV
+  IV -->|"Authenticated case/revision approval"| OP
+  subgraph DV["Build / research only"]
+    direction TB
+    SG["Semgrep Guardian<br/>Same generated source; authentic finding / fix / rescan"]
+    FC["Firecrawl search → selected official references<br/>Research tooling; absent from runtime"]
+    PI["Pi innovation prize<br/>No event product access or runtime dependency"]
+  end
+  classDef trusted fill:#eaf6f1,stroke:#28785e,color:#153e31;
+  classDef guild fill:#f1edfc,stroke:#7252ad,color:#342457;
+  classDef analytics fill:#eaf3ff,stroke:#4375ae,color:#203c60;
+  classDef human fill:#fff4db,stroke:#aa7b29,color:#513a15;
+  classDef optional fill:#f5f6f8,stroke:#8e98a8,color:#475163,stroke-dasharray:5 4;
+  class L,C,J,S,K,PM trusted;
+  class A,B,X,V,E,I guild;
+  class D,Q,W,M analytics;
+  class H,P,F,B2,Z human;
+  class SG,FC,PI optional;

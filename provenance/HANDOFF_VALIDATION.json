@@ -1,0 +1,12 @@
+{
+  "validation_kind": "handoff_documentation_only",
+  "markdown_files": 210,
+  "json_files": 47,
+  "imported_artifacts": 271,
+  "diagram_sources": 7,
+  "diagram_exports": 14,
+  "sponsor_calls": false,
+  "application_tests": false,
+  "errors": [],
+  "passed": true
+}

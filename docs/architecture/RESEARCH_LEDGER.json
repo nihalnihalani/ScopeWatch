@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-09",
+  "method": "Firecrawl discovery; developer index for exact contracts; selected primary extraction",
+  "root_captures": [
+    {
+      "url": "https://docs.semgrep.dev/semgrep-guardian/rules-and-configuration",
+      "path": ".firecrawl/architecture-semgrep.md",
+      "sha256": "6b25e1f49f3cae14f9457c244d990272c21b5550bf6b7a9d16df4efb24d65a68",
+      "saved_at_utc": "2026-10-09T10:01:22.840795+00:00",
+      "provenance": "Firecrawl scrape; cache freshness not assumed from file save time"
+    },
+    {
+      "url": "https://nodejs.org/docs/latest-v24.x/api/sqlite.html",
+      "path": ".firecrawl/architecture-node-sqlite.md",
+      "sha256": "91177af5e68db2a4b8d66c094633af702e03b2b56119cd1d93bb0e2db2a4992f",
+      "saved_at_utc": "2026-10-09T10:00:46.593241+00:00",
+      "provenance": "Firecrawl scrape; cache freshness not assumed from file save time"
+    },
+    {
+      "url": "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html",
+      "path": ".firecrawl/architecture-csrf.md",
+      "sha256": "fcaa0bd483869ee85945bfadbc019195645cba337d2396944a217679a82a5ff4",
+      "saved_at_utc": "2026-10-09T10:01:23.584863+00:00",
+      "provenance": "Firecrawl scrape; cache freshness not assumed from file save time"
+    },
+    {
+      "url": "https://mermaid.js.org/config/usage.html",
+      "path": ".firecrawl/architecture-mermaid.md",
+      "sha256": "7c15f9c4ef8b122f60f308e674086cb188cd3e66e6cc8f7fede874d24abb9852",
+      "saved_at_utc": "2026-10-09T10:00:46.107196+00:00",
+      "provenance": "Firecrawl scrape; cache freshness not assumed from file save time"
+    }
+  ],
+  "specialist_manifests": [
+    ".firecrawl/architecture-guild/sources-manifest.json",
+    ".firecrawl/architecture-clickhouse/sources.json"
+  ],
+  "limitations": [
+    "Four first root scrape attempts hit rate limit; completed after retry",
+    "Native account behavior and ClickHouse SQL remain unexecuted",
+    "Offline algorithm checks and rendered diagrams do not certify live integration"
+  ]
+}

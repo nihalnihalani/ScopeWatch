@@ -1,0 +1,1905 @@
+{
+  "source_project": "sponsor-winners-research",
+  "date": "2026-10-09",
+  "files": [
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/architecture/ARCHITECTURE.md",
+      "destination": "docs/architecture/ARCHITECTURE.md",
+      "source_sha256": "b035c124ee7da2284c64528bc17f845fd3fa5f3033d7f8e8bb04db7ab77de86b",
+      "packaged_sha256": "e75a2621fd3bed3d7fe5c8b15f8834f6352297a23b736032e70528eb55b6fe10",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/architecture/ARCHITECTURE_REVIEW.md",
+      "destination": "docs/architecture/ARCHITECTURE_REVIEW.md",
+      "source_sha256": "30f1ee002693d6234d3fa76467fac286989bd35b5cba3940db334200e6820e0a",
+      "packaged_sha256": "673bc34cf1f9f96bf4d68d530c87ae3d357a519e861251f2627d2e5ed7c4ff10",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/architecture/CLICKHOUSE_CONTRACTS.md",
+      "destination": "docs/architecture/CLICKHOUSE_CONTRACTS.md",
+      "source_sha256": "2de33a18632a60081466bb75f91c10161a1629b72557c4167c6c4e9618141d2c",
+      "packaged_sha256": "323322153bc3ed0998ea506592636631cfdc3c975d99f1af40499760655379fd",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/architecture/GUILD_CONTRACTS.md",
+      "destination": "docs/architecture/GUILD_CONTRACTS.md",
+      "source_sha256": "21ff1a314beb9a0b2c74146d5b099d1d22acfbc09e8f760bee484dbf4a038be9",
+      "packaged_sha256": "21ff1a314beb9a0b2c74146d5b099d1d22acfbc09e8f760bee484dbf4a038be9",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/architecture/README.md",
+      "destination": "docs/architecture/README.md",
+      "source_sha256": "2aa1b000c78794e395d999ca9bbe28e43f45774756323cdad3a366641bf91bb9",
+      "packaged_sha256": "c099360e1c80a547ee9943ed8f0bd823ff980f8cff9e78887d6d901555c95e8f",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/architecture/RESEARCH_LEDGER.json",
+      "destination": "docs/architecture/RESEARCH_LEDGER.json",
+      "source_sha256": "bea15c4b7aa857933d233c77cf01f83fb6beccdec6030857eda97a9043e5e97b",
+      "packaged_sha256": "bea15c4b7aa857933d233c77cf01f83fb6beccdec6030857eda97a9043e5e97b",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/architecture/architecture.html",
+      "destination": "docs/architecture/architecture.html",
+      "source_sha256": "3785623308003135c63a23aa70c04cd9c714fda72d3b304c8658595f5cf4766e",
+      "packaged_sha256": "3785623308003135c63a23aa70c04cd9c714fda72d3b304c8658595f5cf4766e",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/architecture/diagrams/01-system.mmd",
+      "destination": "docs/architecture/diagrams/01-system.mmd",
+      "source_sha256": "be1c2b2621a74d86dc00c893a9d81bfc0a568d7dc78e8fb2314b0dd0d4c000d1",
+      "packaged_sha256": "be1c2b2621a74d86dc00c893a9d81bfc0a568d7dc78e8fb2314b0dd0d4c000d1",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/architecture/diagrams/02-sequence.mmd",
+      "destination": "docs/architecture/diagrams/02-sequence.mmd",
+      "source_sha256": "b4cc11ae5258bee375563099110dc3d4546b98340bd8eef16c2822923f43d483",
+      "packaged_sha256": "b4cc11ae5258bee375563099110dc3d4546b98340bd8eef16c2822923f43d483",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/architecture/diagrams/03-evidence.mmd",
+      "destination": "docs/architecture/diagrams/03-evidence.mmd",
+      "source_sha256": "69eda3171fd5f82ae77f829381d1f1cf004298c9116e81afcf41a288b38b0778",
+      "packaged_sha256": "69eda3171fd5f82ae77f829381d1f1cf004298c9116e81afcf41a288b38b0778",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/architecture/diagrams/04-identity.mmd",
+      "destination": "docs/architecture/diagrams/04-identity.mmd",
+      "source_sha256": "3d551bd1fb14d5dce70eaaba6f4ab1ea2210f3a17ce74ff7cad32fca517c3d9c",
+      "packaged_sha256": "3d551bd1fb14d5dce70eaaba6f4ab1ea2210f3a17ce74ff7cad32fca517c3d9c",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/architecture/diagrams/05-action-state.mmd",
+      "destination": "docs/architecture/diagrams/05-action-state.mmd",
+      "source_sha256": "7b9fd75e5910f0ad484e91049db9b8761a6ccad83db007f62765ab02aaabcc7e",
+      "packaged_sha256": "7b9fd75e5910f0ad484e91049db9b8761a6ccad83db007f62765ab02aaabcc7e",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/architecture/diagrams/06-deployment.mmd",
+      "destination": "docs/architecture/diagrams/06-deployment.mmd",
+      "source_sha256": "24712a7ea7f04196993060d3e7e6bc903a74cf113d5625644201115896a311b2",
+      "packaged_sha256": "24712a7ea7f04196993060d3e7e6bc903a74cf113d5625644201115896a311b2",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/architecture/diagrams/07-claims-and-sponsors.mmd",
+      "destination": "docs/architecture/diagrams/07-claims-and-sponsors.mmd",
+      "source_sha256": "0db356dff38a182a4a389438de7c7f2870bc97ba7a55dc167958f58876ddbb67",
+      "packaged_sha256": "0db356dff38a182a4a389438de7c7f2870bc97ba7a55dc167958f58876ddbb67",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/architecture/render-diagrams.cjs",
+      "destination": "docs/architecture/render-diagrams.cjs",
+      "source_sha256": "6545a2ac29ec365a946f2dd8e4ec64777d65b4a88437bcd66fda4ce1e82d2f93",
+      "packaged_sha256": "6545a2ac29ec365a946f2dd8e4ec64777d65b4a88437bcd66fda4ce1e82d2f93",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/architecture/rendered/01-system.png",
+      "destination": "docs/architecture/rendered/01-system.png",
+      "source_sha256": "e5ca2ea19da88e58a1446b51c49a26af4b9d29f92ad0fb272106c73357d7feae",
+      "packaged_sha256": "e5ca2ea19da88e58a1446b51c49a26af4b9d29f92ad0fb272106c73357d7feae",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/architecture/rendered/01-system.svg",
+      "destination": "docs/architecture/rendered/01-system.svg",
+      "source_sha256": "682e78a9bbe9eb79dbc08f4069ff024f9615414e9b2db653b4812f6c01ce50c8",
+      "packaged_sha256": "682e78a9bbe9eb79dbc08f4069ff024f9615414e9b2db653b4812f6c01ce50c8",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/architecture/rendered/02-sequence.png",
+      "destination": "docs/architecture/rendered/02-sequence.png",
+      "source_sha256": "0ec3b2a87e0003cab89fc71bc96796f69d12b6f40c20698e0ac5caa750270a87",
+      "packaged_sha256": "0ec3b2a87e0003cab89fc71bc96796f69d12b6f40c20698e0ac5caa750270a87",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/architecture/rendered/02-sequence.svg",
+      "destination": "docs/architecture/rendered/02-sequence.svg",
+      "source_sha256": "41e98ed247d5e3879f853b2d271de2584eea83d8f9f750b88993004cec3f95da",
+      "packaged_sha256": "41e98ed247d5e3879f853b2d271de2584eea83d8f9f750b88993004cec3f95da",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/architecture/rendered/03-evidence.png",
+      "destination": "docs/architecture/rendered/03-evidence.png",
+      "source_sha256": "c985cb35adbaa28104525b8330577d03560c5d15dceb6b75a7f775e2d199ddb8",
+      "packaged_sha256": "c985cb35adbaa28104525b8330577d03560c5d15dceb6b75a7f775e2d199ddb8",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/architecture/rendered/03-evidence.svg",
+      "destination": "docs/architecture/rendered/03-evidence.svg",
+      "source_sha256": "a8eadb5d7e3d76c65244e8f0356f4efd5d35beed194b200f6b84cb4761e3e1fc",
+      "packaged_sha256": "a8eadb5d7e3d76c65244e8f0356f4efd5d35beed194b200f6b84cb4761e3e1fc",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/architecture/rendered/04-identity.png",
+      "destination": "docs/architecture/rendered/04-identity.png",
+      "source_sha256": "cc545a265a1ba8b6208568569223fb1c2e593fad1d54bd28e6bab145d1e7db85",
+      "packaged_sha256": "cc545a265a1ba8b6208568569223fb1c2e593fad1d54bd28e6bab145d1e7db85",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/architecture/rendered/04-identity.svg",
+      "destination": "docs/architecture/rendered/04-identity.svg",
+      "source_sha256": "1c93430117782b53b11ad9d58e347de146d98f7ae7ef00448567c6cd2b996c91",
+      "packaged_sha256": "1c93430117782b53b11ad9d58e347de146d98f7ae7ef00448567c6cd2b996c91",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/architecture/rendered/05-action-state.png",
+      "destination": "docs/architecture/rendered/05-action-state.png",
+      "source_sha256": "67253e5cd089a6ba0a97fc0271725c1524d30a2fcb58beeab3c254f50491f7fb",
+      "packaged_sha256": "67253e5cd089a6ba0a97fc0271725c1524d30a2fcb58beeab3c254f50491f7fb",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/architecture/rendered/05-action-state.svg",
+      "destination": "docs/architecture/rendered/05-action-state.svg",
+      "source_sha256": "e4228a945d80c33442983b5fb19cfea4062ec47f6f28cc44e4b06bd9950c266d",
+      "packaged_sha256": "e4228a945d80c33442983b5fb19cfea4062ec47f6f28cc44e4b06bd9950c266d",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/architecture/rendered/06-deployment.png",
+      "destination": "docs/architecture/rendered/06-deployment.png",
+      "source_sha256": "144998cb8234e2fe4684a662eb41ab2d41bbfccfc898e61fbdce74fab8e5c810",
+      "packaged_sha256": "144998cb8234e2fe4684a662eb41ab2d41bbfccfc898e61fbdce74fab8e5c810",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/architecture/rendered/06-deployment.svg",
+      "destination": "docs/architecture/rendered/06-deployment.svg",
+      "source_sha256": "15b0ecd7f72401976c935d264adbaab50e81ba31d0be580c78cb37357a2f259f",
+      "packaged_sha256": "15b0ecd7f72401976c935d264adbaab50e81ba31d0be580c78cb37357a2f259f",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/architecture/rendered/07-claims-and-sponsors.png",
+      "destination": "docs/architecture/rendered/07-claims-and-sponsors.png",
+      "source_sha256": "01cc9df2f306bdfd874cf53f096aa0b87a69ac47c17976e4f9be6e4a25f926cb",
+      "packaged_sha256": "01cc9df2f306bdfd874cf53f096aa0b87a69ac47c17976e4f9be6e4a25f926cb",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/architecture/rendered/07-claims-and-sponsors.svg",
+      "destination": "docs/architecture/rendered/07-claims-and-sponsors.svg",
+      "source_sha256": "e678a1b146cb515cd2b89346081fa8fc434b04dc73403d1b39a39e2d35e9b91c",
+      "packaged_sha256": "e678a1b146cb515cd2b89346081fa8fc434b04dc73403d1b39a39e2d35e9b91c",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/architecture/rendered/manifest.json",
+      "destination": "docs/architecture/rendered/manifest.json",
+      "source_sha256": "2be08e2509918acf56b89a3c43399977a7f7eb9372e71d79ec48ca456dceb718",
+      "packaged_sha256": "2be08e2509918acf56b89a3c43399977a7f7eb9372e71d79ec48ca456dceb718",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/architecture/rendered/viewer-preview.png",
+      "destination": "docs/architecture/rendered/viewer-preview.png",
+      "source_sha256": "8b30264ae86eee8b96f6ea8407975078d601a76b539a02e6c9618c73f987073f",
+      "packaged_sha256": "8b30264ae86eee8b96f6ea8407975078d601a76b539a02e6c9618c73f987073f",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/INDEX.md",
+      "destination": "docs/research/SOURCE_RESEARCH_INDEX.md",
+      "source_sha256": "47b78092555756e3c22b6e0e5839d379274a525e0c18b9b6375cf36c37ef30d4",
+      "packaged_sha256": "19645f50af2c8382c2d7869d445ce2523d0e436a0a93595469c0d8f9bab26a48",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/all-relevant-winners.md",
+      "destination": "docs/research/all-relevant-winners.md",
+      "source_sha256": "81d43b9dc8ed2c18e90e3de314d7aba1de9b9e52877edfa439b3f47347c89eba",
+      "packaged_sha256": "0a0be5dfba82e47f543de09d79d864bd4059d16d1e49a984bcf09603c628e4c3",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/RECOMMENDATION.md",
+      "destination": "docs/research/archive/RECOMMENDATION.md",
+      "source_sha256": "5d12310e12ccf6bbde161c3c59b212bfbe92a4f1850af3bbf20b9edbdcf6785c",
+      "packaged_sha256": "1553fba43517fe5ec27c4d0d86169094eb9d5325fcc4957011904ae513bfbe4e",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/ideation-round1.md",
+      "destination": "docs/research/archive/ideation-round1.md",
+      "source_sha256": "99c08e5cda7bdebf2226dd8fd2efd6ccdf2d17964366cf6fdfbb9ee67fefb1a5",
+      "packaged_sha256": "c1a3449148d3994ae248ecae09610494678a3282f3fba8f798a87e5fa2c761ce",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/ideation-round2.md",
+      "destination": "docs/research/archive/ideation-round2.md",
+      "source_sha256": "8c0a4e46b7124b010e721349bd7d9f7aee34564728f1b0494346a445ef8fd534",
+      "packaged_sha256": "c3576914d28af596b635a98702d736a095c2725047ec93579a02b1f9a1955d11",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/ideation-round3.md",
+      "destination": "docs/research/archive/ideation-round3.md",
+      "source_sha256": "6d55617bf682c37e2f560eb9d6fb7e320a0cba40bae5d1278ecd9a4365c2deb6",
+      "packaged_sha256": "092e6d7556afbe34181634d45782635b2ae164e14a881184d1b9429b57065660",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/MASTER_REPORT.md",
+      "destination": "docs/research/archive/source-tree/analysis/MASTER_REPORT.md",
+      "source_sha256": "9f8c12fa27937d526ec90de68aa67bf3048f289e7e0b47a26851e9ce8ba88bab",
+      "packaged_sha256": "582938b406d26249d27ef7643124a04db71a6827ebc0028ad02bc7ef4d2ed7ef",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/clickhouse/_DEVILS_ADVOCATE.md",
+      "destination": "docs/research/archive/source-tree/analysis/clickhouse/_DEVILS_ADVOCATE.md",
+      "source_sha256": "4e6167ab0f362861f82114ddb6d3d683e75a3dabf88bcd91e6b454f6fa14a76f",
+      "packaged_sha256": "7a4052564cd4262941d44b5caa0efcfbff493c411403cead4b7bb4d302a307c1",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/clickhouse/_TEAM_A.md",
+      "destination": "docs/research/archive/source-tree/analysis/clickhouse/_TEAM_A.md",
+      "source_sha256": "d99e08525ef6b061277682712bd77a279c63adc62b4c5131391a8fd68c95a61a",
+      "packaged_sha256": "9b7a01ba808a049ddbb91d6e7cb7cd38dbc9cfd211a7dddb03b95cca9270b848",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/clickhouse/_TEAM_B.md",
+      "destination": "docs/research/archive/source-tree/analysis/clickhouse/_TEAM_B.md",
+      "source_sha256": "1685a31a5504c9b153a77cbdaf49c1b55cdb1ba476ec9605491444cd7f243356",
+      "packaged_sha256": "1496d0b412b346989ec7de5adb36fefac296724ab3831476b2c2d31671396f85",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/clickhouse/aerorider.md",
+      "destination": "docs/research/archive/source-tree/analysis/clickhouse/aerorider.md",
+      "source_sha256": "ebefa6720f3e8e0c3adee00b14f9c20e99d9a6dc6fe8a67755eeb7b970fdc764",
+      "packaged_sha256": "10dabcd16cad837a03b0084318eb91ad7150a56b3d106704d3a1a371972e05e7",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/clickhouse/earwitness.md",
+      "destination": "docs/research/archive/source-tree/analysis/clickhouse/earwitness.md",
+      "source_sha256": "225b979dfb5b33dca4b608f681e97f151286815f92252dc8cac3682637b8ff2e",
+      "packaged_sha256": "bb1a1c81348431e34f0d1c48cfeb380b2f9aacc9c88c37f6d71b1d2ecfe8951c",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/clickhouse/incidentlogica.md",
+      "destination": "docs/research/archive/source-tree/analysis/clickhouse/incidentlogica.md",
+      "source_sha256": "0030d19654d03d494ce645792cf69517c3e92eed0ff3289cd494b921258f91da",
+      "packaged_sha256": "cadfa7b983e57cfc6cb9f77a10144204ad7309c181f83f39f3734a4511d1b2ff",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/clickhouse/licensetrace.md",
+      "destination": "docs/research/archive/source-tree/analysis/clickhouse/licensetrace.md",
+      "source_sha256": "e7404b29cc450a7ae3cb45273da19c66bdf12757c25535b8c42f0baeff55cee9",
+      "packaged_sha256": "7f93181be62fbc4997a4bac39a3ee08c1cf2351a25805aa568e0952e8d9ca9d5",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/clickhouse/policydiff.md",
+      "destination": "docs/research/archive/source-tree/analysis/clickhouse/policydiff.md",
+      "source_sha256": "f1b092a14c15ffb4027b0c13fad4b31915ee8d5342ebf7d4cf8ed73d773727de",
+      "packaged_sha256": "96a06fa708b5914e0b8462bf2dd7f574eed69287160705041bbb07c1fcc21795",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/clickhouse/rokko.md",
+      "destination": "docs/research/archive/source-tree/analysis/clickhouse/rokko.md",
+      "source_sha256": "ea25a72714f08cdc439f5d93d37197867b1abb21a1484e84e87692842ffc1d1e",
+      "packaged_sha256": "e974f0972b8f4339e6504ac38b6d1e7f8cf010d5dfa57764a30463010cf6cc53",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/clickhouse/seconds-ai.md",
+      "destination": "docs/research/archive/source-tree/analysis/clickhouse/seconds-ai.md",
+      "source_sha256": "35958432b9aba14657d09bbc34ab748b6f814818283b1c14ec8b06157278813b",
+      "packaged_sha256": "d8137139527d021a68c0157f5f8b41385c43184518f6b53b50dfba60d642edeb",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/clickhouse/synapsecro.md",
+      "destination": "docs/research/archive/source-tree/analysis/clickhouse/synapsecro.md",
+      "source_sha256": "bcbe90c5c7aebf7581084baf664df04c15c9cb68df70a6effc9ef12fbe181e12",
+      "packaged_sha256": "b19d57920b428ab7000985fa7faf940c9dff7c2de8463e6a85feb77b5eb760cb",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/clickhouse/tc-pilot.md",
+      "destination": "docs/research/archive/source-tree/analysis/clickhouse/tc-pilot.md",
+      "source_sha256": "f67a504b72a5277e3e5f96502b0397adb181bda185eadc9626ce6f639ab53eca",
+      "packaged_sha256": "1a6c9790963f75e612f8ec1d764fff39cd787a44f4fdb280da1c885502bffe47",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/clickhouse/vital-signal.md",
+      "destination": "docs/research/archive/source-tree/analysis/clickhouse/vital-signal.md",
+      "source_sha256": "aa737d682a02fedaa5c41f13e73902413b1d6bf9dc80fe18bfe1a6f900534fdb",
+      "packaged_sha256": "a17dcbb04ff8be2c32401ecaf353721f5ae659f2cb526cc841d16df484d3ce8c",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/debate/05_devils_preliminary.md",
+      "destination": "docs/research/archive/source-tree/analysis/cyberdefense-2026-10-09/debate/05_devils_preliminary.md",
+      "source_sha256": "d0f9926cebe5141f322b79617e73c8f0dc38c703894fe8adb90ff7c9f81a71f7",
+      "packaged_sha256": "df7951792a2f79a79e4f5e40f98ab95e08a853135b8cf081801b3726287d8adf",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/guild-ai/_DEVILS_ADVOCATE.md",
+      "destination": "docs/research/archive/source-tree/analysis/guild-ai/_DEVILS_ADVOCATE.md",
+      "source_sha256": "24cc776caa77ab1dc5bb6c97ae8ae56c04947316a04f631bc052362cfe790b4f",
+      "packaged_sha256": "55d0aff927f2c3ffa6a30ea73b854584916dfa231f092ee0717e7c5de1abfdc2",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/guild-ai/_GUILD_PLATFORM.md",
+      "destination": "docs/research/archive/source-tree/analysis/guild-ai/_GUILD_PLATFORM.md",
+      "source_sha256": "01b5bfd1190ec81a28849436ec3349a3700568dd1d796abacd202a3b2bf5bc9a",
+      "packaged_sha256": "37b71aa71ac1e08819c04e47b09883b1d722d17cfd3bb2b93e45039c7062170e",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/guild-ai/_TEAM_A.md",
+      "destination": "docs/research/archive/source-tree/analysis/guild-ai/_TEAM_A.md",
+      "source_sha256": "4638547b3ed942c47e454ed19e52c62bd3b7783ac78b476ace6b9a7e515e20bb",
+      "packaged_sha256": "d557162cccb4851f18fc1b9c999c5b6e409031f74527bab218803f2f969f36ba",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/guild-ai/_TEAM_B.md",
+      "destination": "docs/research/archive/source-tree/analysis/guild-ai/_TEAM_B.md",
+      "source_sha256": "3e8106819257da4ac64faf269023f96a23f40e3d30227bbdc4e5a4e3f70b22a3",
+      "packaged_sha256": "9435c8baad5019406f02763315e07d52a4bdfb5bd3443c66a0b4bc13afd1a96b",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/guild-ai/argus.md",
+      "destination": "docs/research/archive/source-tree/analysis/guild-ai/argus.md",
+      "source_sha256": "d4a2a44f3814fb48a0743666a1f98632787a5069c9555ffade076f13f64e8ce6",
+      "packaged_sha256": "2d3da19b9f1250e8b43c3d64d9c53861676718027f7cc7da445cbef7573a29e5",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/guild-ai/branch.md",
+      "destination": "docs/research/archive/source-tree/analysis/guild-ai/branch.md",
+      "source_sha256": "605c98e1e91c7c8b4f913f04abdc76bb59e73ada57247dca5ee594db15dd8f62",
+      "packaged_sha256": "0707010f5ccf2ce05a0e40290533695009b2732bf8c90f0d25f19da08fea2883",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/guild-ai/dailygate.md",
+      "destination": "docs/research/archive/source-tree/analysis/guild-ai/dailygate.md",
+      "source_sha256": "6032d66688c3e0303d7247100b4a2ed882a1064e8ca9419c92411d19c371c416",
+      "packaged_sha256": "742b8711c73230a3c9abb10b6652fb4d79f4a1a3096d37a300cfc31e14bc4867",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/guild-ai/magpie.md",
+      "destination": "docs/research/archive/source-tree/analysis/guild-ai/magpie.md",
+      "source_sha256": "5954cbb30f7c82d8a3668795e2da323b37084b8d9ffbb6565ce4f6887cab588b",
+      "packaged_sha256": "aa69a06ea6515f3f2efd625c43b2d3231f388745539f2ccbc52326002fd34833",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/guild-ai/medicall.md",
+      "destination": "docs/research/archive/source-tree/analysis/guild-ai/medicall.md",
+      "source_sha256": "f401bf89d68bc57a0a106e93a856a0d1418efd12229128d793bd9e4d973bd75e",
+      "packaged_sha256": "8856f2d5ddf9f03bec8d7e602bdbf12b844999e7dfc0711d2f3262a257740755",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/guild-ai/phalanx.md",
+      "destination": "docs/research/archive/source-tree/analysis/guild-ai/phalanx.md",
+      "source_sha256": "108eb8ae263afec459a2889eb22fa149c0e2ec6d2b326363337abbcdaa0376bc",
+      "packaged_sha256": "003b6a250740b7530d39cd2ad5274987987fcdb80b7af12db797a911fbcde2cb",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/guild-ai/propr.md",
+      "destination": "docs/research/archive/source-tree/analysis/guild-ai/propr.md",
+      "source_sha256": "55c76837c0bce8ed91a05c0ba832365c180d67fb56e44f59dab172a0dc249169",
+      "packaged_sha256": "2ea660695e8943327da64d815645dc7def4906ad614f03d945919bdbbe2c3da9",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/guild-ai/rxscout.md",
+      "destination": "docs/research/archive/source-tree/analysis/guild-ai/rxscout.md",
+      "source_sha256": "dcf3b3a36a5ea3066659218a92c51a71a5671e0eb8332b30f3f5dc7c38a2e2b2",
+      "packaged_sha256": "96a172987ec3fb661ca3ba061709ad71d76780844f47a01c80348a509db6ce8b",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/guild-ai/tracepath.md",
+      "destination": "docs/research/archive/source-tree/analysis/guild-ai/tracepath.md",
+      "source_sha256": "1e4851e08b0a2ef5762f5dbafaafc61f5766dc2271ea075a6805aee5993a3c06",
+      "packaged_sha256": "7eda5049ed0ecca3931b3eb03d103818d6cb5ef769abb34bc9bc52f367e4cf45",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/guild-ai/wildfire-response.md",
+      "destination": "docs/research/archive/source-tree/analysis/guild-ai/wildfire-response.md",
+      "source_sha256": "6d0d47021b091c3e00a5150072a8f6b8b10f85d6100421aa16aeb26031c61ba2",
+      "packaged_sha256": "09b44067519bea0408e7b6288651b811d1f4fea3ca0b084d5514f0278719020b",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/pi-security/_CYBERDEFENSE_EVENT.md",
+      "destination": "docs/research/archive/source-tree/analysis/pi-security/_CYBERDEFENSE_EVENT.md",
+      "source_sha256": "5dc809d69750165a5ca0ff301e80f11ec3d3b6e3600cb6f2ded6333da8f8e872",
+      "packaged_sha256": "f1a2d11120b1415a9970175f96bdd2abe978c03898b97b75bab6958ed541aed2",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/pi-security/_DEVILS_ADVOCATE.md",
+      "destination": "docs/research/archive/source-tree/analysis/pi-security/_DEVILS_ADVOCATE.md",
+      "source_sha256": "7e0e7d7dea2123a8ff1230eae8df2b5c59c498a42747ebba05e3c5c6d5d09346",
+      "packaged_sha256": "8fd161620d24a5c0ff99a96f68320ed1a8b34567bc32c5d51971d399d05e5152",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/pi-security/_PI_PROFILE.md",
+      "destination": "docs/research/archive/source-tree/analysis/pi-security/_PI_PROFILE.md",
+      "source_sha256": "23c728483d8ed9ad0599ab4eb1c58288b1fceb4bc1d92af214dc72d1ffa2c376",
+      "packaged_sha256": "df24971921ecc204ffe6e397754896e70ae2ed862a343fd417d6a06eae98000a",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/pi-security/_PI_WINNER_MODEL.md",
+      "destination": "docs/research/archive/source-tree/analysis/pi-security/_PI_WINNER_MODEL.md",
+      "source_sha256": "08e495296626a0a0734c1ba9ee9fd4dd05b4a32a87bfc1c810d6163aeca9bc34",
+      "packaged_sha256": "85301d507da35003dad010ec56da4f79d00dab0dba22f5e114e2350882dcbce6",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/semgrep/_DEVILS_ADVOCATE.md",
+      "destination": "docs/research/archive/source-tree/analysis/semgrep/_DEVILS_ADVOCATE.md",
+      "source_sha256": "f84c1e49dd189e68777bd5d16b9f1b92714051e70e8391d44bc4e317c76f886d",
+      "packaged_sha256": "6e8e7986a1d924c3fd498e39dbf18f565ff5c55a9b7584ff3be101f8fadbeecf",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/semgrep/_SEMGREP_PLATFORM.md",
+      "destination": "docs/research/archive/source-tree/analysis/semgrep/_SEMGREP_PLATFORM.md",
+      "source_sha256": "d21c6ee3cc88cc775efaef7185b5abe0dc3092e82b77320ed7655675cda70bc0",
+      "packaged_sha256": "6d25ff7093a11867b1e57f71410227d282321af7b4e486140e25d66386c3781c",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/semgrep/_TEAM.md",
+      "destination": "docs/research/archive/source-tree/analysis/semgrep/_TEAM.md",
+      "source_sha256": "1ac5b436b868259c40c49c465932787576209821e4aafa6369385186cc1599b5",
+      "packaged_sha256": "b7441a4364f73c6510a7eaeb4ccdc1a40b60b00533e0bf3d920d9691ff8342e8",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/sponsor-videos.md",
+      "destination": "docs/research/archive/source-tree/analysis/sponsor-videos.md",
+      "source_sha256": "83a499f90392cabf606918504c5a81b68d6b177cfcfa28b12ce55a40abeb1854",
+      "packaged_sha256": "601ec11184de5340db5a39ecc512098465b93d7f08337ef5ff788fc00c21dc87",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "research/report.md",
+      "destination": "docs/research/archive/source-tree/research/report.md",
+      "source_sha256": "7811c497935d6a609b4c2e6ddddf1adf7b9c58df7040e4007a4ae112fa722db1",
+      "packaged_sha256": "10d0b9bef4c945985e89ce77f6657628d2e76e732cde5cdb1872b2bd5e5270a4",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/clickhouse-guild.md",
+      "destination": "docs/research/clickhouse-guild.md",
+      "source_sha256": "43175caf4bd878defb8b953a5fef93cf50aefe9ff27b85f47d55b1c0caca3021",
+      "packaged_sha256": "0bec1680765afaa4d0f715e13b2896f2744270c05d57136fcd96237b71aacc2c",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/competition-and-eligibility.md",
+      "destination": "docs/research/competition-and-eligibility.md",
+      "source_sha256": "534fde3a50990e8e05b834dbded269e4bfa11c7152b457d7af7650cd18bd845c",
+      "packaged_sha256": "534fde3a50990e8e05b834dbded269e4bfa11c7152b457d7af7650cd18bd845c",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/debate/01_semgrep_advocate.md",
+      "destination": "docs/research/debate-archive/01_semgrep_advocate.md",
+      "source_sha256": "22da6c695611c6e7b14e7188f8daeda8a2fc565a050cef909cf1fa748fed1cda",
+      "packaged_sha256": "22da6c695611c6e7b14e7188f8daeda8a2fc565a050cef909cf1fa748fed1cda",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/debate/02_runtime_advocate.md",
+      "destination": "docs/research/debate-archive/02_runtime_advocate.md",
+      "source_sha256": "39e90ecb9ad59dadb2ec9d91cb3c5dd5314caedfb0a84256f2702c229ebe438c",
+      "packaged_sha256": "39e90ecb9ad59dadb2ec9d91cb3c5dd5314caedfb0a84256f2702c229ebe438c",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/debate/04_alternative_advocate.md",
+      "destination": "docs/research/debate-archive/04_alternative_advocate.md",
+      "source_sha256": "25b7b367cb94f661b5f55d1d262abe4976d23327e88997aa9fa7813af1ae5334",
+      "packaged_sha256": "25b7b367cb94f661b5f55d1d262abe4976d23327e88997aa9fa7813af1ae5334",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/debate/05_fresh_permissions_pulse.md",
+      "destination": "docs/research/debate-archive/05_fresh_permissions_pulse.md",
+      "source_sha256": "63be614d9aa19e91872d0bd9477a6defbf131fa07348c204b5cbc705eabf7250",
+      "packaged_sha256": "63be614d9aa19e91872d0bd9477a6defbf131fa07348c204b5cbc705eabf7250",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/debate/06_FINAL_DECISION.md",
+      "destination": "docs/research/debate-archive/06_FINAL_DECISION.md",
+      "source_sha256": "86bbe46288da4571ccc5b23643521a81748ce3c4bf6c367d1d5479f7afa88351",
+      "packaged_sha256": "86bbe46288da4571ccc5b23643521a81748ce3c4bf6c367d1d5479f7afa88351",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/debate/06_cross_rebuttals_tooltrust.md",
+      "destination": "docs/research/debate-archive/06_cross_rebuttals_tooltrust.md",
+      "source_sha256": "abd56a2f035b2e230241094d5691f5384b2a06b9fb2dff590022fec1ffd7d99c",
+      "packaged_sha256": "7b40c1d707dfae09a19189f960bca846249881f1b9333541de93eee49708d332",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/debate/07_devils_verdict.md",
+      "destination": "docs/research/debate-archive/07_devils_verdict.md",
+      "source_sha256": "77dd93647e0ee55ea53b7a2d8c795548d2afcc3eecf3828ac51739a0db7da83e",
+      "packaged_sha256": "77dd93647e0ee55ea53b7a2d8c795548d2afcc3eecf3828ac51739a0db7da83e",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/finding-feasibility.md",
+      "destination": "docs/research/finding-feasibility.md",
+      "source_sha256": "2d4672fd39d144124b3adc6b32dbc46d9adc1b0088d97624546f5aa285722d2a",
+      "packaged_sha256": "2d4672fd39d144124b3adc6b32dbc46d9adc1b0088d97624546f5aa285722d2a",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "research/clickhouse.md",
+      "destination": "docs/research/historical/clickhouse.md",
+      "source_sha256": "992165c261051e66895ebed4212f5f03386778d75d21d9b4021b286438b1025c",
+      "packaged_sha256": "fcc17bd19391cd441cec7061f2ce1ed0b2788a712bd3626e42f2739b5e873e02",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "research/event-map.md",
+      "destination": "docs/research/historical/event-map.md",
+      "source_sha256": "2f7305907b5da87aa47a9d2692a049e76a12ec96ebb11824c6e52f4a46d5058e",
+      "packaged_sha256": "01274086b287bbdf6e4b5f2eaa274df38c96398265ca8f2527cdd407c8c29f22",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "research/evidence.md",
+      "destination": "docs/research/historical/evidence.md",
+      "source_sha256": "f3f1573638f89ed541912c32d0e1a28ce0c1804494c96d2b923d09590a802706",
+      "packaged_sha256": "27594f24b9650811af693a957be66771ca0b092886639a13e6c1d39671415976",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "research/guild-ai.md",
+      "destination": "docs/research/historical/guild-ai.md",
+      "source_sha256": "444df36e17604741366199ec329efe95b413ef44bc6a5c01cbc11572e924b8f3",
+      "packaged_sha256": "571fcd6244a0f9a40cb7b92fff0d5aecc3f627c73d6c406545b8c101bfa761e8",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "research/pi-security.md",
+      "destination": "docs/research/historical/pi-security.md",
+      "source_sha256": "bc20088e0f13ddedb7ccaf60baeb13af94182f1db9dc6e4f456460d1ec1dd372",
+      "packaged_sha256": "be69407248bfe52de13dc09d8283bffa396c02a1a87a500796b67e85583a992f",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "research/semgrep.md",
+      "destination": "docs/research/historical/semgrep.md",
+      "source_sha256": "122c55ddd0db3ccbe379560a6a5f36f27734860ef78423b2010ecf21ff108592",
+      "packaged_sha256": "8770b14e52c8d3a9a9ebb23c3740d820eb00f8fe08006bae530ba5679907d0b4",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/prize-strategy-adversarial.md",
+      "destination": "docs/research/prize-strategy-adversarial.md",
+      "source_sha256": "b650e82ec0f7508647737912a920c49e97dbd3baccfdf312bece924484ffbdcb",
+      "packaged_sha256": "b175a398df0b36922a1ae35e071ea10dedfed29f0f2e1cc20838c25782c0eba3",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/recent-code-pulse.md",
+      "destination": "docs/research/recent-code-pulse.md",
+      "source_sha256": "308731531b560be13e35a8d41b519349d445c6bb56b03f5ba6ba124415fa0c25",
+      "packaged_sha256": "308731531b560be13e35a8d41b519349d445c6bb56b03f5ba6ba124415fa0c25",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/recent-pulse.md",
+      "destination": "docs/research/recent-pulse.md",
+      "source_sha256": "4e5266c6a9e7e6cccdfea596b74801e4c5dda7ace0471072d20896ec7a6e9d72",
+      "packaged_sha256": "4e5266c6a9e7e6cccdfea596b74801e4c5dda7ace0471072d20896ec7a6e9d72",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/semgrep-pi.md",
+      "destination": "docs/research/semgrep-pi.md",
+      "source_sha256": "569f5c72398ca44186945a5b16f544622abe4639039532297210fde26c04dde3",
+      "packaged_sha256": "d6b5af04763b28a0508acc4a97345924f55385f7c5ee52d52efa1c6c95da45c5",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/WHY_THEY_WON.md",
+      "destination": "docs/research/winners/WHY_THEY_WON.md",
+      "source_sha256": "fb5de2e20a17846103ffb09bdc215082d9c42fbbdc384b55fb536ed157425497",
+      "packaged_sha256": "a32844ff811ec73eb03697824008e7268bd8d6555dc003086e6bb3279beb403e",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/deep-dives/aerorider.md",
+      "destination": "docs/research/winners/aerorider.md",
+      "source_sha256": "0c1f8f4b35ea194b38b3c65ed45b3a7c42132e10145c174e5d4121da87112466",
+      "packaged_sha256": "400f8e1d80abda62ca9a0b67f4cb283e7b86cc26938e518ecd735dc7cd7cbb79",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/deep-dives/argus.md",
+      "destination": "docs/research/winners/argus.md",
+      "source_sha256": "f5b5d34b53bd4b234864b285d50b0fec9f4e6f83720a282030f8f5976613b899",
+      "packaged_sha256": "c236809fa1074796fa72cae2ca2c9df8eb4f61b3644503e5079319362589de2f",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/deep-dives/branch.md",
+      "destination": "docs/research/winners/branch.md",
+      "source_sha256": "1ff710b32227fcbf814f6c65547d225cb487883b1d13653033ec7e7c84a0dc8e",
+      "packaged_sha256": "70de0962fc4b57f85c59e43fa9b023dd655f79ebd5a89ae968a6204b326efb7d",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/deep-dives/dailygate.md",
+      "destination": "docs/research/winners/dailygate.md",
+      "source_sha256": "fade9f9ae1cf5117ec06b9b8d2f01a6e2733a24f77af3c9860a39bcbdc4585b0",
+      "packaged_sha256": "d0f9bfa0a1b926e6867a54a3b40caf2a722d153684130d636af62f674aa5180f",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/deep-dives/darwin.md",
+      "destination": "docs/research/winners/darwin.md",
+      "source_sha256": "34446604bb944ac2a37c46b84f8c2ccf43029e113e0428b66aae78f3a4726335",
+      "packaged_sha256": "45d7b4d02c713f3aac832a7357d61550fa93383fcf03beb4b0fbf295015423c2",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/deep-dives/earwitness.md",
+      "destination": "docs/research/winners/earwitness.md",
+      "source_sha256": "d7810d3701596557dd02ecfa11b5ccf10220bca3efbeedbdedbc988a4e4a2f36",
+      "packaged_sha256": "e26cf0fb97b20e551bf93adb223665b1954183bccade0898f48d67ff75981252",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/deep-dives/licensetrace.md",
+      "destination": "docs/research/winners/licensetrace.md",
+      "source_sha256": "4eb6bff0ffaca712503503bf82dc047823bf741acfd78b27cc63e3ae3f673fd4",
+      "packaged_sha256": "0adf10f79524c72daf1db1df0f9e6eaba93306e81ac3a86f46626b053bbb358e",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/deep-dives/magpie.md",
+      "destination": "docs/research/winners/magpie.md",
+      "source_sha256": "a605aabbd0f3f62adf74ebb793bdd40e9d0863247fdf40aa3c63fd9a1db78a94",
+      "packaged_sha256": "8d547f376cae207506867f1b158fe1819957923fa010f10229ebf8f5e394036f",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/deep-dives/medicall.md",
+      "destination": "docs/research/winners/medicall.md",
+      "source_sha256": "c8c5f79a9306a658498faab3fa5f07518e092f95373bf7a411ed323c32478e5b",
+      "packaged_sha256": "1810ce7c04d9d6af9c079d39c56cc7766fb8f2b5ec5e3604dd9a683319eafeda",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/deep-dives/phalanx.md",
+      "destination": "docs/research/winners/phalanx.md",
+      "source_sha256": "d3070fd4a55656cd32908e6488710bd3e0d10c274668bba8dc2d50e208a85a6c",
+      "packaged_sha256": "8b652214a2593c4fbada958b9a7ca38631fe6d4759ac0655fe8d713fb9b3b174",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/deep-dives/policydiff.md",
+      "destination": "docs/research/winners/policydiff.md",
+      "source_sha256": "7af0017d19bb8709dd487233c1a95a214cca70f451ccba149153f67892131fba",
+      "packaged_sha256": "9e641b3445f9db5d04da198ba6c35969a202ac5bae4334413c6b9758d5549d62",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/deep-dives/rokko.md",
+      "destination": "docs/research/winners/rokko.md",
+      "source_sha256": "ff0bcb7c6df9f7c49f1246d85ecc3931788c4481a697077a93d648f27801f851",
+      "packaged_sha256": "171b4a6ee6c85d484b998b1245b4a3be6a8a7306199d50256b3d2db24bf29da1",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved.; imported trailing whitespace normalized"
+    },
+    {
+      "source_relative_path": "analysis/deep-dives/rxscout.md",
+      "destination": "docs/research/winners/rxscout.md",
+      "source_sha256": "c9293286b1ddf978920d714dd463139df0eb105557f69b5fecfbd8186e598d23",
+      "packaged_sha256": "f224a33eb790983ee7636b585e53afd79d5cae20b949c8c3b02f87dde35ea3bd",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/deep-dives/seconds-ai.md",
+      "destination": "docs/research/winners/seconds-ai.md",
+      "source_sha256": "180fc6924c74c05efd437a2a66f65f929d167627f94f0bc424f4ad0c0fe9bc5c",
+      "packaged_sha256": "7e27f6663b78bf0364727d9eabb1cb215a52b21df1ea362b88089509e2d66f27",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/semgrep/commitdna.md",
+      "destination": "docs/research/winners/semgrep-commitdna.md",
+      "source_sha256": "429687adc6ea69e899daef2697c78786c301b5394a99bce3bf0ac0bbea8e936c",
+      "packaged_sha256": "429687adc6ea69e899daef2697c78786c301b5394a99bce3bf0ac0bbea8e936c",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/semgrep/darwin.md",
+      "destination": "docs/research/winners/semgrep-darwin.md",
+      "source_sha256": "c71849837136d460cbdd1900152174d004d3e23c96830310fc503caa9b5a0ec5",
+      "packaged_sha256": "c71849837136d460cbdd1900152174d004d3e23c96830310fc503caa9b5a0ec5",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/semgrep/udon-cat.md",
+      "destination": "docs/research/winners/semgrep-udon-cat.md",
+      "source_sha256": "5923e699ba47eda9a6ce618fce57d56a193d5e196c925a641b1cd88b09d16473",
+      "packaged_sha256": "5923e699ba47eda9a6ce618fce57d56a193d5e196c925a641b1cd88b09d16473",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/deep-dives/synapsecro.md",
+      "destination": "docs/research/winners/synapsecro.md",
+      "source_sha256": "0ac6b43991347f821a11e9d6376a711467dc4cdaf219fe7c46cb060262a71803",
+      "packaged_sha256": "7c42f1525fad9b3a9502461760574930802efebb142c21d52bec862cf0d86765",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/deep-dives/tc-pilot.md",
+      "destination": "docs/research/winners/tc-pilot.md",
+      "source_sha256": "cb4920029d881c12ae0b85cdbcc13a2057cec2c6a8fde708f9c888e61f23f118",
+      "packaged_sha256": "95a21504f7cf600d34b66bde8db9fdb449573b461e34f8ecab30df81fa7e7c45",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/deep-dives/vital-signal.md",
+      "destination": "docs/research/winners/vital-signal.md",
+      "source_sha256": "fdce54831516e2614dc23bc2f6b832de30950335e296cebe7fc5b3a8d2cf577a",
+      "packaged_sha256": "bd9d95c29c72b7fcbc8db5eb449e3686b52d276605bf94c08a1cb6c1b80345f6",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/expanded/DEBATE_AND_VERDICT.md",
+      "destination": "docs/spec/DEBATE_AND_VERDICT.md",
+      "source_sha256": "ec98624405d44c47914e247bc96c9168e18a8b927090fd57cdcdf4ba692dadb8",
+      "packaged_sha256": "793f75ae5b77eda92216e213ca380a1534b0121df2ca8c738cffb8c5216997da",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/FINAL_IDEA.md",
+      "destination": "docs/spec/FINAL_IDEA.md",
+      "source_sha256": "47a1666608dea2d78c4f674956a651776768f03156e8a4679b00e682f1d1c613",
+      "packaged_sha256": "f7a651a891e23a72454f3cc0f757af60b437d59e241d3a993f6b40c6a296f757",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/expanded/MASTER_SPEC.md",
+      "destination": "docs/spec/MASTER_SPEC.md",
+      "source_sha256": "2a971e03a59c7cf037fbb9b9b7003dcf7d19bad8b51e227e38c928eb1489b032",
+      "packaged_sha256": "5853f1c3a0b2fbd59d83ac287daff15b1ebd5cf9fb22f86f08ac026baeb80dbd",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/expanded/SCENARIO_PLAYBOOK.md",
+      "destination": "docs/spec/SCENARIO_PLAYBOOK.md",
+      "source_sha256": "c4719bfbd2a5d0b663bf69f6701807f59de3d9abe4937ea773665d05c956acea",
+      "packaged_sha256": "c4719bfbd2a5d0b663bf69f6701807f59de3d9abe4937ea773665d05c956acea",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/expanded/clickhouse-capabilities.md",
+      "destination": "docs/spec/clickhouse-capabilities.md",
+      "source_sha256": "bf7dd5836fa2f824ce2c59c7ae76f4cfbb2735c703387cb6bd0a3bdc2bcdcb20",
+      "packaged_sha256": "23b96bfaff69f94b2e1b7d89d168d388ed077eb12541afc94221243e9700af28",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/expanded/guild-capabilities.md",
+      "destination": "docs/spec/guild-capabilities.md",
+      "source_sha256": "10f7433325da940d2357d27d90cf747031f10fa2d46d255ccdf2bcf45f1fe676",
+      "packaged_sha256": "9274f8170e3756f2f85a498ecdef3cf2ed54a85f6c4565bd264254cfc94cf7f7",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/expanded/rebuttal-clickhouse.md",
+      "destination": "docs/spec/rebuttal-clickhouse.md",
+      "source_sha256": "ea6ad3674c0bfe1efa51bd517ad32e9075be3fa67c98d3ed1b71ee241d8fb017",
+      "packaged_sha256": "8c54177273186a7b0e0812e5cbc44ddcd3419e755c81064ca0494dea29c9b435",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/expanded/rebuttal-guild.md",
+      "destination": "docs/spec/rebuttal-guild.md",
+      "source_sha256": "baafc9414756bd71cb0650f272e6606bd52ae65843f51f9a0db2f23a9aacd202",
+      "packaged_sha256": "15b3f26b769bb578cdc338ea626a4a65b8c3bf77206669c746fcffb82725ed38",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/expanded/rebuttal-story.md",
+      "destination": "docs/spec/rebuttal-story.md",
+      "source_sha256": "b86e5bd4fb647074a8648cd90d86a679f0e10b4e9c05bc6aef3bd027ec3a1630",
+      "packaged_sha256": "e1075c862244fd8599c7273d8375e2009339115d2e47542ec0c04158595a97a2",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/cyberdefense-2026-10-09/expanded/story-and-scenarios.md",
+      "destination": "docs/spec/story-and-scenarios.md",
+      "source_sha256": "d2aefc8b164d81048082c83d8044e4fe5491f1d9f3675398c227b1feba7fc43d",
+      "packaged_sha256": "0fec0fba2a6e8cf92362e6bd4297e739010225c07c5accd88248aa4f5c4a39e6",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-clickhouse/aggregate-null.md",
+      "destination": "references/architecture-clickhouse/aggregate-null.md",
+      "source_sha256": "57ddadb92cc2b5c322cfb93df120c385afea7070e127cbf4e46f6e97e6f4adb1",
+      "packaged_sha256": "57ddadb92cc2b5c322cfb93df120c385afea7070e127cbf4e46f6e97e6f4adb1",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-clickhouse/any.md",
+      "destination": "references/architecture-clickhouse/any.md",
+      "source_sha256": "3dcf01d45460e5be652305555b6205d3d042d2748e9e11850af0f7f0af4ca424",
+      "packaged_sha256": "3dcf01d45460e5be652305555b6205d3d042d2748e9e11850af0f7f0af4ca424",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-clickhouse/async-inserts.md",
+      "destination": "references/architecture-clickhouse/async-inserts.md",
+      "source_sha256": "903907926cfc0d5744886b4cc0a668c4bd6c0ceb55842422d1960a16405ffabf",
+      "packaged_sha256": "903907926cfc0d5744886b4cc0a668c4bd6c0ceb55842422d1960a16405ffabf",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-clickhouse/datetime64.md",
+      "destination": "references/architecture-clickhouse/datetime64.md",
+      "source_sha256": "40b9317aa7882cbf1804a21cb72fb4e2f0c8ecd922ad16c1bbf42bf4a3d24225",
+      "packaged_sha256": "40b9317aa7882cbf1804a21cb72fb4e2f0c8ecd922ad16c1bbf42bf4a3d24225",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-clickhouse/distinct.md",
+      "destination": "references/architecture-clickhouse/distinct.md",
+      "source_sha256": "bbcedc4d0612e1d024a508a2736366e435994507f8ab17fa6b0c6d4784499dbb",
+      "packaged_sha256": "bbcedc4d0612e1d024a508a2736366e435994507f8ab17fa6b0c6d4784499dbb",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-clickhouse/grant.md",
+      "destination": "references/architecture-clickhouse/grant.md",
+      "source_sha256": "1de58f9f471b8e28c132936a682ba615af77210a3eb7480227c65232a6df3b98",
+      "packaged_sha256": "1de58f9f471b8e28c132936a682ba615af77210a3eb7480227c65232a6df3b98",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-clickhouse/group-by.md",
+      "destination": "references/architecture-clickhouse/group-by.md",
+      "source_sha256": "dbd3626d157a714a4b8b2ee411bb5224397c9ac0479340ae9492863378694de8",
+      "packaged_sha256": "dbd3626d157a714a4b8b2ee411bb5224397c9ac0479340ae9492863378694de8",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-clickhouse/groupuniqarray.md",
+      "destination": "references/architecture-clickhouse/groupuniqarray.md",
+      "source_sha256": "cadf4e2449bffa80e1c904283ceb3cbc488fd21a3fa80f528bf74a9e9d58ec2f",
+      "packaged_sha256": "cadf4e2449bffa80e1c904283ceb3cbc488fd21a3fa80f528bf74a9e9d58ec2f",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-clickhouse/incremental-mv.md",
+      "destination": "references/architecture-clickhouse/incremental-mv.md",
+      "source_sha256": "53e344bfb47631a30ea00ba68612813dac8c97d728ae3fc73966821aaec57432",
+      "packaged_sha256": "53e344bfb47631a30ea00ba68612813dac8c97d728ae3fc73966821aaec57432",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-clickhouse/join.md",
+      "destination": "references/architecture-clickhouse/join.md",
+      "source_sha256": "ce87c14406d5a161f02567eeb9700570f8ca5e00125c81cfba300510312a909e",
+      "packaged_sha256": "ce87c14406d5a161f02567eeb9700570f8ca5e00125c81cfba300510312a909e",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-clickhouse/js-client.md",
+      "destination": "references/architecture-clickhouse/js-client.md",
+      "source_sha256": "fe6edb98e8d647cce8a728284758d63e6267f153efa46c6ea5923a3999b6e6ec",
+      "packaged_sha256": "fe6edb98e8d647cce8a728284758d63e6267f153efa46c6ea5923a3999b6e6ec",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-clickhouse/query-log.md",
+      "destination": "references/architecture-clickhouse/query-log.md",
+      "source_sha256": "06d176c281812c46b90ce29fe92f677eec3c6b08a39e76cf0216bce1592b515a",
+      "packaged_sha256": "06d176c281812c46b90ce29fe92f677eec3c6b08a39e76cf0216bce1592b515a",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-clickhouse/readonly.md",
+      "destination": "references/architecture-clickhouse/readonly.md",
+      "source_sha256": "8fe8505e44152f376fe8b287e721674be9963da8075082239d69ed1bf830a6e9",
+      "packaged_sha256": "8fe8505e44152f376fe8b287e721674be9963da8075082239d69ed1bf830a6e9",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-clickhouse/replacingmergetree.md",
+      "destination": "references/architecture-clickhouse/replacingmergetree.md",
+      "source_sha256": "233324216aae91c8ec2783c351fea0e38d97668bc622677d0d7e6efd0e96a11e",
+      "packaged_sha256": "233324216aae91c8ec2783c351fea0e38d97668bc622677d0d7e6efd0e96a11e",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-clickhouse/sources.json",
+      "destination": "references/architecture-clickhouse/sources.json",
+      "source_sha256": "c4a7863b59c04c183a97a60c08f706cb19674c9994d2cc87cd45e42775c0bc39",
+      "packaged_sha256": "c4a7863b59c04c183a97a60c08f706cb19674c9994d2cc87cd45e42775c0bc39",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-clickhouse/tuple-null-fix.md",
+      "destination": "references/architecture-clickhouse/tuple-null-fix.md",
+      "source_sha256": "ba18e1b0c79b22a8301567cf3b610d7ac480b10df407bd5fb7203fb4107bbf44",
+      "packaged_sha256": "ba18e1b0c79b22a8301567cf3b610d7ac480b10df407bd5fb7203fb4107bbf44",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-clickhouse/tuple-null-issue.md",
+      "destination": "references/architecture-clickhouse/tuple-null-issue.md",
+      "source_sha256": "9ef7f9a20201af6823878786242648c033ae4094f6fb90a1d002ed2b028f1138",
+      "packaged_sha256": "9ef7f9a20201af6823878786242648c033ae4094f6fb90a1d002ed2b028f1138",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-clickhouse/uniqexact.md",
+      "destination": "references/architecture-clickhouse/uniqexact.md",
+      "source_sha256": "5ef757c9b5f9bc9b450772e5a031e1dcd81117d0e9043d73df39f34e4987d1af",
+      "packaged_sha256": "5ef757c9b5f9bc9b450772e5a031e1dcd81117d0e9043d73df39f34e4987d1af",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-guild/account-api-keys.md",
+      "destination": "references/architecture-guild/account-api-keys.md",
+      "source_sha256": "7edd438d40ca9dba42c2e9a2b04f80d70b53ddd936846540c8e111e497b31f92",
+      "packaged_sha256": "7edd438d40ca9dba42c2e9a2b04f80d70b53ddd936846540c8e111e497b31f92",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-guild/api-introduction-fresh.md",
+      "destination": "references/architecture-guild/api-introduction-fresh.md",
+      "source_sha256": "cd3f41e4ac539fc3ad94029b706e237ca9b4457223d02353bf6e2c67b8449e7a",
+      "packaged_sha256": "d1d2f0d7642058246e8c5a995908567f56568b3b052388c07dd5234b85e978cc",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-guild/api-introduction.md",
+      "destination": "references/architecture-guild/api-introduction.md",
+      "source_sha256": "52b3301c9b8cc4798ded2f871c21691fb5ff8b46244a90fdcbb076e99fd4f759",
+      "packaged_sha256": "52b3301c9b8cc4798ded2f871c21691fb5ff8b46244a90fdcbb076e99fd4f759",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-guild/api-triggers-fresh.md",
+      "destination": "references/architecture-guild/api-triggers-fresh.md",
+      "source_sha256": "9b59f415f41654af8a4f315ad5baf4a4cfe8bcdf86838fd67250da142e229f0d",
+      "packaged_sha256": "3efd255f2b80b8256070d15c8c303b517b8fc06b9eb310795f276bd988eedd77",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-guild/api-triggers.md",
+      "destination": "references/architecture-guild/api-triggers.md",
+      "source_sha256": "f1cd1c3355d1059a9d51bc5b75033119a8f39e171691044d1b2c32997840e83b",
+      "packaged_sha256": "f1cd1c3355d1059a9d51bc5b75033119a8f39e171691044d1b2c32997840e83b",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-guild/audit-logs-fresh.md",
+      "destination": "references/architecture-guild/audit-logs-fresh.md",
+      "source_sha256": "2136079e64e6be3bebf065d1efa66eb38539f91c8a0d36802f4bc5a326813d09",
+      "packaged_sha256": "6489b9177d0e1ad56a645f262297a2d7c0f76cece983b28ddbf310e71750a59b",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-guild/caller-identity-schema.md",
+      "destination": "references/architecture-guild/caller-identity-schema.md",
+      "source_sha256": "f6142b70e217a68885f034b4d89aafc608a8b134733cd842ce065467d83c4d3d",
+      "packaged_sha256": "f6142b70e217a68885f034b4d89aafc608a8b134733cd842ce065467d83c4d3d",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-guild/credential-policies-fresh.md",
+      "destination": "references/architecture-guild/credential-policies-fresh.md",
+      "source_sha256": "0ae079d9ab1ff79651bd7b017f1bda61595d8420258a9406545e4cdd00aae5a9",
+      "packaged_sha256": "56c52c19c1105c5aef7ae52d41cf115a021204b21e94180ea791909a9bdc5d1f",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-guild/credential-policies.md",
+      "destination": "references/architecture-guild/credential-policies.md",
+      "source_sha256": "7763f5a5d17bbb0ec85284d075ebf256414a434acc617c838524bc831c1240f9",
+      "packaged_sha256": "7763f5a5d17bbb0ec85284d075ebf256414a434acc617c838524bc831c1240f9",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-guild/credentials-fresh.md",
+      "destination": "references/architecture-guild/credentials-fresh.md",
+      "source_sha256": "0a92f57f1c5eb096d7db69336ad1529718eca59bcd017cbd5a26ba609f1a6131",
+      "packaged_sha256": "13bd2cb790a9fd0957a3522770e0be351a6116e34a5a40026dcf639f947149a3",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-guild/credentials.md",
+      "destination": "references/architecture-guild/credentials.md",
+      "source_sha256": "cd6a96fbf0daa26039e406ad0e8db7f5b091139f7b355c1d3998454a5516b7fd",
+      "packaged_sha256": "cd6a96fbf0daa26039e406ad0e8db7f5b091139f7b355c1d3998454a5516b7fd",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-guild/discovery-notes.md",
+      "destination": "references/architecture-guild/discovery-notes.md",
+      "source_sha256": "dcf877bc76aa0b38427ddcf17feacc5d3a3ee7b74202a31226615dc5cfcd309e",
+      "packaged_sha256": "dcf877bc76aa0b38427ddcf17feacc5d3a3ee7b74202a31226615dc5cfcd309e",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-guild/follow-up-schema.md",
+      "destination": "references/architecture-guild/follow-up-schema.md",
+      "source_sha256": "2013919f5ada1f33b323a37b86acf5be5aa0ab3f844f1c331fe51160a4655b97",
+      "packaged_sha256": "2013919f5ada1f33b323a37b86acf5be5aa0ab3f844f1c331fe51160a4655b97",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-guild/get-session-schema.md",
+      "destination": "references/architecture-guild/get-session-schema.md",
+      "source_sha256": "168e99be6828940529c1edd3e258908887994e2df0b0a4242cdf553fc3851bde",
+      "packaged_sha256": "168e99be6828940529c1edd3e258908887994e2df0b0a4242cdf553fc3851bde",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-guild/get-workspace-schema.md",
+      "destination": "references/architecture-guild/get-workspace-schema.md",
+      "source_sha256": "0eef8b6ee88195ac78f505e21c49eb7d439b1f2b2c7bedc9c99f853c7eda5f72",
+      "packaged_sha256": "0eef8b6ee88195ac78f505e21c49eb7d439b1f2b2c7bedc9c99f853c7eda5f72",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-guild/github-fresh.md",
+      "destination": "references/architecture-guild/github-fresh.md",
+      "source_sha256": "00c29d11b9dcf2a308291aa65e31783ca38b9238c43d9fa5a7be78fdcb891e4c",
+      "packaged_sha256": "e1a193d142a22a42c038503b7c58f67c7d8157e7c96611ec5fd6f4baa5c544c2",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-guild/installed-agents-schema.md",
+      "destination": "references/architecture-guild/installed-agents-schema.md",
+      "source_sha256": "328a63dd592ccbfce69d57212efc0c296331d8f5db784612539467c36206beda",
+      "packaged_sha256": "328a63dd592ccbfce69d57212efc0c296331d8f5db784612539467c36206beda",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-guild/public-endpoints.json",
+      "destination": "references/architecture-guild/public-endpoints.json",
+      "source_sha256": "a58203645f3a376fe838dccc1d49caf0394e8bae58b59836e63f42c125823b4a",
+      "packaged_sha256": "a58203645f3a376fe838dccc1d49caf0394e8bae58b59836e63f42c125823b4a",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-guild/public-openapi.md",
+      "destination": "references/architecture-guild/public-openapi.md",
+      "source_sha256": "1f2658e2c6b33ba116b7ee492781d52ffefba702a1af93e5d0d591e01f565549",
+      "packaged_sha256": "1f2658e2c6b33ba116b7ee492781d52ffefba702a1af93e5d0d591e01f565549",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-guild/public-openapi.yaml",
+      "destination": "references/architecture-guild/public-openapi.yaml",
+      "source_sha256": "b564ee5a23a21cc0c7e7ac01ffd3f27a459935e72dfe78a0bf1969e821499012",
+      "packaged_sha256": "b564ee5a23a21cc0c7e7ac01ffd3f27a459935e72dfe78a0bf1969e821499012",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-guild/security-architecture-fresh.md",
+      "destination": "references/architecture-guild/security-architecture-fresh.md",
+      "source_sha256": "585170fa7f33cdd61afb75643d5e015d90f37a7ca7d47c70909b153274a3c452",
+      "packaged_sha256": "bee36525b3fe17c9f2a1106dd661028c2948e579e91522d0a6543bced9da72b8",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-guild/session-events-schema.md",
+      "destination": "references/architecture-guild/session-events-schema.md",
+      "source_sha256": "417694a6510af9e9fd3b3bbbc40c4145db4d424731b4ce42b7b651ba2ee76748",
+      "packaged_sha256": "417694a6510af9e9fd3b3bbbc40c4145db4d424731b4ce42b7b651ba2ee76748",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-guild/session-events.md",
+      "destination": "references/architecture-guild/session-events.md",
+      "source_sha256": "594376854d78d23b4869a173a595c32b84646f3802f0435629d6eabfbc5d5b97",
+      "packaged_sha256": "594376854d78d23b4869a173a595c32b84646f3802f0435629d6eabfbc5d5b97",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-guild/session-tasks-schema.md",
+      "destination": "references/architecture-guild/session-tasks-schema.md",
+      "source_sha256": "ee18ab68d362ec613903178aabf59c8707d2b53dd6a4de81dc0e55f35bc7b740",
+      "packaged_sha256": "ee18ab68d362ec613903178aabf59c8707d2b53dd6a4de81dc0e55f35bc7b740",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-guild/session-tasks.md",
+      "destination": "references/architecture-guild/session-tasks.md",
+      "source_sha256": "8aa2c6fe29e423a70c8058d5b8f4011fdbddb17d254543acfb4c9f8ba74d8be5",
+      "packaged_sha256": "8aa2c6fe29e423a70c8058d5b8f4011fdbddb17d254543acfb4c9f8ba74d8be5",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-guild/sources-manifest.json",
+      "destination": "references/architecture-guild/sources-manifest.json",
+      "source_sha256": "2b840ed818e43b357279c65d63780f2584c77b49ca343366af58080b3e166564",
+      "packaged_sha256": "2b840ed818e43b357279c65d63780f2584c77b49ca343366af58080b3e166564",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-guild/start-session-account-schema.md",
+      "destination": "references/architecture-guild/start-session-account-schema.md",
+      "source_sha256": "2cf4cc8905849a9b9551828d363f228072a09466528dd1c83dee8374111508e7",
+      "packaged_sha256": "2cf4cc8905849a9b9551828d363f228072a09466528dd1c83dee8374111508e7",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-guild/start-session-account.md",
+      "destination": "references/architecture-guild/start-session-account.md",
+      "source_sha256": "cdcf7b08eadfee108c47aa5761250dd023f375dc524ef74a6612dbfc9041a943",
+      "packaged_sha256": "cdcf7b08eadfee108c47aa5761250dd023f375dc524ef74a6612dbfc9041a943",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-csrf.md",
+      "destination": "references/architecture-runtime/architecture-csrf.md",
+      "source_sha256": "fcaa0bd483869ee85945bfadbc019195645cba337d2396944a217679a82a5ff4",
+      "packaged_sha256": "fcaa0bd483869ee85945bfadbc019195645cba337d2396944a217679a82a5ff4",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-mermaid.md",
+      "destination": "references/architecture-runtime/architecture-mermaid.md",
+      "source_sha256": "7c15f9c4ef8b122f60f308e674086cb188cd3e66e6cc8f7fede874d24abb9852",
+      "packaged_sha256": "7c15f9c4ef8b122f60f308e674086cb188cd3e66e6cc8f7fede874d24abb9852",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-node-sqlite.md",
+      "destination": "references/architecture-runtime/architecture-node-sqlite.md",
+      "source_sha256": "91177af5e68db2a4b8d66c094633af702e03b2b56119cd1d93bb0e2db2a4992f",
+      "packaged_sha256": "91177af5e68db2a4b8d66c094633af702e03b2b56119cd1d93bb0e2db2a4992f",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-semgrep.md",
+      "destination": "references/architecture-runtime/architecture-semgrep.md",
+      "source_sha256": "6b25e1f49f3cae14f9457c244d990272c21b5550bf6b7a9d16df4efb24d65a68",
+      "packaged_sha256": "6b25e1f49f3cae14f9457c244d990272c21b5550bf6b7a9d16df4efb24d65a68",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/clickhouse.com/blog/clickhouse-release-26-09/index.md",
+      "destination": "references/clickhouse.com/blog/clickhouse-release-26-09/index.md",
+      "source_sha256": "9e1584490f1d315fce2f4dd76a7cd905768ea4266af8c017a9ecff0f37b34fe2",
+      "packaged_sha256": "9e1584490f1d315fce2f4dd76a7cd905768ea4266af8c017a9ecff0f37b34fe2",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/clickhouse.com/blog/clickhouse-release-26-09/metadata.json",
+      "destination": "references/clickhouse.com/blog/clickhouse-release-26-09/metadata.json",
+      "source_sha256": "8a6f505150f06cb449c8f92268868138255defbf16a4c2d2919b019002c614e5",
+      "packaged_sha256": "8a6f505150f06cb449c8f92268868138255defbf16a4c2d2919b019002c614e5",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/clickhouse.com/blog/executable-udfs-generally-available-on-clickhouse-cloud/index.md",
+      "destination": "references/clickhouse.com/blog/executable-udfs-generally-available-on-clickhouse-cloud/index.md",
+      "source_sha256": "ccb2b05a4006e372391c3996116e5e9f88cebbba0fd58ef295ec6d65f76cc2ca",
+      "packaged_sha256": "ccb2b05a4006e372391c3996116e5e9f88cebbba0fd58ef295ec6d65f76cc2ca",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/clickhouse.com/blog/executable-udfs-generally-available-on-clickhouse-cloud/metadata.json",
+      "destination": "references/clickhouse.com/blog/executable-udfs-generally-available-on-clickhouse-cloud/metadata.json",
+      "source_sha256": "fbd5d73e9aa46b94da9f838e0797f1b27157aa134f7707e48684a1f21d409489",
+      "packaged_sha256": "fbd5d73e9aa46b94da9f838e0797f1b27157aa134f7707e48684a1f21d409489",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/clickhouse.com/blog/whats-new-in-clickstack-august-2026/index.md",
+      "destination": "references/clickhouse.com/blog/whats-new-in-clickstack-august-2026/index.md",
+      "source_sha256": "1bd089415e7c4d5761a9dc2b13443741ba17334c7f52ecc10791a3bd683b144b",
+      "packaged_sha256": "1bd089415e7c4d5761a9dc2b13443741ba17334c7f52ecc10791a3bd683b144b",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/clickhouse.com/blog/whats-new-in-clickstack-august-2026/metadata.json",
+      "destination": "references/clickhouse.com/blog/whats-new-in-clickstack-august-2026/metadata.json",
+      "source_sha256": "ae3a07f138659528c280f405997bffe2716338436e7fcddbe74c52dec7bf8990",
+      "packaged_sha256": "ae3a07f138659528c280f405997bffe2716338436e7fcddbe74c52dec7bf8990",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/clickhouse.com/docs/clickstack/features/alerts/index.md",
+      "destination": "references/clickhouse.com/docs/clickstack/features/alerts/index.md",
+      "source_sha256": "ca11324d596c2f0012fb0d94a89fb82b6d3b6b0610db0338f49ac5c3d20cc7a2",
+      "packaged_sha256": "ca11324d596c2f0012fb0d94a89fb82b6d3b6b0610db0338f49ac5c3d20cc7a2",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/clickhouse.com/docs/clickstack/features/alerts/metadata.json",
+      "destination": "references/clickhouse.com/docs/clickstack/features/alerts/metadata.json",
+      "source_sha256": "c53a647ac02ee10a07ce60214228c976ff2b72effe5eab44a051c01b8e4a08c5",
+      "packaged_sha256": "c53a647ac02ee10a07ce60214228c976ff2b72effe5eab44a051c01b8e4a08c5",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/clickhouse.com/docs/clickstack/features/dashboards/sql-visualizations/index.md",
+      "destination": "references/clickhouse.com/docs/clickstack/features/dashboards/sql-visualizations/index.md",
+      "source_sha256": "60712f6ca5e08a68d248234782743abb0d4fb74019fc19f0e0d747248a11ab4e",
+      "packaged_sha256": "60712f6ca5e08a68d248234782743abb0d4fb74019fc19f0e0d747248a11ab4e",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/clickhouse.com/docs/clickstack/features/dashboards/sql-visualizations/metadata.json",
+      "destination": "references/clickhouse.com/docs/clickstack/features/dashboards/sql-visualizations/metadata.json",
+      "source_sha256": "dc799bcd18af81a9df18167b7b21f3521ee8cc2611e040957e4609ad1990790d",
+      "packaged_sha256": "dc799bcd18af81a9df18167b7b21f3521ee8cc2611e040957e4609ad1990790d",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/clickhouse.com/docs/clickstack/mcp/index.md",
+      "destination": "references/clickhouse.com/docs/clickstack/mcp/index.md",
+      "source_sha256": "2d06ccd7c40bc50d6e442d5fa28af8fee2b4abbda23c44d7a73f1d4614d37ee6",
+      "packaged_sha256": "2d06ccd7c40bc50d6e442d5fa28af8fee2b4abbda23c44d7a73f1d4614d37ee6",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/clickhouse.com/docs/clickstack/mcp/metadata.json",
+      "destination": "references/clickhouse.com/docs/clickstack/mcp/metadata.json",
+      "source_sha256": "88f1442dddf2d027bc57ac8c374db173fd507337f8ce528a0f6765e333297f5a",
+      "packaged_sha256": "88f1442dddf2d027bc57ac8c374db173fd507337f8ce528a0f6765e333297f5a",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/clickhouse.com/docs/concepts/features/materialized-views/incremental-materialized-view/index.md",
+      "destination": "references/clickhouse.com/docs/concepts/features/materialized-views/incremental-materialized-view/index.md",
+      "source_sha256": "53e344bfb47631a30ea00ba68612813dac8c97d728ae3fc73966821aaec57432",
+      "packaged_sha256": "53e344bfb47631a30ea00ba68612813dac8c97d728ae3fc73966821aaec57432",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/clickhouse.com/docs/concepts/features/materialized-views/incremental-materialized-view/metadata.json",
+      "destination": "references/clickhouse.com/docs/concepts/features/materialized-views/incremental-materialized-view/metadata.json",
+      "source_sha256": "1107134b37d44c939e0127c5c20930222581fe16a17a7f8dade859727a7731e8",
+      "packaged_sha256": "1107134b37d44c939e0127c5c20930222581fe16a17a7f8dade859727a7731e8",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/clickhouse.com/docs/concepts/features/operations/insert/asyncinserts/index.md",
+      "destination": "references/clickhouse.com/docs/concepts/features/operations/insert/asyncinserts/index.md",
+      "source_sha256": "903907926cfc0d5744886b4cc0a668c4bd6c0ceb55842422d1960a16405ffabf",
+      "packaged_sha256": "903907926cfc0d5744886b4cc0a668c4bd6c0ceb55842422d1960a16405ffabf",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/clickhouse.com/docs/concepts/features/operations/insert/asyncinserts/metadata.json",
+      "destination": "references/clickhouse.com/docs/concepts/features/operations/insert/asyncinserts/metadata.json",
+      "source_sha256": "21ebf765ce42b20295b2ad055a33b84a4a341b6d2e1bf7b4be1193384e8eb2ec",
+      "packaged_sha256": "21ebf765ce42b20295b2ad055a33b84a4a341b6d2e1bf7b4be1193384e8eb2ec",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/clickhouse.com/docs/reference/engines/table-engines/mergetree-family/replacingmergetree/index.md",
+      "destination": "references/clickhouse.com/docs/reference/engines/table-engines/mergetree-family/replacingmergetree/index.md",
+      "source_sha256": "233324216aae91c8ec2783c351fea0e38d97668bc622677d0d7e6efd0e96a11e",
+      "packaged_sha256": "233324216aae91c8ec2783c351fea0e38d97668bc622677d0d7e6efd0e96a11e",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/clickhouse.com/docs/reference/engines/table-engines/mergetree-family/replacingmergetree/metadata.json",
+      "destination": "references/clickhouse.com/docs/reference/engines/table-engines/mergetree-family/replacingmergetree/metadata.json",
+      "source_sha256": "de19122471a232ff0243c3f975978c56cfcacbbdaddf27d99b99d97c744db639",
+      "packaged_sha256": "de19122471a232ff0243c3f975978c56cfcacbbdaddf27d99b99d97c744db639",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/clickhouse.com/docs/reference/functions/aggregate-functions/uniqExact/index.md",
+      "destination": "references/clickhouse.com/docs/reference/functions/aggregate-functions/uniqExact/index.md",
+      "source_sha256": "5ef757c9b5f9bc9b450772e5a031e1dcd81117d0e9043d73df39f34e4987d1af",
+      "packaged_sha256": "5ef757c9b5f9bc9b450772e5a031e1dcd81117d0e9043d73df39f34e4987d1af",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/clickhouse.com/docs/reference/functions/aggregate-functions/uniqExact/metadata.json",
+      "destination": "references/clickhouse.com/docs/reference/functions/aggregate-functions/uniqExact/metadata.json",
+      "source_sha256": "c6cbb45c95edd93fc137340fb1250636f0d129c146b00569ffc77eb48d039f03",
+      "packaged_sha256": "c6cbb45c95edd93fc137340fb1250636f0d129c146b00569ffc77eb48d039f03",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/clickhouse.com/docs/reference/system-tables/query_log/index.md",
+      "destination": "references/clickhouse.com/docs/reference/system-tables/query_log/index.md",
+      "source_sha256": "06d176c281812c46b90ce29fe92f677eec3c6b08a39e76cf0216bce1592b515a",
+      "packaged_sha256": "06d176c281812c46b90ce29fe92f677eec3c6b08a39e76cf0216bce1592b515a",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/clickhouse.com/docs/reference/system-tables/query_log/metadata.json",
+      "destination": "references/clickhouse.com/docs/reference/system-tables/query_log/metadata.json",
+      "source_sha256": "55eccb4892ea95598d66a8bf594015b0ab00117ce14a5ff0ce40033b7783acab",
+      "packaged_sha256": "55eccb4892ea95598d66a8bf594015b0ab00117ce14a5ff0ce40033b7783acab",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/docs.guild.ai/api-reference/sessions/fetch-session-events/index.md",
+      "destination": "references/docs.guild.ai/api-reference/sessions/fetch-session-events/index.md",
+      "source_sha256": "81256aafc8dbe6145bb697fc8c3457e3ddfc2b07ef3ebed3d9dae06625a7d3ed",
+      "packaged_sha256": "81256aafc8dbe6145bb697fc8c3457e3ddfc2b07ef3ebed3d9dae06625a7d3ed",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/docs.guild.ai/api-reference/sessions/fetch-session-sub-tasks/index.md",
+      "destination": "references/docs.guild.ai/api-reference/sessions/fetch-session-sub-tasks/index.md",
+      "source_sha256": "11e1245ec8776d04d1570ea02d2afc755abfb64127902b1d42135d65606f959b",
+      "packaged_sha256": "11e1245ec8776d04d1570ea02d2afc755abfb64127902b1d42135d65606f959b",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/docs.guild.ai/guide/coded-agents/index.md",
+      "destination": "references/docs.guild.ai/guide/coded-agents/index.md",
+      "source_sha256": "8af139ce70086cba7c20ddf23dececad5190c2b1ae36c1dd65afac726fd892cb",
+      "packaged_sha256": "f7fec383bb2f4e3c1a677861df2f0c420b8cee7466d56382edc1a8f4a80f8368",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/docs.guild.ai/guide/native-agents/index.md",
+      "destination": "references/docs.guild.ai/guide/native-agents/index.md",
+      "source_sha256": "616774a45535cd97341cb6b90057ebad7b329c7ace9c227305922f580c8ae727",
+      "packaged_sha256": "616774a45535cd97341cb6b90057ebad7b329c7ace9c227305922f580c8ae727",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/docs.guild.ai/guide/versions/index.md",
+      "destination": "references/docs.guild.ai/guide/versions/index.md",
+      "source_sha256": "4f94d3c33353d5678ebaf2f18317fd07b047e458150d0a1c15c006fce7f123c6",
+      "packaged_sha256": "4f94d3c33353d5678ebaf2f18317fd07b047e458150d0a1c15c006fce7f123c6",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/docs.guild.ai/integrations/github/index.md",
+      "destination": "references/docs.guild.ai/integrations/github/index.md",
+      "source_sha256": "96bdec5713d998933cf762d90fe0a12bab1d446aa226ce908642c636a405c1fe",
+      "packaged_sha256": "96bdec5713d998933cf762d90fe0a12bab1d446aa226ce908642c636a405c1fe",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/docs.guild.ai/platform/api-triggers/index.md",
+      "destination": "references/docs.guild.ai/platform/api-triggers/index.md",
+      "source_sha256": "6f9b5d3c6a7de1b47869db2e5f4c908db47d94be583b15d64500544ad7642c10",
+      "packaged_sha256": "321b7d2dfa5d0af2111e759d8ea88e42fee0e7cd21c158761d05df225c31a25e",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/docs.guild.ai/platform/credential-policies/index.md",
+      "destination": "references/docs.guild.ai/platform/credential-policies/index.md",
+      "source_sha256": "ac3f428c38fbbc84520fd53646762a5ef233a40d5a439f9178c80ccc6d045489",
+      "packaged_sha256": "80f47ef6b64cbe75bdc02162b2f456b9f2a64541883f5574f075279e7201b328",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/docs.guild.ai/platform/llm-settings/index.md",
+      "destination": "references/docs.guild.ai/platform/llm-settings/index.md",
+      "source_sha256": "342c63e6e584eeee6328d40f8496c85b5e539309c7fe734d51f74ae2553d622b",
+      "packaged_sha256": "342c63e6e584eeee6328d40f8496c85b5e539309c7fe734d51f74ae2553d622b",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/docs.guild.ai/platform/security-architecture/index.md",
+      "destination": "references/docs.guild.ai/platform/security-architecture/index.md",
+      "source_sha256": "1d487f6c4cffaac0874368f13aa289ae1f942deabe82bab827bd6c8db63537e2",
+      "packaged_sha256": "254ce22d16acf340d573b50c6bf7e1623de9e7afcab68bbe8ca8c166ad6a6391",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/docs.guild.ai/platform/sessions/index.md",
+      "destination": "references/docs.guild.ai/platform/sessions/index.md",
+      "source_sha256": "bd98c31ec29a1a7981343e9efaff712819798e2e2a07bb1e28350575cfeaa02a",
+      "packaged_sha256": "bdd72e0ded04f060e98eddec42f9f4acc2b1542218002546cd1d2962cce6670d",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/docs.guild.ai/quickstart/index.md",
+      "destination": "references/docs.guild.ai/quickstart/index.md",
+      "source_sha256": "ed18e9a83f3ff5af5c85d0c00bb3ea724dc0d5a9fd1f7b7889479a849bb5dda4",
+      "packaged_sha256": "7fdc25da9399ca5dbe23474f0cfe10c121e1daa852f2b13cae01857f65a3cd88",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/docs.semgrep.dev/semgrep-code/semgrep-pro-engine-intro/index.md",
+      "destination": "references/docs.semgrep.dev/semgrep-code/semgrep-pro-engine-intro/index.md",
+      "source_sha256": "334c7f1631ae179b66c70599f6071ee8a8bac51df735af7898e223e9662ef103",
+      "packaged_sha256": "334c7f1631ae179b66c70599f6071ee8a8bac51df735af7898e223e9662ef103",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/docs.semgrep.dev/semgrep-guardian/choose-your-setup/index.md",
+      "destination": "references/docs.semgrep.dev/semgrep-guardian/choose-your-setup/index.md",
+      "source_sha256": "9b014f0bfcffefea32ad3ef038a9b1f436a4fe149bc3852a3920834cd6be26c2",
+      "packaged_sha256": "9b014f0bfcffefea32ad3ef038a9b1f436a4fe149bc3852a3920834cd6be26c2",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/docs.semgrep.dev/semgrep-guardian/overview/index.md",
+      "destination": "references/docs.semgrep.dev/semgrep-guardian/overview/index.md",
+      "source_sha256": "cedbdf6efe505f9f4f861cdfd3c9fc3b8927c9d8ea54d409480672a0e6be1169",
+      "packaged_sha256": "cedbdf6efe505f9f4f861cdfd3c9fc3b8927c9d8ea54d409480672a0e6be1169",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/docs.semgrep.dev/semgrep-guardian/quickstart/index.md",
+      "destination": "references/docs.semgrep.dev/semgrep-guardian/quickstart/index.md",
+      "source_sha256": "ab007741429079380df4e25fc22117ce27ef2a881b630e04e6df278f019d0ba5",
+      "packaged_sha256": "ab007741429079380df4e25fc22117ce27ef2a881b630e04e6df278f019d0ba5",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/docs.semgrep.dev/semgrep-guardian/rules-and-configuration/index.md",
+      "destination": "references/docs.semgrep.dev/semgrep-guardian/rules-and-configuration/index.md",
+      "source_sha256": "dea728fc4ce8b9dc500bd60489d2dfb4536116d9a38293dcb5765dbcc1fe3a10",
+      "packaged_sha256": "dea728fc4ce8b9dc500bd60489d2dfb4536116d9a38293dcb5765dbcc1fe3a10",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/scopewatch-kb/clickhouse/alerts-capture.json",
+      "destination": "references/scopewatch-kb/clickhouse/alerts-capture.json",
+      "source_sha256": "0da144d858ba3cfb773b5b4d20361969101fb7d824811a5ec88637e8b447558e",
+      "packaged_sha256": "0da144d858ba3cfb773b5b4d20361969101fb7d824811a5ec88637e8b447558e",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/scopewatch-kb/clickhouse/async-inserts-capture.json",
+      "destination": "references/scopewatch-kb/clickhouse/async-inserts-capture.json",
+      "source_sha256": "57cea29f95460a8a814fdeec90b15982b8b6795115479ed1f5d9c43a589a8111",
+      "packaged_sha256": "57cea29f95460a8a814fdeec90b15982b8b6795115479ed1f5d9c43a589a8111",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/scopewatch-kb/clickhouse/discovery-map-clickstack.json",
+      "destination": "references/scopewatch-kb/clickhouse/discovery-map-clickstack.json",
+      "source_sha256": "1cd53700d8343f828ff8187841e5924abb196abcedf8deb41ad89f19987ad038",
+      "packaged_sha256": "1cd53700d8343f828ff8187841e5924abb196abcedf8deb41ad89f19987ad038",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/scopewatch-kb/clickhouse/discovery-map-docs.json",
+      "destination": "references/scopewatch-kb/clickhouse/discovery-map-docs.json",
+      "source_sha256": "14fdabddce46c25ede40903c8bb08974fdfcedc92cec1e824e49e75bd268d1d3",
+      "packaged_sha256": "14fdabddce46c25ede40903c8bb08974fdfcedc92cec1e824e49e75bd268d1d3",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/scopewatch-kb/clickhouse/discovery-map-uniqexact.json",
+      "destination": "references/scopewatch-kb/clickhouse/discovery-map-uniqexact.json",
+      "source_sha256": "4848b969a708bc058d8d72ae3db2981c6f84a28e1cca1d3e73be9a70596f9d76",
+      "packaged_sha256": "4848b969a708bc058d8d72ae3db2981c6f84a28e1cca1d3e73be9a70596f9d76",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/scopewatch-kb/clickhouse/discovery-search-26-9.json",
+      "destination": "references/scopewatch-kb/clickhouse/discovery-search-26-9.json",
+      "source_sha256": "62abe57501c6db195bc5d3c492dc4e72a4d6ac6f4d3f7d30d8bd30b2ef77a349",
+      "packaged_sha256": "62abe57501c6db195bc5d3c492dc4e72a4d6ac6f4d3f7d30d8bd30b2ef77a349",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/scopewatch-kb/clickhouse/discovery-search-recent-capabilities.json",
+      "destination": "references/scopewatch-kb/clickhouse/discovery-search-recent-capabilities.json",
+      "source_sha256": "737cdc68a10eedcaaf0b9df1cc78041d9c14d8dcc62a30af094cd7e05094b88b",
+      "packaged_sha256": "737cdc68a10eedcaaf0b9df1cc78041d9c14d8dcc62a30af094cd7e05094b88b",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/scopewatch-kb/clickhouse/index.md",
+      "destination": "references/scopewatch-kb/clickhouse/index.md",
+      "source_sha256": "5cb8a99739e945223bc62ed3079bf618c6271e77b5b64ee155ff9ba6aac4da85",
+      "packaged_sha256": "2400413c27b57736c3d236a8ce488f8ddfab886c982f43be61a3af01c308f674",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved.; imported trailing whitespace normalized"
+    },
+    {
+      "source_relative_path": ".firecrawl/scopewatch-kb/clickhouse/mcp-capture.json",
+      "destination": "references/scopewatch-kb/clickhouse/mcp-capture.json",
+      "source_sha256": "6c9b46b2ec19051f60fdc5c50c74f2681fd0e9896da1cf7c9eab31857f40f4fe",
+      "packaged_sha256": "6c9b46b2ec19051f60fdc5c50c74f2681fd0e9896da1cf7c9eab31857f40f4fe",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/scopewatch-kb/clickhouse/query-log-capture.json",
+      "destination": "references/scopewatch-kb/clickhouse/query-log-capture.json",
+      "source_sha256": "da6a53c924fe99a54b2a08c0295fa824ff56f8c8b4300dfe5c98e075dd7639c8",
+      "packaged_sha256": "da6a53c924fe99a54b2a08c0295fa824ff56f8c8b4300dfe5c98e075dd7639c8",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/scopewatch-kb/clickhouse/release-26-9-capture.json",
+      "destination": "references/scopewatch-kb/clickhouse/release-26-9-capture.json",
+      "source_sha256": "c7a290d30e3b6af910627292c038d9f7b3981519f7a521a881ecc7d207af942b",
+      "packaged_sha256": "c7a290d30e3b6af910627292c038d9f7b3981519f7a521a881ecc7d207af942b",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/scopewatch-kb/clickhouse/replacingmergetree-capture.json",
+      "destination": "references/scopewatch-kb/clickhouse/replacingmergetree-capture.json",
+      "source_sha256": "731898fbcc194c2091c38ecce7c00c6ae29b7dd465c12e3bd5641ea5fd77b605",
+      "packaged_sha256": "731898fbcc194c2091c38ecce7c00c6ae29b7dd465c12e3bd5641ea5fd77b605",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/scopewatch-kb/clickhouse/sources.json",
+      "destination": "references/scopewatch-kb/clickhouse/sources.json",
+      "source_sha256": "187cf7f56f45c79c14d9f970a263f4b7fb354abcce76dc574b2c30fd724753f0",
+      "packaged_sha256": "187cf7f56f45c79c14d9f970a263f4b7fb354abcce76dc574b2c30fd724753f0",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/scopewatch-kb/clickhouse/sql-visualizations-capture.json",
+      "destination": "references/scopewatch-kb/clickhouse/sql-visualizations-capture.json",
+      "source_sha256": "ab24dd0d98408226920b708242a310cd64f8a9dc64eb39a2b67baf1119a7e40b",
+      "packaged_sha256": "ab24dd0d98408226920b708242a310cd64f8a9dc64eb39a2b67baf1119a7e40b",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/scopewatch-kb/clickhouse/uniqexact-canonical-capture.json",
+      "destination": "references/scopewatch-kb/clickhouse/uniqexact-canonical-capture.json",
+      "source_sha256": "143ca21d60c12e51cfbe6d38b1ca00dfabd40c6e4f453fa75bbe1b170f41ed47",
+      "packaged_sha256": "143ca21d60c12e51cfbe6d38b1ca00dfabd40c6e4f453fa75bbe1b170f41ed47",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/scopewatch-kb/clickhouse/uniqexact-capture.json",
+      "destination": "references/scopewatch-kb/clickhouse/uniqexact-capture.json",
+      "source_sha256": "79524489d8d6ca10d807ba6dc25110f5fd3026837cccfdca8a24fe966cc39007",
+      "packaged_sha256": "79524489d8d6ca10d807ba6dc25110f5fd3026837cccfdca8a24fe966cc39007",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/scopewatch-kb/guild/section-index.md",
+      "destination": "references/scopewatch-kb/guild/section-index.md",
+      "source_sha256": "daa0407fb7d1123266d6ef70fd30b5947b3483427b46ecfa510ead18ef5e49db",
+      "packaged_sha256": "daa0407fb7d1123266d6ef70fd30b5947b3483427b46ecfa510ead18ef5e49db",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/scopewatch-kb/guild/sources-manifest.json",
+      "destination": "references/scopewatch-kb/guild/sources-manifest.json",
+      "source_sha256": "814829cd5aa4521a775c4d1199a04744bc0014c76638e4444ed540aa64ab85b4",
+      "packaged_sha256": "814829cd5aa4521a775c4d1199a04744bc0014c76638e4444ed540aa64ab85b4",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/scopewatch-kb/index.md",
+      "destination": "references/scopewatch-kb/index.md",
+      "source_sha256": "1d159f96bc224a8e1deff790253dedf771956df23ed502f7f6b3838b20ba9fbc",
+      "packaged_sha256": "1d159f96bc224a8e1deff790253dedf771956df23ed502f7f6b3838b20ba9fbc",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/scopewatch-kb/releases/index.md",
+      "destination": "references/scopewatch-kb/releases/index.md",
+      "source_sha256": "5eea5487a089e4f18598164baa0325527b080c416a4768f43c7f2402b1a02aa0",
+      "packaged_sha256": "5eea5487a089e4f18598164baa0325527b080c416a4768f43c7f2402b1a02aa0",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/scopewatch-kb/releases/releases.json",
+      "destination": "references/scopewatch-kb/releases/releases.json",
+      "source_sha256": "ff4c5c1aec883e9c6bbc23fedabcff648d15787e985f3bd85903b75406a0a7c7",
+      "packaged_sha256": "ff4c5c1aec883e9c6bbc23fedabcff648d15787e985f3bd85903b75406a0a7c7",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/scopewatch-kb/semgrep-pi/choose-your-setup-new.md",
+      "destination": "references/scopewatch-kb/semgrep-pi/choose-your-setup-new.md",
+      "source_sha256": "887638a733c6b816fb8ff01ff685bec786465e9acdf508706d3f68786375159e",
+      "packaged_sha256": "887638a733c6b816fb8ff01ff685bec786465e9acdf508706d3f68786375159e",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/scopewatch-kb/semgrep-pi/docs-map.json",
+      "destination": "references/scopewatch-kb/semgrep-pi/docs-map.json",
+      "source_sha256": "f642277f4d0a03193fbb7d77c166102b18ec3061fff4232ece45a0ff8a64ca0a",
+      "packaged_sha256": "f642277f4d0a03193fbb7d77c166102b18ec3061fff4232ece45a0ff8a64ca0a",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/scopewatch-kb/semgrep-pi/index.md",
+      "destination": "references/scopewatch-kb/semgrep-pi/index.md",
+      "source_sha256": "14b55ddf23cf684c3271e97c27acdf362ebaad80fb13841b51c852fb00fe5e9e",
+      "packaged_sha256": "14b55ddf23cf684c3271e97c27acdf362ebaad80fb13841b51c852fb00fe5e9e",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/scopewatch-kb/semgrep-pi/semgrep-current-search.json",
+      "destination": "references/scopewatch-kb/semgrep-pi/semgrep-current-search.json",
+      "source_sha256": "ab237d07ca47fdb2df61b0cfb08f88b22a73ac82b2593bcc075f1b5ac8ddb8ee",
+      "packaged_sha256": "ab237d07ca47fdb2df61b0cfb08f88b22a73ac82b2593bcc075f1b5ac8ddb8ee",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/scopewatch-kb/semgrep-pi/sources.json",
+      "destination": "references/scopewatch-kb/semgrep-pi/sources.json",
+      "source_sha256": "321d00325e72034479dcd1f6bd8c1d9597f6c2de0c8b44b77c73ffa99c2f3301",
+      "packaged_sha256": "321d00325e72034479dcd1f6bd8c1d9597f6c2de0c8b44b77c73ffa99c2f3301",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/scopewatch-kb/sources.json",
+      "destination": "references/scopewatch-kb/sources.json",
+      "source_sha256": "6e533c7d83dd3987bb3117dddc6988272c6a12b19b688f2fce46b35e93d5aed3",
+      "packaged_sha256": "6e533c7d83dd3987bb3117dddc6988272c6a12b19b688f2fce46b35e93d5aed3",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/completion-semgrep-ai-pack.raw.yaml",
+      "destination": "references/semgrep-catalog/completion-semgrep-ai-pack.raw.yaml",
+      "source_sha256": "c623efdb571a3c1dbb533fae0e62761a96bbd9a8b59714e94b8282f5b06bc7af",
+      "packaged_sha256": "c623efdb571a3c1dbb533fae0e62761a96bbd9a8b59714e94b8282f5b06bc7af",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/completion-semgrep-catalog-audit.json",
+      "destination": "references/semgrep-catalog/completion-semgrep-catalog-audit.json",
+      "source_sha256": "08e1a208eceb23e5feb0604460b99ff5e73128a65b914302a0e06b39a20ed2ee",
+      "packaged_sha256": "08e1a208eceb23e5feb0604460b99ff5e73128a65b914302a0e06b39a20ed2ee",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/completion-semgrep-guardian-config.raw.html",
+      "destination": "references/semgrep-catalog/completion-semgrep-guardian-config.raw.html",
+      "source_sha256": "156462e998d02e348318d145032037fbb78bab7dcd40648ebdd09ffb52266126",
+      "packaged_sha256": "156462e998d02e348318d145032037fbb78bab7dcd40648ebdd09ffb52266126",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/semgrep.dev/blog/2026/claude-opus-5-5-susvibes-benchmark/index.md",
+      "destination": "references/semgrep.dev/blog/2026/claude-opus-5-5-susvibes-benchmark/index.md",
+      "source_sha256": "cf1a47c22d611e183bbccffe99bb4423dc90666e1805b5b9a8255502fb0be6eb",
+      "packaged_sha256": "cf1a47c22d611e183bbccffe99bb4423dc90666e1805b5b9a8255502fb0be6eb",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/semgrep.dev/blog/2026/introducing-malware-detection-and-response-automation/index.md",
+      "destination": "references/semgrep.dev/blog/2026/introducing-malware-detection-and-response-automation/index.md",
+      "source_sha256": "5897e029d7115b5b0c705d841d326c6fb86a31e8edf07b002c0b76410cb19e49",
+      "packaged_sha256": "5897e029d7115b5b0c705d841d326c6fb86a31e8edf07b002c0b76410cb19e49",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/semgrep.dev/blog/2026/introducing-semgrep-agentic-workflows-automate-deep-vulnerability-hunting-at-scale/index.md",
+      "destination": "references/semgrep.dev/blog/2026/introducing-semgrep-agentic-workflows-automate-deep-vulnerability-hunting-at-scale/index.md",
+      "source_sha256": "00a5b23ee190be5667df11af7559fb7beff4d3baf988a10d656eadcd36c33ef3",
+      "packaged_sha256": "00a5b23ee190be5667df11af7559fb7beff4d3baf988a10d656eadcd36c33ef3",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/semgrep.dev/blog/2026/introducing-semgrep-custom-workflows/index.md",
+      "destination": "references/semgrep.dev/blog/2026/introducing-semgrep-custom-workflows/index.md",
+      "source_sha256": "503e046766f7b39f80ba1f93a2c15fb0ad5cee3a3ff75f3b372b19b8e60943df",
+      "packaged_sha256": "503e046766f7b39f80ba1f93a2c15fb0ad5cee3a3ff75f3b372b19b8e60943df",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/www.pi.security/blog/powering-every-builder-with-security-context-pi-integrates-with-anthropics-compliance-api/index.md",
+      "destination": "references/www.pi.security/blog/powering-every-builder-with-security-context-pi-integrates-with-anthropics-compliance-api/index.md",
+      "source_sha256": "1916a321acb3b6dfd2d65bf299a1f496ce19227ed2092b54d82376df77a9c81e",
+      "packaged_sha256": "1916a321acb3b6dfd2d65bf299a1f496ce19227ed2092b54d82376df77a9c81e",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/www.pi.security/customers/lemonade/index.md",
+      "destination": "references/www.pi.security/customers/lemonade/index.md",
+      "source_sha256": "839aa606a4dda54ec90a8d9fd2ab4cb12b5f810d322d3ec28488ab20bbf9a6ea",
+      "packaged_sha256": "839aa606a4dda54ec90a8d9fd2ab4cb12b5f810d322d3ec28488ab20bbf9a6ea",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-clickhouse/verification.json",
+      "destination": "research/offline-reference/verification.json",
+      "source_sha256": "078967f80f240a9af1eb6b4e05b6a4868d16953d47ef94c94721792e1b0bd79c",
+      "packaged_sha256": "078967f80f240a9af1eb6b4e05b6a4868d16953d47ef94c94721792e1b0bd79c",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": ".firecrawl/architecture-clickhouse/verify_reference.py",
+      "destination": "research/offline-reference/verify_reference.py",
+      "source_sha256": "2117b4a957c03778db6c8efd575bffc8f8f30fdfad196965d6e88441519d0e94",
+      "packaged_sha256": "2117b4a957c03778db6c8efd575bffc8f8f30fdfad196965d6e88441519d0e94",
+      "transformation": "Byte-preserving copy"
+    },
+    {
+      "source_relative_path": "analysis/why-they-won/aws-ai-agents-2025-semgrep.md",
+      "destination": "docs/research/winners/why-they-won/aws-ai-agents-2025-semgrep.md",
+      "source_sha256": "014c35da35bc6ce10c7a2c890174e67f84d77aa2ae5b5f0adfa72e40e8ec3a82",
+      "packaged_sha256": "3f1291124a7d958d6a85127c3e7ced5a7c63fc22c3b74544c4c26d7506e0054c",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/why-they-won/clickhouse-2025-and-argus.md",
+      "destination": "docs/research/winners/why-they-won/clickhouse-2025-and-argus.md",
+      "source_sha256": "ec0aaf2802d4afe5d8d5882f994f0c629b689bcb44789877a0fe92211d63c4bb",
+      "packaged_sha256": "33e28bbc1af971f0ef99a2fcea584010ce13481c0d92fe8f3b58c8eac049b968",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/why-they-won/clickhouse-2026-agentic-london.md",
+      "destination": "docs/research/winners/why-they-won/clickhouse-2026-agentic-london.md",
+      "source_sha256": "1954e1937350569d64c64dd5e8736155714f9e38cc2bbbf54c4dfdca7631f831",
+      "packaged_sha256": "4c6b83b7b44e59f661ee6f1c5e176ad0af12daec4b633727403ab79929b13bcf",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/why-they-won/harness-2026.md",
+      "destination": "docs/research/winners/why-they-won/harness-2026.md",
+      "source_sha256": "2cd482a09ec7b6e91145c30a0e187cd19a3a527f3b29628d1c3aaa03acab95c6",
+      "packaged_sha256": "d6aa81b42c48cb55ca13aad413099480bda2988c119183f7ff8469512e0592cc",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "analysis/why-they-won/ship-to-prod-2026-guild.md",
+      "destination": "docs/research/winners/why-they-won/ship-to-prod-2026-guild.md",
+      "source_sha256": "72b851ad2f21fc4db50fa3429cd72373044e13a888af15d418483c02c4728cde",
+      "packaged_sha256": "7f13fdeaf59a6249d63541b986d6ada0c5922255aacbd879864fe982a5304959",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": ".firecrawl/alexandria/clickhouse-releases-page1.json",
+      "destination": "references/releases/clickhouse-releases-page1.json",
+      "source_sha256": "ec2bad98528601dcbfb3b6c1f4eb952ca7c93b5fd0ac904a5d99f078dc214aaa",
+      "packaged_sha256": "ec2bad98528601dcbfb3b6c1f4eb952ca7c93b5fd0ac904a5d99f078dc214aaa",
+      "transformation": "Copied selected public research provenance"
+    },
+    {
+      "source_relative_path": ".firecrawl/completion-semgrep-source-secret-log.yaml",
+      "destination": "references/semgrep-catalog/completion-semgrep-source-secret-log.yaml",
+      "source_sha256": "dfe640eaa2e1a219d438ce96ceff05e2f7e730c4858a9f49ac228c073db4eac9",
+      "packaged_sha256": "7edd18ffda9e40a3828977f51fecd28cf1631c54ac5ec05bcbc353a98f925fee",
+      "transformation": "Copied selected public research provenance; imported trailing whitespace normalized"
+    },
+    {
+      "source_relative_path": ".firecrawl/completion-semgrep-source-mcp-ssrf.yaml",
+      "destination": "references/semgrep-catalog/completion-semgrep-source-mcp-ssrf.yaml",
+      "source_sha256": "8df2d0b58df9c2ec1875c0f0cfb6222bbe795a5b0978900974c4fa2e47551654",
+      "packaged_sha256": "8df2d0b58df9c2ec1875c0f0cfb6222bbe795a5b0978900974c4fa2e47551654",
+      "transformation": "Copied selected public research provenance"
+    },
+    {
+      "source_relative_path": ".firecrawl/completion-semgrep-source-ts-mcp-ssrf.yaml",
+      "destination": "references/semgrep-catalog/completion-semgrep-source-ts-mcp-ssrf.yaml",
+      "source_sha256": "580fcd1f47443b85d2bcf9b09e819310e56b5e9e5977382417c84f7087e969ff",
+      "packaged_sha256": "580fcd1f47443b85d2bcf9b09e819310e56b5e9e5977382417c84f7087e969ff",
+      "transformation": "Copied selected public research provenance"
+    },
+    {
+      "source_relative_path": ".firecrawl/completion-semgrep-rule-flask-ssrf.yaml",
+      "destination": "references/semgrep-catalog/completion-semgrep-rule-flask-ssrf.yaml",
+      "source_sha256": "3d6a02cd53d9816723108790b4e3349ed46e6ce1e7a4fa024f1faa58ecc7683e",
+      "packaged_sha256": "3d6a02cd53d9816723108790b4e3349ed46e6ce1e7a4fa024f1faa58ecc7683e",
+      "transformation": "Copied selected public research provenance"
+    },
+    {
+      "source_relative_path": ".firecrawl/completion-semgrep-rule-express-ssrf.yaml",
+      "destination": "references/semgrep-catalog/completion-semgrep-rule-express-ssrf.yaml",
+      "source_sha256": "a73c95d038e27db551c80c239dbe4ed630d2b2eed921e55476a66ff42a92701e",
+      "packaged_sha256": "a73c95d038e27db551c80c239dbe4ed630d2b2eed921e55476a66ff42a92701e",
+      "transformation": "Copied selected public research provenance"
+    },
+    {
+      "source_relative_path": ".firecrawl/completion-semgrep-rule-flask-redirect.yaml",
+      "destination": "references/semgrep-catalog/completion-semgrep-rule-flask-redirect.yaml",
+      "source_sha256": "b640b42b4d1c8ae88c17551bdae83b71c3608b3683ec9e07178d32db1be2daff",
+      "packaged_sha256": "b640b42b4d1c8ae88c17551bdae83b71c3608b3683ec9e07178d32db1be2daff",
+      "transformation": "Copied selected public research provenance"
+    },
+    {
+      "source_relative_path": ".firecrawl/completion-semgrep-rule-express-redirect.yaml",
+      "destination": "references/semgrep-catalog/completion-semgrep-rule-express-redirect.yaml",
+      "source_sha256": "cb2333d058623cfa7f14dd600a6f40e0c9b433be27297cc8c90ef716e4c9289e",
+      "packaged_sha256": "cb2333d058623cfa7f14dd600a6f40e0c9b433be27297cc8c90ef716e4c9289e",
+      "transformation": "Copied selected public research provenance"
+    },
+    {
+      "source_relative_path": ".firecrawl/completion-semgrep-rule-mcp-ssrf-qualified.yaml",
+      "destination": "references/semgrep-catalog/completion-semgrep-rule-mcp-ssrf-qualified.yaml",
+      "source_sha256": "e0dfa70eb69d47fe9cb2be8a4fcd53e74cf7fe26fcbb1f06912b57a9c028e4e0",
+      "packaged_sha256": "e0dfa70eb69d47fe9cb2be8a4fcd53e74cf7fe26fcbb1f06912b57a9c028e4e0",
+      "transformation": "Copied selected public research provenance"
+    },
+    {
+      "source_relative_path": ".firecrawl/completion-semgrep-rule-secret-log-qualified.yaml",
+      "destination": "references/semgrep-catalog/completion-semgrep-rule-secret-log-qualified.yaml",
+      "source_sha256": "a23a3cc24aea1d938fc9f4192e7eafb0d07e395c0578e78e3cfe6918d02229a8",
+      "packaged_sha256": "a23a3cc24aea1d938fc9f4192e7eafb0d07e395c0578e78e3cfe6918d02229a8",
+      "transformation": "Copied selected public research provenance"
+    },
+    {
+      "source_relative_path": ".firecrawl/completion-semgrep-authentication.md",
+      "destination": "references/semgrep-catalog/completion-semgrep-authentication.md",
+      "source_sha256": "be482aeb6bfe37b749f9e62c6cadca15759b881251b02d3bdf81981ac33c07f6",
+      "packaged_sha256": "be482aeb6bfe37b749f9e62c6cadca15759b881251b02d3bdf81981ac33c07f6",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved."
+    },
+    {
+      "source_relative_path": "data/winners.json",
+      "destination": "data/winners.json",
+      "source_sha256": "95f74895b4d23297bdd133c328086ef0db92e3298f4a48841550f98f878a28cb",
+      "packaged_sha256": "581f84561a8135c93c14d1cc35316b7cb11835000fdbeb8be560c22a91806161",
+      "transformation": "Filtered to23 relevant sponsor awardees; metadata/counts derived; source rank and evidence qualifications retained"
+    },
+    {
+      "source_relative_path": "data/additional-claims.json",
+      "destination": "data/additional-claims.json",
+      "source_sha256": "d91895f2f153a563365027f6deb65d5b8667e4347e028af83d0d30ad0233dc92",
+      "packaged_sha256": "d91895f2f153a563365027f6deb65d5b8667e4347e028af83d0d30ad0233dc92",
+      "transformation": "Copied selected public research provenance"
+    }
+  ],
+  "omitted_link_targets": [],
+  "note": "Original vendor/acquisition manifests retain historical paths/hashes; this manifest records actual packaged paths and separate hashes. Source root README references point to CURATION; relevant winner dataset is explicitly filtered."
+}

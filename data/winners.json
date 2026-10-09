@@ -1,0 +1,1301 @@
+{
+  "metadata": {
+    "title": "ScopeWatch relevant historical sponsor awardees",
+    "schema_version": "1.0",
+    "research_checked_date": "2026-10-07",
+    "derivative_export": true,
+    "derivation": "Structured transcription of complete Library text reads of the authoritative October 7, 2026 REPOSITORY_INDEX.txt and Sponsor_Winners_Research.docx. The saved PDF is a companion original report; no separate source-note archive was recovered.",
+    "source_library_artifacts": [
+      {
+        "name": "Sponsor_Winners_Research.pdf",
+        "id": "libfile_8d8225adc54481918b9ab3130e2e62c0"
+      },
+      {
+        "name": "Sponsor_Winners_Research.docx",
+        "id": "libfile_70547a810e1c8191b1dda070d8a47055"
+      },
+      {
+        "name": "REPOSITORY_INDEX.txt",
+        "id": "libfile_c90b312d16208191a3783762cb5da0cc"
+      }
+    ],
+    "scope": "23 source-verified awardees: ClickHouse 11, Guild AI 9, Semgrep 3. Akash removed from this derivative.",
+    "historical_snapshot_notice": "Repository access, source observations and award evidence are recorded as checked October 7, 2026. They have not been reverified as current facts by this derivative export.",
+    "evidence_definitions": {
+      "award_verified": "Structured event award badge or explicit sponsor announcement; sponsor lists, technology tags and participant claims alone do not qualify.",
+      "rank_evidence_category": {
+        "sponsor_confirmed": "Sponsor publication explicitly confirms placement.",
+        "participant_reported": "Category award is independently verified; exact placement is only a creator/participant report.",
+        "unconfirmed": "Category award is independently verified; individual placement remains unconfirmed."
+      },
+      "repository_access_at_research_date": {
+        "readable": "Canonical public repository was readable and selected source files were inspected.",
+        "http_404": "Canonical submission-linked identity was verified but its public URL returned 404. This does not establish whether it was private, deleted or renamed.",
+        "unresolved": "No canonical public repository was recovered; repository_url is null."
+      },
+      "source_inspected": "Selected source files were read without installing, running or deploying the project. Source may differ from the judged version.",
+      "demo_url": "Associated submission link, not evidence of successful playback or a functional test.",
+      "why_it_may_have_stood_out_inference": "Research analysis, separate from published explanations; no individual judging scorecards were recovered."
+    },
+    "counts": {
+      "verified_awardees": 23,
+      "completed_events": 7,
+      "sponsor_awardees": {
+        "ClickHouse": 11,
+        "Guild AI": 9,
+        "Semgrep": 3
+      },
+      "verified_repository_identities": 18,
+      "repository_access": {
+        "readable": 15,
+        "unresolved": 5,
+        "http_404": 3
+      },
+      "source_inspected": 15
+    },
+    "exclusions": "Argus is participant-reported only and excluded. No historical Pi Security winner was verified. Cyberdefense on October 9, 2026 was still in the future at the research date. Missing evidence is not proof no winners exist.",
+    "packaging_note": "Filtered from the dated original October 7 dataset. Exact rank/evidence qualifications preserved; not current runtime or prize-odds evidence."
+  },
+  "events": [
+    {
+      "name": "MCP AWS Enterprise Agents Challenge",
+      "date": "2025-07-25",
+      "event_url": "https://luma.com/awshack",
+      "official_prizes_url": "https://mcp-aws-enterprise-agents.devpost.com/",
+      "sponsors_with_verified_awardees": [
+        "ClickHouse"
+      ],
+      "verified_awardee_count": 2
+    },
+    {
+      "name": "NYC AI Agents Hackathon",
+      "date": "2025-10-04",
+      "event_url": "https://luma.com/hackdogs",
+      "official_prizes_url": "https://nyc-ai-agents-hackathon.devpost.com/",
+      "sponsors_with_verified_awardees": [
+        "ClickHouse"
+      ],
+      "verified_awardee_count": 2
+    },
+    {
+      "name": "AWS AI Agents Hackathon",
+      "date": "2025-10-10",
+      "event_url": "https://luma.com/awshackathon",
+      "official_prizes_url": "https://aws-agentic-ai-hackathon.devpost.com/",
+      "sponsors_with_verified_awardees": [
+        "Semgrep"
+      ],
+      "verified_awardee_count": 3
+    },
+    {
+      "name": "Ship to Prod",
+      "date": "2026-04-24",
+      "event_url": "https://luma.com/shiptoprod",
+      "official_prizes_url": "https://ship-to-prod.devpost.com/",
+      "sponsors_with_verified_awardees": [
+        "Guild AI"
+      ],
+      "verified_awardee_count": 6
+    },
+    {
+      "name": "Agentic Engineering Hack",
+      "date": "2026-05-23",
+      "event_url": "https://luma.com/nycagenthack",
+      "official_prizes_url": "https://agentic-engineering-hack.devpost.com/",
+      "sponsors_with_verified_awardees": [
+        "ClickHouse"
+      ],
+      "verified_awardee_count": 2
+    },
+    {
+      "name": "Harness Engineering Hack",
+      "date": "2026-06-12",
+      "event_url": "https://luma.com/harnesshack",
+      "official_prizes_url": "https://harness-hack.devpost.com/",
+      "sponsors_with_verified_awardees": [
+        "ClickHouse",
+        "Guild AI"
+      ],
+      "verified_awardee_count": 6
+    },
+    {
+      "name": "Multiagents Hackathon London",
+      "date": "2026-06-26",
+      "event_url": "https://luma.com/ldnhack",
+      "official_prizes_url": "https://multiagents-hackathon.devpost.com/",
+      "sponsors_with_verified_awardees": [
+        "ClickHouse"
+      ],
+      "verified_awardee_count": 2
+    }
+  ],
+  "winners": [
+    {
+      "id": "clickhouse-rokko-the-ad-optimizer-agent",
+      "name": "Rokko The Ad Optimizer Agent",
+      "sponsor": "ClickHouse",
+      "event": "MCP AWS Enterprise Agents Challenge",
+      "event_date": "2025-07-25",
+      "event_url": "https://luma.com/awshack",
+      "event_official_prizes_url": "https://mcp-aws-enterprise-agents.devpost.com/",
+      "historical_checked_date": "2026-10-07",
+      "award_verified": true,
+      "award_membership_evidence_category": "structured_event_award_badge",
+      "demo_url": "https://www.youtube.com/watch?v=-NTsy-OQp00",
+      "hosted_app_url": null,
+      "pitch_deck_url": null,
+      "screenshots_url": null,
+      "sponsor_rank_source_url": "https://clickhouse.com/blog/aws-mcp-hackathon-san-francisco",
+      "participant_rank_source_url": null,
+      "award_wording": "First place; sponsor confirmed",
+      "award_proof_url": "https://devpost.com/software/rokko-the-ad-optimizer-agent",
+      "repository_url": "https://github.com/JasonLKelly/awshackjuly2025",
+      "access_and_inspection_text": "Public; integration source inspected",
+      "rank_evidence_category": "sponsor_confirmed",
+      "rank": 1,
+      "rank_independently_confirmed": true,
+      "rank_claim_url": "https://clickhouse.com/blog/aws-mcp-hackathon-san-francisco",
+      "repository_identity_verified": true,
+      "repository_access_at_research_date": "readable",
+      "source_inspected": true,
+      "additional_award_claims": [],
+      "report_source_references": [
+        {
+          "field": "repository_evidence_text",
+          "reference_number": 23,
+          "label": "Rokko The Ad Optimizer Agent inspected source",
+          "url": "https://github.com/JasonLKelly/awshackjuly2025/blob/main/ad-simulator/setup-clickhouse.sql"
+        },
+        {
+          "field": "published_explanation_text",
+          "reference_number": 24,
+          "label": "ClickHouse sponsor retrospective",
+          "url": "https://clickhouse.com/blog/aws-mcp-hackathon-san-francisco"
+        }
+      ],
+      "project_description": "A conversational ad-campaign optimizer uses simulated impressions and live performance feedback.",
+      "repository_evidence_text": "Public; integration source inspected. setup-clickhouse.sql defines a MergeTree impressions table, a Kafka input and a transforming materialized view, plus daily and hourly aggregate views.",
+      "published_explanation_text": "ClickHouse names it first and emphasizes streaming signals and fast feature aggregation for bidding decisions.",
+      "why_it_may_have_stood_out_inference": "Analytics changes the agent's optimization decisions, giving the demo an observable data-to-action loop.",
+      "limitations_text": "The impression stream is a disclosed simulation. Apparent credentials in public materials should not be reused. No license was found in the inspected tree.",
+      "inspected_source_urls": [
+        "https://github.com/JasonLKelly/awshackjuly2025/blob/main/ad-simulator/setup-clickhouse.sql"
+      ],
+      "published_sponsor_commentary_urls": [
+        "https://clickhouse.com/blog/aws-mcp-hackathon-san-francisco"
+      ],
+      "derivative_source_artifacts": [
+        "REPOSITORY_INDEX.txt",
+        "Sponsor_Winners_Research.pdf"
+      ]
+    },
+    {
+      "id": "clickhouse-incidentlogica",
+      "name": "IncidentLogica",
+      "sponsor": "ClickHouse",
+      "event": "MCP AWS Enterprise Agents Challenge",
+      "event_date": "2025-07-25",
+      "event_url": "https://luma.com/awshack",
+      "event_official_prizes_url": "https://mcp-aws-enterprise-agents.devpost.com/",
+      "historical_checked_date": "2026-10-07",
+      "award_verified": true,
+      "award_membership_evidence_category": "structured_event_award_badge",
+      "demo_url": "https://www.youtube.com/watch?v=zzqxzkcJOjk",
+      "hosted_app_url": null,
+      "pitch_deck_url": null,
+      "screenshots_url": null,
+      "sponsor_rank_source_url": "https://clickhouse.com/blog/aws-mcp-hackathon-san-francisco",
+      "participant_rank_source_url": null,
+      "award_wording": "Second place; sponsor confirmed",
+      "award_proof_url": "https://devpost.com/software/incidentlogica",
+      "repository_url": null,
+      "access_and_inspection_text": "No canonical public repository found",
+      "rank_evidence_category": "sponsor_confirmed",
+      "rank": 2,
+      "rank_independently_confirmed": true,
+      "rank_claim_url": "https://clickhouse.com/blog/aws-mcp-hackathon-san-francisco",
+      "repository_identity_verified": false,
+      "repository_access_at_research_date": "unresolved",
+      "source_inspected": false,
+      "additional_award_claims": [],
+      "report_source_references": [
+        {
+          "field": "published_explanation_text",
+          "reference_number": 24,
+          "label": "ClickHouse sponsor retrospective",
+          "url": "https://clickhouse.com/blog/aws-mcp-hackathon-san-francisco"
+        }
+      ],
+      "project_description": "An incident-analysis agent uses Temporal orchestration, Bedrock, retries and fallbacks, with Slack summaries.",
+      "repository_evidence_text": "No canonical public repository found. The sponsor says ClickHouse stores incident timelines, model exchanges and postmortem metrics. The submission has no repository link, so that integration could not be checked in source.",
+      "published_explanation_text": "ClickHouse names it second and discusses durable incident-response execution. Its recap describes a partial build.",
+      "why_it_may_have_stood_out_inference": "A recoverable workflow and inspectable incident history offer a useful defensive pattern.",
+      "limitations_text": "The submission's technology list omits ClickHouse even though the sponsor describes it. Advertised behavior is not independently verified.",
+      "inspected_source_urls": [],
+      "published_sponsor_commentary_urls": [
+        "https://clickhouse.com/blog/aws-mcp-hackathon-san-francisco"
+      ],
+      "derivative_source_artifacts": [
+        "REPOSITORY_INDEX.txt",
+        "Sponsor_Winners_Research.pdf"
+      ]
+    },
+    {
+      "id": "clickhouse-vital-signal",
+      "name": "Vital Signal",
+      "sponsor": "ClickHouse",
+      "event": "NYC AI Agents Hackathon",
+      "event_date": "2025-10-04",
+      "event_url": "https://luma.com/hackdogs",
+      "event_official_prizes_url": "https://nyc-ai-agents-hackathon.devpost.com/",
+      "historical_checked_date": "2026-10-07",
+      "award_verified": true,
+      "award_membership_evidence_category": "structured_event_award_badge",
+      "demo_url": "https://drive.google.com/file/d/1YCWN7PK2r8o3UeF9A9W0dlnNLinGwTNH/view",
+      "hosted_app_url": null,
+      "pitch_deck_url": null,
+      "screenshots_url": null,
+      "sponsor_rank_source_url": "https://clickhouse.com/blog/nyc-ai-agents-hackathon",
+      "participant_rank_source_url": null,
+      "award_wording": "First place; sponsor confirmed",
+      "award_proof_url": "https://devpost.com/software/vital-signal",
+      "repository_url": null,
+      "access_and_inspection_text": "No canonical public repository found",
+      "rank_evidence_category": "sponsor_confirmed",
+      "rank": 1,
+      "rank_independently_confirmed": true,
+      "rank_claim_url": "https://clickhouse.com/blog/nyc-ai-agents-hackathon",
+      "repository_identity_verified": false,
+      "repository_access_at_research_date": "unresolved",
+      "source_inspected": false,
+      "additional_award_claims": [],
+      "report_source_references": [
+        {
+          "field": "published_explanation_text",
+          "reference_number": 30,
+          "label": "ClickHouse sponsor retrospective",
+          "url": "https://clickhouse.com/blog/nyc-ai-agents-hackathon"
+        }
+      ],
+      "project_description": "Personalized outbreak alerts and multilingual reports combine family context with health information.",
+      "repository_evidence_text": "No canonical public repository found. Sponsor and entrant descriptions place user profiles, structured alerts and images in ClickHouse, with retrieval supporting contextual reports. No source inspection was possible.",
+      "published_explanation_text": "ClickHouse confirms first place and highlights a polished, scoped workflow with personalized context and a stable data foundation.",
+      "why_it_may_have_stood_out_inference": "The product demonstrates why persistent context changes an agent's output, with a clear user-facing result.",
+      "limitations_text": "No clinical or production-safety claims were verified. The recording's access was not independently checked. The similarly named vitalsignal-azure repository is unrelated.",
+      "inspected_source_urls": [],
+      "published_sponsor_commentary_urls": [
+        "https://clickhouse.com/blog/nyc-ai-agents-hackathon"
+      ],
+      "derivative_source_artifacts": [
+        "REPOSITORY_INDEX.txt",
+        "Sponsor_Winners_Research.pdf"
+      ]
+    },
+    {
+      "id": "clickhouse-redbot",
+      "name": "RedBot",
+      "sponsor": "ClickHouse",
+      "event": "NYC AI Agents Hackathon",
+      "event_date": "2025-10-04",
+      "event_url": "https://luma.com/hackdogs",
+      "event_official_prizes_url": "https://nyc-ai-agents-hackathon.devpost.com/",
+      "historical_checked_date": "2026-10-07",
+      "award_verified": true,
+      "award_membership_evidence_category": "structured_event_award_badge",
+      "demo_url": null,
+      "hosted_app_url": null,
+      "pitch_deck_url": "https://github.com/yli12313/AI-Agents-Hackathon-2025/tree/main/pitch_deck",
+      "screenshots_url": null,
+      "sponsor_rank_source_url": "https://clickhouse.com/blog/nyc-ai-agents-hackathon",
+      "participant_rank_source_url": null,
+      "award_wording": "Second place; sponsor confirmed",
+      "award_proof_url": "https://devpost.com/software/the-redbot-autonomous-security-system",
+      "repository_url": "https://github.com/yli12313/AI-Agents-Hackathon-2025",
+      "access_and_inspection_text": "Public; integration source inspected",
+      "rank_evidence_category": "sponsor_confirmed",
+      "rank": 2,
+      "rank_independently_confirmed": true,
+      "rank_claim_url": "https://clickhouse.com/blog/nyc-ai-agents-hackathon",
+      "repository_identity_verified": true,
+      "repository_access_at_research_date": "readable",
+      "source_inspected": true,
+      "additional_award_claims": [],
+      "report_source_references": [
+        {
+          "field": "repository_evidence_text",
+          "reference_number": 33,
+          "label": "RedBot inspected source",
+          "url": "https://github.com/yli12313/AI-Agents-Hackathon-2025/blob/main/database_schema.py"
+        },
+        {
+          "field": "published_explanation_text",
+          "reference_number": 30,
+          "label": "ClickHouse sponsor retrospective",
+          "url": "https://clickhouse.com/blog/nyc-ai-agents-hackathon"
+        }
+      ],
+      "project_description": "A prototype supports authorized chatbot security assessment and prioritized remediation reporting.",
+      "repository_evidence_text": "Public; integration source inspected. database_schema.py and database_tools.py use clickhouse_connect, MergeTree tables, finding inserts, statistics and historical-pattern retrieval.",
+      "published_explanation_text": "ClickHouse confirms second place and emphasizes actionable findings, fast analysis of accumulated assessment data and a usable narrow scope.",
+      "why_it_may_have_stood_out_inference": "This is a direct defensive precedent: retain authorized-test evidence, compare severity and history, and explain remediation priorities.",
+      "limitations_text": "Source contains mock behavior and a stubbed profile getter. Public materials contain apparent credentials. No production assurance, live-target testing or code-license clearance was performed.",
+      "inspected_source_urls": [
+        "https://github.com/yli12313/AI-Agents-Hackathon-2025/blob/main/database_schema.py"
+      ],
+      "published_sponsor_commentary_urls": [
+        "https://clickhouse.com/blog/nyc-ai-agents-hackathon"
+      ],
+      "derivative_source_artifacts": [
+        "REPOSITORY_INDEX.txt",
+        "Sponsor_Winners_Research.pdf"
+      ]
+    },
+    {
+      "id": "clickhouse-policydiff",
+      "name": "policyDiff",
+      "sponsor": "ClickHouse",
+      "event": "Agentic Engineering Hack",
+      "event_date": "2026-05-23",
+      "event_url": "https://luma.com/nycagenthack",
+      "event_official_prizes_url": "https://agentic-engineering-hack.devpost.com/",
+      "historical_checked_date": "2026-10-07",
+      "award_verified": true,
+      "award_membership_evidence_category": "structured_event_award_badge",
+      "demo_url": "https://www.youtube.com/watch?v=EMDqxOE8Fto",
+      "hosted_app_url": "https://policy-diff-x3bo.vercel.app",
+      "pitch_deck_url": null,
+      "screenshots_url": null,
+      "sponsor_rank_source_url": null,
+      "participant_rank_source_url": "https://www.linkedin.com/posts/manojsadanala_hackathon-ai-healthcareai-activity-7465811469213892609-FtEk",
+      "award_wording": "Category winner; first place is creator-reported only",
+      "award_proof_url": "https://devpost.com/software/policydiff-asn4xf",
+      "repository_url": "https://github.com/manoj1749/policyDiff",
+      "access_and_inspection_text": "Public; integration source inspected",
+      "rank_evidence_category": "participant_reported",
+      "rank": 1,
+      "rank_independently_confirmed": false,
+      "rank_claim_url": "https://www.linkedin.com/posts/manojsadanala_hackathon-ai-healthcareai-activity-7465811469213892609-FtEk",
+      "repository_identity_verified": true,
+      "repository_access_at_research_date": "readable",
+      "source_inspected": true,
+      "additional_award_claims": [],
+      "report_source_references": [
+        {
+          "field": "repository_evidence_text",
+          "reference_number": 37,
+          "label": "policyDiff inspected source",
+          "url": "https://github.com/manoj1749/policyDiff/blob/main/services/classifier-service/app/clickhouse_repo.py"
+        }
+      ],
+      "project_description": "The prototype monitors payer-policy revisions, classifies coverage changes and estimates affected revenue.",
+      "repository_evidence_text": "Public; integration source inspected. clickhouse_repo.py reads pending differences and reimbursement aggregates, inserts classified changes and maintains processing state across services.",
+      "published_explanation_text": "No project-specific judging explanation was located. The official submission verifies award membership; the creator reports first place.",
+      "why_it_may_have_stood_out_inference": "Detected change becomes a quantified consequence. ClickHouse is the shared working data layer rather than a decorative dashboard.",
+      "limitations_text": "Revenue-risk estimates were not validated. Use this exact repository and submission to avoid unrelated PolicyDiff projects. No license was found in the inspected tree.",
+      "inspected_source_urls": [
+        "https://github.com/manoj1749/policyDiff/blob/main/services/classifier-service/app/clickhouse_repo.py"
+      ],
+      "published_sponsor_commentary_urls": [],
+      "derivative_source_artifacts": [
+        "REPOSITORY_INDEX.txt",
+        "Sponsor_Winners_Research.pdf"
+      ]
+    },
+    {
+      "id": "clickhouse-tc-pilot",
+      "name": "TC Pilot",
+      "sponsor": "ClickHouse",
+      "event": "Agentic Engineering Hack",
+      "event_date": "2026-05-23",
+      "event_url": "https://luma.com/nycagenthack",
+      "event_official_prizes_url": "https://agentic-engineering-hack.devpost.com/",
+      "historical_checked_date": "2026-10-07",
+      "award_verified": true,
+      "award_membership_evidence_category": "structured_event_award_badge",
+      "demo_url": "https://www.youtube.com/watch?v=n-i_Wm6XZzA",
+      "hosted_app_url": null,
+      "pitch_deck_url": null,
+      "screenshots_url": null,
+      "sponsor_rank_source_url": null,
+      "participant_rank_source_url": "https://www.linkedin.com/in/akhil-mohammed",
+      "award_wording": "Category winner; second place is creator-reported only",
+      "award_proof_url": "https://devpost.com/software/tc-pilot",
+      "repository_url": "https://github.com/Haris320/tc-pilot",
+      "access_and_inspection_text": "Public; integration source inspected",
+      "rank_evidence_category": "participant_reported",
+      "rank": 2,
+      "rank_independently_confirmed": false,
+      "rank_claim_url": "https://www.linkedin.com/in/akhil-mohammed",
+      "repository_identity_verified": true,
+      "repository_access_at_research_date": "readable",
+      "source_inspected": true,
+      "additional_award_claims": [],
+      "report_source_references": [
+        {
+          "field": "repository_evidence_text",
+          "reference_number": 43,
+          "label": "TC Pilot inspected source",
+          "url": "https://github.com/Haris320/tc-pilot/blob/main/backend/app/clients/clickhouse_client.py"
+        }
+      ],
+      "project_description": "A cancer-navigation prototype explains pathology, prepares visits, tracks symptoms and surfaces clinical trials.",
+      "repository_evidence_text": "Public; integration source inspected. clickhouse_client.py defines patient, symptom and medication tables and uses SQL for cohort comparisons and time trends, alongside a sponsor health check.",
+      "published_explanation_text": "The award badge confirms the category. A creator profile reports second in ClickHouse and first overall; no sponsor ranking announcement was located.",
+      "why_it_may_have_stood_out_inference": "The care-navigation workflow visibly uses population analytics beyond retaining chat transcripts.",
+      "limitations_text": "The submission describes a seeded 1,000-patient cohort. A UUID cookie is prototype identity; full authentication was future work. No clinical validation or code-license clearance was performed.",
+      "inspected_source_urls": [
+        "https://github.com/Haris320/tc-pilot/blob/main/backend/app/clients/clickhouse_client.py"
+      ],
+      "published_sponsor_commentary_urls": [],
+      "derivative_source_artifacts": [
+        "REPOSITORY_INDEX.txt",
+        "Sponsor_Winners_Research.pdf"
+      ]
+    },
+    {
+      "id": "clickhouse-seconds-ai",
+      "name": "seconds ai",
+      "sponsor": "ClickHouse",
+      "event": "Harness Engineering Hack",
+      "event_date": "2026-06-12",
+      "event_url": "https://luma.com/harnesshack",
+      "event_official_prizes_url": "https://harness-hack.devpost.com/",
+      "historical_checked_date": "2026-10-07",
+      "award_verified": true,
+      "award_membership_evidence_category": "structured_event_award_badge",
+      "demo_url": "https://www.youtube.com/watch?v=jNSkYxDTygo",
+      "hosted_app_url": "https://seconds-ai.onrender.com/",
+      "pitch_deck_url": null,
+      "screenshots_url": null,
+      "sponsor_rank_source_url": null,
+      "participant_rank_source_url": null,
+      "award_wording": "Category winner; exact rank unconfirmed",
+      "award_proof_url": "https://devpost.com/software/seconds-ai",
+      "repository_url": "https://github.com/txshah/seconds.ai",
+      "access_and_inspection_text": "Public; integration source inspected",
+      "rank_evidence_category": "unconfirmed",
+      "rank": null,
+      "rank_independently_confirmed": false,
+      "rank_claim_url": null,
+      "repository_identity_verified": true,
+      "repository_access_at_research_date": "readable",
+      "source_inspected": true,
+      "additional_award_claims": [],
+      "report_source_references": [
+        {
+          "field": "repository_evidence_text",
+          "reference_number": 48,
+          "label": "seconds ai inspected source",
+          "url": "https://github.com/txshah/seconds.ai/blob/main/app/schema.sql"
+        }
+      ],
+      "project_description": "Consumer complaints are aggregated into evidence-backed potential case leads.",
+      "repository_evidence_text": "Public; integration source inspected. schema.sql defines replacing tables, joins model scores and computes case signals from distinct authors, time windows and source URLs.",
+      "published_explanation_text": "No individual judging explanation was located. The project title begins with team 1, which does not establish first place.",
+      "why_it_may_have_stood_out_inference": "Data modeling expresses what makes a useful signal: independent people and timely evidence, rather than a raw post count.",
+      "limitations_text": "The submission places the full autonomous connector loop and outreach in future work despite broader README claims. No license was found in the inspected tree.",
+      "inspected_source_urls": [
+        "https://github.com/txshah/seconds.ai/blob/main/app/schema.sql"
+      ],
+      "published_sponsor_commentary_urls": [],
+      "derivative_source_artifacts": [
+        "REPOSITORY_INDEX.txt",
+        "Sponsor_Winners_Research.pdf"
+      ]
+    },
+    {
+      "id": "clickhouse-aerorider",
+      "name": "AeroRider",
+      "sponsor": "ClickHouse",
+      "event": "Harness Engineering Hack",
+      "event_date": "2026-06-12",
+      "event_url": "https://luma.com/harnesshack",
+      "event_official_prizes_url": "https://harness-hack.devpost.com/",
+      "historical_checked_date": "2026-10-07",
+      "award_verified": true,
+      "award_membership_evidence_category": "structured_event_award_badge",
+      "demo_url": null,
+      "hosted_app_url": null,
+      "pitch_deck_url": null,
+      "screenshots_url": "https://github.com/ybavgito/AeroRider/tree/main/docs/screenshots",
+      "sponsor_rank_source_url": null,
+      "participant_rank_source_url": "https://www.linkedin.com/posts/mukunth-vaibhav-g_the-move-to-california-came-with-a-welcome-activity-7473404710582972417-bmjG",
+      "award_wording": "Category winner; second place is creator-reported only",
+      "award_proof_url": "https://devpost.com/software/aerorider",
+      "repository_url": "https://github.com/ybavgito/AeroRider",
+      "access_and_inspection_text": "Public; integration source inspected",
+      "rank_evidence_category": "participant_reported",
+      "rank": 2,
+      "rank_independently_confirmed": false,
+      "rank_claim_url": "https://www.linkedin.com/posts/mukunth-vaibhav-g_the-move-to-california-came-with-a-welcome-activity-7473404710582972417-bmjG",
+      "repository_identity_verified": true,
+      "repository_access_at_research_date": "readable",
+      "source_inspected": true,
+      "additional_award_claims": [],
+      "report_source_references": [
+        {
+          "field": "repository_evidence_text",
+          "reference_number": 53,
+          "label": "AeroRider inspected source",
+          "url": "https://github.com/ybavgito/AeroRider/blob/main/backend/app/clickhouse.py"
+        }
+      ],
+      "project_description": "Bike routes are compared using air quality, elevation and visual hazard signals.",
+      "repository_evidence_text": "Public; integration source inspected. clickhouse.py supplies route points as external query data, computes H3 cells and stores visual hazards and ride events.",
+      "published_explanation_text": "The official badge confirms the category. The creator reports second place; no published project-specific scorecard was located.",
+      "why_it_may_have_stood_out_inference": "Spatial and time-series analytics visibly changes a route choice, making the sponsor's effect understandable.",
+      "limitations_text": "Health scoring is prototype logic and camera coverage is incomplete. No standalone video was located. No license was found in the inspected tree.",
+      "inspected_source_urls": [
+        "https://github.com/ybavgito/AeroRider/blob/main/backend/app/clickhouse.py"
+      ],
+      "published_sponsor_commentary_urls": [],
+      "derivative_source_artifacts": [
+        "REPOSITORY_INDEX.txt",
+        "Sponsor_Winners_Research.pdf"
+      ]
+    },
+    {
+      "id": "clickhouse-earwitness",
+      "name": "EARWITNESS",
+      "sponsor": "ClickHouse",
+      "event": "Harness Engineering Hack",
+      "event_date": "2026-06-12",
+      "event_url": "https://luma.com/harnesshack",
+      "event_official_prizes_url": "https://harness-hack.devpost.com/",
+      "historical_checked_date": "2026-10-07",
+      "award_verified": true,
+      "award_membership_evidence_category": "structured_event_award_badge",
+      "demo_url": "https://www.youtube.com/watch?v=QqeSwumPpBk",
+      "hosted_app_url": "https://earwitness.onrender.com",
+      "pitch_deck_url": null,
+      "screenshots_url": null,
+      "sponsor_rank_source_url": null,
+      "participant_rank_source_url": null,
+      "award_wording": "ClickHouse category winner; Langfuse subprize is self-described",
+      "award_proof_url": "https://devpost.com/software/earwitness-the-agent-that-pays-for-what-actually-aired",
+      "repository_url": "https://github.com/gorajing/earwitness",
+      "access_and_inspection_text": "Public; integration source inspected",
+      "rank_evidence_category": "unconfirmed",
+      "rank": null,
+      "rank_independently_confirmed": false,
+      "rank_claim_url": null,
+      "repository_identity_verified": true,
+      "repository_access_at_research_date": "readable",
+      "source_inspected": true,
+      "additional_award_claims": [
+        {
+          "claim": "Best Use of Langfuse subprize",
+          "evidence_category": "self_described_in_repository_readme",
+          "independently_confirmed": false
+        }
+      ],
+      "report_source_references": [
+        {
+          "field": "repository_evidence_text",
+          "reference_number": 58,
+          "label": "EARWITNESS inspected source",
+          "url": "https://github.com/gorajing/earwitness/blob/main/earwitness/clickhouse_events.py"
+        }
+      ],
+      "project_description": "Audio fingerprints are compared with claimed radio playlists and used to record royalty decisions.",
+      "repository_evidence_text": "Public; integration source inspected. clickhouse_events.py creates play, money and check tables and uses asynchronous inserts with completion waits for event records.",
+      "published_explanation_text": "The badge is Best Use of ClickHouse. The README describes Best Use of Langfuse, a subprize listed under that umbrella; independent subprize confirmation was not located.",
+      "why_it_may_have_stood_out_inference": "Ground-truth evidence and an event ledger make an automated decision inspectable.",
+      "limitations_text": "The broadcast is seeded. Payment paths include testnet and fallback behavior; no live transaction was verified or executed. No license was found in the inspected tree.",
+      "inspected_source_urls": [
+        "https://github.com/gorajing/earwitness/blob/main/earwitness/clickhouse_events.py"
+      ],
+      "published_sponsor_commentary_urls": [],
+      "derivative_source_artifacts": [
+        "REPOSITORY_INDEX.txt",
+        "Sponsor_Winners_Research.pdf"
+      ]
+    },
+    {
+      "id": "clickhouse-synapsecro",
+      "name": "SynapseCRO",
+      "sponsor": "ClickHouse",
+      "event": "Multiagents Hackathon London",
+      "event_date": "2026-06-26",
+      "event_url": "https://luma.com/ldnhack",
+      "event_official_prizes_url": "https://multiagents-hackathon.devpost.com/",
+      "historical_checked_date": "2026-10-07",
+      "award_verified": true,
+      "award_membership_evidence_category": "structured_event_award_badge",
+      "demo_url": "https://www.youtube.com/watch?v=O1_n7AjpXAc",
+      "hosted_app_url": "https://synapsecro.fly.dev",
+      "pitch_deck_url": null,
+      "screenshots_url": null,
+      "sponsor_rank_source_url": null,
+      "participant_rank_source_url": null,
+      "award_wording": "Category winner; exact rank unconfirmed",
+      "award_proof_url": "https://devpost.com/software/synapsecro",
+      "repository_url": null,
+      "access_and_inspection_text": "No canonical public repository found",
+      "rank_evidence_category": "unconfirmed",
+      "rank": null,
+      "rank_independently_confirmed": false,
+      "rank_claim_url": null,
+      "repository_identity_verified": false,
+      "repository_access_at_research_date": "unresolved",
+      "source_inspected": false,
+      "additional_award_claims": [],
+      "report_source_references": [],
+      "project_description": "A website audit workflow proposes fixes and repeats an audit to check the outcome.",
+      "repository_evidence_text": "No canonical public repository found. The entrant describes ClickHouse as history for findings, rank drift, conversion, performance and evaluations, with past results informing later prompts. Source verification was unavailable.",
+      "published_explanation_text": "The official badge establishes Best Use of ClickHouse. No individual ranking or detailed sponsor explanation was located.",
+      "why_it_may_have_stood_out_inference": "The defensible pattern is a persistent audit, repair and recheck loop whose earlier evidence changes later decisions.",
+      "limitations_text": "The submission supplies a hosted app but no repository. The similarly named SynapseCross is unrelated. No account was connected and no live audit was initiated.",
+      "inspected_source_urls": [],
+      "published_sponsor_commentary_urls": [],
+      "derivative_source_artifacts": [
+        "REPOSITORY_INDEX.txt",
+        "Sponsor_Winners_Research.pdf"
+      ]
+    },
+    {
+      "id": "clickhouse-licensetrace",
+      "name": "LicenseTrace",
+      "sponsor": "ClickHouse",
+      "event": "Multiagents Hackathon London",
+      "event_date": "2026-06-26",
+      "event_url": "https://luma.com/ldnhack",
+      "event_official_prizes_url": "https://multiagents-hackathon.devpost.com/",
+      "historical_checked_date": "2026-10-07",
+      "award_verified": true,
+      "award_membership_evidence_category": "structured_event_award_badge",
+      "demo_url": "https://www.youtube.com/watch?v=trJ8B1QgfKE",
+      "hosted_app_url": null,
+      "pitch_deck_url": null,
+      "screenshots_url": null,
+      "sponsor_rank_source_url": null,
+      "participant_rank_source_url": null,
+      "award_wording": "Category winner; exact rank unconfirmed",
+      "award_proof_url": "https://devpost.com/software/licensetrace",
+      "repository_url": "https://github.com/Welddevelopment/Tokens-Hackathon---Codebase-Dependencies-Scanner",
+      "access_and_inspection_text": "Public; integration source inspected",
+      "rank_evidence_category": "unconfirmed",
+      "rank": null,
+      "rank_independently_confirmed": false,
+      "rank_claim_url": null,
+      "repository_identity_verified": true,
+      "repository_access_at_research_date": "readable",
+      "source_inspected": true,
+      "additional_award_claims": [],
+      "report_source_references": [
+        {
+          "field": "repository_evidence_text",
+          "reference_number": 66,
+          "label": "LicenseTrace inspected source",
+          "url": "https://github.com/Welddevelopment/Tokens-Hackathon---Codebase-Dependencies-Scanner/blob/main/server.js"
+        }
+      ],
+      "project_description": "A dependency graph traces paths to possible copyleft-license risks and attaches explanations.",
+      "repository_evidence_text": "Public; integration source inspected. server.js uses the HTTPS ClickHouse interface to create a scans table, store risk and path metadata, and confirm row counts. Analysis continues if storage is unconfigured or fails.",
+      "published_explanation_text": "The structured badge confirms the category, but no exact ranking or ClickHouse-specific judge explanation was located.",
+      "why_it_may_have_stood_out_inference": "A simple audit trail can add sponsor value even when another tool performs the main reasoning. This qualifies claims that only elaborate ClickHouse integrations win.",
+      "limitations_text": "License conclusions are prototype assertions, not legal advice. No license was found in the inspected repository tree.",
+      "inspected_source_urls": [
+        "https://github.com/Welddevelopment/Tokens-Hackathon---Codebase-Dependencies-Scanner/blob/main/server.js"
+      ],
+      "published_sponsor_commentary_urls": [],
+      "derivative_source_artifacts": [
+        "REPOSITORY_INDEX.txt",
+        "Sponsor_Winners_Research.pdf"
+      ]
+    },
+    {
+      "id": "guild-ai-phalanx",
+      "name": "Phalanx",
+      "sponsor": "Guild AI",
+      "event": "Ship to Prod",
+      "event_date": "2026-04-24",
+      "event_url": "https://luma.com/shiptoprod",
+      "event_official_prizes_url": "https://ship-to-prod.devpost.com/",
+      "historical_checked_date": "2026-10-07",
+      "award_verified": true,
+      "award_membership_evidence_category": "structured_event_award_badge",
+      "demo_url": "https://youtu.be/raOOVmiU3y4",
+      "hosted_app_url": null,
+      "pitch_deck_url": null,
+      "screenshots_url": null,
+      "sponsor_rank_source_url": null,
+      "participant_rank_source_url": null,
+      "award_wording": "Category winner; exact rank unconfirmed",
+      "award_proof_url": "https://devpost.com/software/phalanx-c2gupz",
+      "repository_url": "https://github.com/ElijahUmana/phalanx",
+      "access_and_inspection_text": "Public; Guild orchestrator inspected",
+      "rank_evidence_category": "unconfirmed",
+      "rank": null,
+      "rank_independently_confirmed": false,
+      "rank_claim_url": null,
+      "repository_identity_verified": true,
+      "repository_access_at_research_date": "readable",
+      "source_inspected": true,
+      "additional_award_claims": [],
+      "report_source_references": [
+        {
+          "field": "repository_evidence_text",
+          "reference_number": 100,
+          "label": "Phalanx inspected source",
+          "url": "https://github.com/ElijahUmana/phalanx/blob/main/src/lib/guild/orchestrator.ts"
+        }
+      ],
+      "project_description": "Concurrent vulnerability-remediation hypotheses use isolation, cancellation, provenance and approval gates.",
+      "repository_evidence_text": "Public; Guild orchestrator inspected. The orchestrator launches local Guild agents, parses structured results and emits action and approval events across five roles. HTTP API migration is described as future work.",
+      "published_explanation_text": "No project-specific judge explanation was located.",
+      "why_it_may_have_stood_out_inference": "Controlled remediation and an auditable approval boundary closely fit defensive agent governance.",
+      "limitations_text": "Guild is optional in the README and substituted paths are marked. Source inspection does not prove that every demonstration path used live Guild.",
+      "inspected_source_urls": [
+        "https://github.com/ElijahUmana/phalanx/blob/main/src/lib/guild/orchestrator.ts"
+      ],
+      "published_sponsor_commentary_urls": [],
+      "derivative_source_artifacts": [
+        "REPOSITORY_INDEX.txt",
+        "Sponsor_Winners_Research.pdf"
+      ]
+    },
+    {
+      "id": "guild-ai-branch",
+      "name": "Branch",
+      "sponsor": "Guild AI",
+      "event": "Ship to Prod",
+      "event_date": "2026-04-24",
+      "event_url": "https://luma.com/shiptoprod",
+      "event_official_prizes_url": "https://ship-to-prod.devpost.com/",
+      "historical_checked_date": "2026-10-07",
+      "award_verified": true,
+      "award_membership_evidence_category": "structured_event_award_badge",
+      "demo_url": null,
+      "hosted_app_url": null,
+      "pitch_deck_url": null,
+      "screenshots_url": null,
+      "sponsor_rank_source_url": null,
+      "participant_rank_source_url": null,
+      "award_wording": "Category winner; exact rank unconfirmed",
+      "award_proof_url": "https://devpost.com/software/branch-5zn8h0",
+      "repository_url": "https://github.com/chinesepowered/hack-apr24",
+      "access_and_inspection_text": "Public; agent implementation inspected",
+      "rank_evidence_category": "unconfirmed",
+      "rank": null,
+      "rank_independently_confirmed": false,
+      "rank_claim_url": null,
+      "repository_identity_verified": true,
+      "repository_access_at_research_date": "readable",
+      "source_inspected": true,
+      "additional_award_claims": [],
+      "report_source_references": [
+        {
+          "field": "repository_evidence_text",
+          "reference_number": 104,
+          "label": "Branch inspected source",
+          "url": "https://github.com/chinesepowered/hack-apr24/blob/main/services/agents/planner/src/agent.ts"
+        }
+      ],
+      "project_description": "A GitHub issue becomes a change plan, database fork, schema check and pull-request preview.",
+      "repository_evidence_text": "Public; agent implementation inspected. The planner has typed schemas, an optional Guild SDK factory, progress notifications and a command-line fallback. It can run as a local subprocess without the SDK.",
+      "published_explanation_text": "No project-specific judge explanation was located.",
+      "why_it_may_have_stood_out_inference": "Typed deployable agents and a verifiable issue-to-change workflow give the sponsor a concrete role.",
+      "limitations_text": "This is a Guild-deployable artifact, not proof every run used a hosted Guild runtime. A video is embedded on the submission, but its direct URL was not recovered.",
+      "inspected_source_urls": [
+        "https://github.com/chinesepowered/hack-apr24/blob/main/services/agents/planner/src/agent.ts"
+      ],
+      "published_sponsor_commentary_urls": [],
+      "derivative_source_artifacts": [
+        "REPOSITORY_INDEX.txt",
+        "Sponsor_Winners_Research.pdf"
+      ]
+    },
+    {
+      "id": "guild-ai-wildfire-response",
+      "name": "WildFire Response",
+      "sponsor": "Guild AI",
+      "event": "Ship to Prod",
+      "event_date": "2026-04-24",
+      "event_url": "https://luma.com/shiptoprod",
+      "event_official_prizes_url": "https://ship-to-prod.devpost.com/",
+      "historical_checked_date": "2026-10-07",
+      "award_verified": true,
+      "award_membership_evidence_category": "structured_event_award_badge",
+      "demo_url": "https://drive.google.com/file/d/1XN997klIFmQ-SWGQHdO51Q8G7rBo4216/view?usp=sharing",
+      "hosted_app_url": null,
+      "pitch_deck_url": null,
+      "screenshots_url": null,
+      "sponsor_rank_source_url": null,
+      "participant_rank_source_url": null,
+      "award_wording": "Category winner; exact rank unconfirmed",
+      "award_proof_url": "https://devpost.com/software/worldfire-response",
+      "repository_url": "https://github.com/YuvrajGupta1808/Wildfire-Response",
+      "access_and_inspection_text": "Submission-linked identity verified; public URL returned 404",
+      "rank_evidence_category": "unconfirmed",
+      "rank": null,
+      "rank_independently_confirmed": false,
+      "rank_claim_url": null,
+      "repository_identity_verified": true,
+      "repository_access_at_research_date": "http_404",
+      "source_inspected": false,
+      "additional_award_claims": [],
+      "report_source_references": [],
+      "project_description": "Also named WorldFire Response or SafeSignal, it shows wildfire evidence, household status, resources and human-approved actions.",
+      "repository_evidence_text": "Submission-linked identity verified; public URL returned 404. The submission lists Guild, but its future-work section describes optional Guild policy traces. The available technical description primarily names other application services.",
+      "published_explanation_text": "No project-specific judge explanation was located.",
+      "why_it_may_have_stood_out_inference": "The approval experience is a useful pattern; there is no basis to attribute the award to a particular implemented Guild feature.",
+      "limitations_text": "The award badge is verified, but deployed Guild behavior and source code were not verified. The recovered submission-linked repository returns 404; private, deleted and renamed are possible explanations.",
+      "inspected_source_urls": [],
+      "published_sponsor_commentary_urls": [],
+      "derivative_source_artifacts": [
+        "REPOSITORY_INDEX.txt",
+        "Sponsor_Winners_Research.pdf"
+      ]
+    },
+    {
+      "id": "guild-ai-tracepath",
+      "name": "tracepath",
+      "sponsor": "Guild AI",
+      "event": "Ship to Prod",
+      "event_date": "2026-04-24",
+      "event_url": "https://luma.com/shiptoprod",
+      "event_official_prizes_url": "https://ship-to-prod.devpost.com/",
+      "historical_checked_date": "2026-10-07",
+      "award_verified": true,
+      "award_membership_evidence_category": "structured_event_award_badge",
+      "demo_url": null,
+      "hosted_app_url": null,
+      "pitch_deck_url": null,
+      "screenshots_url": null,
+      "sponsor_rank_source_url": null,
+      "participant_rank_source_url": null,
+      "award_wording": "Category winner; exact rank unconfirmed",
+      "award_proof_url": "https://devpost.com/software/tracepath-ewops5",
+      "repository_url": null,
+      "access_and_inspection_text": "No canonical public repository found",
+      "rank_evidence_category": "unconfirmed",
+      "rank": null,
+      "rank_independently_confirmed": false,
+      "rank_claim_url": null,
+      "repository_identity_verified": false,
+      "repository_access_at_research_date": "unresolved",
+      "source_inspected": false,
+      "additional_award_claims": [],
+      "report_source_references": [],
+      "project_description": "An agent investigates vulnerability reachability and creates issues with evidence and possible fixes.",
+      "repository_evidence_text": "No canonical public repository found. The submission describes a typed OpenAPI tool backend for Guild, dependency scanning, advisory retrieval and source navigation. No public code was located.",
+      "published_explanation_text": "No project-specific judge explanation was located.",
+      "why_it_may_have_stood_out_inference": "Source-level reachability can reduce noisy vulnerability reports and make remediation evidence actionable.",
+      "limitations_text": "The design is submission-described. No source implementation or standalone playable demo was verified; the submission has screenshots.",
+      "inspected_source_urls": [],
+      "published_sponsor_commentary_urls": [],
+      "derivative_source_artifacts": [
+        "REPOSITORY_INDEX.txt",
+        "Sponsor_Winners_Research.pdf"
+      ]
+    },
+    {
+      "id": "guild-ai-rxscout",
+      "name": "RxScout",
+      "sponsor": "Guild AI",
+      "event": "Ship to Prod",
+      "event_date": "2026-04-24",
+      "event_url": "https://luma.com/shiptoprod",
+      "event_official_prizes_url": "https://ship-to-prod.devpost.com/",
+      "historical_checked_date": "2026-10-07",
+      "award_verified": true,
+      "award_membership_evidence_category": "structured_event_award_badge",
+      "demo_url": null,
+      "hosted_app_url": null,
+      "pitch_deck_url": null,
+      "screenshots_url": null,
+      "sponsor_rank_source_url": null,
+      "participant_rank_source_url": null,
+      "award_wording": "Category winner; exact rank unconfirmed",
+      "award_proof_url": "https://devpost.com/software/rxscout",
+      "repository_url": "https://github.com/bvsbharat/RxScot1",
+      "access_and_inspection_text": "Public; execution paths inspected; Guild claim uncorroborated",
+      "rank_evidence_category": "unconfirmed",
+      "rank": null,
+      "rank_independently_confirmed": false,
+      "rank_claim_url": null,
+      "repository_identity_verified": true,
+      "repository_access_at_research_date": "readable",
+      "source_inspected": true,
+      "additional_award_claims": [],
+      "report_source_references": [
+        {
+          "field": "repository_evidence_text",
+          "reference_number": 111,
+          "label": "RxScout inspected source",
+          "url": "https://github.com/bvsbharat/RxScot1/blob/main/server/src/graph/supervisor.js"
+        }
+      ],
+      "project_description": "Medication text or photos are used to compare pharmacy cash prices through parallel searches.",
+      "repository_evidence_text": "Public; execution paths inspected; Guild claim uncorroborated. Inspected paths use LangGraph, LangChain, ChatOpenAI and TinyFish, with streaming and a cache. No Guild call or Guild-named agent file was located in those paths.",
+      "published_explanation_text": "No project-specific judge explanation was located.",
+      "why_it_may_have_stood_out_inference": "The fan-out workflow is concrete, but the award record alone does not establish the sponsor implementation.",
+      "limitations_text": "The submission describes Guild OCR and parser agents. That could reflect external, private or different-version work, but available code does not establish it. No medical or price-accuracy claim was validated.",
+      "inspected_source_urls": [
+        "https://github.com/bvsbharat/RxScot1/blob/main/server/src/graph/supervisor.js"
+      ],
+      "published_sponsor_commentary_urls": [],
+      "derivative_source_artifacts": [
+        "REPOSITORY_INDEX.txt",
+        "Sponsor_Winners_Research.pdf"
+      ]
+    },
+    {
+      "id": "guild-ai-medicall",
+      "name": "MediCall",
+      "sponsor": "Guild AI",
+      "event": "Ship to Prod",
+      "event_date": "2026-04-24",
+      "event_url": "https://luma.com/shiptoprod",
+      "event_official_prizes_url": "https://ship-to-prod.devpost.com/",
+      "historical_checked_date": "2026-10-07",
+      "award_verified": true,
+      "award_membership_evidence_category": "structured_event_award_badge",
+      "demo_url": null,
+      "hosted_app_url": null,
+      "pitch_deck_url": null,
+      "screenshots_url": null,
+      "sponsor_rank_source_url": null,
+      "participant_rank_source_url": "https://www.linkedin.com/posts/k3vnc_medicall-just-won-two-sponsor-tracks-at-ship-activity-7456111931733667840-SYDx",
+      "award_wording": "Category winner; third place is participant-reported only",
+      "award_proof_url": "https://devpost.com/software/medicare-6jtuhn",
+      "repository_url": "https://github.com/abdullahw1/MediCall",
+      "access_and_inspection_text": "Public; Guild agent implementation inspected",
+      "rank_evidence_category": "participant_reported",
+      "rank": 3,
+      "rank_independently_confirmed": false,
+      "rank_claim_url": "https://www.linkedin.com/posts/k3vnc_medicall-just-won-two-sponsor-tracks-at-ship-activity-7456111931733667840-SYDx",
+      "repository_identity_verified": true,
+      "repository_access_at_research_date": "readable",
+      "source_inspected": true,
+      "additional_award_claims": [],
+      "report_source_references": [
+        {
+          "field": "repository_evidence_text",
+          "reference_number": 114,
+          "label": "MediCall inspected source",
+          "url": "https://github.com/abdullahw1/MediCall/blob/main/guild-agent/agent.ts"
+        }
+      ],
+      "project_description": "Orchestrated check-ins and monitoring are exposed through typed backend tools.",
+      "repository_evidence_text": "Public; Guild agent implementation inspected. guild-agent/agent.ts imports the Guild SDK, defines input and output schemas, calls a pipeline endpoint and parses its response. Additional agent directories are present.",
+      "published_explanation_text": "No project-specific judge explanation was located.",
+      "why_it_may_have_stood_out_inference": "A narrow typed interface makes the automation's responsibilities understandable and testable.",
+      "limitations_text": "The additional agent code was not reviewed. The embedded video URL was unresolved and clinical functionality was not validated.",
+      "inspected_source_urls": [
+        "https://github.com/abdullahw1/MediCall/blob/main/guild-agent/agent.ts"
+      ],
+      "published_sponsor_commentary_urls": [],
+      "derivative_source_artifacts": [
+        "REPOSITORY_INDEX.txt",
+        "Sponsor_Winners_Research.pdf"
+      ]
+    },
+    {
+      "id": "guild-ai-magpie",
+      "name": "Magpie",
+      "sponsor": "Guild AI",
+      "event": "Harness Engineering Hack",
+      "event_date": "2026-06-12",
+      "event_url": "https://luma.com/harnesshack",
+      "event_official_prizes_url": "https://harness-hack.devpost.com/",
+      "historical_checked_date": "2026-10-07",
+      "award_verified": true,
+      "award_membership_evidence_category": "structured_event_award_badge",
+      "demo_url": null,
+      "hosted_app_url": null,
+      "pitch_deck_url": null,
+      "screenshots_url": null,
+      "sponsor_rank_source_url": null,
+      "participant_rank_source_url": "https://www.linkedin.com/posts/shantanujoshi25_aiagents-generativeui-hackathon-activity-7472151833524727808-e84A",
+      "award_wording": "Category winner; first place is participant-reported only",
+      "award_proof_url": "https://devpost.com/software/magpie-lcguye",
+      "repository_url": "https://github.com/shantanujoshi25/magpie",
+      "access_and_inspection_text": "Public; Guild session client inspected",
+      "rank_evidence_category": "participant_reported",
+      "rank": 1,
+      "rank_independently_confirmed": false,
+      "rank_claim_url": "https://www.linkedin.com/posts/shantanujoshi25_aiagents-generativeui-hackathon-activity-7472151833524727808-e84A",
+      "repository_identity_verified": true,
+      "repository_access_at_research_date": "readable",
+      "source_inspected": true,
+      "additional_award_claims": [],
+      "report_source_references": [
+        {
+          "field": "repository_evidence_text",
+          "reference_number": 118,
+          "label": "Magpie inspected source",
+          "url": "https://github.com/shantanujoshi25/magpie/blob/main/clipdeck-dashboard/src/lib/guild.ts"
+        }
+      ],
+      "project_description": "Copied study fragments become a classified notebook with summaries and a queryable interface.",
+      "repository_evidence_text": "Public; Guild session client inspected. guild.ts creates a workspace session, sends an agent prompt, polls completion events and handles authorization errors and timeouts. Four roles are documented.",
+      "published_explanation_text": "No project-specific judge explanation was located.",
+      "why_it_may_have_stood_out_inference": "Distinct roles and visible organization of a user's material give the orchestration a clear purpose.",
+      "limitations_text": "The team's explanation of why its composition won is not a judge statement. An embedded video exists, but the direct URL was unresolved.",
+      "inspected_source_urls": [
+        "https://github.com/shantanujoshi25/magpie/blob/main/clipdeck-dashboard/src/lib/guild.ts"
+      ],
+      "published_sponsor_commentary_urls": [],
+      "derivative_source_artifacts": [
+        "REPOSITORY_INDEX.txt",
+        "Sponsor_Winners_Research.pdf"
+      ]
+    },
+    {
+      "id": "guild-ai-dailygate",
+      "name": "DailyGate",
+      "sponsor": "Guild AI",
+      "event": "Harness Engineering Hack",
+      "event_date": "2026-06-12",
+      "event_url": "https://luma.com/harnesshack",
+      "event_official_prizes_url": "https://harness-hack.devpost.com/",
+      "historical_checked_date": "2026-10-07",
+      "award_verified": true,
+      "award_membership_evidence_category": "structured_event_award_badge",
+      "demo_url": "https://youtu.be/B5a7SoK_7Bs",
+      "hosted_app_url": null,
+      "pitch_deck_url": null,
+      "screenshots_url": null,
+      "sponsor_rank_source_url": null,
+      "participant_rank_source_url": null,
+      "award_wording": "Category winner; exact rank unconfirmed",
+      "award_proof_url": "https://devpost.com/software/dailygate",
+      "repository_url": "https://github.com/SashaSkind/dailygate",
+      "access_and_inspection_text": "Public; permission-routing agent inspected",
+      "rank_evidence_category": "unconfirmed",
+      "rank": null,
+      "rank_independently_confirmed": false,
+      "rank_claim_url": null,
+      "repository_identity_verified": true,
+      "repository_access_at_research_date": "readable",
+      "source_inspected": true,
+      "additional_award_claims": [],
+      "report_source_references": [
+        {
+          "field": "repository_evidence_text",
+          "reference_number": 122,
+          "label": "DailyGate inspected source",
+          "url": "https://github.com/SashaSkind/dailygate/blob/main/router/agent.ts"
+        }
+      ],
+      "project_description": "A management assistant earns additional autonomy as a person approves its work.",
+      "repository_evidence_text": "Public; permission-routing agent inspected. The router delegates to permission-tier agents with explicit ceilings and live trust context. It contains fallback levels when trust retrieval fails.",
+      "published_explanation_text": "No project-specific judge explanation was located.",
+      "why_it_may_have_stood_out_inference": "Changes in permission are visible and subject to human overrides, a useful governance precedent.",
+      "limitations_text": "The submission places cloud-triggered live trust hosting in future work; current repository descriptions are later. Do not infer an individual second place from the prize schedule.",
+      "inspected_source_urls": [
+        "https://github.com/SashaSkind/dailygate/blob/main/router/agent.ts"
+      ],
+      "published_sponsor_commentary_urls": [],
+      "derivative_source_artifacts": [
+        "REPOSITORY_INDEX.txt",
+        "Sponsor_Winners_Research.pdf"
+      ]
+    },
+    {
+      "id": "guild-ai-propr",
+      "name": "proPR",
+      "sponsor": "Guild AI",
+      "event": "Harness Engineering Hack",
+      "event_date": "2026-06-12",
+      "event_url": "https://luma.com/harnesshack",
+      "event_official_prizes_url": "https://harness-hack.devpost.com/",
+      "historical_checked_date": "2026-10-07",
+      "award_verified": true,
+      "award_membership_evidence_category": "structured_event_award_badge",
+      "demo_url": null,
+      "hosted_app_url": null,
+      "pitch_deck_url": null,
+      "screenshots_url": null,
+      "sponsor_rank_source_url": null,
+      "participant_rank_source_url": null,
+      "award_wording": "Category winner; exact rank unconfirmed",
+      "award_proof_url": "https://devpost.com/software/propr",
+      "repository_url": null,
+      "access_and_inspection_text": "No public repository shown in reviewed submission",
+      "rank_evidence_category": "unconfirmed",
+      "rank": null,
+      "rank_independently_confirmed": false,
+      "rank_claim_url": null,
+      "repository_identity_verified": false,
+      "repository_access_at_research_date": "unresolved",
+      "source_inspected": false,
+      "additional_award_claims": [],
+      "report_source_references": [],
+      "project_description": "A property-management assistant handles complaint intake, triage, vendor contact, repair tracking and escalation.",
+      "repository_evidence_text": "No public repository shown in reviewed submission. The submission names Guild and Claude with email and spreadsheet tags. Published implementation detail is insufficient for source verification.",
+      "published_explanation_text": "No project-specific judge explanation was located.",
+      "why_it_may_have_stood_out_inference": "The workflow offers a concrete operational outcome, but there is too little evidence to identify a particular technical feature that likely earned the award.",
+      "limitations_text": "No public code, playable demo or exact placement was established. A schedule-derived second-place guess would overstate the evidence.",
+      "inspected_source_urls": [],
+      "published_sponsor_commentary_urls": [],
+      "derivative_source_artifacts": [
+        "REPOSITORY_INDEX.txt",
+        "Sponsor_Winners_Research.pdf"
+      ]
+    },
+    {
+      "id": "semgrep-darwin",
+      "name": "Darwin",
+      "sponsor": "Semgrep",
+      "event": "AWS AI Agents Hackathon",
+      "event_date": "2025-10-10",
+      "event_url": "https://luma.com/awshackathon",
+      "event_official_prizes_url": "https://aws-agentic-ai-hackathon.devpost.com/",
+      "historical_checked_date": "2026-10-07",
+      "award_verified": true,
+      "award_membership_evidence_category": "structured_event_award_badge",
+      "demo_url": "https://www.youtube.com/watch?v=52UihmmZJ0s",
+      "hosted_app_url": null,
+      "pitch_deck_url": null,
+      "screenshots_url": null,
+      "sponsor_rank_source_url": null,
+      "participant_rank_source_url": null,
+      "award_wording": "Best Use of Semgrep winner; individual rank unconfirmed",
+      "award_proof_url": "https://devpost.com/software/darwin-cmfysv",
+      "repository_url": "https://github.com/persist-os/aws-hackathon",
+      "access_and_inspection_text": "Public; README and scanner source inspected",
+      "rank_evidence_category": "unconfirmed",
+      "rank": null,
+      "rank_independently_confirmed": false,
+      "rank_claim_url": null,
+      "repository_identity_verified": true,
+      "repository_access_at_research_date": "readable",
+      "source_inspected": true,
+      "additional_award_claims": [],
+      "report_source_references": [
+        {
+          "field": "repository_evidence_text",
+          "reference_number": 129,
+          "label": "Darwin inspected source",
+          "url": "https://github.com/persist-os/aws-hackathon/blob/main/backend/forge/scanner.py"
+        },
+        {
+          "field": "published_explanation_text",
+          "reference_number": 130,
+          "label": "Semgrep sponsor retrospective",
+          "url": "https://semgrep.dev/blog/2025/what-a-hackathon-reveals-about-ai-agent-trends-to-expect-2026/"
+        }
+      ],
+      "project_description": "A tournament compares models that generate tool code. Security findings influence a fitness score shown with model performance in an evolution dashboard.",
+      "repository_evidence_text": "Public; README and scanner source inspected. The repository contains a FastAPI backend and Next.js frontend. Its README assigns security 40 percent of the score, correctness 30 percent, speed 20 percent and quality 10 percent. backend/forge/scanner.py invokes Semgrep, parses JSON findings and applies severity-based penalties. It also has an explicitly marked heuristic fallback when scanning is unavailable or fails.",
+      "published_explanation_text": "Semgrep's retrospective highlights deterministic static-analysis pressure as a way to compare models. This is sponsor commentary, not a published judging scorecard.",
+      "why_it_may_have_stood_out_inference": "The sponsor tool controls the product's central choice. A visible tournament makes that contribution easy to explain and demonstrate.",
+      "limitations_text": "Code was read, not run. Model examples differ between the submission and README, so the exact live lineup remains uncertain. A clean scan is not proof of secure code.",
+      "inspected_source_urls": [
+        "https://github.com/persist-os/aws-hackathon/blob/main/backend/forge/scanner.py"
+      ],
+      "published_sponsor_commentary_urls": [
+        "https://semgrep.dev/blog/2025/what-a-hackathon-reveals-about-ai-agent-trends-to-expect-2026/"
+      ],
+      "derivative_source_artifacts": [
+        "REPOSITORY_INDEX.txt",
+        "Sponsor_Winners_Research.pdf"
+      ]
+    },
+    {
+      "id": "semgrep-commitdna",
+      "name": "CommitDNA",
+      "sponsor": "Semgrep",
+      "event": "AWS AI Agents Hackathon",
+      "event_date": "2025-10-10",
+      "event_url": "https://luma.com/awshackathon",
+      "event_official_prizes_url": "https://aws-agentic-ai-hackathon.devpost.com/",
+      "historical_checked_date": "2026-10-07",
+      "award_verified": true,
+      "award_membership_evidence_category": "structured_event_award_badge",
+      "demo_url": "https://cln.sh/kwd5YrFm",
+      "hosted_app_url": "https://commit-dna.pages.dev/",
+      "pitch_deck_url": null,
+      "screenshots_url": null,
+      "sponsor_rank_source_url": null,
+      "participant_rank_source_url": null,
+      "award_wording": "Best Use of Semgrep winner; individual rank unconfirmed",
+      "award_proof_url": "https://devpost.com/software/commitdna-personalized-sec-compliance-tutor-on-your-commits",
+      "repository_url": "https://github.com/yigitkonur/commitdna",
+      "access_and_inspection_text": "Submission-linked identity verified; public URL returned 404",
+      "rank_evidence_category": "unconfirmed",
+      "rank": null,
+      "rank_independently_confirmed": false,
+      "rank_claim_url": null,
+      "repository_identity_verified": true,
+      "repository_access_at_research_date": "http_404",
+      "source_inspected": false,
+      "additional_award_claims": [],
+      "report_source_references": [
+        {
+          "field": "published_explanation_text",
+          "reference_number": 130,
+          "label": "Semgrep sponsor retrospective",
+          "url": "https://semgrep.dev/blog/2025/what-a-hackathon-reveals-about-ai-agent-trends-to-expect-2026/"
+        }
+      ],
+      "project_description": "A personalized security tutor turns a developer's commit patterns into short coding exercises, using a Claude Agent SDK and Bedrock workflow with Semgrep and compliance context.",
+      "repository_evidence_text": "Submission-linked identity verified; public URL returned 404. The submission describes a feedback loop that creates training snippets and uses Semgrep again to check that the intended issue is present. The public demo landing page identifies its sample as the creator's last 100 commits. Repository contents are not publicly inspectable; its availability could reflect a private, deleted or renamed repository.",
+      "published_explanation_text": "Semgrep's retrospective emphasizes context-sensitive coaching and immediate learning feedback. It does not assign an exact placing.",
+      "why_it_may_have_stood_out_inference": "Detection leads to a concrete learning outcome. The second validation step gives the sponsor tool a role throughout the experience.",
+      "limitations_text": "Implementation and claimed accuracy could not be independently checked. The live landing page is not evidence that the full workflow still works.",
+      "inspected_source_urls": [],
+      "published_sponsor_commentary_urls": [
+        "https://semgrep.dev/blog/2025/what-a-hackathon-reveals-about-ai-agent-trends-to-expect-2026/"
+      ],
+      "derivative_source_artifacts": [
+        "REPOSITORY_INDEX.txt",
+        "Sponsor_Winners_Research.pdf"
+      ]
+    },
+    {
+      "id": "semgrep-udon-cat",
+      "name": "Udon Cat",
+      "sponsor": "Semgrep",
+      "event": "AWS AI Agents Hackathon",
+      "event_date": "2025-10-10",
+      "event_url": "https://luma.com/awshackathon",
+      "event_official_prizes_url": "https://aws-agentic-ai-hackathon.devpost.com/",
+      "historical_checked_date": "2026-10-07",
+      "award_verified": true,
+      "award_membership_evidence_category": "structured_event_award_badge",
+      "demo_url": "https://www.youtube.com/watch?v=LdO30NH6WRU",
+      "hosted_app_url": null,
+      "pitch_deck_url": null,
+      "screenshots_url": null,
+      "sponsor_rank_source_url": null,
+      "participant_rank_source_url": null,
+      "award_wording": "Best Use of Semgrep winner; individual rank unconfirmed",
+      "award_proof_url": "https://devpost.com/software/udon-cat",
+      "repository_url": "https://github.com/chinesepowered/aws-secure-agent",
+      "access_and_inspection_text": "Submission-linked identity verified; public URL returned 404",
+      "rank_evidence_category": "unconfirmed",
+      "rank": null,
+      "rank_independently_confirmed": false,
+      "rank_claim_url": null,
+      "repository_identity_verified": true,
+      "repository_access_at_research_date": "http_404",
+      "source_inspected": false,
+      "additional_award_claims": [],
+      "report_source_references": [
+        {
+          "field": "published_explanation_text",
+          "reference_number": 130,
+          "label": "Semgrep sponsor retrospective",
+          "url": "https://semgrep.dev/blog/2025/what-a-hackathon-reveals-about-ai-agent-trends-to-expect-2026/"
+        }
+      ],
+      "project_description": "A security assistant scans code and proposes fixes through a web interface, command line and a Chrome extension for Bolt. Its submission describes a FastAPI backend and Cerebras-hosted Qwen code generation.",
+      "repository_evidence_text": "Submission-linked identity verified; public URL returned 404. The submitted design combines Semgrep findings with suggested repairs and confidence-based fix application. The exact repository is linked from the official submission, but its public page returned 404, so those implementation claims remain submission descriptions.",
+      "published_explanation_text": "Semgrep's retrospective calls attention to security checks inside browser coding environments, where generated code can be inspected before it leaves the browser.",
+      "why_it_may_have_stood_out_inference": "The integration appears where developers are creating code and connects a finding to a practical repair. That creates an understandable user outcome in a short demo.",
+      "limitations_text": "No public source review or functional test was possible. The reviewed award badge establishes the category, not the individual rank or quality of every suggested fix.",
+      "inspected_source_urls": [],
+      "published_sponsor_commentary_urls": [
+        "https://semgrep.dev/blog/2025/what-a-hackathon-reveals-about-ai-agent-trends-to-expect-2026/"
+      ],
+      "derivative_source_artifacts": [
+        "REPOSITORY_INDEX.txt",
+        "Sponsor_Winners_Research.pdf"
+      ]
+    }
+  ]
+}

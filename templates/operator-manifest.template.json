@@ -1,0 +1,32 @@
+{
+  "schema_version": "scopewatch-envelope/v1",
+  "template_only": true,
+  "policy_version": null,
+  "effective_from_utc": null,
+  "workspace_id": null,
+  "verified_evaluated_credential_id": null,
+  "selected_evaluated_operation": null,
+  "window_seconds": 600,
+  "window_interval": "(anchor - window_seconds, anchor]",
+  "clock": "native event record created_at, after account verification",
+  "counted_unit": "unique native ALLOW permission identities",
+  "identity_domain": null,
+  "monitored_finite_cohort": [],
+  "allowances": [
+    {
+      "display_name": "TicketAssist",
+      "verified_policy_subject_id": null,
+      "approval_reference": null,
+      "max_unique_allow_decisions": null
+    },
+    {
+      "display_name": "ReleaseReview",
+      "verified_policy_subject_id": null,
+      "approval_reference": null,
+      "max_unique_allow_decisions": null
+    }
+  ],
+  "illustrative_parameters_only": {"support_allowance": 20, "control_allowance": 60},
+  "operator_approval": {"approved_by": null, "approved_at_utc": null},
+  "ready_for_use": false
+}

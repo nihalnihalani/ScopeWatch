@@ -1,0 +1,12 @@
+{
+  "schema_version": "scopewatch-manifest-provenance/v1",
+  "template_only": true,
+  "final_manifest_path": null,
+  "immutable_containing_commit_and_path": null,
+  "manifest_byte_sha256": null,
+  "manifest_bytes_finalized_at_utc": null,
+  "operator_pinned_at_utc": null,
+  "pinned_by": null,
+  "verified_against_actual_bytes": false,
+  "note": "External provenance wrapper. This wrapper is not part of the manifest bytes whose hash/reference it records."
+}

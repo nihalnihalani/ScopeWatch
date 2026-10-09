@@ -1,0 +1,125 @@
+{
+  "research_date": "2026-10-09",
+  "database_operations": false,
+  "sources": [
+    {
+      "file": ".firecrawl/architecture-clickhouse/uniqexact.md",
+      "url": "https://clickhouse.com/docs/reference/functions/aggregate-functions/uniqExact",
+      "sha256": "5ef757c9b5f9bc9b450772e5a031e1dcd81117d0e9043d73df39f34e4987d1af",
+      "bytes": 4393,
+      "acquisition": "copied existing inspected first-party KB capture"
+    },
+    {
+      "file": ".firecrawl/architecture-clickhouse/aggregate-null.md",
+      "url": "https://clickhouse.com/docs/reference/functions/aggregate-functions",
+      "sha256": "57ddadb92cc2b5c322cfb93df120c385afea7070e127cbf4e46f6e97e6f4adb1",
+      "bytes": 6548,
+      "acquisition": "Firecrawl CLI scrape, 2026-10-09"
+    },
+    {
+      "file": ".firecrawl/architecture-clickhouse/groupuniqarray.md",
+      "url": "https://clickhouse.com/docs/reference/functions/aggregate-functions/groupUniqArray",
+      "sha256": "cadf4e2449bffa80e1c904283ceb3cbc488fd21a3fa80f528bf74a9e9d58ec2f",
+      "bytes": 3045,
+      "acquisition": "Firecrawl CLI scrape, 2026-10-09"
+    },
+    {
+      "file": ".firecrawl/architecture-clickhouse/any.md",
+      "url": "https://clickhouse.com/docs/reference/functions/aggregate-functions/any",
+      "sha256": "3dcf01d45460e5be652305555b6205d3d042d2748e9e11850af0f7f0af4ca424",
+      "bytes": 3831,
+      "acquisition": "Firecrawl CLI scrape, 2026-10-09"
+    },
+    {
+      "file": ".firecrawl/architecture-clickhouse/datetime64.md",
+      "url": "https://clickhouse.com/docs/reference/data-types/datetime64",
+      "sha256": "40b9317aa7882cbf1804a21cb72fb4e2f0c8ecd922ad16c1bbf42bf4a3d24225",
+      "bytes": 9334,
+      "acquisition": "Firecrawl CLI scrape, 2026-10-09"
+    },
+    {
+      "file": ".firecrawl/architecture-clickhouse/join.md",
+      "url": "https://clickhouse.com/docs/reference/statements/select/join",
+      "sha256": "ce87c14406d5a161f02567eeb9700570f8ca5e00125c81cfba300510312a909e",
+      "bytes": 39594,
+      "acquisition": "Firecrawl CLI scrape, 2026-10-09"
+    },
+    {
+      "file": ".firecrawl/architecture-clickhouse/replacingmergetree.md",
+      "url": "https://clickhouse.com/docs/reference/engines/table-engines/mergetree-family/replacingmergetree",
+      "sha256": "233324216aae91c8ec2783c351fea0e38d97668bc622677d0d7e6efd0e96a11e",
+      "bytes": 10563,
+      "acquisition": "copied existing inspected first-party KB capture"
+    },
+    {
+      "file": ".firecrawl/architecture-clickhouse/incremental-mv.md",
+      "url": "https://clickhouse.com/docs/concepts/features/materialized-views/incremental-materialized-view",
+      "sha256": "53e344bfb47631a30ea00ba68612813dac8c97d728ae3fc73966821aaec57432",
+      "bytes": 57368,
+      "acquisition": "copied existing inspected first-party KB capture"
+    },
+    {
+      "file": ".firecrawl/architecture-clickhouse/async-inserts.md",
+      "url": "https://clickhouse.com/docs/concepts/features/operations/insert/asyncinserts",
+      "sha256": "903907926cfc0d5744886b4cc0a668c4bd6c0ceb55842422d1960a16405ffabf",
+      "bytes": 14031,
+      "acquisition": "copied existing inspected first-party KB capture"
+    },
+    {
+      "file": ".firecrawl/architecture-clickhouse/js-client.md",
+      "url": "https://clickhouse.com/docs/integrations/language-clients/js/index",
+      "sha256": "fe6edb98e8d647cce8a728284758d63e6267f153efa46c6ea5923a3999b6e6ec",
+      "bytes": 70758,
+      "acquisition": "Firecrawl CLI scrape, 2026-10-09"
+    },
+    {
+      "file": ".firecrawl/architecture-clickhouse/grant.md",
+      "url": "https://clickhouse.com/docs/reference/statements/grant",
+      "sha256": "1de58f9f471b8e28c132936a682ba615af77210a3eb7480227c65232a6df3b98",
+      "bytes": 40184,
+      "acquisition": "Firecrawl CLI scrape, 2026-10-09"
+    },
+    {
+      "file": ".firecrawl/architecture-clickhouse/readonly.md",
+      "url": "https://clickhouse.com/docs/concepts/features/configuration/settings/permissions-for-queries",
+      "sha256": "8fe8505e44152f376fe8b287e721674be9963da8075082239d69ed1bf830a6e9",
+      "bytes": 10563,
+      "acquisition": "Firecrawl CLI scrape, 2026-10-09"
+    },
+    {
+      "file": ".firecrawl/architecture-clickhouse/query-log.md",
+      "url": "https://clickhouse.com/docs/reference/system-tables/query_log",
+      "sha256": "06d176c281812c46b90ce29fe92f677eec3c6b08a39e76cf0216bce1592b515a",
+      "bytes": 33219,
+      "acquisition": "copied existing inspected first-party KB capture"
+    },
+    {
+      "file": ".firecrawl/architecture-clickhouse/distinct.md",
+      "url": "https://clickhouse.com/docs/reference/statements/select/distinct",
+      "sha256": "bbcedc4d0612e1d024a508a2736366e435994507f8ab17fa6b0c6d4784499dbb",
+      "bytes": 6937,
+      "acquisition": "Firecrawl CLI scrape, 2026-10-09"
+    },
+    {
+      "file": ".firecrawl/architecture-clickhouse/group-by.md",
+      "url": "https://clickhouse.com/docs/reference/statements/select/group-by",
+      "sha256": "dbd3626d157a714a4b8b2ee411bb5224397c9ac0479340ae9492863378694de8",
+      "bytes": 21686,
+      "acquisition": "Firecrawl CLI scrape, 2026-10-09"
+    },
+    {
+      "file": ".firecrawl/architecture-clickhouse/tuple-null-fix.md",
+      "url": "https://github.com/ClickHouse/ClickHouse/pull/115466",
+      "sha256": "ba18e1b0c79b22a8301567cf3b610d7ac480b10df407bd5fb7203fb4107bbf44",
+      "bytes": 30716,
+      "acquisition": "Firecrawl CLI scrape, 2026-10-09"
+    },
+    {
+      "file": ".firecrawl/architecture-clickhouse/tuple-null-issue.md",
+      "url": "https://github.com/ClickHouse/ClickHouse/issues/114784",
+      "sha256": "9ef7f9a20201af6823878786242648c033ae4094f6fb90a1d002ed2b028f1138",
+      "bytes": 8095,
+      "acquisition": "Firecrawl CLI scrape, 2026-10-09"
+    }
+  ]
+}
