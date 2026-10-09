@@ -5,7 +5,7 @@
 | Scan | Commit | Rulesets (public registry, `--metrics=off`, no login) | Paths | Files | Findings | Errors |
 |---|---|---|---|---|---|---|
 | `scan-1-original/` | `c28492f` | p/default, p/typescript, p/nodejs, p/secrets, p/javascript | src, tools, guild-agents | 68 | 0 | 0 |
-| `scan-2-audit/` | `c28492f` | p/security-audit, p/owasp-top-ten, p/react, p/sql-injection, p/xss, p/command-injection, p/jwt | src, tools, guild-agents, tests/support | 68 | 0 | 0 |
+| `scan-2-audit/` | `c28492f` | p/security-audit, p/owasp-top-ten, p/react, p/sql-injection, p/xss, p/command-injection, p/jwt | src, tools, guild-agents (tests/support requested but skipped by Semgrep's default test-path ignores) | 68 | 0 | 0 |
 
 Tool: Semgrep CLI 1.180.0 (pip, isolated venv). The working tree at scan time also contained two in-progress, untracked
 demo tools (`tools/demo-record.ts`, `tools/demo-server.ts`) that were included in the scanned paths.
