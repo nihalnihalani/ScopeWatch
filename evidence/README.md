@@ -1,10 +1,16 @@
-# Event evidence destination
+# Event evidence
 
-> **Current execution policy:** [Start now or anytime, with no build cutoff](../docs/event/BUILD_AUTHORIZATION.md). Preserve actual evidence timestamps; analytics windows do not limit the build.
+> **Current execution policy:** [Start now or anytime, with no build cutoff](../docs/event/BUILD_AUTHORIZATION.md).
 
+**Native evidence: none yet (NATIVE_PENDING).** Everything here is labeled by source class:
 
-There is no actual runtime evidence in this handoff. During the currently authorized implementation, keep private/raw records outside tracked exports, using ignored `raw/` or `private/` directories. Export only reviewed sanitized artifacts under `sanitized/<run-id>/`.
+| Path | Source class | Notes |
+|---|---|---|
+| `sanitized/replay-local-2026-10-09/` | replay (synthetic seeds) + local ClickHouse 25.8 | Real executed SQL/readback/oracle receipts on synthetic data; see its README |
+| `screenshots/replay-*.png` | replay | Real running UI against the real local backend |
+| `screenshots/contract-test-*.png` | contract test | Real adapter against the **loopback mock Guild API** built from the documented schema; `simulated_*` outcomes; not account behavior |
 
-Retain the pinned manifest, native task/event mapping and finite cohort coverage, canonical generation/binding/context readback, actual query IDs/results/timing, hosted investigator context read/incident, approved scope/native applied-rule evidence, and fresh target/control outcomes. Add scan/finding/fix/rescan or prompt-influence traces only if obtained.
-
-Redaction must preserve stable reference relationships needed for review while removing keys, tokens, cookies, private data and unnecessary personal content. Do not replace raw native facts with synthetic “native” receipts. [Evidence checklist](../docs/demo/EVIDENCE_CHECKLIST.md) gives exact obligations.
+Keep private/raw records outside tracked exports (`raw/`, `private/` are ignored). When native gates run
+(`docs/native/NATIVE_PROOF_LEDGER.md`), add `sanitized/native-<run-id>/` with the pinned manifest, task/event mapping,
+coverage, generation readback, query receipts, investigator receipt, native rule evidence and fresh target/control
+results. Never replace raw native facts with synthetic "native" receipts. [Evidence checklist](../docs/demo/EVIDENCE_CHECKLIST.md).
