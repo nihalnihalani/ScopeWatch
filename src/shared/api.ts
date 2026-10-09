@@ -12,6 +12,9 @@ import type {
   ActionRecord,
   CaseDetail,
   CaseSummary,
+  GenerationReceipt,
+  QueryReceipt,
+  ReadinessReport,
   SanitizedExport,
   SessionInfo,
   StatusReport,
@@ -68,6 +71,9 @@ export interface Routes {
   'GET /api/status': { res: StatusReport };
   'GET /api/cases': { res: CaseSummary[] };
   'GET /api/cases/:id': { res: CaseDetail };
+  'GET /api/cases/:id/queries': { res: QueryReceipt[] };
+  /** All generations incl. NOT-READY ones (gaps/conflicts) that produced no case. */
+  'GET /api/generations': { res: GenerationSummary[] };
   /** Replay mode: run the full replay pipeline for the declared seed. 409 in other modes. */
   'POST /api/replay/run': { body: { seed?: string }; res: PipelineRunResult };
   /**
@@ -84,6 +90,12 @@ export interface Routes {
   'POST /api/actions/:id/removal-receipt': { body: RemovalReceiptBody; res: ActionRecord };
   /** Sanitized read-only bundle. Non-native provenance bundles are marked non-evidence in `limits`. */
   'GET /api/export/:caseId': { res: SanitizedExport };
+}
+
+export interface GenerationSummary {
+  generation: GenerationReceipt;
+  readiness: ReadinessReport | null;
+  caseId: string | null;
 }
 
 export const CSRF_HEADER = 'x-csrf-token';

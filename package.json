@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "concurrently -k -n server,client \"npm:dev:server\" \"npm:dev:client\"",
-    "dev:server": "tsx watch src/server/main.ts",
+    "dev:server": "SCOPEWATCH_ALLOWED_ORIGINS=http://127.0.0.1:5317 tsx watch src/server/main.ts",
     "dev:client": "vite",
     "start": "node --disable-warning=ExperimentalWarning dist/server/server/main.js",
     "build": "npm run build:server && npm run build:client",
@@ -26,7 +26,8 @@
     "ch:down": "docker compose -f docker/clickhouse/compose.yaml down",
     "ch:setup": "tsx tools/ch-setup.ts",
     "replay": "tsx tools/replay.ts",
-    "doctor": "tsx tools/doctor.ts"
+    "doctor": "tsx tools/doctor.ts",
+    "scenario": "tsx tools/run-scenario.ts"
   },
   "dependencies": {
     "@clickhouse/client": "1.24.0",

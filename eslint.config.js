@@ -12,6 +12,12 @@ export default tseslint.config(
     rules: { 'react-hooks/rules-of-hooks': 'error', 'react-hooks/exhaustive-deps': 'warn' },
   },
   {
+    files: ['src/**/*.{ts,tsx}'],
+    rules: {
+      'no-restricted-imports': ['error', { patterns: [{ group: ['**/tests/**', '**/mock-guild/**'], message: 'src/** must not import test harnesses or the mock Guild API (devil P0-2).' }] }],
+    },
+  },
+  {
     rules: {
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
       'no-restricted-syntax': ['error', { selector: "CallExpression[callee.name='eval']", message: 'no eval' }],
