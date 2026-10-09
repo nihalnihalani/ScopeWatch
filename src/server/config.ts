@@ -37,6 +37,8 @@ export interface GuildConfig {
   ownedRepo: string | null;
   /** Expected control fixture marker. Server-side only: never put into a model prompt. */
   controlExpectedMarker: string | null;
+  /** Server-held expected marker for the TARGET fixture, used only by recovery probes (devil P1-B). */
+  targetExpectedMarker: string | null;
   /**
    * Native agent ref (as observed in agent task nodes) → verified policy-subject ID. Recorded from
    * native proof (docs/native/NATIVE_PROOF_LEDGER.md); never inferred from display names.
@@ -126,6 +128,9 @@ export function loadConfig(src: NodeJS.ProcessEnv = process.env): AppConfig {
     if (mode !== 'native' && database === (env('CLICKHOUSE_DATABASE', src) ?? 'scopewatch')) {
       throw new ConfigError('replay/contract_test must not use the native ClickHouse database');
     }
+    if (mode === 'native' && /_(replay|contract)$/.test(database)) {
+      throw new ConfigError('native mode must not use a replay/contract ClickHouse database (devil P2-3)');
+    }
     const prefix = mode === 'replay' ? 'CLICKHOUSE_REPLAY' : mode === 'contract_test' ? 'CLICKHOUSE_CONTRACT' : 'CLICKHOUSE';
     const cu = env(`${prefix}_INGEST_USERNAME`, src);
     const cp = env(`${prefix}_INGEST_PASSWORD`, src);
@@ -167,6 +172,7 @@ export function loadConfig(src: NodeJS.ProcessEnv = process.env): AppConfig {
     verifiedOperation: env('GUILD_VERIFIED_OPERATION', src),
     ownedRepo: env('OWNED_GITHUB_OWNER', src) && env('OWNED_GITHUB_REPO', src) ? `${env('OWNED_GITHUB_OWNER', src)}/${env('OWNED_GITHUB_REPO', src)}` : null,
     controlExpectedMarker: env('SCOPEWATCH_CONTROL_EXPECTED_MARKER', src),
+    targetExpectedMarker: env('SCOPEWATCH_TARGET_EXPECTED_MARKER', src),
     agentSubjectMap: parseSubjectMap(env('GUILD_AGENT_SUBJECT_MAP', src)),
     identityDomain: parseIdentityDomain(env('GUILD_IDENTITY_DOMAIN', src)),
     probeTicketNumber: env('GUILD_PROBE_TICKET_NUMBER', src) ? Number(env('GUILD_PROBE_TICKET_NUMBER', src)) : null,
@@ -229,6 +235,7 @@ export function missingGuildSettings(g: GuildConfig): string[] {
     ['verifiedOperation', 'GUILD_VERIFIED_OPERATION'],
     ['ownedRepo', 'OWNED_GITHUB_OWNER/OWNED_GITHUB_REPO'],
     ['controlExpectedMarker', 'SCOPEWATCH_CONTROL_EXPECTED_MARKER'],
+    ['targetExpectedMarker', 'SCOPEWATCH_TARGET_EXPECTED_MARKER'],
     ['probeTicketNumber', 'GUILD_PROBE_TICKET_NUMBER'],
   ];
   const out = required.filter(([k]) => g[k] === null).map(([, n]) => n);

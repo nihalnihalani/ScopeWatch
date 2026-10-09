@@ -117,6 +117,11 @@ export interface InvestigationContext {
 
 export interface ProbeRequest {
   role: 'target' | 'control';
+  /**
+   * restriction: target must be refused; control must return its server-held marker.
+   * recovery: BOTH must return their server-held expected markers (ALLOW alone is not success; devil P1-B).
+   */
+  purpose: 'restriction' | 'recovery';
   scope: ProposedScope;
   /** Probes must start strictly after this time (native receipt time). */
   notBefore: UtcNanoText;

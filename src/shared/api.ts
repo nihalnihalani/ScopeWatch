@@ -50,6 +50,8 @@ export interface RemovalReceiptBody {
   expectedVersion: number;
   method: 'guild_ui' | 'guild_cli_verified';
   nativeRuleId: string | null;
+  /** What the operator OBSERVED was removed in native UI/CLI (devil P1-C); compared to the restriction's scope. */
+  observedSelectors: NativeReceiptBody['observedSelectors'];
   removedAt: string;
   evidenceNote: string;
 }

@@ -676,7 +676,15 @@ export interface StatusReport {
   journal: { status: DependencyStatus; path: string; detail: string };
   lastCaptureAt: UtcNanoText | null;
   lastEvaluationAt: UtcNanoText | null;
-  nativeGates: Array<{ gate: string; status: 'passed' | 'failed' | 'pending'; detail: string }>;
+  /**
+   * Configuration presence checks (NOT native proof). In contract_test status is 'simulated'.
+   */
+  configChecks: Array<{ check: string; status: 'present' | 'missing' | 'simulated' | 'not_applicable'; detail: string }>;
+  /**
+   * Native proof gates G1/G1b/G2 (devil P1-D). 'passed' ONLY with a sanitized native receipt reference;
+   * never derived from env presence. Non-native modes report 'not_applicable'.
+   */
+  nativeGates: Array<{ gate: 'G1' | 'G1b' | 'G2'; status: 'passed' | 'failed' | 'pending' | 'not_applicable'; detail: string; receiptRef: string | null }>;
 }
 
 export interface SessionInfo {
