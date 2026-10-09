@@ -293,3 +293,23 @@ describe('removal receipt, config checks and simulated styling', () => {
     expect(container.querySelector('.badge.tone-ok')).toBeNull();
   });
 });
+
+describe('receipt forms for every accepting state', () => {
+  const rec = (state: 'approved' | 'scope_mismatch') => makeAction({ actionId: 'rec-1', kind: 'recovery', state });
+  it('shows the removal form for approved and scope_mismatch recovery actions, with mismatch note', () => {
+    for (const st of ['approved', 'scope_mismatch'] as const) {
+      const { unmount } = render(<EffectPanel detail={makeDetail({ actions: [makeAction({ state: 'restriction_verified' }), rec(st)] })} ops={fakeOps()} onOpenReview={() => {}} onOpenHandoff={() => {}} />);
+      expect(screen.getByRole('button', { name: 'Record removal receipt' })).toBeTruthy();
+      if (st === 'scope_mismatch') expect(screen.getByText(/did not match the restriction scope/)).toBeTruthy();
+      unmount();
+    }
+  });
+
+  it.each(['approved', 'native_application_pending', 'native_application_unknown', 'scope_mismatch', 'stale'] as const)('native receipt form is reachable in state %s', (st) => {
+    const d = makeDetail({ actions: [makeAction({ state: st })] });
+    render(<ReviewDialog detail={d} ops={fakeOps()} onClose={() => {}} initial="handoff" />);
+    expect(screen.getByRole('button', { name: st === 'stale' ? 'Record as disputed out-of-band application' : 'Record native receipt' })).toBeTruthy();
+    if (st === 'stale') expect(screen.getByText(/disputed out-of-band application/, { selector: 'strong' })).toBeTruthy();
+    cleanup();
+  });
+});

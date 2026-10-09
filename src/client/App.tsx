@@ -246,7 +246,7 @@ export function App({ client: injected }: { client?: ApiClient }) {
               <CaseView detail={detail} status={status} client={client} ops={ops} onOpen={setDialog} onRerun={() => void runPipeline()} rerunBusy={runBusy} runError={runError} />
             ) : null}
           </div>
-          {dialog && detail ? <ReviewDialog detail={detail} ops={ops} onClose={() => setDialog(null)} /> : null}
+          {dialog && detail ? <ReviewDialog detail={detail} ops={ops} initial={dialog} onClose={() => setDialog(null)} /> : null}
         </main>
       ) : null}
       <footer className="app-footer">

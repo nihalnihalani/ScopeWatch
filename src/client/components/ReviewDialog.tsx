@@ -6,10 +6,10 @@ import { Dialog, GuardedButton, Id, Notice } from './common.js';
 import { ErrorNotice, useOp, type Ops } from './ops.js';
 
 
-export function ReviewDialog({ detail, ops, onClose }: { detail: CaseDetail; ops: Ops; onClose: () => void }) {
+export function ReviewDialog({ detail, ops, onClose, initial = 'review' }: { detail: CaseDetail; ops: Ops; onClose: () => void; initial?: 'review' | 'handoff' }) {
   const scope = detail.proposedScope;
   const action = latestAction(detail, 'restriction');
-  const approved = !!action && action.state !== 'rejected' && action.state !== 'review_ready' && action.state !== 'none' && action.state !== 'stale';
+  const approved = !!action && (initial === 'handoff' ? (RECEIPT_ACCEPTING_STATES as string[]).includes(action.state) : action.state !== 'rejected' && action.state !== 'review_ready' && action.state !== 'none' && action.state !== 'stale');
   return (
     <Dialog title={approved ? 'Native handoff' : 'Review restriction'} onClose={onClose} describedBy="dlg-desc">
       {detail.provenance === 'contract_test' ? (
@@ -23,7 +23,7 @@ export function ReviewDialog({ detail, ops, onClose }: { detail: CaseDetail; ops
           : 'Approving records a decision about one exact scope. It does not change Guild policy by itself.'}
       </p>
       {scope ? (
-        approved && action ? <Handoff detail={detail} action={action} ops={ops} /> : <ReviewStep detail={detail} ops={ops} onDone={onClose} />
+        approved && action ? <Handoff action={action} ops={ops} /> : <ReviewStep detail={detail} ops={ops} onDone={onClose} />
       ) : (
         <Notice tone="warn" title="No proposed scope">The server has not proposed a restriction scope for this case.</Notice>
       )}
@@ -31,8 +31,7 @@ export function ReviewDialog({ detail, ops, onClose }: { detail: CaseDetail; ops
   );
 }
 
-function ScopeTable({ detail }: { detail: CaseDetail }) {
-  const s = detail.proposedScope!;
+function ScopeTable({ scope: s }: { scope: ProposedScope }) {
   return (
     <div className="table-wrap" tabIndex={0} role="region" aria-label="Exact restriction scope">
       <table>
@@ -78,7 +77,7 @@ function ReviewStep({ detail, ops, onDone }: { detail: CaseDetail; ops: Ops; onD
         <div className="kv"><dt>Revision you are approving</dt><dd className="mono" data-testid="dlg-revision">{detail.revision}</dd></div>
         <div className="kv"><dt>Provenance</dt><dd>{detail.provenance}</dd></div>
       </dl>
-      <ScopeTable detail={detail} />
+      <ScopeTable scope={s} />
       <div className="notice tone-info" role="note" aria-label="What changes">
         <h3>What changes if a human applies this</h3>
         <p>
@@ -109,11 +108,16 @@ function ReviewStep({ detail, ops, onDone }: { detail: CaseDetail; ops: Ops; onD
   );
 }
 
-function Handoff({ detail, action, ops }: { detail: CaseDetail; action: ActionRecord; ops: Ops }) {
-  const s = detail.proposedScope!;
+function Handoff({ action, ops }: { action: ActionRecord; ops: Ops }) {
+  const s = action.scope;
   const canReceipt = (RECEIPT_ACCEPTING_STATES as string[]).includes(action.state);
   return (
     <>
+      {action.state === 'stale' ? (
+        <Notice tone="bad" title="Stale approval: a receipt will be recorded as disputed" role="alert">
+          <p>This approval no longer matches the current case revision. If someone already applied the old scope in Guild, recording it here preserves it as a <strong>disputed out-of-band application</strong>. It is never treated as an observed, current restriction.</p>
+        </Notice>
+      ) : null}
       <Notice tone="info" title="Human-native step required">
         <p>ScopeWatch has no API that changes Guild policy. Nothing is restricted until a person applies the rule in Guild.</p>
         <ol className="handoff">
@@ -121,11 +125,11 @@ function Handoff({ detail, action, ops }: { detail: CaseDetail; action: ActionRe
           <li>Add a <strong>DENY</strong> rule with exactly these selectors:</li>
         </ol>
       </Notice>
-      <ScopeTable detail={detail} />
+      <ScopeTable scope={action.scope} />
       <p className="small muted">Approved by {action.approvedBy ?? 'unknown'} at <span className="mono">{action.approvedAt ?? 'unknown'}</span> · action version {action.version} · digest <Id value={action.scopeDigest} /></p>
       <p className="small muted">Residual capability after the rule: {s.residualCapability.join('; ') || 'not stated'}</p>
       {action.nativeReceipt ? <ReceiptSummary action={action} /> : null}
-      {canReceipt ? <NativeReceiptForm action={action} detail={detail} ops={ops} /> : (
+      {canReceipt ? <NativeReceiptForm action={action} ops={ops} /> : (
         <p className="small muted">State is “{action.state}”; a native receipt cannot be recorded in this state.</p>
       )}
     </>
@@ -183,8 +187,8 @@ export function SelectorFields({ sel, onChange, scope, prefix }: { sel: Selector
   );
 }
 
-function NativeReceiptForm({ action, detail, ops }: { action: ActionRecord; detail: CaseDetail; ops: Ops }) {
-  const s = detail.proposedScope!;
+function NativeReceiptForm({ action, ops }: { action: ActionRecord; ops: Ops }) {
+  const s = action.scope;
   const { busy, error, run } = useOp(ops);
   const [method, setMethod] = useState<'guild_ui' | 'guild_cli_verified'>('guild_ui');
   const [ruleId, setRuleId] = useState('');
@@ -240,7 +244,7 @@ function NativeReceiptForm({ action, detail, ops }: { action: ActionRecord; deta
         <textarea id="nr-note" rows={2} value={note} onChange={(e) => setNote(e.target.value)} />
       </div>
       {error ? <ErrorNotice error={error} onReload={() => void ops.reload()} /> : null}
-      <GuardedButton id="nr-submit" type="submit" variant="primary" reason={missing} busy={busy}>Record native receipt</GuardedButton>
+      <GuardedButton id="nr-submit" type="submit" variant="primary" reason={missing} busy={busy}>{action.state === 'stale' ? 'Record as disputed out-of-band application' : 'Record native receipt'}</GuardedButton>
     </form>
   );
 }

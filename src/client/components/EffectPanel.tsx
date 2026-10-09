@@ -144,7 +144,7 @@ function ActionCard({ action, ops, onOpenHandoff }: { action: ActionRecord; ops:
       {error ? <ErrorNotice error={error} onReload={() => void ops.reload()} /> : null}
 
       {isRestr && (RECEIPT_ACCEPTING_STATES as string[]).includes(action.state) ? (
-        <button type="button" className="btn btn-primary" onClick={onOpenHandoff}>Open native handoff and record receipt</button>
+        <button type="button" className="btn btn-primary" onClick={onOpenHandoff}>{action.state === 'stale' ? 'Record out-of-band application (will be disputed)' : 'Open native handoff and record receipt'}</button>
       ) : null}
       {verifyOk ? (
         <GuardedButton id={`verify-${action.kind}`} reason={null} busy={busy} variant="primary" onClick={() => void run(() => ops.verify(action.actionId, { expectedVersion: action.version }), 'Verification requested. Read the probes; a request alone is not success.')}>
@@ -158,7 +158,12 @@ function ActionCard({ action, ops, onOpenHandoff }: { action: ActionRecord; ops:
           <ReasonInline id="arj" label="Reason to reject recovery" cta="Reject recovery" variant="danger" busy={busy} onSubmit={(r) => void run(() => ops.actionReview(action.actionId, { expectedVersion: action.version, decision: 'reject', reason: r }), 'Recovery rejected.')} />
         </div>
       ) : null}
-      {!isRestr && action.state === 'approved' ? <RemovalForm action={action} ops={ops} /> : null}
+      {!isRestr && (action.state === 'approved' || action.state === 'scope_mismatch') ? (
+        <>
+          {action.state === 'scope_mismatch' ? <p className="small"><strong>The recorded removal did not match the restriction scope.</strong> Record a corrected removal observation below; the earlier one stays on record as disputed.</p> : null}
+          <RemovalForm action={action} ops={ops} />
+        </>
+      ) : null}
     </div>
   );
 }
