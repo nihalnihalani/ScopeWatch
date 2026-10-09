@@ -6,6 +6,8 @@ This repository contains the researched **build handoff** for the 9 October 2026
 
 ## Start building from these files
 
+**Agent-team execution:** [complete Opus/Sonnet build prompt](docs/prompts/BUILD_SCOPEWATCH.md), [Cursor-terminal launch and continuation goal](docs/prompts/RUN_IN_CLAUDE_CODE.md), and [independent prompt review](docs/prompts/PROMPT_REVIEW.md). Use during the authorized event window; these files do not launch/build the app themselves.
+
 1. [START_HERE.md](START_HERE.md): reading order, fixed scope, authority and first decisions.
 2. [First-hour gates](docs/build/FIRST_HOUR.md): prove actual Guild actors, shared evaluated credential, evidence access, SQL and narrow policy effect before expanding scope.
 3. [Build plan](docs/build/BUILD_PLAN.md): four owners, dependency order, modules, acceptance checks and the 300-minute schedule.
@@ -57,6 +59,7 @@ Akash is excluded. The conditional top monetary face value is $2,000 for ClickHo
 | `provenance/` | Import/source hashes and original-to-packaged path map |
 | `evidence/` | Instructions for future sanitized event evidence; actual runtime evidence is absent |
 | `tools/validate_handoff.py` | Offline link/JSON/template/import-hash/export and high-confidence secret-shape checks; documentation validation only |
+| `docs/prompts/` | Full agent-team build instructions, role briefs, loop/graph/QA contracts, launch guide and primary-source research |
 
 No `npm start` application is promised in this handoff. The only executable helpers are documentation validation/rendering and the inherited offline design oracle. [Environment template](.env.example) has blank values; never commit real credentials or raw sessions.
 

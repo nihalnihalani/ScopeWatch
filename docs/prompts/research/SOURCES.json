@@ -1,0 +1,255 @@
+{
+  "research_date": "2026-10-09",
+  "method": "Firecrawl developer discovery and selective primary web extraction; creator publishing dates qualified individually",
+  "captures": [
+    {
+      "url": "https://code.claude.com/docs/en/model-config",
+      "original_capture": ".firecrawl/prompt-claude/model-config.md",
+      "sha256": "3cdb99eddca914c3a466b4330067112376d41ad260b2ec16bee919092d77816f",
+      "recorded_metadata": {
+        "method": "Firecrawl CLI scrape",
+        "primary_source": true
+      }
+    },
+    {
+      "url": "https://code.claude.com/docs/en/agent-teams",
+      "original_capture": ".firecrawl/prompt-claude/agent-teams.md",
+      "sha256": "0b1f086c2def4f879c8f48bc90e012ea8c366ebc4975d07e9b42106cbbdcebcf",
+      "recorded_metadata": {
+        "method": "Firecrawl CLI scrape",
+        "primary_source": true
+      }
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/models/opus-5-5/overview",
+      "original_capture": ".firecrawl/prompt-claude/opus-5-5.md",
+      "sha256": "caadec08e80d00b70e53a5e7e5f01b6beb2ec55a3406298db553068a95086d75",
+      "recorded_metadata": {
+        "method": "Firecrawl CLI scrape",
+        "primary_source": true
+      }
+    },
+    {
+      "url": "https://platform.claude.com/docs/en/models/sonnet-5-5/overview",
+      "original_capture": ".firecrawl/prompt-claude/sonnet-5-5.md",
+      "sha256": "2a2fd52bb0da29b69e971b6e93b4c698b0ac1f7be7de5701a3ac5e1fab154af0",
+      "recorded_metadata": {
+        "method": "Firecrawl CLI scrape",
+        "primary_source": true
+      }
+    },
+    {
+      "url": "https://code.claude.com/docs/en/tools-reference",
+      "original_capture": ".firecrawl/prompt-claude/tools-reference.md",
+      "sha256": "f3c527bd5ea8d44addc00e5f86dda48c85e8963bc1118b377c60a32e009e5498",
+      "recorded_metadata": {
+        "method": "Firecrawl CLI scrape",
+        "primary_source": true
+      }
+    },
+    {
+      "url": "https://code.claude.com/docs/en/worktrees",
+      "original_capture": ".firecrawl/prompt-claude/worktrees.md",
+      "sha256": "599989c2f400c994866351e34c39f74c7003abb92ad812836274af3fb3a3f590",
+      "recorded_metadata": {
+        "method": "Firecrawl CLI scrape",
+        "primary_source": true
+      }
+    },
+    {
+      "url": "https://code.claude.com/docs/en/cli-reference",
+      "original_capture": ".firecrawl/prompt-claude/cli-reference.md",
+      "sha256": "638df45b0245b1739227297b34f22c92e8d56d0cda9b1a6457f96933b962f1eb",
+      "recorded_metadata": {
+        "method": "Firecrawl CLI scrape",
+        "primary_source": true
+      }
+    },
+    {
+      "url": "https://code.claude.com/docs/en/hooks",
+      "original_capture": ".firecrawl/prompt-claude/hooks.md",
+      "sha256": "bbbab4aecbd6b063b5982ee5a3614cc612d72f3fce47618e1e23c01ec68a318e",
+      "recorded_metadata": {
+        "method": "Firecrawl CLI scrape",
+        "primary_source": true
+      }
+    },
+    {
+      "url": "https://code.claude.com/docs/en/permission-modes",
+      "original_capture": ".firecrawl/prompt-claude/permission-modes.md",
+      "sha256": "77c97b3d7080904f1b81ddb03f6e81c4c218adf627641fb7b81a97f5cc79bb40",
+      "recorded_metadata": {
+        "method": "Firecrawl CLI scrape",
+        "primary_source": true
+      }
+    },
+    {
+      "url": "https://code.claude.com/docs/en/goal",
+      "original_capture": ".firecrawl/prompt-claude/goal.md",
+      "sha256": "ddf88c4df6c689abbc660d45c5cc81d06e962a26923840b569c3d4399fd4db81",
+      "recorded_metadata": {
+        "method": "Firecrawl CLI scrape",
+        "primary_source": true
+      }
+    },
+    {
+      "url": "https://code.claude.com/docs/en/costs",
+      "original_capture": ".firecrawl/prompt-claude/costs.md",
+      "sha256": "8e4386765b46e2a1f8c62ea2fa1199257fbbfdf27fc4d380b98b6b4f717b0649",
+      "recorded_metadata": {
+        "method": "Firecrawl CLI scrape",
+        "primary_source": true
+      }
+    },
+    {
+      "url": "https://cursor.com/docs/models",
+      "original_capture": ".firecrawl/prompt-claude/cursor-models.md",
+      "sha256": "f4d334aa1fff1dccbd8545bd1a68a90c8cec635190576c0d00c75698c5b4c9ad",
+      "recorded_metadata": {
+        "method": "Firecrawl CLI scrape",
+        "primary_source": true
+      }
+    },
+    {
+      "url": "https://cursor.com/docs/subagents",
+      "original_capture": ".firecrawl/prompt-claude/cursor-subagents.md",
+      "sha256": "720ac36763d456c5cf64a0dbd30636a2b6b1ab57c78de2b7bf3c82a306162052",
+      "recorded_metadata": {
+        "method": "Firecrawl CLI scrape",
+        "primary_source": true
+      }
+    },
+    {
+      "url": "https://x.com/bcherny/status/2017742743125299476",
+      "original_capture": ".firecrawl/prompt-creators/boris-2026-01-31-team-tips.json",
+      "sha256": "2ad38bb30b8791407ac8ddf6135cfb3488a2d315019b286e4d2c8b02284a85a9",
+      "recorded_metadata": {
+        "published_time": null
+      }
+    },
+    {
+      "url": "https://x.com/bcherny/status/2007179832300581177",
+      "original_capture": ".firecrawl/prompt-creators/boris-2026-01-workflow.json",
+      "sha256": "7b21ed4beba5aad430bd4eaa3c0c133a0af50cb9b842fbd6fcb313ab9a5110f1",
+      "recorded_metadata": {
+        "published_time": null
+      }
+    },
+    {
+      "url": "https://www.ycombinator.com/library/UN-boris-cherny-building-claude-code",
+      "original_capture": ".firecrawl/prompt-creators/boris-yc-interview.json",
+      "sha256": "6a1db4b7e3578659572be38111c0f0e9299624782b21579ce7d868873dfbf60f",
+      "recorded_metadata": {
+        "published_time": null
+      }
+    },
+    {
+      "url": "https://www.youtube.com/watch?v=qyPCVqFUyDo",
+      "original_capture": ".firecrawl/prompt-creators/boris-yc-video-date.json",
+      "sha256": "3ceb1d93b344becabb17b48eb0712e24a883734cb7a1c8624fdff99a73d7651a",
+      "recorded_metadata": {
+        "published_time": null
+      }
+    },
+    {
+      "url": "https://code.claude.com/docs/en/agent-teams",
+      "original_capture": ".firecrawl/prompt-creators/claude-official-agent-teams.json",
+      "sha256": "e2b0272412f1bc290a634ef0256bf73dc5eb3eb809342b6e62943e972c670485",
+      "recorded_metadata": {
+        "published_time": null
+      }
+    },
+    {
+      "url": "https://x.com/steipete/status/2063697162748260627",
+      "original_capture": ".firecrawl/prompt-creators/peter-2026-loop-post.json",
+      "sha256": "ddc649179798e847a90f5e6a03c30c88b5a4f2a422cceafd7a643a4c7310f36f",
+      "recorded_metadata": {
+        "published_time": null
+      }
+    },
+    {
+      "url": "https://steipete.me/",
+      "original_capture": ".firecrawl/prompt-creators/peter-home-current.json",
+      "sha256": "c761d6f8921b8eae31948afb7e778426864814dd4051431787ceb9acba6c6a18",
+      "recorded_metadata": {
+        "published_time": null
+      }
+    },
+    {
+      "url": "https://steipete.me/posts/just-talk-to-it",
+      "original_capture": ".firecrawl/prompt-creators/peter-just-talk.json",
+      "sha256": "19ef59cf5996a0c324b190c4ee8b12b3d0a1ccbe1cef26fa474a84e7881f2cb9",
+      "recorded_metadata": {
+        "published_time": "2025-10-14T09:00:00.000Z"
+      }
+    },
+    {
+      "url": "https://lexfridman.com/peter-steinberger/",
+      "original_capture": ".firecrawl/prompt-creators/peter-lex-episode.json",
+      "sha256": "27eb961c4e034db5c0b7232133e413edc73aa7cbee010c566c5add853f5e7a9a",
+      "recorded_metadata": {
+        "published_time": "2026-02-12T03:10:39+00:00"
+      }
+    },
+    {
+      "url": "https://lexfridman.com/peter-steinberger-transcript/",
+      "original_capture": ".firecrawl/prompt-creators/peter-lex-transcript.json",
+      "sha256": "5657ce4a711bb1ce92e41fa0fc6eaeed1bf203e848a9b0882c0af25b0432e0c4",
+      "recorded_metadata": {
+        "published_time": "2026-02-12T02:55:04+00:00"
+      }
+    },
+    {
+      "url": "https://steipete.me/posts/2025/shipping-at-inference-speed",
+      "original_capture": ".firecrawl/prompt-creators/peter-shipping-inference.json",
+      "sha256": "1722022fdf9a0dbf651fa0788503f31a732bde6d637ccbf2d522b286ed9ae7f4",
+      "recorded_metadata": {
+        "published_time": "2025-12-28T11:00:00.000Z"
+      }
+    },
+    {
+      "url": "https://www.anthropic.com/engineering/harness-design-long-running-apps",
+      "original_capture": ".firecrawl/prompt-harness-design.md",
+      "sha256": "c640e5f02bac192ad9b55ed16d680f3a88d429c8c76204876b8d2c90df320d90",
+      "method": "Firecrawl CLI scrape"
+    },
+    {
+      "url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+      "original_capture": ".firecrawl/prompt-context-engineering.md",
+      "sha256": "7bc9e726500d1646c802fe8b8c94912f1d455924b27ce2243b8cbd92443c3b3b",
+      "method": "Firecrawl CLI scrape"
+    },
+    {
+      "url": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+      "original_capture": ".firecrawl/prompt-long-running.md",
+      "sha256": "d8e54d84ba30152b097ea2a26282738c4ed9a78b5b7a1bebc4844cab791acf49",
+      "method": "Firecrawl CLI scrape"
+    },
+    {
+      "url": "https://playwright.dev/docs/best-practices",
+      "original_capture": ".firecrawl/prompt-playwright-best-practices.md",
+      "sha256": "2ee1e1aa0202dac022a7ef8a3f4efe5c0ff752359f9747ddfd6b39272f8d203a",
+      "method": "Firecrawl CLI scrape"
+    },
+    {
+      "url": "https://playwright.dev/docs/accessibility-testing",
+      "original_capture": ".firecrawl/prompt-playwright-accessibility.md",
+      "sha256": "317b6b4240b81aa189aadd0ea3d6606f37e0907b93a2ab1ebd79ea472e2ec4bd",
+      "method": "Firecrawl CLI scrape"
+    },
+    {
+      "url": "https://github.com/spcl/graph-of-thoughts",
+      "original_capture": ".firecrawl/prompt-graph-of-thoughts.md",
+      "sha256": "6937b8769e0f1e97beedc2e21df4c39a9966ee58c8451f4272fbe3ff5733a937",
+      "method": "Firecrawl CLI scrape"
+    }
+  ],
+  "unique_urls": 29,
+  "archive_location": "Original sponsor-winners-research workspace; cached source text is not a runtime dependency or committed into this prompt pack",
+  "not_verified": [
+    "Actual Claude API account/model/team execution",
+    "Prompt effectiveness in a complete app build",
+    "ScopeWatch native account/SQL/policy/production UI results"
+  ],
+  "first_party_attribution_note": "Task/evidence DAG and loop thresholds are project synthesis, not creator-endorsed Graph of Thoughts"
+}

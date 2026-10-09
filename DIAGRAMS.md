@@ -58,4 +58,6 @@ The diagrams describe the proposed project. Actual native identities, source fie
 
 ## Editing and regeneration
 
+The additional [agent-team build graph](docs/prompts/BUILD_DAG.svg) maps orchestration dependencies rather than the application's native identity graph. [PNG](docs/prompts/BUILD_DAG.png) · [Mermaid](docs/prompts/BUILD_DAG.mmd) · [complete build prompt](docs/prompts/BUILD_SCOPEWATCH.md).
+
 Edit the `.mmd` source for the relevant view. The [architecture artifact README](docs/architecture/README.md) gives the pinned Mermaid/Playwright regeneration command and offline serving instructions. The renderer regenerates all seven SVG/PNG pairs and the viewer; keep the sources and exports together in commits. Rendering validates the diagrams and viewer, not native account behavior or the competition application.

@@ -73,6 +73,8 @@ If selective native enforcement cannot be proved, the surviving monitoring/inves
 
 ## Hand the next coding agent a concrete request
 
+For the complete Opus 5.5/Sonnet 5.5 team workflow, use [the researched master prompt](docs/prompts/BUILD_SCOPEWATCH.md) and [launch guide](docs/prompts/RUN_IN_CLAUDE_CODE.md). They include supported Task statuses, independent local/native completion paths, five role briefs, bounded repair/UI loops and actual acceptance evidence.
+
 At the authorized event build start, use this prompt as a starting brief:
 
 > Read AGENTS.md, START_HERE.md and docs/build/FIRST_HOUR.md. Implement ScopeWatch during this event, beginning with the native account proof and preserving sanitized real response shapes. Follow the corrected architecture/contracts, keep actual acting-subject and evaluated-credential evidence, and do not invent policy endpoints or successful results. Finish one real end-to-end case with human-reviewed native application and fresh target/control verification before adding labeled scale or optional finding/cause lanes. Record what was actually executed, what remains unknown, and the submission artifacts.

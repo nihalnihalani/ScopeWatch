@@ -1,0 +1,11 @@
+{
+  "kind": "static_prompt_contract_check",
+  "master_words": 4495,
+  "goal_characters": 1446,
+  "shell_syntax": "passed",
+  "task_status_mapping": "passed",
+  "independent_local_native_paths": "passed",
+  "scoped_role_briefs": 5,
+  "model_sessions_started": false,
+  "application_tests": false
+}

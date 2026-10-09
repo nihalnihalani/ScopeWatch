@@ -1,0 +1,23 @@
+flowchart TD
+  H[T00 Harness / clock / account requirements] --> N[T01 Native first-hour proof]
+  H --> C[T02 Shared contracts / local skeleton / run commands]
+  C --> U[T03 Interface / actual API contract]
+  N --> J[T04 Native admission / event bindings / cohort]
+  C --> J
+  J --> P[T05 Journal + analytical publication / readback]
+  P --> Q[T06 Historical all-candidate SQL / current count]
+  Q --> I[T07 Hosted context read / actual incident]
+  I --> A[T08 Exact human review / native rule receipt]
+  A --> V[T09 Fresh target refusal / control result]
+  U --> EL[T10L Local browser / adversarial acceptance]
+  Q --> EN[T10N Native analytical / effect acceptance]
+  V --> EN
+  EL --> R[T11 Independent integrated review / repair]
+  EN -. native evidence when available .-> R
+  R --> S[T12 Evidence / demo / startup / submission handoff]
+  C --> L[Independent local/replay implementation lane]
+  L --> EL
+  N -. bounded before 1:30 .-> OC[Optional matched ticket-cause experiment]
+  C -. ordinary event source exists .-> OS[Optional same-codebase Semgrep discovery]
+  V -. G2 passed / before 1:45 .-> OO[Optional exact native outcome match]
+  R -. core passes / spare budget .-> OM[Optional measured replay]

@@ -21,5 +21,6 @@ runtime/
 evidence/raw/
 evidence/private/
 secrets/
+.scopewatch-run/
 *.pem
 *.key
