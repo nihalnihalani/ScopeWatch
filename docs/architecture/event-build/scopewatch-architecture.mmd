@@ -1,0 +1,107 @@
+flowchart TB
+  classDef ch fill:#FFCC00,stroke:#8a6d00,stroke-width:2px,color:#1a1a1a
+  classDef guild fill:#5B3FD1,stroke:#2e1b8a,stroke-width:2px,color:#ffffff
+  classDef sem fill:#1E9E5A,stroke:#0b5a30,stroke-width:2px,color:#ffffff
+  classDef human fill:#FFE3D0,stroke:#D9480F,stroke-width:3px,stroke-dasharray:6 4,color:#5a1d00
+  classDef synth fill:#EDEDED,stroke:#777777,stroke-width:2px,stroke-dasharray:5 4,color:#333333
+  classDef local fill:#EAF2FB,stroke:#3b6aa0,stroke-width:1.5px,color:#13283d
+  classDef core fill:#E6F4EC,stroke:#2f7d57,stroke-width:1.5px,color:#102b1f
+  classDef note fill:#FFF8E1,stroke:#b58900,stroke-width:1.5px,stroke-dasharray:3 3,color:#4a3800
+
+  subgraph LEG["LEGEND (color + label)"]
+    direction LR
+    L1["ClickHouse: analytics"]:::ch
+    L2["Guild.ai: hosted agents"]:::guild
+    L3["Semgrep: code scan"]:::sem
+    L4["HUMAN step"]:::human
+    L5["NON-NATIVE replay / mock"]:::synth
+    L6["ScopeWatch local code"]:::local
+    L7["pure core logic"]:::core
+  end
+
+  UI["OPERATOR BROWSER: React case UI<br/>stepper, case bar, query receipts,<br/>timeline, review dialog"]:::local
+
+  subgraph SRV["SCOPEWATCH SERVER (127.0.0.1)"]
+    direction TB
+    SEC["Gate: exact Host + Origin allowlist,<br/>HttpOnly session, CSRF token,<br/>operator secret stays server-side"]:::local
+    S1["1 pipeline: launch registered cohort<br/>via GuildPort"]:::local
+    S2["2 collect + bind<br/>task-graph subject binding per event,<br/>root label never a fallback"]:::local
+    S3["3 canonicalize + admit (core)<br/>all versions first, equal-ID conflicts kept,<br/>gaps stay unknown"]:::core
+    S4["4 seal, publish, readback<br/>admit only if IDs, bindings,<br/>coverage, manifest match"]:::local
+    S5["5 evaluate in ClickHouse SQL<br/>(T-600s, T] at every ALLOW anchor<br/>+ cutoff, all candidates"]:::ch
+    S5B["5b independent oracle must agree<br/>(src/core/oracle.ts, core)"]:::core
+    S6["6 case + investigation<br/>case revisions, evidence + query receipts"]:::local
+    S7["7 action / approval<br/>revision-CAS approval, native receipt,<br/>disputes preserved"]:::local
+    S8["8 verification + recovery<br/>fresh target + control probes,<br/>separate recovery predicate"]:::local
+  end
+
+  subgraph JRN["LOCAL AUTHORITY"]
+    JDB["SQLite journal, one file per mode<br/>observations, bindings, coverage,<br/>generations, cases, actions, receipts"]:::local
+  end
+
+  subgraph GLD["GUILD.AI"]
+    TRG["API trigger<br/>(server-side key)"]:::guild
+    TGT["target agent TicketAssist<br/>(deterministic coded agent)"]:::guild
+    CTL["control agent ReleaseReview<br/>(deterministic coded agent)"]:::guild
+    GH["GitHub integration<br/>owned fixture repo, synthetic tickets"]:::guild
+    SEV["sessions: events + tasks<br/>security_event ALLOW / DENY"]:::guild
+    POL["credential policy table<br/>(native)"]:::guild
+    INV["investigator agent (LLM)<br/>read-only context"]:::guild
+    NP["NATIVE_PENDING: live loop not yet run.<br/>LOCAL_READY only, not VERIFIED_LIVE"]:::note
+  end
+
+  subgraph CHB["CLICKHOUSE (analytics)"]
+    CHI["ingest user (INSERT + readback SELECT)<br/>DBs per mode: scopewatch,<br/>_replay, _contract"]:::ch
+    BN["benchmark only: 244/244 query IDs<br/>reconciled in system.query_log"]:::note
+    CHT["sealed generation tables<br/>event versions, bindings,<br/>coverage, manifest"]:::ch
+    CHQ["query user (SELECT only)<br/>fixed parameterized all-candidate SQL<br/>+ per-query receipts"]:::ch
+  end
+
+  subgraph HUM["HUMAN STEP (no policy API)"]
+    OPR["Operator reviews case,<br/>approves exact scope + revision"]:::human
+    APPLY["Operator applies DENY in<br/>Guild UI (or verified CLI)"]:::human
+    RCPT["native-application receipt<br/>entered by human"]:::human
+  end
+
+  subgraph SMG["SEMGREP (offline)"]
+    SGR["Semgrep CLI scans src, tools, guild-agents<br/>0 findings, no finding claimed;<br/>hosted Guardian not run"]:::sem
+  end
+
+  subgraph SYN["NON-NATIVE replay / mock"]
+    SEED["replay seeds<br/>data/replay/*.json"]:::synth
+    MOCK["mock Guild port<br/>(tests, demo server)"]:::synth
+  end
+
+  UI -->|"loopback HTTP + CSRF"| SEC
+  SEC --> S1
+  S1 --> S2 --> S3 --> S4 --> S5 --> S5B --> S6 --> S7 --> S8
+  S1 -->|"launch cohort"| TRG
+  TRG --> TGT
+  TRG --> CTL
+  TGT -->|"tool calls"| GH
+  CTL -->|"tool calls"| GH
+  TGT -->|"each call checked"| SEV
+  CTL --> SEV
+  POL -.->|"evaluates credential"| SEV
+  SEV -->|"events + tasks"| S2
+  S1 <-->|"forward-only CAS"| JDB
+  S4 -->|"sealed generation"| CHI
+  CHI --> CHT
+  CHT -->|"readback IDs + bindings<br/>+ coverage + manifest"| S4
+  S5 -->|"all-candidate SQL"| CHQ
+  CHQ -->|"counts, witnesses,<br/>query receipts"| S5
+  CHQ --> CHT
+  S6 -->|"bounded context"| INV
+  INV -->|"read-only analysis"| S6
+  S6 --> UI
+  UI --> OPR
+  OPR -->|"approval bound to<br/>case revision + scope"| S7
+  S7 -->|"exact scope"| APPLY
+  APPLY --> POL
+  APPLY -->|"receipt (human-entered)"| RCPT
+  RCPT --> S7
+  S8 -->|"fresh target + control probes"| TRG
+  SEV -->|"target DENY POLICY_DENIED +<br/>control ALLOW and marker"| S8
+  S7 <-->|"CAS"| JDB
+  SEED -.->|"replay path, same pipeline"| S1
+  MOCK -.->|"replaces Guild port"| S1

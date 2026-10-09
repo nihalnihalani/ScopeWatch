@@ -1,0 +1,50 @@
+flowchart LR
+  classDef ch fill:#FFCC00,stroke:#8a6d00,stroke-width:2px,color:#1a1a1a
+  classDef guild fill:#5B3FD1,stroke:#2e1b8a,stroke-width:2px,color:#ffffff
+  classDef sem fill:#1E9E5A,stroke:#0b5a30,stroke-width:2px,color:#ffffff
+  classDef human fill:#FFE3D0,stroke:#D9480F,stroke-width:3px,stroke-dasharray:6 4,color:#5a1d00
+  classDef status fill:#FFFFFF,stroke:#555555,stroke-width:1.5px,color:#222222
+  classDef synth fill:#EDEDED,stroke:#777777,stroke-width:2px,stroke-dasharray:5 4,color:#333333
+
+  subgraph G["GUILD.AI (primary)"]
+    G1["Hosts coded target + control agents<br/>and an LLM investigator"]:::guild
+    G2["Emits security_event<br/>ALLOW / DENY per call"]:::guild
+    G3["Enforces credential policy<br/>(DENY applied by human in UI)"]:::guild
+  end
+  GS["Evidence: LOCAL_READY with mock Guild.<br/>Live loop: NATIVE_PENDING"]:::status
+
+  subgraph C["CLICKHOUSE (primary)"]
+    C1["Stores sealed generations<br/>(ingest user: INSERT + readback SELECT)"]:::ch
+    C2["Counts ALLOWs per candidate over<br/>(T-600s, T] at every anchor"]:::ch
+    C3["query receipts (query_id, SQL/output<br/>sha256, server ms) shown in the case UI"]:::ch
+  end
+  CS["Evidence: 37 ClickHouse tests green on local ClickHouse<br/>25.8 (official binary). Cloud: not claimed"]:::status
+
+  subgraph S["SEMGREP (secondary)"]
+    S1["Scans this codebase<br/>(offline CLI)"]:::sem
+    S2["Finding claim needs real<br/>same-codebase discovery"]:::sem
+  end
+  SS["Evidence: 0 findings, no finding claimed.<br/>Hosted Guardian not run"]:::status
+
+  subgraph H["HUMAN (authority)"]
+    H1["Approves exact scope + revision"]:::human
+    H2["Applies DENY in Guild UI,<br/>enters receipt"]:::human
+  end
+
+  subgraph R["REPLAY (non-native)"]
+    R1["Labeled synthetic seeds through<br/>the same ClickHouse path"]:::synth
+  end
+
+  G2 -->|"ALLOW/DENY events"| C1
+  C1 --> C2
+  C2 --> C3
+  C2 -->|"breach candidate"| H1
+  H1 --> H2
+  H2 --> G3
+  G3 -->|"fresh probes: target refused,<br/>control still works"| G2
+  G1 --> G2
+  S1 --> S2
+  R1 -.-> C1
+  G1 --- GS
+  C1 --- CS
+  S1 --- SS

@@ -8,11 +8,11 @@ Default branch `main` (private repo `nihalnihalani/ScopeWatch`); personal workin
 | Dimension | Status | Basis |
 |---|---|---|
 | **LOCAL** | **LOCAL_READY** | All required independent code/UI/local checks pass on the committed tree (table below); independent acceptance and Opus devil re-review report no open P0/P1 |
-| **NATIVE** | **NATIVE_PENDING** | No authenticated Guild account (`guild auth status`: not authenticated), no `GUILD_*` keys, no ClickHouse Cloud credentials. G1/G1b/G2 all pending — see [native proof ledger](native/NATIVE_PROOF_LEDGER.md) |
+| **NATIVE** | **NATIVE_PENDING** | Guild CLI authenticated on a real account; three private agents, a fixture repo and an API trigger created; one calibration session observed real task/event shapes but stopped on a missing GitHub credential before any permission decision. Trigger/collector keys and GitHub App authorization (web-UI steps) not done; no ClickHouse Cloud credentials. G1/G1b/G2 all pending — see [native proof ledger](native/NATIVE_PROOF_LEDGER.md) |
 | VERIFIED_LIVE | **not claimed** | Requires actual native source/actor/credential/unit/coverage, executed SQL/readback on the native projection, real hosted incident, human native DENY and fresh target refusal + inspected control result |
 
 Replay and contract-test results are never native proof. Every positive effect in this repository is `simulated_*`
-from the loopback mock Guild API; every ClickHouse receipt is from a **local** ClickHouse 25.8.33.6 server in Docker.
+from the loopback mock Guild API; every ClickHouse receipt is from a **local** ClickHouse 25.8.33.6 server (Docker, later the official native binary of the same version).
 
 ## Final check receipts (committed tree)
 
@@ -37,6 +37,8 @@ Still **local** ClickHouse, not Cloud.
 | `npm audit --omit=dev` | 0 | 0 vulnerabilities |
 | `npm run replay` | 0 | readback 5/5 components, 57 anchors, 64 queries, oracle agrees; TicketAssist 21/20 at 12:05:00Z, peak 30 |
 
+At `d5ed715` (UI redesign; application code unchanged since) on 2026-10-09 ~19:40 UTC: `npm test` 254 passed, `npm run test:ch` 37 passed, `npm run test:e2e` 37 passed, typecheck/lint/build exit 0.
+
 Earlier receipts at `d819e75` (13:52 UTC, Docker ClickHouse): 246 / 34 / 37 — the deltas are the +4 native-shape unit
 tests and the +3 bench ClickHouse tests added afterwards.
 
@@ -50,7 +52,7 @@ Independent receipts: acceptance (Sonnet) 37 e2e / 120 integration; devil (Opus)
 |---|---|---|
 | Guild account calibration | Human ran `guild auth login`; build created a private fixture repo, three private agents (installed in `nihal.nihalani~home`) and an API trigger; one calibration session observed real event/task shapes. Adapter fixed for `security_event`, `parent_task`/`version` objects (+4 tests). | [native ledger](native/NATIVE_PROOF_LEDGER.md), [guild-agents/](../guild-agents/README.md), commit `c28492f` |
 | Remaining native steps | **Skipped by human instruction** (GitHub App authorization, trigger key copy, collector key — all web-UI). Live loop not run. | DECISIONS D10 |
-| Semgrep | 2 CLI scans (public rulesets, 68 files): **0 findings; no finding claimed** | [evidence/semgrep](../evidence/semgrep/README.md) |
+| Semgrep | 3 CLI scans (public rulesets, 68 files; then `p/guardian-default` + `p/ai-best-practices` on `d5ed715`, 70 files): **0 findings; no finding claimed** | [evidence/semgrep](../evidence/semgrep/README.md) |
 | Replay benchmark | 20k-unit smoke only (SQL == oracle, 63 checks; 244/244 query ids reconciled); full scale **not run** | [bench-local-2026-10-09](../evidence/sanitized/bench-local-2026-10-09/README.md) |
 | Demo | 2:21 local recording (replay + contract test, captioned non-native); one caption corrected by overlay | [EVENT_DEMO](demo/EVENT_DEMO.md), [evidence/demo](../evidence/demo/README.md) |
 | Submission | Draft only; video upload, reviewer access, team names/emails and the submission itself are human steps | [SUBMISSION_DRAFT](demo/SUBMISSION_DRAFT.md) |
