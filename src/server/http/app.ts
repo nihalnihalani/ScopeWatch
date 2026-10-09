@@ -13,7 +13,7 @@ import { join } from 'node:path';
 import type { ApiError, StatusReport, SessionInfo } from '../../shared/contracts.js';
 import { CSRF_HEADER, SESSION_COOKIE } from '../../shared/api.js';
 import type {
-  ActionReviewBody, LoginBody, NativeReceiptBody, RecoveryCreateBody, RemovalReceiptBody, ReviewBody, VerifyBody,
+  GenerationSummary, ActionReviewBody, LoginBody, NativeReceiptBody, RecoveryCreateBody, RemovalReceiptBody, ReviewBody, VerifyBody,
 } from '../../shared/api.js';
 import { missingGuildSettings, type AppConfig } from '../config.js';
 import { nowUtcNano } from '../../core/time.js';
@@ -215,7 +215,11 @@ export async function buildApp(config: AppConfig, svc: Services): Promise<Fastif
     const d = buildCaseDetail(j, req.params.id);
     return d.evaluation.queries;
   });
-  app.get('/api/generations', async () => j.listGenerations().map((g) => ({ ...g, readiness: j.getReadiness(g.generationId), evaluationErrors: j.listEvaluationErrors(g.generationId) })));
+  app.get('/api/generations', async (): Promise<GenerationSummary[]> =>
+    j.listGenerations().map(({ scenarioId: _s, identityDomainStatus: _i, createdAt: _c, ...generation }) => ({
+      generation, readiness: j.getReadiness(generation.generationId), caseId: j.caseForGeneration(generation.generationId),
+    })),
+  );
 
   app.post<{ Body: { seed?: string } }>('/api/replay/run', { schema: { body: SCHEMAS.replay } }, async (req) => {
     if (config.mode !== 'replay') throw conflict('replay run is only available in replay mode');

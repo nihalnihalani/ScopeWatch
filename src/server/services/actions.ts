@@ -149,6 +149,47 @@ async function probeSafely(svc: Services, role: 'target' | 'control', a: ActionR
   }
 }
 
+const inFlight = new Set<string>();
+
+/**
+ * A verification stuck in verification_pending (process died between the CAS and the final transition) is never
+ * relaunched blindly: recorded probe intents are reconciled (when `reconcile`) and the action moves to the
+ * *_unknown state with the reason. A new verify from that state launches fresh probes deliberately.
+ */
+export async function reconcileInterruptedVerification(svc: Services, actionId: string, expectedVersion: number | null, reconcile: boolean, by: string): Promise<ActionRecord> {
+  const j = svc.journal;
+  const a = j.getAction(actionId);
+  if (!a) throw notFound('action');
+  if (a.state !== 'verification_pending') throw conflict(`action is ${a.state}, not an interrupted verification`);
+  if (inFlight.has(actionId)) throw conflict('a verification for this action is still running in this process');
+  if (expectedVersion !== null && a.version !== expectedVersion) throw staleRevision(`action is at version ${a.version}, request was for ${expectedVersion}`);
+  const notes: string[] = [];
+  for (const i of j.listIntents(actionId).filter((x) => x.outcome === 'pending' || x.outcome === 'unknown')) {
+    const found = reconcile && svc.guild ? await svc.guild.reconcileLaunch(i.idempotencyRef).catch(() => null) : null;
+    if (found) {
+      j.resolveIntent(i.intentId, 'reconciled', `probe launch exists natively (session ${found.nativeSessionId ?? 'unknown'}) but its result was not recorded; not relaunched`);
+      notes.push(`${i.idempotencyRef}: launch exists, result unrecorded`);
+    } else {
+      j.resolveIntent(i.intentId, 'unknown', reconcile ? 'reconciliation could not prove whether a probe launched' : 'process restarted before the probe outcome was recorded');
+      notes.push(`${i.idempotencyRef}: outcome unknown`);
+    }
+  }
+  const to = a.kind === 'restriction' ? 'verification_unknown' : 'recovery_unknown';
+  return wrapStale(() => {
+    const cur = j.getAction(actionId) as ActionRecord;
+    const next = applyTransition(cur, to, by, `interrupted verification; ${notes.join('; ') || 'no probe intents recorded'}`, cur.version);
+    j.casAction(next, cur.version);
+    return j.getAction(actionId) as ActionRecord;
+  });
+}
+
+/** Startup sweep: nothing can still be running, so interrupted verifications become unknown (no network calls). */
+export async function sweepInterruptedVerifications(svc: Services): Promise<number> {
+  const pend = svc.journal.listPendingVerifications();
+  for (const a of pend) await reconcileInterruptedVerification(svc, a.actionId, null, false, 'system');
+  return pend.length;
+}
+
 /** Fresh target + control probes (NEW sessions launched after the receipt time), then the verdict matrix. */
 export async function verifyAction(svc: Services, actionId: string, expectedVersion: number, operator: string): Promise<ActionRecord> {
   const j = svc.journal;
@@ -156,6 +197,7 @@ export async function verifyAction(svc: Services, actionId: string, expectedVers
   if (!a0) throw notFound('action');
   if (a0.provenance === 'replay') throw notEligible('replay actions are not eligible');
   if (a0.version !== expectedVersion) throw staleRevision(`action is at version ${a0.version}, verify was for ${expectedVersion}`);
+  if (a0.state === 'verification_pending') return reconcileInterruptedVerification(svc, actionId, expectedVersion, true, operator);
   const startStates = a0.kind === 'restriction' ? ['native_application_observed', 'verification_failed', 'verification_unknown'] : ['removal_observed', 'recovery_failed', 'recovery_unknown'];
   if (!startStates.includes(a0.state)) throw conflict(`action is ${a0.state}; verification starts only from ${startStates.join(', ')}`);
   if (!a0.nativeReceipt) throw conflict('no native receipt recorded');
@@ -170,10 +212,17 @@ export async function verifyAction(svc: Services, actionId: string, expectedVers
     return next;
   });
   const tag = `${actionId}-v${pending.version}`;
-  const [target, control] = await Promise.all([
-    probeSafely(svc, 'target', pending, notBefore, `probe-${tag}-target`),
-    probeSafely(svc, 'control', pending, notBefore, `probe-${tag}-control`),
-  ]);
+  inFlight.add(actionId);
+  let target: ProbeResult;
+  let control: ProbeResult;
+  try {
+    [target, control] = await Promise.all([
+      probeSafely(svc, 'target', pending, notBefore, `probe-${tag}-target`),
+      probeSafely(svc, 'control', pending, notBefore, `probe-${tag}-control`),
+    ]);
+  } finally {
+    inFlight.delete(actionId);
+  }
   const expect = { targetSubjectId: pending.scope.policySubjectId, controlSubjectId: svc.config.guild.verifiedControlPolicySubjectId };
   const { verdict, explanation } =
     pending.kind === 'restriction' ? restrictionVerdict(pending.provenance, target, control, expect) : recoveryVerdict(pending.provenance, target, control, expect);

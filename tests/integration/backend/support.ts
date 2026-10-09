@@ -79,7 +79,7 @@ export class FakeGuildPort implements GuildPort {
       boundSubjectId: refused ? req.scope.policySubjectId : 'subj-control', credentialId: req.scope.credentialId, inspection: 'FAKE inspection', outcome: refused ? 'refused_policy' : 'succeeded_expected', startedAt: started, completedAt: started, ...rest,
     };
   }
-  async reconcileLaunch() {
+  async reconcileLaunch(_ref: string): Promise<LaunchReceipt | null> {
     return null;
   }
 }

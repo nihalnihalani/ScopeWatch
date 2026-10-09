@@ -476,6 +476,32 @@ export class Journal {
       return touched;
     });
   }
+  /**
+   * A later generation has integrity conflicts: every case on this manifest gets a NEW revision marked
+   * evidence_disputed (pre-effect approvals become stale), applied effects keep receipts but go to `disputed`.
+   */
+  disputeCases(manifestSha256: string, note: string): { cases: string[]; actions: string[] } {
+    return this.tx(() => {
+      const cases: string[] = [];
+      for (const c of this.all('SELECT case_id FROM cases WHERE manifest_sha256 = ?', manifestSha256)) {
+        const cur = this.getCase(String(c['case_id'])) as CaseRow;
+        const rev = this.getCaseRevision(cur.caseId, cur.revision) as CaseRevisionRow;
+        this.saveCaseRevision({
+          caseId: cur.caseId, provenance: cur.provenance, expectedRevision: cur.revision, generationId: cur.generationId, evaluationId: cur.evaluationId,
+          manifestSha256, evidenceState: 'evidence_disputed', primary: cur.primary, primaryLabel: cur.primaryLabel, uncertainty: [`DISPUTED: ${note}`, ...rev.uncertainty],
+        });
+        cases.push(cur.caseId);
+      }
+      return { cases, actions: this.markEffectActionsDisputed(manifestSha256, note) };
+    });
+  }
+  caseForGeneration(generationId: string): string | null {
+    const r = this.get('SELECT case_id FROM case_revisions WHERE generation_id = ? ORDER BY rowid DESC LIMIT 1', generationId);
+    return r ? String(r['case_id']) : null;
+  }
+  listPendingVerifications(): ActionRecord[] {
+    return this.all("SELECT action_id FROM actions WHERE state IN ('verification_pending')").map((r) => this.getAction(String(r['action_id'])) as ActionRecord);
+  }
   refreshCaseActionState(caseId: string): void {
     const c = this.getCase(caseId);
     if (!c) return;

@@ -145,8 +145,8 @@ export async function processGeneration(svc: Services, generationId: string): Pr
   });
   if (!readiness.ready) {
     if (readiness.gaps.some((x) => isConflictGap(x.kind))) {
-      const touched = j.markEffectActionsDisputed(manifest.sha256, `later generation ${generationId} has integrity conflicts`);
-      if (touched.length) j.addHistory('generation', generationId, 'sealed', 'sealed', 'system', `disputed ${touched.length} applied actions`);
+      const t = j.disputeCases(manifest.sha256, `later generation ${generationId} has integrity conflicts`);
+      if (t.cases.length) j.addHistory('generation', generationId, 'sealed', 'sealed', 'system', `disputed ${t.cases.length} cases, ${t.actions.length} applied actions`);
     }
     return { generationId, state: 'sealed', caseId: null, readinessGaps: readiness.gaps.length, detail: `not ready: ${readiness.gaps.length} gaps (${[...new Set(readiness.gaps.map((x) => x.kind))].join(', ')}); not published, no case created` };
   }
