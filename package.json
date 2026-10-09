@@ -1,0 +1,55 @@
+{
+  "name": "scopewatch",
+  "version": "0.1.0",
+  "private": true,
+  "description": "ScopeWatch: per-workload native permission-allowance case workflow (Guild + ClickHouse).",
+  "type": "module",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "dev": "concurrently -k -n server,client \"npm:dev:server\" \"npm:dev:client\"",
+    "dev:server": "tsx watch src/server/main.ts",
+    "dev:client": "vite",
+    "start": "node --disable-warning=ExperimentalWarning dist/server/server/main.js",
+    "build": "npm run build:server && npm run build:client",
+    "build:server": "tsc -p tsconfig.server.json",
+    "build:client": "vite build",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint .",
+    "test": "vitest run --project unit --project integration",
+    "test:unit": "vitest run --project unit",
+    "test:integration": "vitest run --project integration",
+    "test:ch": "vitest run --project clickhouse",
+    "test:e2e": "playwright test",
+    "ch:up": "docker compose -f docker/clickhouse/compose.yaml up -d --wait",
+    "ch:down": "docker compose -f docker/clickhouse/compose.yaml down",
+    "ch:setup": "tsx tools/ch-setup.ts",
+    "replay": "tsx tools/replay.ts",
+    "doctor": "tsx tools/doctor.ts"
+  },
+  "dependencies": {
+    "@clickhouse/client": "1.24.0",
+    "@fastify/cookie": "11.1.3",
+    "@fastify/static": "10.1.5",
+    "fastify": "5.12.5",
+    "react": "19.2.0",
+    "react-dom": "19.2.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.37.0",
+    "@playwright/test": "1.64.0",
+    "@types/node": "24.7.0",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.1",
+    "@vitejs/plugin-react": "6.1.2",
+    "concurrently": "10.0.6",
+    "eslint": "9.37.0",
+    "eslint-plugin-react-hooks": "6.1.1",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.46.0",
+    "vite": "8.3.4",
+    "vitest": "5.0.3"
+  }
+}
