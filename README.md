@@ -1,192 +1,170 @@
+<div align="center">
+
 # ScopeWatch
 
-### Contain the one AI agent that overreached, and prove the approved ones still work.
+**Least-privilege control for AI agent fleets.**<br/>
+Find the one agent that overreached its own allowance, contain exactly that capability, and prove that approved agents keep working.
 
-**Defensive AI for agent fleets.** Several AI agents share one integration credential. One of them, here an agent reading tickets, starts calling a GitHub permission far more often than its job needs. ScopeWatch uses **ClickHouse** to work out exactly which agent crossed **its own** allowance and when. It is built to turn **Guild.ai's** native permission events into an evidence case (live run pending) and have a human apply one precise DENY. Fresh probes must then show that agent refused **and** a busier, approved agent still working.
+[![Agents on Guild.ai](https://img.shields.io/badge/Agents-Guild.ai-5B3FD6?style=for-the-badge)](#guildai-the-agent-platform)
+[![Analytics on ClickHouse](https://img.shields.io/badge/Analytics-ClickHouse-FAFF69?style=for-the-badge&logo=clickhouse&logoColor=black)](#clickhouse-the-analytics-engine)
+[![Code scanned by Semgrep](https://img.shields.io/badge/Code%20scanned%20by-Semgrep-2EB67D?style=for-the-badge)](#semgrep-security-scanning-of-this-codebase)
 
-| | |
-|---|---|
-| 🟨 **ClickHouse**: Best use of real-time analytics | The breach decision is made **in SQL**: every event anchor, tie-exact window, conflict-first, checked by an independent oracle, and every query leaves an auditable receipt |
-| 🟪 **Guild.ai**: Best use of Guild to host and run agents | Guild is designed to host the workloads, provide the permission evidence, host the investigator and enforce the policy. Three private agents (two deterministic coded workloads and an LLM investigator) and an API trigger are created on a real account, and the adapter is calibrated on real task/event shapes. Live loop: **NATIVE_PENDING** |
-| 🟩 **Semgrep** | Three Semgrep CLI scans of this AI-written codebase, including `p/guardian-default` and `p/ai-best-practices`: **0 findings, none claimed**. We don't manufacture a bug for a prize |
-| ⭐ **Pi**: Most Innovative | Per-agent attribution behind a *shared* credential, a historical breach witness and proof-of-containment. [Why it's new](#why-scopewatch-is-different) |
+[![Tests](https://img.shields.io/badge/tests-254%20passing-2EA44F?style=flat-square)](docs/BUILD_STATUS.md)
+[![ClickHouse SQL tests](https://img.shields.io/badge/ClickHouse%20SQL%20tests-37%20passing-2EA44F?style=flat-square)](docs/BUILD_STATUS.md)
+[![Browser tests](https://img.shields.io/badge/e2e-37%20passing-2EA44F?style=flat-square)](docs/BUILD_STATUS.md)
+[![Semgrep](https://img.shields.io/badge/Semgrep-0%20findings-2EB67D?style=flat-square)](evidence/semgrep/README.md)
+[![Live Guild integration](https://img.shields.io/badge/live%20Guild%20run-pending-lightgrey?style=flat-square)](#project-status)
+<br/>
+[![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178C6?style=flat-square&logo=typescript&logoColor=white)](tsconfig.json)
+[![Node.js](https://img.shields.io/badge/Node.js-%E2%89%A524-5FA04E?style=flat-square&logo=nodedotjs&logoColor=white)](package.json)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=black)](src/client)
+[![Fastify](https://img.shields.io/badge/Fastify-5-000000?style=flat-square&logo=fastify&logoColor=white)](src/server)
+[![SQLite](https://img.shields.io/badge/journal-SQLite-003B57?style=flat-square&logo=sqlite&logoColor=white)](src/storage)
 
-**Status:** **LOCAL_READY**: every local check passes on `main`. **NATIVE_PENDING**: the live Guild loop has not run yet. **VERIFIED_LIVE: not claimed.** Every result below states which kind of evidence it comes from. [Exact receipts →](docs/BUILD_STATUS.md)
+[How it works](#how-it-works) · [Guild.ai](#guildai-the-agent-platform) · [ClickHouse](#clickhouse-the-analytics-engine) · [Semgrep](#semgrep-security-scanning-of-this-codebase) · [Quick start](#quick-start) · [Status](#project-status) · [Docs](#documentation)
 
-![ScopeWatch case page: TicketAssist exceeded its allowance of 20 (peak 30) while ReleaseReview stays within its own allowance of 60 (peak 40). Replay fixture, labeled.](evidence/screenshots/replay-case-1440.png)
+</div>
 
-<sub>Operator case page on the labeled synthetic replay fixture. The striped REPLAY strip is shown on every screen; replay is never action eligible.</sub>
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/architecture/event-build/scopewatch-product-architecture-dark.png"/>
+    <img src="docs/architecture/event-build/scopewatch-product-architecture.png" alt="ScopeWatch architecture: an agent fleet on Guild.ai produces native security_event ALLOW/DENY decisions; the ScopeWatch evidence pipeline binds each decision to its acting agent; ClickHouse evaluates every agent against its own allowance in a 600-second window at every event anchor; the operator console opens a case and approves an exact scope; a human applies the DENY in Guild; fresh probes verify the target is refused and the control still works. Semgrep scans the ScopeWatch codebase." width="100%"/>
+  </picture>
+</p>
 
----
+## Why ScopeWatch
 
-## Contents
+AI agents increasingly share integration credentials. One GitHub connection serves a ticket agent, a release agent and a cleanup agent at once. When one of them starts calling a permission far more than its job needs, for example after reading a manipulated ticket, today's tools fall short:
 
-[Why it matters](#why-it-matters) · [Architecture](#architecture) · [ClickHouse](#-clickhouse-the-decision-is-made-in-sql) · [Guild.ai](#-guildai-hosts-the-agents-the-evidence-and-the-enforcement) · [Semgrep](#-semgrep-a-clean-scan-reported-as-a-clean-scan) · [Why it's different](#why-scopewatch-is-different) · [Proof](#proof-numbers-you-can-re-run) · [Quick start](#quick-start) · [Demo](#demo) · [Honesty](#what-we-do-not-claim) · [Repo map](#repository-map)
+- **Per-credential limits can't say which agent** is responsible.
+- **Revoking the credential stops every agent,** including the ones doing approved work.
+- **Point-in-time counters miss history.** A burst that crossed the line ten minutes ago looks fine once it ages out.
 
-## Why it matters
+ScopeWatch answers three questions precisely: **which agent** (the policy subject the platform actually evaluated, never a display name), **over what** (native ALLOW permission decisions against *that agent's own* allowance, at every moment), and **how to stop only that**. It denies one capability for one agent, then proves the target is refused while approved work continues.
 
-Agent fleets share credentials. A GitHub integration typically serves many agents, so the usual per-credential rate limits and alerts can't say **which** agent misbehaved. Revoking the credential stops **every** agent. Operators need three answers, quickly and correctly:
+## How it works
 
-1. **Who, exactly?** The policy subject Guild actually evaluated for *each* call, not a session label, model ID or display name.
-2. **Over what, exactly?** A count of native **ALLOW permission decisions** against *that agent's own* allowance. The count runs over every captured session and catches a crossing that happened earlier and has since aged out.
-3. **Can I stop only that?** Deny one capability for one subject, then prove the target is refused while approved work continues. Lifting the restriction (recovery) needs its own proof.
-
-An ALLOW is a policy decision, not proof that data was read. ScopeWatch counts decisions, never "records stolen".
-
-## Architecture
-
-**Sponsor map:** what each sponsor does in the loop, and its evidence status:
-
-![Sponsor contribution map: Guild hosts agents, emits security_event ALLOW/DENY and enforces the human-applied DENY; ClickHouse stores sealed generations and counts ALLOWs per candidate over (T-600s, T] at every anchor with query_log receipts; Semgrep scans the codebase; the human approves exact scope and applies DENY](docs/architecture/event-build/scopewatch-sponsors.png)
-
-**Full system architecture** (click to zoom):
-
-![ScopeWatch architecture: operator browser, ScopeWatch server pipeline (gate, launch, collect and bind, canonicalize, seal and readback, evaluate, case, approval, verification), ClickHouse in yellow, Guild.ai in purple, Semgrep in green, the human DENY step in red dashed, and non-native replay/mock inputs in grey dashed](docs/architecture/event-build/scopewatch-architecture.png)
-
-<sub>🟨 ClickHouse · 🟪 Guild.ai · 🟩 Semgrep · 🟥 human step (no policy API) · ⬜ non-native replay/mock. [SVG (zoomable)](docs/architecture/event-build/scopewatch-architecture.svg) · [Mermaid source](docs/architecture/event-build/scopewatch-architecture.mmd) · [research-phase design diagrams](DIAGRAMS.md)</sub>
-
-**The loop, step by step**
-
-| # | Step | Where | Sponsor |
-|---|---|---|---|
-| 1 | Launch a registered cohort of agent sessions through the Guild **API trigger** (agent IDs from a server allowlist; POST never retried) | `src/integrations/guild/launcher.ts` | 🟪 |
-| 2 | Collect every page of session **events and tasks**; bind each `security_event` to its acting subject through the **task graph** | `collector.ts`, `binding.ts` | 🟪 |
-| 3 | Canonicalize **all versions** of each event before any filter; same-ID contradictions block admission; gaps stay *unknown*, never zero | `src/core/canonicalize.ts`, `admission.ts` | |
-| 4 | Seal → publish to ClickHouse → **exact readback** of IDs, semantics, multiplicity, bindings, coverage and manifest | `src/integrations/clickhouse/publisher.ts` | 🟨 |
-| 5 | Evaluate the window `(T−600s, T]` at **every distinct anchor plus the cutoff, for all candidates** in SQL; an independent oracle must agree | `queries.ts`, `src/integrations/clickhouse/evaluator.ts`, `src/core/oracle.ts` | 🟨 |
-| 6 | Open a case: first crossing, peak, current count, witness sessions and query receipts; optional **hosted investigator** gets pinned facts only | `src/server/services`, `investigator.ts` | 🟨 🟪 |
-| 7 | Operator approves an **exact scope** bound by CAS to case revision + manifest hash + scope digest | `src/core/actions.ts` | |
-| 8 | **Human applies the DENY in the Guild UI** and enters what they observed; mismatched or stale scope → `scope_mismatch` / `disputed_stale_application` | Guild UI | 🟪 🟥 |
-| 9 | **Fresh probes**: the target must be genuinely refused, and the approved control's content must match a server-held marker. Recovery needs both to succeed. Nothing auto-releases | `verifier.ts` | 🟪 |
-
-## 🟨 ClickHouse: the decision is made in SQL
-
-> **"ClickHouse decides who crossed their own limit, at every event anchor, tie-exact and conflict-first, and every number is checked against an independent oracle."**
-
-- **All-candidate, all-anchor evaluation.** Fixed, versioned, parameterized queries (`scopewatch.sql/v1:*`): `conflictCheck`, `nullKeyCount`, `anchorList`, `anchorAllCandidates`, `witness`. Windows are `(T−600s, T]` with the effective start inclusive and `uniqExact` over native identity keys. `LEFT ALL JOIN` with `join_use_nulls` keeps zero-event candidates **explicitly zero**, and each candidate has its own pinned allowance (`allowance_versions`). [`queries.ts`](src/integrations/clickhouse/queries.ts)
-- **Conflict-first canonicalization in SQL.** A shared CTE keeps an identity only if all its versions agree. No actor, ALLOW, operation or time filter runs before that check, so a filter can't hide a contradicting duplicate. Plain `MergeTree` tables: ordering keys are not uniqueness, and deduplication is explicit in SQL.
-- **History survives.** First crossing, peak and current count are stored separately. In the `late-arrival-v1` replay, a 10-event tie takes TicketAssist from 20 to 30 at 12:04:00Z, and the crossing is **kept as a witness although the current count is 0**.
-- **Readback before trust.** An INSERT acknowledgement does not admit data. A generation becomes a case only after ClickHouse returns exactly the facts, bindings, coverage and manifest the journal sealed. Double inserts and altered bindings fail closed (tested).
-- **Auditable receipts.** Each query records `query_id`, SQL sha256, typed params, row count, output sha256, client ms and server ms (from the `x-clickhouse-summary` header), and they're shown in the UI. In the benchmark, all **244/244** issued query IDs were reconciled against `system.query_log`.
-- **Least privilege.** Separate databases per mode (`scopewatch`, `scopewatch_replay`, `scopewatch_contract`), each with an ingest user (INSERT + readback SELECT) and a query user (SELECT). The running app never uses admin. [`tools/ch-setup.ts`](tools/ch-setup.ts)
-
-**Evidence:** [replay bundle](evidence/sanitized/replay-local-2026-10-09/README.md) (57 anchors, 64 queries, oracle agrees) · [benchmark smoke](evidence/sanitized/bench-local-2026-10-09/README.md) (20k synthetic units, 63 checks, 0 failures) · `npm run test:ch` **37 passed** · benchmark smoke (local, 2 CPU, n=6): the all-candidate anchor query on a generation of 22,891 raw rows had a server p50 of **40 ms**. That is a smoke test, not a scale claim.
-**Not yet proven:** no ClickHouse Cloud run, no native Guild events in the projection, no scale or latency claim (the benchmark is a 20k-unit local smoke test).
-
-## 🟪 Guild.ai: hosts the agents, the evidence and the enforcement
-
-> **"Guild hosts the workloads, the evidence and the investigator. ScopeWatch turns Guild's native permission events into an exact, human-approved scope, and refuses to fake a result Guild hasn't given it."**
-
-- **Hosted agents on a real account** ([`guild-agents/`](guild-agents/README.md)): `scopewatch-ticketassist` (target), `scopewatch-releasereview` (control) and `scopewatch-investigator`, all private. The two workloads are deterministic coded agents (`@guildai/agents-sdk`) that read only an owned fixture repo. The investigator is an LLM agent; its tools are limited to `github_repos_get_content` and `github_issues_create`, and it gets **no controller or admin keys**.
-- **Native evidence, not logs.** The adapter exhausts session events **and** tasks page by page, accepts `security_event` ALLOW/DENY, and binds each event to its acting subject. The binding walks `security.task_id` up through parent tasks to the nearest agent task, then to the agent ref and the verified subject. The root/requested label is **never** a fallback. Installed-agent, definition and version IDs are kept as separate key spaces. [`src/integrations/guild/`](src/integrations/guild/)
-- **Calibrated against the real API.** On a real account we observed the actual event type (`security_event`), the nested `parent_task`/`version` objects, and installed-agent IDs that differ from definition IDs. We then fixed the adapter (+4 tests). [Native proof ledger](docs/native/NATIVE_PROOF_LEDGER.md)
-- **Policy stays human.** ScopeWatch never mutates Guild policy and there is no policy endpoint. The operator applies the DENY in Guild's UI, and the app records and checks that receipt against the approved scope.
-- **Verification is behavioural.** Fresh sessions after the receipt must show `DENY/POLICY_DENIED` for the target, while the control's tool-task `response_data` contains its server-held marker. Model prose is never consulted.
-
-**Evidence:** the full loop runs end to end against a loopback mock built from Guild's documented API (`contract_test`, outcomes labeled `simulated_*`). The adapter is calibrated on the real account.
-**Not yet proven (NATIVE_PENDING):** the live loop hasn't run. The one calibration session stopped on a missing GitHub credential *before* any permission decision, so no native `security_event` has been observed yet. [Path to VERIFIED_LIVE](#path-to-verified_live)
-
-## 🟩 Semgrep: a clean scan, reported as a clean scan
-
-We ran three local Semgrep CLI 1.180.0 scans (`--metrics=off`) on ScopeWatch's own AI-generated source: `src`, `tools` and `guild-agents`. They used public default, TypeScript/Node, secrets, security-audit, OWASP Top 10, React, SQL injection, XSS, command injection and JWT rulesets, plus `p/guardian-default` and `p/ai-best-practices` on the current tree (70 files, 165 applicable rules). **Result: 0 findings, 0 errors.** Raw JSON is preserved in [evidence/semgrep](evidence/semgrep/README.md). **No finding is claimed**, no defect was planted, and the hosted Guardian route was not run. The app's trust boundaries are also covered by adversarial tests (`tests/adversarial/`):
-- loopback bind and operator login;
-- HttpOnly, SameSite=Strict cookie and CSRF token;
-- exact Host/Origin allowlist;
-- strict schemas, with no browser-supplied subject, credential or SQL.
-
-## Why ScopeWatch is different
-
-1. **Blame the agent, not the credential.** Each native ALLOW is attributed to the acting subject through Guild's task graph, behind a *shared* credential. On the real account, installed-agent IDs differ from definition IDs, so ScopeWatch never treats them as interchangeable.
-2. **Analytics you can audit.** ClickHouse selects. An independent oracle that shares no canonicalization or SQL code must agree, or no case is opened. Every query leaves a receipt, and the benchmark reconciled all of its query IDs against `system.query_log`.
-3. **Exact time, exact history.** Windows are tie-exact `(T−600s, T]` at every anchor, and conflicts are checked before any filter. A historical crossing remains evidence after today's count falls.
-4. **Proof of containment, not a toggle.** A restriction is "observed" only when the target is genuinely refused **and** an approved busier agent still returns its expected content. Recovery needs the same proof, and nothing auto-releases.
-5. **Human authority by construction.** Approval binds the exact case revision and scope. Policy is applied by a human in Guild, stale or mismatched receipts are flagged, and the investigator holds no admin keys.
-6. **It refuses to cheat.** Replay, mock and native evidence never mix. They use separate journals, databases and UI strips, and mock outcomes are literally named `simulated_*`.
-
-## Proof: numbers you can re-run
-
-All application checks below were run on the same code (`d5ed715`; later commits change only docs and diagrams) against local ClickHouse 25.8.33.6.
-
-| Check | Result | Source |
+| | Step | Powered by |
 |---|---|---|
-| `npm test` (unit, client, integration, adversarial) | **254 passed** | [BUILD_STATUS](docs/BUILD_STATUS.md) |
-| `npm run test:ch` (real SQL, local ClickHouse 25.8.33.6) | **37 passed** | BUILD_STATUS |
-| `npm run test:e2e` (Playwright, real local server, 360/768/1440) | **37 passed** | BUILD_STATUS |
-| typecheck · lint · build · `npm audit --omit=dev` | exit 0 · 0 errors/warnings · exit 0 · **0 vulnerabilities** | BUILD_STATUS |
-| Replay `harbordesk-v1` | readback 5/5 · 57 anchors · 64 queries · **oracle agrees** · TicketAssist **21/20 at 12:05:00Z**, peak 30 · ReleaseReview 40/60 within · LabelSweeper explicit 0 | [replay bundle](evidence/sanitized/replay-local-2026-10-09/README.md) |
-| Replay `late-arrival-v1` | crossing 30/20 at 12:04:00Z **retained with current count 0** · 21 anchors · 27 queries · oracle agrees | replay bundle |
-| Benchmark smoke | 20,000 synthetic units · 50 candidates · 63 checks, 0 failures · **244/244** query IDs in `query_log` | [bench](evidence/sanitized/bench-local-2026-10-09/README.md) |
-| Semgrep | **0 findings**, none claimed | [semgrep](evidence/semgrep/README.md) |
+| **1** | **Run the fleet.** Agents run as hosted Guild sessions launched through an API trigger. Every tool call is checked against Guild's credential policy and recorded as a native `security_event` (ALLOW or DENY). | ![Guild.ai](https://img.shields.io/badge/-Guild.ai-5B3FD6?style=flat-square) |
+| **2** | **Collect and attribute.** ScopeWatch pages through every session's events **and** task graph, and binds each decision to the agent that actually made it. Session labels and root agents are never used as a fallback. | ![Guild.ai](https://img.shields.io/badge/-Guild.ai-5B3FD6?style=flat-square) |
+| **3** | **Canonicalize.** All versions of every event are compared before any filter. Contradictions block the result, and missing data stays *unknown*, never zero. | ScopeWatch core |
+| **4** | **Publish and read back.** Sealed evidence generations are written to ClickHouse and admitted only after an exact readback of IDs, bindings, coverage and manifest. | ![ClickHouse](https://img.shields.io/badge/-ClickHouse-FAFF69?style=flat-square&logo=clickhouse&logoColor=black) |
+| **5** | **Detect in SQL.** One parameterized query evaluates **every agent** over the window `(T−600s, T]` at **every event anchor** plus the cutoff, against each agent's own allowance. An independent oracle must agree. | ![ClickHouse](https://img.shields.io/badge/-ClickHouse-FAFF69?style=flat-square&logo=clickhouse&logoColor=black) |
+| **6** | **Review the case.** The operator sees the breached agent beside the busiest compliant one, the first crossing, the peak, contributing sessions and every query receipt. An optional hosted LLM investigator reads only pinned facts. | ![ClickHouse](https://img.shields.io/badge/-ClickHouse-FAFF69?style=flat-square&logo=clickhouse&logoColor=black) ![Guild.ai](https://img.shields.io/badge/-Guild.ai-5B3FD6?style=flat-square) |
+| **7** | **Contain and verify.** The operator approves one exact scope, then **applies the DENY in Guild's policy table**; ScopeWatch never mutates policy itself. Fresh probes must show the target refused **and** the control returning its expected content. Recovery is reviewed and verified separately. | ![Guild.ai](https://img.shields.io/badge/-Guild.ai-5B3FD6?style=flat-square) |
 
-Reviews: independent Opus 5.5 "devil" plan review, integrated review and re-review of the code (all P0/P1 fixed), and a review of this README, plus Sonnet 5.5 acceptance reports. See [docs/reviews/event-build](docs/reviews/event-build/).
+<p align="center">
+  <img src="evidence/screenshots/replay-case-1440.png" alt="ScopeWatch operator console: workflow stepper, TicketAssist exceeded its allowance of 20 (peak 30) while ReleaseReview stays within its own allowance of 60 (peak 40), all-candidates table, evidence timeline and ClickHouse query receipts. Synthetic replay data, labeled." width="100%"/>
+  <br/><sub>Operator console on labeled synthetic replay data. Every screen carries its data source (REPLAY, CONTRACT TEST or NATIVE).</sub>
+</p>
+
+## Guild.ai: the agent platform
+
+![Guild.ai](https://img.shields.io/badge/Guild.ai-hosted%20agents%20%C2%B7%20native%20permission%20events%20%C2%B7%20credential%20policy-5B3FD6?style=flat-square)
+
+Guild is where the fleet runs and where enforcement happens. ScopeWatch builds on four Guild capabilities:
+
+- **Hosted agents.** The target (`scopewatch-ticketassist`) and control (`scopewatch-releasereview`) are deterministic coded agents built with `@guildai/agents-sdk`, and they read only an owned fixture repository. The investigator is an LLM agent whose tools are limited to reading content and creating an issue, and it never receives controller or admin keys. Source: [`guild-agents/`](guild-agents/README.md).
+- **Native permission events.** Every GitHub tool call is evaluated against the shared credential's policy and emitted as a `security_event`. ScopeWatch counts these **decisions**; an ALLOW is not proof that data was read.
+- **Task-graph attribution.** Each event's `task_id` is walked up through parent tasks to the nearest agent task. Installed-agent, definition and version IDs are treated as separate key spaces; on a real account they do differ.
+- **Credential policy.** Containment is a DENY rule in Guild's policy table, applied by a human. ScopeWatch records and checks the operator's receipt against the approved scope, and flags mismatched or stale applications.
+
+Adapter: [`src/integrations/guild/`](src/integrations/guild/) (launcher, collector, binding, investigator, verifier). It has been calibrated against a real Guild account; see the [native integration ledger](docs/native/NATIVE_PROOF_LEDGER.md).
+
+## ClickHouse: the analytics engine
+
+![ClickHouse](https://img.shields.io/badge/ClickHouse-windowed%20all--candidate%20SQL%20%C2%B7%20readback%20%C2%B7%20query%20receipts-FAFF69?style=flat-square&logo=clickhouse&logoColor=black)
+
+The containment decision is made in ClickHouse SQL, not in application code.
+
+- **Every agent, every moment.** Fixed, versioned, parameterized queries (`anchorList`, `anchorAllCandidates`, `witness`, `conflictCheck`) evaluate all candidates at every distinct ALLOW anchor plus the cutoff. Windows are tie-exact `(T−600s, T]` in nanoseconds. `uniqExact` counts distinct native identities, and `LEFT ALL JOIN` with `join_use_nulls` keeps quiet agents as an explicit zero. See [`queries.ts`](src/integrations/clickhouse/queries.ts).
+- **Each agent against its own limit.** Allowances are versioned per agent, credential and operation (`allowance_versions`), so a busy agent isn't flagged just for being busy.
+- **History is evidence.** First crossing, peak and current count are kept separately. A breach that has since aged out is still visible, with its contributing sessions.
+- **Conflict-first.** A shared CTE keeps an event only if all of its versions agree, before any actor, decision or time filter. Tables are plain `MergeTree` and deduplication is explicit in SQL.
+- **Trust, then verify.** An insert acknowledgement is not admission; a generation becomes a case only after exact readback ([`publisher.ts`](src/integrations/clickhouse/publisher.ts)). An independent oracle ([`src/core/oracle.ts`](src/core/oracle.ts)) re-derives every count and must agree.
+- **Auditable receipts.** Every query records `query_id`, SQL and output SHA-256, typed parameters, rows, client ms and server ms. The operator console shows them.
+- **Least privilege.** Each data mode has its own database, an ingest user (INSERT plus readback SELECT) and a read-only query user. The running app never holds admin credentials ([`tools/ch-setup.ts`](tools/ch-setup.ts)).
+
+**Measured (local, synthetic):**
+- A replay of 8 sessions evaluates 57 anchors in 64 queries, and the oracle agrees.
+- A 20,000-unit benchmark smoke test passed 63 SQL-versus-oracle checks, and all 244 issued query IDs were reconciled against `system.query_log`.
+- The all-candidate anchor query ran at a server p50 of ~40 ms on a 22,891-row generation (n=6, 2 CPU). That is a smoke test, not a scale benchmark.
+
+[Replay evidence](evidence/sanitized/replay-local-2026-10-09/README.md) · [benchmark](evidence/sanitized/bench-local-2026-10-09/README.md)
+
+## Semgrep: security scanning of this codebase
+
+![Semgrep](https://img.shields.io/badge/Semgrep-0%20findings%20%C2%B7%203%20scans%20%C2%B7%2070%20files-2EB67D?style=flat-square)
+
+ScopeWatch is security tooling largely written with AI assistance, so its own code is scanned too. Three Semgrep CLI 1.180.0 scans covered `src`, `tools` and `guild-agents`. They used the default, TypeScript, Node, secrets, security-audit, OWASP Top 10, React, SQL-injection, XSS, command-injection and JWT rulesets, plus `p/guardian-default` and `p/ai-best-practices` on the current tree (165 applicable rules). The scans reported **0 findings and 0 errors**; raw results are preserved in [`evidence/semgrep/`](evidence/semgrep/README.md). A clean scan is not a proof of absence. The app's trust boundaries are also covered by adversarial tests (`tests/adversarial/`).
+
+## Built for operators who need proof
+
+- **Containment you can verify.** "Restricted" means a fresh probe was refused **and** an approved, busier agent still returned its expected content. Lifting a restriction needs the same proof, and nothing auto-releases when a count falls.
+- **Human authority by design.** Approvals bind the exact case revision, evidence manifest and scope digest with compare-and-swap. Policy changes stay in Guild's hands and the operator's.
+- **Every number has a source.** Replay, contract-test and native data use separate journals, databases and UI labels. Simulated outcomes are named `simulated_*` and are never shown as real.
+- **Secure by default.** The server binds to loopback only. It uses an operator login, an HttpOnly SameSite=Strict session cookie, a CSRF token and an exact Host/Origin allowlist. Request schemas are strict, so the browser never supplies a subject, credential or SQL. Exports are sanitized.
 
 ## Quick start
 
-Requirements: Node ≥ 24 (built on 25.2.1), npm, and Docker for local ClickHouse.
+Requirements: Node ≥ 24, npm, and Docker (or any local ClickHouse 25.8).
 
 ```bash
 npm ci
-npm run ch:up && npm run ch:setup     # local ClickHouse 25.8 (pinned digest) + per-mode least-privilege users
+npm run ch:up && npm run ch:setup        # local ClickHouse 25.8 + least-privilege users per mode
 npm run build
 set -a; . runtime/clickhouse-local.env; set +a
 SCOPEWATCH_MODE=replay SCOPEWATCH_OPERATOR_SECRET='choose-a-16+-char-secret' npm start
-# open http://127.0.0.1:4317, sign in with the secret, click "Run replay pipeline"
+# open http://127.0.0.1:4317, sign in, click "Run replay pipeline"
 ```
 
-`npm run replay` runs the same pipeline headless and prints query receipts. `npm run doctor` reports configuration without printing secrets. `npm run dev` starts the server and Vite together.
-
-> **Without Docker:** any local ClickHouse 25.8 on `127.0.0.1:18123` with admin user `sw_admin` works, and `npm run ch:setup` provisions it. The latest receipts were produced this way with the official `v25.8.33.6-lts` macOS binary.
-
-| Mode (`SCOPEWATCH_MODE`) | What runs | Can it act? |
+| `SCOPEWATCH_MODE` | Data source | Actions |
 |---|---|---|
-| `replay` | Declared synthetic seeds (`data/replay/*.json`) through the real pipeline and real ClickHouse | Never (`409 not_eligible`) |
-| `contract_test` | The real Guild adapter against a **loopback mock** of the documented API: launch, collect, bind, investigate, review, verify, recover | Simulated only (`simulated_*`, never `restriction_verified`) |
-| `native` | Real Guild (`https://api.guild.ai` only) and configured ClickHouse | Only after the native gates; missing settings show UNCONFIGURED, never replay |
+| `replay` | Declared synthetic seeds (`data/replay/`) through the real pipeline and real ClickHouse | Read-only |
+| `contract_test` | The real Guild adapter against a loopback mock of Guild's documented API | Simulated, labeled `simulated_*` |
+| `native` | A real Guild workspace (`https://api.guild.ai`) and your ClickHouse | Full workflow, with human policy application in Guild |
 
-## Demo
+Other commands: `npm run replay` (headless pipeline with query receipts), `npm run doctor` (configuration check without printing secrets), `npm run dev` (server plus Vite). Without Docker, any local ClickHouse 25.8 on `127.0.0.1:18123` with admin user `sw_admin` works with `npm run ch:setup`.
 
-A 2:21 local recording of the real app is in [`evidence/demo/`](evidence/demo/README.md), with scene-by-scene notes in [EVENT_DEMO.md](docs/demo/EVENT_DEMO.md). It shows replay detection, the session inspector, query receipts and the oracle, then a review blocked on replay. It then runs the contract-test loop: review → approve exact scope → handoff → failed verification without a DENY → simulated DENY → `simulated_restriction_observed`. Every scene is captioned with its evidence class.
+## Quality
 
-| Workflow stepper + simulated restriction (contract test) | Review dialog (exact scope) |
+| Check | Result |
 |---|---|
-| ![Contract-test case with workflow stepper](evidence/screenshots/contract-test-simulated-restriction-1440.png) | ![Review dialog showing exact scope and digest](evidence/screenshots/contract-test-review-dialog-1440.png) |
+| `npm test`: unit, client, integration, adversarial | **254 passed** |
+| `npm run test:ch`: real SQL on ClickHouse 25.8.33.6 (readback, all-anchor SQL vs oracle on boundary, tie, late-arrival and conflict fixtures) | **37 passed** |
+| `npm run test:e2e`: Playwright against the real server at 360/768/1440 px | **37 passed** |
+| typecheck (strict) · lint · build · `npm audit --omit=dev` | clean · 0 vulnerabilities |
 
-More screenshots at 360/768/1440 and in dark mode: [evidence/screenshots](evidence/screenshots/).
+All results are for the same application code (`d5ed715`). Receipts are in [docs/BUILD_STATUS.md](docs/BUILD_STATUS.md).
 
-## What we do not claim
+## Project status
 
-- **No live Guild result yet:** no native `security_event`, hosted investigator issue, native DENY, fresh refusal or recovery. Status is NATIVE_PENDING.
-- **No ClickHouse Cloud, scale or latency claim.** All SQL ran on a local ClickHouse 25.8.
-- **No Semgrep finding.** No Pi or Akash integration.
-- **The app never applies Guild policy.** Local CAS cannot stop an external admin; stale or manual changes are recorded as disputed.
-- **An ALLOW is a policy decision,** not proof that data was read, leaked or stolen.
-
-## Path to VERIFIED_LIVE
-
-These steps are human-owned ([details](docs/BUILD_STATUS.md#to-reach-verified_live-human-owned-steps)):
-1. In the Guild web UI, authorize the GitHub App on the fixture repo, copy the trigger key, and create a collector key (`workspaces:read`, `agents:read`).
-2. Run baseline probes and record the verified subject, credential and operation settings in `.env`.
-3. Run `SCOPEWATCH_MODE=native`, review the case, **apply the DENY yourself in the Guild UI**, record the receipt, then verify.
-4. Save sanitized results under `evidence/sanitized/native-<run>/`.
-
-## Repository map
-
-| Path | Contents |
+| | |
 |---|---|
-| `src/server`, `src/core`, `src/storage` | HTTP API and services, window/canonicalization/oracle/actions logic, SQLite journal |
-| `src/integrations/clickhouse`, `src/integrations/guild` | ClickHouse schema/queries/publisher/admin; Guild launcher/collector/binding/investigator/verifier |
-| `src/client` | React operator case page ([UI contract](docs/ui/UI_CONTRACT.md)) |
-| `tests/` | Unit, integration, adversarial, ClickHouse and Playwright suites; mock Guild API |
-| `guild-agents/` | Private Guild target/control workload and investigator agents |
-| `tools/*.ts`, `data/replay/`, `docker/` | doctor, replay, bench, scenario, demo tools; replay seeds; local ClickHouse compose |
-| `evidence/` | Sanitized, labeled artifacts only (**no native evidence yet**) |
-| `docs/` | [Build status](docs/BUILD_STATUS.md), [native ledger](docs/native/NATIVE_PROOF_LEDGER.md), [architecture](docs/architecture/ARCHITECTURE.md), [sponsor strategy](docs/sponsors/SPONSOR_STRATEGY.md), [submission draft](docs/demo/SUBMISSION_DRAFT.md), reviews |
-| `references/`, `research/`, `templates/`, `provenance/` | Pre-event research handoff (advisory, not application evidence). Start at [START_HERE.md](START_HERE.md); [curation](CURATION.md) |
+| ✅ **Local platform** | Complete and tested end to end on replay data and against a mock of Guild's documented API |
+| ✅ **Guild account setup** | Private agents, fixture repository and API trigger created on a real account; adapter calibrated on real task and event shapes |
+| ⏳ **Live Guild run** | Pending: GitHub App authorization, trigger and collector keys (Guild web UI), then the first native containment run. No native result is claimed yet |
+| ⏳ **ClickHouse Cloud** | Not yet run; all SQL so far ran on local ClickHouse 25.8 |
 
-## Team, build and branches
+Steps to the first live run: [BUILD_STATUS → To reach VERIFIED_LIVE](docs/BUILD_STATUS.md#to-reach-verified_live-human-owned-steps).
 
-Built during the event, starting at commit `d79cdb0` on 9 October 2026. Claude Opus 5.5 led and integrated the build, Claude Sonnet 5.5 teammates did implementation and acceptance testing, and an independent Opus 5.5 "devil" did the reviews ([who did what](docs/BUILD_STATUS.md#team-and-models-actual)). `main` is the default branch; `nihal` and `charlie` are working branches, merged by pull request.
+## Documentation
 
-The repository is private. Never commit credentials or raw sessions; [.env.example](.env.example) has blank values only. `python3 tools/validate_handoff.py` checks the documentation package offline.
+| | |
+|---|---|
+| [Architecture (Mermaid, detailed)](docs/architecture/event-build/scopewatch-architecture.svg) · [sponsor map](docs/architecture/event-build/scopewatch-sponsors.svg) | Every component, trust boundary and data flow |
+| [Design architecture](docs/architecture/ARCHITECTURE.md) · [Guild contracts](docs/architecture/GUILD_CONTRACTS.md) · [ClickHouse contracts](docs/architecture/CLICKHOUSE_CONTRACTS.md) | Authoritative design and API/SQL contracts |
+| [UI contract](docs/ui/UI_CONTRACT.md) · [screenshots](evidence/screenshots/) · [demo recording](evidence/demo/README.md) | Operator console |
+| [Build status](docs/BUILD_STATUS.md) · [native integration ledger](docs/native/NATIVE_PROOF_LEDGER.md) · [reviews](docs/reviews/event-build/) | Verification receipts and independent reviews |
+| [START_HERE.md](START_HERE.md) · [CURATION.md](CURATION.md) | Original research and design package |
 
-> **Current execution policy:** [Start now or anytime, with no build cutoff](docs/event/BUILD_AUTHORIZATION.md). The human reports that the event is already underway and public schedules are stale. Older start/deadline/duration advice is superseded; historical timestamps and analytics windows remain evidence, not build gates.
+**Repository layout:** `src/server`, `src/core`, `src/storage` (API, detection logic, journal) · `src/integrations/{guild,clickhouse}` · `src/client` (operator console) · `guild-agents/` · `tests/` · `tools/` · `data/replay/` · `docker/` · `evidence/` (sanitized, labeled artifacts).
+
+## Team
+
+Team: [@nihalnihalani](https://github.com/nihalnihalani) and [@charliegillet](https://github.com/charliegillet). Development used Claude Opus 5.5 as lead engineer, Claude Sonnet 5.5 for implementation and testing, and independent Opus reviews ([details](docs/BUILD_STATUS.md#team-and-models-actual)). Work happens on `nihal` and `charlie` branches and merges into `main` by pull request.
+
+Never commit credentials or raw sessions; [.env.example](.env.example) lists the settings with blank values.
+
+<sub>Execution policy for the original build: [start now or anytime, with no build cutoff](docs/event/BUILD_AUTHORIZATION.md). Historical timestamps and analytics windows are evidence, not build gates.</sub>

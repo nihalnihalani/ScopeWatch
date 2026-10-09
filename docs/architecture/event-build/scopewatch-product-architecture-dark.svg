@@ -1,0 +1,173 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1778 962" width="1778" height="962" font-family="Inter, -apple-system, 'Segoe UI', system-ui, Helvetica, Arial, sans-serif" role="img" aria-labelledby="t d">
+<title id="t">ScopeWatch product architecture</title>
+<desc id="d">Left-to-right flow. Guild.ai hosts target and control agents plus an LLM investigator and emits native security_event ALLOW/DENY records. The ScopeWatch evidence pipeline collects, binds each event to its acting agent and canonicalizes all versions. ClickHouse stores sealed generations with exact readback, runs all-candidate (T-600s, T] window SQL at every anchor and returns query receipts, checked by an independent oracle. The operator console shows a case of subject versus control and a human approves the exact scope. A human applies a DENY rule in the Guild.ai UI, then fresh probes confirm the target is refused and the control still works, and the result returns to the case. Semgrep scans the ScopeWatch codebase as a separate shift-left lane. A replay and contract-test harness is a dev and test input.</desc>
+<defs><filter id="sh" x="-10%" y="-10%" width="120%" height="130%"><feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#0F172A" flood-opacity="0.45"/></filter>
+<marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1L9 5L1 9z" fill="#8A97B1"/></marker>
+<marker id="arH" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1L9 5L1 9z" fill="#FB923C"/></marker>
+<marker id="arS" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M1 1L9 5L1 9z" fill="#2EB67D"/></marker></defs>
+<rect width="1778" height="962" fill="#0B1020"/>
+<text x="40" y="58" font-size="30" font-weight="750" fill="#F1F5F9" text-anchor="start">ScopeWatch</text><text x="40" y="88" font-size="16" font-weight="400" fill="#A8B3C7" text-anchor="start">Find which agent exceeded its credential scope, prove it with ClickHouse, and verify the fix on Guild.ai.</text>
+<rect x="40" y="124" width="250" height="560" rx="20" fill="#17143A" stroke="#342C7A"/>
+<rect x="56" y="140" width="102" height="30" rx="15" fill="#7C5CFF"/><text x="107" y="160" font-size="14.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">Guild.ai</text>
+<text x="56" y="204" font-size="19" font-weight="700" fill="#F1F5F9" text-anchor="start">Agent fleet</text><text x="56" y="226" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">Hosted agents, native events</text>
+<rect x="402" y="124" width="250" height="560" rx="20" fill="#111729" stroke="#27304A"/>
+<rect x="418" y="140" width="120" height="30" rx="15" fill="#E2E8F0"/><text x="478" y="160" font-size="14.5" font-weight="700" fill="#0F172A" text-anchor="middle">ScopeWatch</text>
+<text x="418" y="204" font-size="19" font-weight="700" fill="#F1F5F9" text-anchor="start">Evidence pipeline</text><text x="418" y="226" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">Server-side and journaled</text>
+<rect x="764" y="124" width="250" height="560" rx="20" fill="#26230C" stroke="#6B5F13"/>
+<rect x="780" y="140" width="120" height="30" rx="15" fill="#FFCC01"/><text x="840" y="160" font-size="14.5" font-weight="700" fill="#1A1A1A" text-anchor="middle">ClickHouse</text>
+<text x="780" y="204" font-size="19" font-weight="700" fill="#F1F5F9" text-anchor="start">Analytics engine</text><text x="780" y="226" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">Windowed SQL, sealed data</text>
+<rect x="1126" y="124" width="250" height="560" rx="20" fill="#111729" stroke="#27304A"/>
+<rect x="1142" y="140" width="120" height="30" rx="15" fill="#E2E8F0"/><text x="1202" y="160" font-size="14.5" font-weight="700" fill="#0F172A" text-anchor="middle">ScopeWatch</text>
+<text x="1142" y="204" font-size="19" font-weight="700" fill="#F1F5F9" text-anchor="start">Operator console</text><text x="1142" y="226" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">Evidence-first case review</text>
+<rect x="1488" y="124" width="250" height="560" rx="20" fill="#17143A" stroke="#342C7A"/>
+<rect x="1504" y="140" width="102" height="30" rx="15" fill="#7C5CFF"/><text x="1555" y="160" font-size="14.5" font-weight="700" fill="#FFFFFF" text-anchor="middle">Guild.ai</text>
+<text x="1504" y="204" font-size="19" font-weight="700" fill="#F1F5F9" text-anchor="start">Enforce &amp; verify</text><text x="1504" y="226" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">A person applies the policy</text>
+<clipPath id="c0"><rect x="56" y="260" width="218" height="96" rx="14"/></clipPath>
+<rect x="56" y="260" width="218" height="96" rx="14" fill="#151B2E" stroke="#2A3350" stroke-width="1" filter="url(#sh)"/>
+<rect x="56" y="260" width="5" height="96" fill="#7C5CFF" clip-path="url(#c0)"/>
+<text x="76" y="290" font-size="15.5" font-weight="650" fill="#F1F5F9" text-anchor="start">Target &amp; control agents</text>
+<text x="76" y="314" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">Coded workloads share one</text>
+<text x="76" y="334" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">GitHub integration credential</text>
+<clipPath id="c1"><rect x="56" y="376" width="218" height="96" rx="14"/></clipPath>
+<rect x="56" y="376" width="218" height="96" rx="14" fill="#151B2E" stroke="#2A3350" stroke-width="1" filter="url(#sh)"/>
+<rect x="56" y="376" width="5" height="96" fill="#7C5CFF" clip-path="url(#c1)"/>
+<text x="76" y="406" font-size="15.5" font-weight="650" fill="#F1F5F9" text-anchor="start">Native security_event</text>
+<text x="76" y="430" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">Every tool call is checked:</text>
+<text x="76" y="450" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">ALLOW or DENY per identity</text>
+<clipPath id="c2"><rect x="56" y="492" width="218" height="96" rx="14"/></clipPath>
+<rect x="56" y="492" width="218" height="96" rx="14" fill="#151B2E" stroke="#2A3350" stroke-width="1" filter="url(#sh)"/>
+<rect x="56" y="492" width="5" height="96" fill="#7C5CFF" clip-path="url(#c2)"/>
+<text x="76" y="522" font-size="15.5" font-weight="650" fill="#F1F5F9" text-anchor="start">LLM investigator</text>
+<text x="76" y="546" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">Reads the case evidence;</text>
+<text x="76" y="566" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">holds no admin keys</text>
+<clipPath id="c3"><rect x="418" y="260" width="218" height="96" rx="14"/></clipPath>
+<rect x="418" y="260" width="218" height="96" rx="14" fill="#151B2E" stroke="#2A3350" stroke-width="1" filter="url(#sh)"/>
+<rect x="418" y="260" width="5" height="96" fill="#E2E8F0" clip-path="url(#c3)"/>
+<text x="438" y="290" font-size="15.5" font-weight="650" fill="#F1F5F9" text-anchor="start">Collect sessions</text>
+<text x="438" y="314" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">Events and task graph pulled</text>
+<text x="438" y="334" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">from Guild for each cohort run</text>
+<clipPath id="c4"><rect x="418" y="376" width="218" height="96" rx="14"/></clipPath>
+<rect x="418" y="376" width="218" height="96" rx="14" fill="#151B2E" stroke="#2A3350" stroke-width="1" filter="url(#sh)"/>
+<rect x="418" y="376" width="5" height="96" fill="#E2E8F0" clip-path="url(#c4)"/>
+<text x="438" y="406" font-size="15.5" font-weight="650" fill="#F1F5F9" text-anchor="start">Bind to acting agent</text>
+<text x="438" y="430" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">Each event tied to the real</text>
+<text x="438" y="450" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">subject, never a display label</text>
+<clipPath id="c5"><rect x="418" y="492" width="218" height="96" rx="14"/></clipPath>
+<rect x="418" y="492" width="218" height="96" rx="14" fill="#151B2E" stroke="#2A3350" stroke-width="1" filter="url(#sh)"/>
+<rect x="418" y="492" width="5" height="96" fill="#E2E8F0" clip-path="url(#c5)"/>
+<text x="438" y="522" font-size="15.5" font-weight="650" fill="#F1F5F9" text-anchor="start">Canonicalize versions</text>
+<text x="438" y="546" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">All versions first; conflicts</text>
+<text x="438" y="566" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">kept, gaps stay unknown</text>
+<clipPath id="c6"><rect x="418" y="604" width="218" height="64" rx="14"/></clipPath>
+<rect x="418" y="604" width="218" height="64" rx="14" fill="#111729" stroke="#64748B" stroke-width="1.75" stroke-dasharray="6 5"/>
+<text x="438" y="634" font-size="15.5" font-weight="650" fill="#A8B3C7" text-anchor="start">Replay &amp; contract tests</text>
+<text x="438" y="658" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">Dev and test input only</text>
+<clipPath id="c7"><rect x="780" y="260" width="218" height="96" rx="14"/></clipPath>
+<rect x="780" y="260" width="218" height="96" rx="14" fill="#151B2E" stroke="#2A3350" stroke-width="1" filter="url(#sh)"/>
+<rect x="780" y="260" width="5" height="96" fill="#FFCC01" clip-path="url(#c7)"/>
+<text x="800" y="290" font-size="15.5" font-weight="650" fill="#F1F5F9" text-anchor="start">Sealed generations</text>
+<text x="800" y="314" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">INSERT, then exact readback</text>
+<text x="800" y="334" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">before it is admitted</text>
+<clipPath id="c8"><rect x="780" y="376" width="218" height="96" rx="14"/></clipPath>
+<rect x="780" y="376" width="218" height="96" rx="14" fill="#151B2E" stroke="#2A3350" stroke-width="1" filter="url(#sh)"/>
+<rect x="780" y="376" width="5" height="96" fill="#FFCC01" clip-path="url(#c8)"/>
+<text x="800" y="406" font-size="15.5" font-weight="650" fill="#F1F5F9" text-anchor="start">All-candidate windows</text>
+<text x="800" y="430" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">(T−600s, T] at every anchor,</text>
+<text x="800" y="450" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">per-agent allowance counts</text>
+<clipPath id="c9"><rect x="780" y="492" width="218" height="96" rx="14"/></clipPath>
+<rect x="780" y="492" width="218" height="96" rx="14" fill="#151B2E" stroke="#2A3350" stroke-width="1" filter="url(#sh)"/>
+<rect x="780" y="492" width="5" height="96" fill="#FFCC01" clip-path="url(#c9)"/>
+<text x="800" y="522" font-size="15.5" font-weight="650" fill="#F1F5F9" text-anchor="start">Receipts &amp; oracle check</text>
+<text x="800" y="546" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">Query IDs and SQL hashes;</text>
+<text x="800" y="566" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">independent oracle agrees</text>
+<clipPath id="c10"><rect x="1142" y="260" width="218" height="96" rx="14"/></clipPath>
+<rect x="1142" y="260" width="218" height="96" rx="14" fill="#151B2E" stroke="#2A3350" stroke-width="1" filter="url(#sh)"/>
+<rect x="1142" y="260" width="5" height="96" fill="#E2E8F0" clip-path="url(#c10)"/>
+<text x="1162" y="290" font-size="15.5" font-weight="650" fill="#F1F5F9" text-anchor="start">Case: subject vs control</text>
+<text x="1162" y="314" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">Which agent exceeded scope,</text>
+<text x="1162" y="334" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">shown with its query receipts</text>
+<clipPath id="c11"><rect x="1142" y="376" width="218" height="96" rx="14"/></clipPath>
+<rect x="1142" y="376" width="218" height="96" rx="14" fill="#151B2E" stroke="#2A3350" stroke-width="1" filter="url(#sh)"/>
+<rect x="1142" y="376" width="5" height="96" fill="#E2E8F0" clip-path="url(#c11)"/>
+<text x="1162" y="406" font-size="15.5" font-weight="650" fill="#F1F5F9" text-anchor="start">Review exact scope</text>
+<text x="1162" y="430" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">Evidence revision and scope</text>
+<text x="1162" y="450" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">pinned for the reviewer</text>
+<clipPath id="c12"><rect x="1142" y="492" width="218" height="96" rx="14"/></clipPath>
+<rect x="1142" y="492" width="218" height="96" rx="14" fill="#151B2E" stroke="#2A3350" stroke-width="1" filter="url(#sh)"/>
+<rect x="1142" y="492" width="5" height="96" fill="#E2E8F0" clip-path="url(#c12)"/>
+<text x="1162" y="522" font-size="15.5" font-weight="650" fill="#F1F5F9" text-anchor="start">Human approval</text>
+<text x="1162" y="546" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">Binds the exact case revision</text>
+<text x="1162" y="566" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">and scope; disputes are kept</text>
+<clipPath id="c13"><rect x="1504" y="260" width="218" height="96" rx="14"/></clipPath>
+<rect x="1504" y="260" width="218" height="96" rx="14" fill="#2E1A0C" stroke="#FB923C" stroke-width="1.75" stroke-dasharray="6 5"/>
+<rect x="1504" y="260" width="5" height="96" fill="#FB923C" clip-path="url(#c13)"/>
+<text x="1524" y="290" font-size="15.5" font-weight="650" fill="#F1F5F9" text-anchor="start">Apply DENY rule</text>
+<text x="1524" y="314" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">Human step in the Guild UI;</text>
+<text x="1524" y="334" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">no policy API is called</text>
+<clipPath id="c14"><rect x="1504" y="376" width="218" height="96" rx="14"/></clipPath>
+<rect x="1504" y="376" width="218" height="96" rx="14" fill="#151B2E" stroke="#2A3350" stroke-width="1" filter="url(#sh)"/>
+<rect x="1504" y="376" width="5" height="96" fill="#7C5CFF" clip-path="url(#c14)"/>
+<text x="1524" y="406" font-size="15.5" font-weight="650" fill="#F1F5F9" text-anchor="start">Probe: target refused</text>
+<text x="1524" y="430" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">Fresh run must be refused</text>
+<text x="1524" y="450" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">by the platform itself</text>
+<clipPath id="c15"><rect x="1504" y="492" width="218" height="96" rx="14"/></clipPath>
+<rect x="1504" y="492" width="218" height="96" rx="14" fill="#151B2E" stroke="#2A3350" stroke-width="1" filter="url(#sh)"/>
+<rect x="1504" y="492" width="5" height="96" fill="#7C5CFF" clip-path="url(#c15)"/>
+<text x="1524" y="522" font-size="15.5" font-weight="650" fill="#F1F5F9" text-anchor="start">Probe: control works</text>
+<text x="1524" y="546" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">Approved-control content</text>
+<text x="1524" y="566" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">is inspected, not assumed</text>
+<circle cx="60" cy="378" r="14" fill="#F1F5F9" stroke="#0B1020" stroke-width="3"/><text x="60" y="383" font-size="14" font-weight="700" fill="#0B1020" text-anchor="middle">1</text>
+<circle cx="422" cy="262" r="14" fill="#F1F5F9" stroke="#0B1020" stroke-width="3"/><text x="422" y="267" font-size="14" font-weight="700" fill="#0B1020" text-anchor="middle">2</text>
+<circle cx="784" cy="378" r="14" fill="#F1F5F9" stroke="#0B1020" stroke-width="3"/><text x="784" y="383" font-size="14" font-weight="700" fill="#0B1020" text-anchor="middle">3</text>
+<circle cx="1146" cy="262" r="14" fill="#F1F5F9" stroke="#0B1020" stroke-width="3"/><text x="1146" y="267" font-size="14" font-weight="700" fill="#0B1020" text-anchor="middle">4</text>
+<circle cx="1146" cy="494" r="14" fill="#F1F5F9" stroke="#0B1020" stroke-width="3"/><text x="1146" y="499" font-size="14" font-weight="700" fill="#0B1020" text-anchor="middle">5</text>
+<circle cx="1508" cy="262" r="14" fill="#F1F5F9" stroke="#0B1020" stroke-width="3"/><text x="1508" y="267" font-size="14" font-weight="700" fill="#0B1020" text-anchor="middle">6</text>
+<circle cx="1508" cy="378" r="14" fill="#F1F5F9" stroke="#0B1020" stroke-width="3"/><text x="1508" y="383" font-size="14" font-weight="700" fill="#0B1020" text-anchor="middle">7</text>
+<path d="M274 424H334Q346 424 346 412V320Q346 308 358 308H416" fill="none" stroke="#8A97B1" stroke-width="2" marker-end="url(#ar)"/>
+<rect x="292" y="347" width="108" height="38" rx="10" fill="#0B1020" stroke="#3A4566"/><text x="346" y="364" font-size="13" font-weight="600" fill="#F1F5F9" text-anchor="middle">security_event</text><text x="346" y="379" font-size="13" font-weight="400" fill="#A8B3C7" text-anchor="middle">ALLOW / DENY</text>
+<path d="M636 540H696Q708 540 708 528V320Q708 308 720 308H778" fill="none" stroke="#8A97B1" stroke-width="2" marker-end="url(#ar)"/>
+<rect x="654" y="405" width="108" height="38" rx="10" fill="#0B1020" stroke="#3A4566"/><text x="708" y="422" font-size="13" font-weight="600" fill="#F1F5F9" text-anchor="middle">canonical</text><text x="708" y="437" font-size="13" font-weight="400" fill="#A8B3C7" text-anchor="middle">event versions</text>
+<path d="M998 540H1058Q1070 540 1070 528V320Q1070 308 1082 308H1140" fill="none" stroke="#8A97B1" stroke-width="2" marker-end="url(#ar)"/>
+<rect x="1016" y="405" width="108" height="38" rx="10" fill="#0B1020" stroke="#3A4566"/><text x="1070" y="422" font-size="13" font-weight="600" fill="#F1F5F9" text-anchor="middle">breach case</text><text x="1070" y="437" font-size="13" font-weight="400" fill="#A8B3C7" text-anchor="middle">+ receipts</text>
+<path d="M1360 540H1420Q1432 540 1432 528V320Q1432 308 1444 308H1502" fill="none" stroke="#FB923C" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#arH)"/>
+<rect x="1378" y="405" width="108" height="38" rx="10" fill="#0B1020" stroke="#FB923C"/><text x="1432" y="422" font-size="13" font-weight="600" fill="#FB923C" text-anchor="middle">approved</text><text x="1432" y="437" font-size="13" font-weight="400" fill="#A8B3C7" text-anchor="middle">exact scope</text>
+<path d="M527 358V374" stroke="#8A97B1" stroke-width="2" marker-end="url(#ar)"/>
+<path d="M527 474V490" stroke="#8A97B1" stroke-width="2" marker-end="url(#ar)"/>
+<path d="M889 358V374" stroke="#8A97B1" stroke-width="2" marker-end="url(#ar)"/>
+<path d="M889 474V490" stroke="#8A97B1" stroke-width="2" marker-end="url(#ar)"/>
+<path d="M1251 358V374" stroke="#8A97B1" stroke-width="2" marker-end="url(#ar)"/>
+<path d="M1251 474V490" stroke="#8A97B1" stroke-width="2" marker-end="url(#ar)"/>
+<path d="M1613 358V374" stroke="#FB923C" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#arH)"/>
+<path d="M1613 474V490" stroke="#8A97B1" stroke-width="2" marker-end="url(#ar)"/>
+<rect x="1618" y="358" width="0" height="0"/>
+<path d="M1613 684V702Q1613 714 1601 714H1263Q1251 714 1251 702V686" fill="none" stroke="#8A97B1" stroke-width="2" stroke-dasharray="2 6" stroke-linecap="round" marker-end="url(#ar)"/>
+<rect x="1286" y="699" width="292" height="30" rx="15" fill="#0B1020" stroke="#3A4566"/><text x="1432" y="719" font-size="13.5" font-weight="600" fill="#F1F5F9" text-anchor="middle">verification result returns to the case</text>
+<rect x="40" y="744" width="1698" height="150" rx="20" fill="#0F2A1F" stroke="#1F5A40"/>
+<rect x="56" y="760" width="92" height="30" rx="15" fill="#2EB67D"/><text x="102" y="780" font-size="14.5" font-weight="700" fill="#06281A" text-anchor="middle">Semgrep</text>
+<text x="56" y="824" font-size="19" font-weight="700" fill="#F1F5F9" text-anchor="start">Code security scanning</text><text x="56" y="846" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">Static analysis of this codebase</text>
+<clipPath id="c16"><rect x="418" y="771" width="218" height="96" rx="14"/></clipPath>
+<rect x="418" y="771" width="218" height="96" rx="14" fill="#151B2E" stroke="#2A3350" stroke-width="1" filter="url(#sh)"/>
+<rect x="418" y="771" width="5" height="96" fill="#2EB67D" clip-path="url(#c16)"/>
+<text x="438" y="801" font-size="15.5" font-weight="650" fill="#F1F5F9" text-anchor="start">Scan the codebase</text>
+<text x="438" y="825" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">Semgrep CLI over src/, tools/</text>
+<text x="438" y="845" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">and guild-agents/</text>
+<clipPath id="c17"><rect x="780" y="771" width="218" height="96" rx="14"/></clipPath>
+<rect x="780" y="771" width="218" height="96" rx="14" fill="#151B2E" stroke="#2A3350" stroke-width="1" filter="url(#sh)"/>
+<rect x="780" y="771" width="5" height="96" fill="#2EB67D" clip-path="url(#c17)"/>
+<text x="800" y="801" font-size="15.5" font-weight="650" fill="#F1F5F9" text-anchor="start">Triage findings</text>
+<text x="800" y="825" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">Reviewed by people before</text>
+<text x="800" y="845" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">any finding is claimed</text>
+<clipPath id="c18"><rect x="1142" y="771" width="218" height="96" rx="14"/></clipPath>
+<rect x="1142" y="771" width="218" height="96" rx="14" fill="#151B2E" stroke="#2A3350" stroke-width="1" filter="url(#sh)"/>
+<rect x="1142" y="771" width="5" height="96" fill="#2EB67D" clip-path="url(#c18)"/>
+<text x="1162" y="801" font-size="15.5" font-weight="650" fill="#F1F5F9" text-anchor="start">Rescan and keep receipts</text>
+<text x="1162" y="825" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">Re-run after changes; raw</text>
+<text x="1162" y="845" font-size="13.5" font-weight="400" fill="#A8B3C7" text-anchor="start">results kept as evidence</text>
+<path d="M638 819H778" stroke="#2EB67D" stroke-width="2" marker-end="url(#arS)"/>
+<path d="M1000 819H1140" stroke="#2EB67D" stroke-width="2" marker-end="url(#arS)"/>
+<path d="M527 769V687" stroke="#2EB67D" stroke-width="2" stroke-dasharray="7 5" marker-end="url(#arS)"/>
+<rect x="537" y="698" width="170" height="26" rx="13" fill="#0B1020" stroke="#1F5A40"/><text x="622" y="716" font-size="13" font-weight="600" fill="#F1F5F9" text-anchor="middle">scans ScopeWatch code</text>
+<path d="M40 924h34" stroke="#FB923C" stroke-width="2" stroke-dasharray="7 5"/><text x="84" y="929" font-size="13" font-weight="400" fill="#A8B3C7" text-anchor="start">Human step</text>
+<path d="M190 924h34" stroke="#64748B" stroke-width="2" stroke-dasharray="6 5"/><text x="234" y="929" font-size="13" font-weight="400" fill="#A8B3C7" text-anchor="start">Dev / test input</text>
+<path d="M360 924h34" stroke="#8A97B1" stroke-width="2" stroke-dasharray="2 6" stroke-linecap="round"/><text x="404" y="929" font-size="13" font-weight="400" fill="#A8B3C7" text-anchor="start">Feedback</text>
+</svg>
