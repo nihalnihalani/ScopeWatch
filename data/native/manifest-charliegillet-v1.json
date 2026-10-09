@@ -1,0 +1,28 @@
+{
+  "schema": "scopewatch.manifest/v1",
+  "policyVersion": "charliegillet-scopewatch-v1",
+  "workspaceId": "01a1226d-8f2d-3bb9-0000-8cd6bac376ac",
+  "credentialId": "01a122b4-50dc-c369-0000-8e61c35f6839",
+  "operation": "issues_get",
+  "unit": "native_allow_security_event_id",
+  "clock": "guild.security_event.created_at",
+  "subjectIdDomain": "guild_agent_definition_id",
+  "identityDomain": "session",
+  "windowSeconds": 600,
+  "effectiveFrom": "2026-10-09T22:55:00Z",
+  "effectiveUntil": null,
+  "allowances": [
+    {
+      "policySubjectId": "01a1226d-b40c-726e-0000-c52bb1bbe8a7",
+      "displayLabel": "TicketAssist (scopewatch-ticketassist)",
+      "maxUniqueAllowDecisions": "3",
+      "approvalRef": "charlie.gillet:2026-10-09:allowance-ticketassist-3"
+    },
+    {
+      "policySubjectId": "01a1226f-93bc-726e-0000-647311bcfc16",
+      "displayLabel": "ReleaseReview (scopewatch-releasereview)",
+      "maxUniqueAllowDecisions": "10",
+      "approvalRef": "charlie.gillet:2026-10-09:allowance-releasereview-10"
+    }
+  ]
+}
