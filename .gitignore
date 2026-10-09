@@ -24,3 +24,7 @@ secrets/
 .scopewatch-run/
 *.pem
 *.key
+
+# event build outputs
+test-results/
+playwright-report/
