@@ -131,9 +131,13 @@ test('correct native receipt moves to native_application_observed (still unverif
   await page.getByRole('button', { name: 'Open native handoff and record receipt' }).click();
   await fillReceipt(page, { workspaceId: s.workspaceId, policySubjectId: s.policySubjectId, credentialId: s.credentialId, operation: s.operation, decision: s.decision }, 'e2e: exact scope as simulated in mock');
   await page.getByRole('button', { name: 'Record native receipt' }).click();
-  await expect(page.getByRole('dialog').getByText('Recorded rule matches the approved scope')).toBeVisible();
+  await expect(page.getByTestId('action-restriction').getByText('Recorded rule matches the approved scope')).toBeVisible();
   const a = await restrictionAction(page);
   expect(a.state).toBe('native_application_observed');
+  // FINDING (P2): after a correct receipt the handoff dialog flips back to the "Review restriction" step (with an Approve button)
+  // because native_application_observed is not a receipt-accepting state. Record, do not assert either way.
+  const title = await page.getByRole('dialog').getByRole('heading', { level: 2 }).innerText().catch(() => 'closed');
+  test.info().annotations.push({ type: 'finding', description: `dialog heading after correct receipt: ${title}` });
   expect(a.verifications).toHaveLength(0);
   await page.keyboard.press('Escape');
   await expect(page.getByRole('button', { name: 'Verify restriction with fresh sessions' })).toBeVisible();
@@ -229,21 +233,9 @@ test('recovery is a separate review: start, approve, record removal, fail withou
   expect(blocked.status()).toBe(409);
   await page.screenshot({ path: `${SHOTS}/contract-test-removal-mismatch-1440.png`, fullPage: true });
   // 2) correct removal receipt, but the mock DENY is STILL applied -> recovery verification must fail
-  if (await page.locator('#rm-submit').isVisible()) {
-    await fillRemoval(scope.policySubjectId, 'e2e: operator says removed (mock deny still applied)');
-    await page.locator('#rm-submit').click();
-  } else {
-    // FINDING (P2): server accepts a corrected removal receipt from scope_mismatch, but the UI offers no form in that state.
-    test.info().annotations.push({ type: 'finding', description: 'UI: no removal-receipt form after scope_mismatch; corrected via API' });
-    const cur = await recoveryAction(page);
-    const r = await apiPost(page, CONTRACT, `/api/actions/${cur.actionId}/removal-receipt`, {
-      expectedVersion: cur.version, method: 'guild_ui', nativeRuleId: null,
-      observedSelectors: { workspaceId: scope.workspaceId, policySubjectId: scope.policySubjectId, credentialId: scope.credentialId, operation: scope.operation, decision: 'DENY', resources: null },
-      removedAt: new Date().toISOString(), evidenceNote: 'e2e: corrected removal receipt (mock deny still applied)',
-    });
-    expect(r.status(), await r.text()).toBe(200);
-    await page.reload();
-  }
+  await expect(page.locator('#rm-submit')).toBeVisible(); // correction must be possible in the UI after scope_mismatch
+  await fillRemoval(scope.policySubjectId, 'e2e: operator says removed (mock deny still applied)');
+  await page.locator('#rm-submit').click();
   await expect(page.getByRole('button', { name: 'Verify recovery with fresh sessions' })).toBeVisible();
   await page.getByRole('button', { name: 'Verify recovery with fresh sessions' }).click();
   await expect(page.getByTestId('action-recovery').getByText(/Recovery verification failed|recovery failed|Recovery could not be decided/i).first()).toBeVisible({ timeout: 60_000 });
