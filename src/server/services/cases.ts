@@ -152,7 +152,7 @@ export function actionBlockedReason(journal: Journal, c: CaseRow, gen: Generatio
   if (c.provenance === 'replay') return 'Replay cases are synthetic fixtures and are not action eligible; no native action can be approved from a replay case.';
   if (c.evidenceState === 'evidence_disputed') return 'Evidence is disputed by a later integrity conflict; resolve it before any further action.';
   const sup = journal.supersededBy(c.caseId);
-  if (sup) return `Superseded: newer generation ${sup.generationId} (${sup.state}) exists for this manifest; this case no longer reflects the latest evidence. Re-run and review the newest result.`;
+  if (sup) return `Superseded: newer generation ${sup.generationId} (${sup.state}) exists for this manifest; this case no longer reflects the latest evidence. Re-run and review the newest result.${sup.state === 'readback_failed' ? ' A newer generation failed readback; rerun the pipeline.' : ''}`;
   if (!c.primary) return 'No candidate crossed its allowance; there is nothing to restrict.';
   if (gen.state !== 'evaluated') return `Generation is ${gen.state}, not evaluated.`;
   const active = journal.listActions(c.caseId).find((a) => a.kind === 'restriction' && a.caseRevision === c.revision && ACTIVE_RESTRICTION.includes(a.state as never));

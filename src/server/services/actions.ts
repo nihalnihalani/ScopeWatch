@@ -248,9 +248,9 @@ export async function verifyAction(svc: Services, actionId: string, expectedVers
   let finalNote = `${verdict}: ${explanation}`;
   if (pending.kind === 'restriction' && (finalState === 'restriction_verified' || finalState === 'simulated_restriction_observed')) {
     const c = j.getCase(pending.caseId);
-    if (!c || c.revision !== pending.caseRevision || c.evidenceState === 'evidence_disputed') {
+    if (!c || c.revision !== pending.caseRevision || c.evidenceState === 'evidence_disputed' || j.supersededBy(pending.caseId)) {
       finalState = 'disputed';
-      finalNote = `${finalNote}; success claim withheld: case revision changed or evidence disputed since approval (receipts preserved)`;
+      finalNote = `${finalNote}; success claim withheld: case revision changed, evidence disputed or a newer generation superseded the case since approval (receipts preserved)`;
     }
   }
   return wrapStale(() =>

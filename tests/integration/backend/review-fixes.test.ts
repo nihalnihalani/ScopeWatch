@@ -94,6 +94,46 @@ describe('P1-B / P1-C: recovery predicates and removal receipt selectors', () =>
   });
 });
 
+describe('follow-ups: superseded verify and recovery missing target', () => {
+  it('verify withholds the success verdict (disputed, receipts kept) when a newer generation supersedes the case', async () => {
+    const guild = new FakeGuildPort();
+    const svc = services('contract_test', guild);
+    const { caseId, revision } = seedCase(svc);
+    reviewCase(svc, caseId, { expectedRevision: revision, decision: 'approve', reason: 'ok' }, 'op');
+    const a = svc.journal.listActions(caseId)[0] as ActionRecord;
+    const obs = recordNativeReceipt(svc, a.actionId, { expectedVersion: a.version, method: 'guild_ui', nativeRuleId: 'r', observedSelectors: sel, appliedAt: now(), evidenceNote: '' }, 'op');
+    // a newer sealed generation for the same manifest (no case change): the effect already exists natively
+    const j = svc.journal;
+    const g0 = j.getGeneration(j.getCase(caseId)!.generationId)!;
+    j.createGeneration({ generationId: 'g-newer', provenance: 'contract_test', manifestId: g0.manifestId, manifestSha256: g0.manifestSha256, captureCutoff: g0.captureCutoff, identityDomainStatus: 'declared_fixture', scenarioId: g0.scenarioId, parentGenerationId: null });
+    j.sealGeneration('g-newer', { rawCount: 0, canonicalKeyCount: 0, semanticDigest: '', bindingDigest: '', coverageDigest: '', manifestDigest: '' });
+    const v = await verifyAction(svc, a.actionId, obs.version, 'op');
+    expect(v.state).toBe('disputed');
+    expect(v.nativeReceipt).not.toBeNull();
+    expect(v.verifications[0]!.verdict).toBe('simulated_restriction_observed');
+    expect(v.history.at(-1)!.note).toMatch(/superseded/);
+  });
+  it('blocked reason mentions a failed-readback newer generation', () => {
+    const svc = services('contract_test', new FakeGuildPort());
+    const { caseId, generationId } = seedCase(svc);
+    const j = svc.journal;
+    const g0 = j.getGeneration(generationId)!;
+    j.createGeneration({ generationId: 'g-rbf', provenance: 'contract_test', manifestId: g0.manifestId, manifestSha256: g0.manifestSha256, captureCutoff: g0.captureCutoff, identityDomainStatus: 'declared_fixture', scenarioId: g0.scenarioId, parentGenerationId: null });
+    j.sealGeneration('g-rbf', { rawCount: 0, canonicalKeyCount: 0, semanticDigest: '', bindingDigest: '', coverageDigest: '', manifestDigest: '' });
+    j.advanceGeneration('g-rbf', 'sealed', 'inserted');
+    j.advanceGeneration('g-rbf', 'inserted', 'readback_failed');
+    expect(buildCaseDetail(j, caseId).actionBlockedReason).toMatch(/failed readback; rerun the pipeline/);
+  });
+  it('recovery with a target probe that has no inspectable content (missing) is unknown, not failed; a refused target is failed', () => {
+    const p = (role: 'target' | 'control', outcome: ProbeResult['outcome']): ProbeResult => ({ role, provenance: 'native', launchId: 'l', nativeSessionId: null, nativeEventIds: [], decision: null, reasonCode: null, boundSubjectId: role === 'target' ? 't' : 'c', credentialId: null, inspection: '', outcome, startedAt: '2026-10-09T12:00:00Z', completedAt: null });
+    const exp = { targetSubjectId: 't', controlSubjectId: 'c' };
+    expect(recoveryVerdict('native', p('target', 'missing'), p('control', 'succeeded_expected'), exp).verdict).toBe('unknown');
+    expect(recoveryVerdict('native', p('target', 'refused_policy'), p('control', 'succeeded_expected'), exp).verdict).toBe('recovery_failed');
+    expect(recoveryVerdict('native', p('target', 'allowed'), p('control', 'succeeded_expected'), exp).verdict).toBe('recovery_failed');
+    expect(recoveryVerdict('native', p('target', 'succeeded_expected'), p('control', 'failed'), exp).verdict).toBe('recovery_failed');
+  });
+});
+
 describe('P2: verify/dispute, time bounds, declared identity domain', () => {
   it('P2-1: success is withheld (disputed) when the case became disputed after approval', async () => {
     const guild = new FakeGuildPort();
