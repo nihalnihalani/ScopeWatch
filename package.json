@@ -27,7 +27,9 @@
     "ch:setup": "tsx tools/ch-setup.ts",
     "replay": "tsx tools/replay.ts",
     "doctor": "tsx tools/doctor.ts",
-    "scenario": "tsx tools/run-scenario.ts"
+    "scenario": "tsx tools/run-scenario.ts",
+    "bench": "tsx tools/bench.ts",
+    "demo:record": "tsx tools/demo-record.ts"
   },
   "dependencies": {
     "@clickhouse/client": "1.24.0",

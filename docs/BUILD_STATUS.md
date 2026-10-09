@@ -36,6 +36,19 @@ Run by the lead on 2026-10-09 ~13:52 UTC at commit `d819e75` (+ this doc), after
 Independent receipts: acceptance (Sonnet) 37 e2e / 120 integration; devil (Opus) re-review 205 unit+integration,
 24 client, 34 ClickHouse — reports in [docs/reviews/event-build/](reviews/event-build/).
 
+
+## After the core sign-off (2026-10-09 ~14:00–15:40 UTC)
+
+| Item | Outcome | Evidence |
+|---|---|---|
+| Guild account calibration | Human ran `guild auth login`; build created a private fixture repo, three private agents (installed in `nihal.nihalani~home`) and an API trigger; one calibration session observed real event/task shapes. Adapter fixed for `security_event`, `parent_task`/`version` objects (+4 tests). | [native ledger](native/NATIVE_PROOF_LEDGER.md), [guild-agents/](../guild-agents/README.md), commit `c28492f` |
+| Remaining native steps | **Skipped by human instruction** (GitHub App authorization, trigger key copy, collector key — all web-UI). Live loop not run. | DECISIONS D10 |
+| Semgrep | 2 CLI scans (public rulesets, 68 files): **0 findings; no finding claimed** | [evidence/semgrep](../evidence/semgrep/README.md) |
+| Replay benchmark | 20k-unit smoke only (SQL == oracle, 63 checks; 244/244 query ids reconciled); full scale **not run** | [bench-local-2026-10-09](../evidence/sanitized/bench-local-2026-10-09/README.md) |
+| Demo | 2:21 local recording (replay + contract test, captioned non-native); one caption corrected by overlay | [EVENT_DEMO](demo/EVENT_DEMO.md), [evidence/demo](../evidence/demo/README.md) |
+| Submission | Draft only; video upload, reviewer access, team names/emails and the submission itself are human steps | [SUBMISSION_DRAFT](demo/SUBMISSION_DRAFT.md) |
+| Environment | During the full-scale benchmark the host disk filled; the Docker VM now returns I/O errors and the local ClickHouse container is unhealthy. Human chose not to restart Docker. **ClickHouse tests, `npm run replay` and e2e cannot be re-run until Docker is restarted**; their passing receipts above predate the incident. Local CH data may need `npm run ch:down && npm run ch:up && npm run ch:setup` afterwards. | — |
+
 ## Team and models (actual)
 
 | Role | Requested | Self-reported running model | Notes |
@@ -45,6 +58,8 @@ Independent receipts: acceptance (Sonnet) 37 e2e / 120 integration; devil (Opus)
 | Backend engineer | `sonnet` alias | claude-sonnet-5-5 | core, storage, ClickHouse, services, HTTP |
 | Native engineer | `sonnet` alias | claude-sonnet-5-5 | Guild adapter, mock Guild API, native ledger |
 | Interface engineer | `sonnet` alias | claude-sonnet-5-5 | operator case UI |
+| Benchmark engineer | `sonnet` alias | claude-sonnet-5-5 | tools/bench.ts, small-scale bench evidence |
+| Demo engineer | `sonnet` alias | claude-sonnet-5-5 | tools/demo-record.ts, demo docs, submission draft |
 | Acceptance engineer | `sonnet` alias | claude-sonnet-5-5 | e2e, adversarial, screenshots |
 
 The Agent tool accepts model aliases (`opus`/`sonnet`), not full IDs; running models are each agent's own report of its

@@ -19,6 +19,12 @@ type Boot =
   | { phase: 'login'; session: SessionInfo; error?: ApiClientError }
   | { phase: 'ready'; session: SessionInfo };
 
+/** Replay evidence is never "ready for review": it can never be approved (lead fix, demo finding). */
+function evidenceLabel(state: string, provenance: string): string {
+  if (state === 'review_ready' && provenance === 'replay') return 'Breach evidence complete (replay, not reviewable)';
+  return labelOf(state);
+}
+
 export function App({ client: injected }: { client?: ApiClient }) {
   const csrf = useRef<string | null>(null);
   const client = useMemo(() => injected ?? createApiClient(() => csrf.current), [injected]);
@@ -225,7 +231,7 @@ export function App({ client: injected }: { client?: ApiClient }) {
                     <button type="button" className="case-btn" aria-current={c.caseId === caseId ? 'true' : undefined} onClick={() => { window.location.hash = `#/case/${encodeURIComponent(c.caseId)}`; setCaseId(c.caseId); }}>
                       <span className="id" title={c.caseId}>{shortId(c.caseId, 26)}</span>
                       <span>{c.primaryLabel ?? 'no selected subject'}</span>
-                      <span className="small muted">{c.provenance} · {labelOf(c.evidenceState)} · rev {c.revision}</span>
+                      <span className="small muted">{c.provenance} · {evidenceLabel(c.evidenceState, c.provenance)} · rev {c.revision}</span>
                     </button>
                   </li>
                 ))}
@@ -320,7 +326,7 @@ function CaseView({ detail, status, client, ops, onOpen, onRerun, rerunBusy, run
         <div className="stateline">
           <dl className="kvs" style={{ flex: 1 }}>
             <div className="kv"><dt>Subject</dt><dd><strong>{detail.primaryLabel ?? 'No subject selected'}</strong></dd></div>
-            <div className="kv"><dt>Evidence</dt><dd><Badge tone={toneOf(detail.evidenceState)}>{labelOf(detail.evidenceState)}</Badge></dd></div>
+            <div className="kv"><dt>Evidence</dt><dd><Badge tone={toneOf(detail.evidenceState)}>{evidenceLabel(detail.evidenceState, detail.provenance)}</Badge></dd></div>
             <div className="kv"><dt>Action</dt><dd>{!restr && detail.provenance !== 'native' ? <Badge tone="neutral">Not action eligible ({detail.provenance === 'replay' ? 'replay' : 'contract test'})</Badge> : <Badge tone={toneOf(restr?.state ?? detail.actionState)}>{labelOf(restr?.state ?? detail.actionState)}</Badge>}</dd></div>
             <div className="kv"><dt>Captured up to</dt><dd className="mono">{detail.generation.captureCutoff}{captureAge ? ` (${captureAge})` : ''}</dd></div>
             <div className="kv"><dt>Last queried</dt><dd className="mono">{detail.evaluation.evaluatedAt}{queryAge ? ` (${queryAge})` : ''}</dd></div>
