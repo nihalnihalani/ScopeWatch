@@ -2,6 +2,7 @@
   "name": "scopewatch",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
   "description": "ScopeWatch: per-workload native permission-allowance case workflow (Guild + ClickHouse).",
   "type": "module",
   "engines": {

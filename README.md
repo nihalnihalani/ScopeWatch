@@ -20,6 +20,7 @@ Find the one agent that overreached its own allowance, contain exactly that capa
 [![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=black)](src/client)
 [![Fastify](https://img.shields.io/badge/Fastify-5-000000?style=flat-square&logo=fastify&logoColor=white)](src/server)
 [![SQLite](https://img.shields.io/badge/journal-SQLite-003B57?style=flat-square&logo=sqlite&logoColor=white)](src/storage)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue?style=flat-square)](LICENSE)
 
 [How it works](#how-it-works) · [Guild.ai](#guildai-the-agent-platform) · [ClickHouse](#clickhouse-the-analytics-engine) · [Semgrep](#semgrep-security-scanning-of-this-codebase) · [Quick start](#quick-start) · [Status](#project-status) · [Docs](#documentation)
 
@@ -166,5 +167,9 @@ Steps to the first live run: [BUILD_STATUS → To reach VERIFIED_LIVE](docs/BUIL
 Team: [@nihalnihalani](https://github.com/nihalnihalani) and [@charliegillet](https://github.com/charliegillet). Development used Claude Opus 5.5 as lead engineer, Claude Sonnet 5.5 for implementation and testing, and independent Opus reviews ([details](docs/BUILD_STATUS.md#team-and-models-actual)). Work happens on `nihal` and `charlie` branches and merges into `main` by pull request.
 
 Never commit credentials or raw sessions; [.env.example](.env.example) lists the settings with blank values.
+
+## License
+
+[MIT](LICENSE) © 2026 Nihal Nihalani and Charlie Gillet. Third-party documentation snapshots under `references/` remain the property of their respective owners and are not covered by this license.
 
 <sub>Execution policy for the original build: [start now or anytime, with no build cutoff](docs/event/BUILD_AUTHORIZATION.md). Historical timestamps and analytics windows are evidence, not build gates.</sub>

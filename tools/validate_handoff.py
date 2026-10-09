@@ -7,7 +7,7 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 # Event-build dependency/output/runtime directories are not packaged handoff documentation.
-GENERATED_DIRS = {'.git', 'node_modules', 'dist', 'runtime', 'test-results', 'playwright-report', '.scopewatch-run'}
+GENERATED_DIRS = {'.git', 'node_modules', 'dist', 'runtime', 'test-results', 'playwright-report', '.scopewatch-run', '.firecrawl'}
 # Gitignored raw native captures (never committed; may hold non-JSON CLI output).
 PRIVATE_PREFIXES = {('evidence', 'private')}
 
