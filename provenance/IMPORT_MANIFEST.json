@@ -27,8 +27,8 @@
       "source_relative_path": "analysis/cyberdefense-2026-10-09/architecture/GUILD_CONTRACTS.md",
       "destination": "docs/architecture/GUILD_CONTRACTS.md",
       "source_sha256": "21ff1a314beb9a0b2c74146d5b099d1d22acfbc09e8f760bee484dbf4a038be9",
-      "packaged_sha256": "2df1f0aa359b72bc83fc6a973647a91f39ddadfd2bee23a26aa3c0d6d23cc656",
-      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved. Current human timing override: immediate/anytime implementation with no build cutoff; readiness wording or supersession notice added; original source history/SHA preserved."
+      "packaged_sha256": "739f30e3345746f7eec53108d6a54e168a25f27a944382b360724de19774c427",
+      "transformation": "Local links and vendor web routes normalized; historical/advisory/portability notices where applicable. Original source SHA preserved. Current human timing override: immediate/anytime implementation with no build cutoff; readiness wording or supersession notice added; original source history/SHA preserved. Native observation corrections (2026-10-09, charliegillet~scopewatch calibration) added as section 0 and inline corrected/observed markers; see docs/native/NATIVE_PROOF_LEDGER.md."
     },
     {
       "source_relative_path": "analysis/cyberdefense-2026-10-09/architecture/README.md",

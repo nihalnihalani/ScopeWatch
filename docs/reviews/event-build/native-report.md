@@ -37,7 +37,7 @@ claude-sonnet-5-5
 G1: pending. G1b: pending. G2: pending. No native response was observed, fabricated or claimed. All adapter tests are contract_test provenance against the loopback mock.
 
 ## Human inputs needed
-See docs/native/NATIVE_PROOF_LEDGER.md steps 1-9: `guild auth login`; trigger key (UI); collector account key with workspaces:read + agents:read; workspace owner/name/id; three installed agent IDs; verified policy-subject IDs, credential ID, operation; owned repo; control marker; human-applied trial DENY.
+See docs/native/NATIVE_PROOF_LEDGER.md steps 1-9: `guild auth login`; trigger key (UI); collector account key with workspaces:read + agents:read; workspace owner/name/id; three installed agent IDs (corrected by native observation 2026-10-09: launches need the three agent DEFINITION ids or owner~name as `GUILD_*_AGENT_ID`; installed ids are rejected and are informational only); verified policy-subject IDs, credential ID, operation; owned repo; control marker; human-applied trial DENY.
 
 ## Requested shared-contract changes (lead)
 1. config: optional `GUILD_IDENTITY_DOMAIN` (workspace|session) and an agent-ref -> policy-subject map (`subjectDomainMap` source for production binding); currently the backend must supply it to `bindEvents`, and probes derive it from the launched root agent ref.

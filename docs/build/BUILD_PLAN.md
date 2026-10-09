@@ -126,7 +126,7 @@ The approval transaction compares current case/evidence/manifest/scope revision 
 
 ### Guild adapter implementation constraints
 
-Choose one verified launch path. Account-key chat launch and trigger-key launch have different routes, payloads, returned session types and follow-up authority; do not merge them into a guessed generic call. Backend secrets stay server-side. A trigger key can reach other workspace sessions and select an alternate installed agent; issuance for the investigator does not mean investigator-only authority. Enforce a fixed installed-agent/profile allowlist.
+Choose one verified launch path. Account-key chat launch and trigger-key launch have different routes, payloads, returned session types and follow-up authority; do not merge them into a guessed generic call. Backend secrets stay server-side. A trigger key can reach other workspace sessions and select an alternate installed agent; issuance for the investigator does not mean investigator-only authority. Enforce a fixed launch-agent/profile allowlist (native observation 2026-10-09: the launch `agent_id` is the agent definition id or `owner~name`; an installed-agent id is rejected with 400 "Agent not found").
 
 Collect events and tasks separately, using the endpoint's actual tested pagination. Native events are durable after turn completion; favor short turns, record completion and exhaust pages. Newest-first default pages are not complete history. Do not advance a cursor past an unfetched page. Re-fetch completed captures to reconcile delayed/changed data, while labeling finality limitations.
 

@@ -8,7 +8,13 @@ Guild hosts each agent's own git repo; this directory is the reviewed source cop
 Owned by `charliegillet`, installed with auto-update disabled into workspace `charliegillet~scopewatch`
 (`01a1226d-8f2d-3bb9-0000-8cd6bac376ac`). Fixture repo: private `charliegillet/scopewatch-fixtures`, probe ticket #1.
 API trigger `scopewatch-api` (`01a12273-707e-3d51-0000-bf5f28c1c0ab`, default agent TicketAssist; launches select the
-installed agent per request). The trigger key exists only in the Guild web UI.
+agent per request by its agent DEFINITION id or `owner~name`). The trigger key exists only in the Guild web UI.
+
+Observed 2026-10-09: sending an installed-agent id as the launch `agent_id` returns 400 `InvalidInputError`
+"Agent '<id>' not found", so the launch refs are the definition ids below (`GUILD_TARGET_AGENT_ID`,
+`GUILD_CONTROL_AGENT_ID`, `GUILD_INVESTIGATOR_AGENT_ID`); the `GUILD_*_INSTALLED_AGENT_ID` settings are informational
+only. A session's `trigger.agent` / `trigger.workspace_agent` is the trigger's default agent (TicketAssist), not the
+agent that ran; identity comes from the root agent task and `security_event.details.agent_id`.
 
 | Agent | Source | Installed-agent ID (workspace) | Agent definition ID | Published version ID |
 |---|---|---|---|---|

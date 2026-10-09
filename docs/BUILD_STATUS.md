@@ -39,6 +39,17 @@ Still **local** ClickHouse, not Cloud.
 
 At `d5ed715` (UI redesign; application code unchanged since) on 2026-10-09 ~19:40 UTC: `npm test` 254 passed, `npm run test:ch` 37 passed, `npm run test:e2e` 37 passed, typecheck/lint/build exit 0.
 
+Native-shape alignment (2026-10-09, working tree on `8fe88d6`, uncommitted at the time of this run): after the
+`charliegillet~scopewatch` calibration (sanitized fixtures in `tests/unit/guild/fixtures/native-2026-10-09-charliegillet/`)
+the Guild adapter, loopback mock and config were aligned with observed native shapes: launches send the agent
+definition id (`GUILD_TARGET_AGENT_ID` / `GUILD_CONTROL_AGENT_ID` / `GUILD_INVESTIGATOR_AGENT_ID`; installed ids are
+informational), `security_event` refs are read from the `task` object and `details` (agreement required, conflicts stay
+gaps), tool result content comes from the tool task's `runtime_done` event, and `session.trigger.agent` is never
+identity. Receipts: typecheck/lint/build exit 0; `npm test` 20 files, **311 passed** (after review fixes); `npm run test:ch` (local
+ClickHouse 25.8) **37 passed**; `npm run test:e2e` **37 passed** (screenshots refreshed). `tools/validate_handoff.py`
+reports only `actual .env exists in handoff root` (the operator's local, gitignored `.env`). These are replayed
+captures and mock contract tests, **not** VERIFIED_LIVE; no live Guild session was launched for this run.
+
 Earlier receipts at `d819e75` (13:52 UTC, Docker ClickHouse): 246 / 34 / 37 — the deltas are the +4 native-shape unit
 tests and the +3 bench ClickHouse tests added afterwards.
 
