@@ -112,14 +112,37 @@ export function StatusNotices({ status }: { status: StatusReport | null }) {
   return <>{out}</>;
 }
 
+const CHECK_TONE = { present: 'neutral', missing: 'warn', simulated: 'sim', not_applicable: 'neutral' } as const;
+const GATE_TONE = { passed: 'ok', failed: 'bad', pending: 'warn', not_applicable: 'neutral' } as const;
+
+/** Configuration presence (not proof) and native proof gates, kept strictly separate. */
 export function GateList({ status }: { status: StatusReport | null }) {
-  if (!status || !status.nativeGates.length) return null;
+  if (!status) return null;
+  const checks = status.configChecks ?? [];
+  const gates = status.nativeGates ?? [];
   return (
-    <details>
-      <summary>Native gates ({status.nativeGates.filter((g) => g.status === 'passed').length} of {status.nativeGates.length} passed)</summary>
-      <ul className="small" style={{ paddingLeft: '1.2em' }}>
-        {status.nativeGates.map((g) => <li key={g.gate}><strong>{g.gate}</strong>: {g.status} <span className="muted">{g.detail}</span></li>)}
-      </ul>
-    </details>
+    <div className="stack">
+      {checks.length ? (
+        <details>
+          <summary>Configuration checks ({checks.filter((c) => c.status === 'missing').length} missing) — presence only, not proof</summary>
+          <ul className="small" style={{ listStyle: 'none', padding: 0, display: 'grid', gap: 'var(--s-1)' }}>
+            {checks.map((c) => <li key={c.check}><Badge tone={CHECK_TONE[c.status]}>{c.status.replace('_', ' ')}</Badge> <strong>{c.check}</strong> <span className="muted">{c.detail}</span></li>)}
+          </ul>
+        </details>
+      ) : null}
+      {gates.length ? (
+        <details>
+          <summary>Native proof gates (G1, G1b, G2)</summary>
+          <ul className="small" style={{ listStyle: 'none', padding: 0, display: 'grid', gap: 'var(--s-1)' }}>
+            {gates.map((g) => (
+              <li key={g.gate}>
+                <Badge tone={GATE_TONE[g.status]}>{g.status === 'passed' && !g.receiptRef ? 'passed without receipt (invalid)' : g.status.replace('_', ' ')}</Badge> <strong>{g.gate}</strong> <span className="muted">{g.detail}</span>
+                {g.receiptRef ? <> <span className="muted">receipt:</span> <span className="id">{g.receiptRef}</span></> : null}
+              </li>
+            ))}
+          </ul>
+        </details>
+      ) : null}
+    </div>
   );
 }

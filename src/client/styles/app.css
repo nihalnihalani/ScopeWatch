@@ -168,3 +168,6 @@ tr.row-primary th, tr.row-primary td { background: var(--warn-soft) !important; 
 .scroll-box details { border-bottom: 1px solid var(--line); padding-bottom: var(--s-2); }
 tbody th[scope='row'] { min-width: 170px; }
 tbody th[scope='row'] .id { word-break: normal; overflow-wrap: anywhere; }
+
+.tone-sim { color: var(--ink); background: repeating-linear-gradient(135deg, var(--info-soft) 0 5px, var(--surface) 5px 10px); border-style: dashed; }
+.badge.tone-sim { border-color: var(--info); color: var(--info); }

@@ -4,7 +4,7 @@ import type { ActionRecord, CaseDetail, ProbeResult, VerificationReceipt } from 
 import { actionEligibilityReason, labelOf, latestAction, SIMULATED_LABEL, toneOf } from '../format.js';
 import { Badge, GuardedButton, Id } from './common.js';
 import { ErrorNotice, useOp, type Ops } from './ops.js';
-import { ReceiptSummary } from './ReviewDialog.js';
+import { EMPTY_SELECTORS, ReceiptSummary, SelectorFields, selectorsMissing, type SelectorState } from './ReviewDialog.js';
 
 const MEANING: Record<string, string> = {
   review_ready: 'Waiting for a reviewer decision. Nothing is approved.',
@@ -33,11 +33,13 @@ const VERIFY_STATES = new Set(['native_application_observed', 'verification_pend
 const RECOVERY_VERIFY_STATES = new Set(['removal_observed', 'verification_pending', 'recovery_failed', 'recovery_unknown']);
 
 function Probe({ p }: { p: ProbeResult }) {
-  const tone = p.role === 'target' ? (p.outcome === 'refused_policy' ? 'ok' : 'bad') : p.outcome === 'succeeded_expected' ? 'ok' : 'bad';
-  const text =
-    p.role === 'target'
+  const good = p.role === 'target' ? p.outcome === 'refused_policy' : p.outcome === 'succeeded_expected';
+  const tone = p.provenance !== 'native' ? (good ? 'sim' : 'bad') : good ? 'ok' : 'bad';
+  const sim = p.provenance !== 'native' ? 'Simulated: ' : '';
+  const text = sim +
+    (p.role === 'target'
       ? p.outcome === 'refused_policy' ? 'Target refused by policy' : `Target not refused by policy (${p.outcome})`
-      : p.outcome === 'succeeded_expected' ? 'Control content inspected, as expected' : `Control not confirmed (${p.outcome})`;
+      : p.outcome === 'succeeded_expected' ? 'Control content inspected, as expected' : `Control not confirmed (${p.outcome})`);
   return (
     <div className="inspector" aria-label={`${p.role} probe`}>
       <Badge tone={tone}>{text}</Badge>
@@ -58,7 +60,7 @@ function Verification({ v }: { v: VerificationReceipt }) {
   return (
     <div className="stack" data-testid="verification">
       <div className="btn-row">
-        <Badge tone={simulated ? 'info' : good ? 'ok' : v.verdict === 'unknown' || v.verdict === 'policy_refusal_unproved' ? 'warn' : 'bad'}>
+        <Badge tone={simulated ? 'sim' : good ? 'ok' : v.verdict === 'unknown' || v.verdict === 'policy_refusal_unproved' ? 'warn' : 'bad'}>
           {simulated ? `Simulated: ${labelOf(v.verdict)}` : labelOf(v.verdict)}
         </Badge>
         <span className="small muted mono">{v.verifiedAt} · {v.kind}</span>
@@ -90,7 +92,8 @@ function RemovalForm({ action, ops }: { action: ActionRecord; ops: Ops }) {
   const [ruleId, setRuleId] = useState('');
   const [at, setAt] = useState('');
   const [note, setNote] = useState('');
-  const miss = !at.trim() ? 'Enter when the rule was removed (UTC).' : note.trim().length < 4 ? 'Add an evidence note.' : null;
+  const [sel, setSel] = useState<SelectorState>(EMPTY_SELECTORS);
+  const miss = selectorsMissing(sel) ? 'Enter every selector exactly as Guild shows it after removal.' : !at.trim() ? 'Enter when the rule was removed (UTC).' : note.trim().length < 4 ? 'Add an evidence note.' : null;
   return (
     <form
       className="stack"
@@ -98,7 +101,7 @@ function RemovalForm({ action, ops }: { action: ActionRecord; ops: Ops }) {
       onSubmit={(e) => {
         e.preventDefault();
         if (miss) return;
-        void run(() => ops.removalReceipt(action.actionId, { expectedVersion: action.version, method, nativeRuleId: ruleId.trim() || null, removedAt: at.trim(), evidenceNote: note.trim() }), 'Removal receipt recorded. Recovery is unverified until target and control both succeed.');
+        void run(() => ops.removalReceipt(action.actionId, { expectedVersion: action.version, method, nativeRuleId: ruleId.trim() || null, observedSelectors: { ...sel, resources: sel.resources.trim() || null }, removedAt: at.trim(), evidenceNote: note.trim() }), 'Removal receipt recorded. Recovery is unverified until target and control both succeed.');
       }}
     >
       <p className="small">Remove the DENY rule in Guild (Access &amp; setup → Credentials → policy table), then record it here.</p>
@@ -108,6 +111,8 @@ function RemovalForm({ action, ops }: { action: ActionRecord; ops: Ops }) {
         <div className="field"><label htmlFor="rm-r">Native rule ID (if shown)</label><input id="rm-r" value={ruleId} onChange={(e) => setRuleId(e.target.value)} autoComplete="off" /></div>
         <div className="field"><label htmlFor="rm-a">Removed at (UTC)</label><input id="rm-a" value={at} onChange={(e) => setAt(e.target.value)} placeholder="2026-10-09T19:10:00Z" autoComplete="off" /></div>
       </div>
+      <p className="small muted">Enter the selectors of the rule you observed being removed. The server compares them with the restriction's scope; they are not pre-filled.</p>
+      <SelectorFields sel={sel} onChange={setSel} scope={action.scope} prefix="rm" />
       <div className="field"><label htmlFor="rm-n">Evidence note</label><textarea id="rm-n" rows={2} value={note} onChange={(e) => setNote(e.target.value)} /></div>
       {error ? <ErrorNotice error={error} onReload={() => void ops.reload()} /> : null}
       <GuardedButton id="rm-submit" type="submit" variant="primary" reason={miss} busy={busy}>Record removal receipt</GuardedButton>

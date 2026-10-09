@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import type { ActionRecord, CaseDetail } from '../../shared/contracts.js';
+import type { ActionRecord, CaseDetail, ProposedScope } from '../../shared/contracts.js';
 import { RECEIPT_ACCEPTING_STATES } from '../../shared/contracts.js';
 import { actionEligibilityReason, latestAction, SIMULATED_LABEL } from '../format.js';
 import { Dialog, GuardedButton, Id, Notice } from './common.js';
@@ -136,11 +136,49 @@ export function ReceiptSummary({ action }: { action: ActionRecord }) {
   const r = action.nativeReceipt;
   if (!r) return null;
   return (
-    <div className={`notice ${r.matchesApprovedScope ? 'tone-ok' : 'tone-bad'}`} role="note" aria-label="Recorded native receipt">
-      <h3>{r.matchesApprovedScope ? 'Recorded rule matches the approved scope' : 'Recorded rule does NOT match the approved scope'}</h3>
+    <div className={`notice ${r.matchesApprovedScope ? (action.provenance === 'native' ? 'tone-ok' : 'tone-sim') : 'tone-bad'}`} role="note" aria-label={action.kind === 'recovery' ? 'Recorded removal receipt' : 'Recorded native receipt'}>
+      <h3>
+        {action.provenance !== 'native' ? 'Simulated: ' : ''}
+        {action.kind === 'recovery'
+          ? r.matchesApprovedScope ? 'Removed rule matches the restriction scope' : 'Removed rule does NOT match the restriction scope (disputed)'
+          : r.matchesApprovedScope ? 'Recorded rule matches the approved scope' : 'Recorded rule does NOT match the approved scope'}
+      </h3>
       <p className="small">Entered by {r.recordedBy} at <span className="mono">{r.recordedAt}</span> via {r.method}; applied at <span className="mono">{r.appliedAt}</span>. This is an operator-entered observation, not a Guild-signed receipt.</p>
       {r.mismatches.length ? <ul>{r.mismatches.map((m, i) => <li key={i}>{m}</li>)}</ul> : null}
       <p className="small" style={{ overflowWrap: 'anywhere' }}>Note: {r.evidenceNote}</p>
+    </div>
+  );
+}
+
+export type SelectorState = { workspaceId: string; policySubjectId: string; credentialId: string; operation: string; decision: string; resources: string };
+export const EMPTY_SELECTORS: SelectorState = { workspaceId: '', policySubjectId: '', credentialId: '', operation: '', decision: '', resources: '' };
+
+export function selectorsMissing(sel: SelectorState): boolean {
+  return !sel.workspaceId || !sel.policySubjectId || !sel.credentialId || !sel.operation || !sel.decision;
+}
+
+/** Operator-typed observed selectors (never pre-filled, so the server comparison stays independent). */
+export function SelectorFields({ sel, onChange, scope, prefix }: { sel: SelectorState; onChange: (s: SelectorState) => void; scope: ProposedScope; prefix: string }) {
+  const set = (k: keyof SelectorState) => (e: { target: { value: string } }) => onChange({ ...sel, [k]: e.target.value });
+  const f = (id: string, label: string, k: keyof SelectorState, hint: string) => (
+    <div className="field">
+      <label htmlFor={`${prefix}-${id}`}>{label}</label>
+      <input id={`${prefix}-${id}`} value={sel[k]} onChange={set(k)} autoComplete="off" spellCheck={false} aria-describedby={`${prefix}-${id}-h`} />
+      <span id={`${prefix}-${id}-h`} className="hintline">Expected: {hint}</span>
+    </div>
+  );
+  return (
+    <div className="field-grid">
+      {f('ws', 'Workspace ID', 'workspaceId', scope.workspaceId)}
+      {f('sub', 'Policy subject ID', 'policySubjectId', scope.policySubjectId)}
+      {f('cred', 'Credential ID', 'credentialId', scope.credentialId)}
+      {f('op', 'Operation', 'operation', scope.operation)}
+      {f('dec', 'Decision', 'decision', scope.decision)}
+      <div className="field">
+        <label htmlFor={`${prefix}-res`}>Resources (blank if none)</label>
+        <input id={`${prefix}-res`} value={sel.resources} onChange={set('resources')} autoComplete="off" spellCheck={false} aria-describedby={`${prefix}-res-h`} />
+        <span id={`${prefix}-res-h`} className="hintline">Expected: {scope.resourceSelector ? `repos ${scope.resourceSelector.repos.join(',')}; methods ${scope.resourceSelector.methods.join(',')}` : 'none (unrestricted dimension)'}</span>
+      </div>
     </div>
   );
 }
@@ -150,20 +188,12 @@ function NativeReceiptForm({ action, detail, ops }: { action: ActionRecord; deta
   const { busy, error, run } = useOp(ops);
   const [method, setMethod] = useState<'guild_ui' | 'guild_cli_verified'>('guild_ui');
   const [ruleId, setRuleId] = useState('');
-  const [sel, setSel] = useState({ workspaceId: '', policySubjectId: '', credentialId: '', operation: '', decision: '', resources: '' });
+  const [sel, setSel] = useState<SelectorState>(EMPTY_SELECTORS);
   const [appliedAt, setAppliedAt] = useState('');
   const [note, setNote] = useState('');
-  const set = (k: keyof typeof sel) => (e: { target: { value: string } }) => setSel({ ...sel, [k]: e.target.value });
-  const missing = !sel.workspaceId || !sel.policySubjectId || !sel.credentialId || !sel.operation || !sel.decision
+  const missing = selectorsMissing(sel)
     ? 'Enter every selector exactly as Guild shows it.'
     : !appliedAt.trim() ? 'Enter when the rule was applied (UTC).' : note.trim().length < 4 ? 'Add an evidence note.' : null;
-  const f = (id: string, label: string, k: keyof typeof sel, hint: string) => (
-    <div className="field">
-      <label htmlFor={id}>{label}</label>
-      <input id={id} value={sel[k]} onChange={set(k)} autoComplete="off" spellCheck={false} aria-describedby={`${id}-h`} />
-      <span id={`${id}-h`} className="hintline">Approved: {hint}</span>
-    </div>
-  );
   return (
     <form
       onSubmit={(e) => {
@@ -199,21 +229,12 @@ function NativeReceiptForm({ action, detail, ops }: { action: ActionRecord; deta
           <label htmlFor="nr-rule">Native rule ID (if shown)</label>
           <input id="nr-rule" value={ruleId} onChange={(e) => setRuleId(e.target.value)} autoComplete="off" spellCheck={false} />
         </div>
-        {f('nr-ws', 'Workspace ID', 'workspaceId', s.workspaceId)}
-        {f('nr-sub', 'Policy subject ID', 'policySubjectId', s.policySubjectId)}
-        {f('nr-cred', 'Credential ID', 'credentialId', s.credentialId)}
-        {f('nr-op', 'Operation', 'operation', s.operation)}
-        {f('nr-dec', 'Decision', 'decision', s.decision)}
-        <div className="field">
-          <label htmlFor="nr-res">Resources (blank if none)</label>
-          <input id="nr-res" value={sel.resources} onChange={set('resources')} autoComplete="off" spellCheck={false} aria-describedby="nr-res-h" />
-          <span id="nr-res-h" className="hintline">Approved: {s.resourceSelector ? `repos ${s.resourceSelector.repos.join(',')}; methods ${s.resourceSelector.methods.join(',')}` : 'none (unrestricted dimension)'}</span>
-        </div>
         <div className="field">
           <label htmlFor="nr-at">Applied at (UTC)</label>
           <input id="nr-at" value={appliedAt} onChange={(e) => setAppliedAt(e.target.value)} placeholder="2026-10-09T18:42:01Z" autoComplete="off" spellCheck={false} />
         </div>
       </div>
+      <SelectorFields sel={sel} onChange={setSel} scope={s} prefix="nr" />
       <div className="field">
         <label htmlFor="nr-note">Evidence note</label>
         <textarea id="nr-note" rows={2} value={note} onChange={(e) => setNote(e.target.value)} />

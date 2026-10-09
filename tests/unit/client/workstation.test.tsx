@@ -262,3 +262,34 @@ describe('contract-test review dialog', () => {
     expect(document.activeElement).toBe(opener);
   });
 });
+
+describe('removal receipt, config checks and simulated styling', () => {
+  it('removal form collects observed selectors and sends them', async () => {
+    const removalReceipt = vi.fn().mockResolvedValue(makeAction({ kind: 'recovery' }));
+    const rec = makeAction({ actionId: 'rec-1', kind: 'recovery', state: 'approved' });
+    render(<EffectPanel detail={makeDetail({ actions: [makeAction({ state: 'restriction_verified' }), rec] })} ops={fakeOps({ removalReceipt })} onOpenReview={() => {}} onOpenHandoff={() => {}} />);
+    const btn = screen.getByRole('button', { name: 'Record removal receipt' });
+    expect(btn.getAttribute('aria-disabled')).toBe('true');
+    const vals: Record<string, string> = { 'Workspace ID': 'ws-test', 'Policy subject ID': 'subj-breach', 'Credential ID': 'cred-test', Operation: 'repo.read', Decision: 'DENY', 'Removed at (UTC)': '2026-10-09T19:00:00Z', 'Evidence note': 'seen removed' };
+    for (const [l, v] of Object.entries(vals)) fireEvent.change(screen.getByLabelText(l, { exact: true }), { target: { value: v } });
+    fireEvent.click(screen.getByRole('button', { name: 'Record removal receipt' }));
+    await waitFor(() => expect(removalReceipt).toHaveBeenCalled());
+    expect(removalReceipt.mock.calls[0]![1].observedSelectors).toMatchObject({ workspaceId: 'ws-test', decision: 'DENY', resources: null });
+  });
+
+  it('renders configuration checks apart from native proof gates, never as passed', async () => {
+    const status = makeStatus({ configChecks: [{ check: 'GUILD_WORKSPACE_ID', status: 'present', detail: 'set' }, { check: 'GUILD_TRIGGER_KEY', status: 'missing', detail: 'unset' }], nativeGates: [{ gate: 'G1', status: 'pending', detail: 'no receipt', receiptRef: null }, { gate: 'G2', status: 'passed', detail: 'ok', receiptRef: 'receipt:g2:1' }] });
+    render(<App client={fakeClient({ status: async () => status })} />);
+    await screen.findByText(/Configuration checks/);
+    expect(screen.getByText(/Native proof gates/)).toBeTruthy();
+    expect(document.body.textContent).toContain('receipt:g2:1');
+    expect(document.body.textContent).not.toMatch(/\d of \d passed/);
+  });
+
+  it('styles simulated outcomes with the hatched simulated tone, not native green', () => {
+    const action = makeAction({ provenance: 'contract_test', state: 'simulated_restriction_observed' });
+    const { container } = render(<EffectPanel detail={makeDetail({ actions: [action] }, 'contract_test')} ops={fakeOps()} onOpenReview={() => {}} onOpenHandoff={() => {}} />);
+    expect(container.querySelector('.badge.tone-sim')).toBeTruthy();
+    expect(container.querySelector('.badge.tone-ok')).toBeNull();
+  });
+});

@@ -70,7 +70,7 @@ export function makeAction(over: Partial<ActionRecord> = {}): ActionRecord {
 }
 
 export function makeStatus(over: Partial<StatusReport> = {}): StatusReport {
-  return { mode: 'native', modeLabel: 'native', serverTime: '2026-10-09T18:10:00.000000000Z', clickhouse: { status: 'ok', target: 'local', version: '25.0.0', detail: 'ok' }, guild: { status: 'ok', baseUrl: null, detail: 'ok', missing: [] }, journal: { status: 'ok', path: '/x', detail: 'ok' }, lastCaptureAt: null, lastEvaluationAt: null, nativeGates: [], ...over };
+  return { mode: 'native', modeLabel: 'native', serverTime: '2026-10-09T18:10:00.000000000Z', clickhouse: { status: 'ok', target: 'local', version: '25.0.0', detail: 'ok' }, guild: { status: 'ok', baseUrl: null, detail: 'ok', missing: [] }, journal: { status: 'ok', path: '/x', detail: 'ok' }, lastCaptureAt: null, lastEvaluationAt: null, configChecks: [{ check: 'GUILD_WORKSPACE_ID', status: 'present', detail: 'test data' }], nativeGates: [{ gate: 'G1', status: 'pending', detail: 'test data', receiptRef: null }], ...over };
 }
 
 export function makeSession(over: Partial<SessionInfo> = {}): SessionInfo {

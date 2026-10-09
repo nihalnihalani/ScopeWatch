@@ -9,7 +9,7 @@ import type {
   RecoveryState,
 } from '../shared/contracts.js';
 
-export type Tone = 'neutral' | 'ok' | 'warn' | 'bad' | 'info';
+export type Tone = 'neutral' | 'ok' | 'warn' | 'bad' | 'info' | 'sim';
 
 export function big(s: string): bigint {
   try {
@@ -94,7 +94,7 @@ export function toneOf(s: ActionState | RecoveryState | EvidenceState): Tone {
       return 'warn';
     case 'simulated_restriction_observed':
     case 'simulated_recovered':
-      return 'info';
+      return 'sim';
     default:
       return 'neutral';
   }
@@ -102,7 +102,7 @@ export function toneOf(s: ActionState | RecoveryState | EvidenceState): Tone {
 
 export const SIMULATED_LABEL = 'Simulated — contract test against mock Guild API; not native evidence';
 
-export const GLYPH: Record<Tone, string> = { neutral: '○', ok: '✓', warn: '!', bad: '✕', info: 'i' };
+export const GLYPH: Record<Tone, string> = { neutral: '○', ok: '✓', warn: '!', bad: '✕', info: 'i', sim: '~' };
 
 export function breachedHistorically(c: CandidateResult): boolean {
   return c.breached || big(c.peakCount) > big(c.allowance);
