@@ -134,10 +134,10 @@ test('correct native receipt moves to native_application_observed (still unverif
   await expect(page.getByTestId('action-restriction').getByText('Recorded rule matches the approved scope')).toBeVisible();
   const a = await restrictionAction(page);
   expect(a.state).toBe('native_application_observed');
-  // FINDING (P2): after a correct receipt the handoff dialog flips back to the "Review restriction" step (with an Approve button)
-  // because native_application_observed is not a receipt-accepting state. Record, do not assert either way.
-  const title = await page.getByRole('dialog').getByRole('heading', { level: 2 }).innerText().catch(() => 'closed');
-  test.info().annotations.push({ type: 'finding', description: `dialog heading after correct receipt: ${title}` });
+  const dlg = page.getByRole('dialog');
+  await expect(dlg.getByRole('heading', { level: 2, name: 'Native handoff' })).toBeVisible();
+  await expect(dlg.getByRole('button', { name: 'Approve exact scope' })).toHaveCount(0);
+  await expect(dlg.getByRole('button', { name: 'Reject' })).toHaveCount(0);
   expect(a.verifications).toHaveLength(0);
   await page.keyboard.press('Escape');
   await expect(page.getByRole('button', { name: 'Verify restriction with fresh sessions' })).toBeVisible();
@@ -246,7 +246,7 @@ test('recovery is a separate review: start, approve, record removal, fail withou
   await mockControl('scenario', { targetWrongContent: true });
   try {
     await page.getByRole('button', { name: 'Verify recovery with fresh sessions' }).click();
-    await expect.poll(async () => (await recoveryAction(page)).version, { timeout: 60_000 }).toBeGreaterThan(rec.version);
+    await expect.poll(async () => (await recoveryAction(page)).state, { timeout: 60_000 }).toMatch(/^(recovery_failed|recovery_unknown|simulated_recovered|recovered)$/);
     const bare = await recoveryAction(page);
     expect(['recovery_failed', 'recovery_unknown']).toContain(bare.state);
     expect(bare.state).not.toBe('simulated_recovered');
