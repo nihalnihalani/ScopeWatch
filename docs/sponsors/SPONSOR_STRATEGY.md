@@ -14,7 +14,7 @@ Timestamps refer to the [default two-minute video](../demo/DEMO_SCRIPT.md), not 
 |---|---|---|---|---|
 | **ClickHouse: primary candidate** | Actual all-candidate query determines which subject exceeded its own pinned allowance and returns contributing sessions/historical witness; separate diverse replay measures that named analytical workload | **0:15–0:40**; compact receipt at 1:50 | Actual query/text/parameters/ID/result, exact generation readback, both candidate rows, manifest/coverage, historical/current distinction; measured replay p50/p95/n with query class/version/region/rows/warm-cold/server-client source | Tiny case is solvable by a counter. Merely storing events or cloning rows is weak. No benchmark, production scale or end-to-end latency claim without measurements. |
 | **Guild: primary candidate** | Real hosted workloads/native permission evidence, trusted context read and actual incident creation; native platform-mediated credential policy supplies subsequent matching restriction | **0:40–1:00** investigation; **1:00–1:50** manual action and both effects | Actual acting-subject/shared-credential/operation proof, hosted session and context-read/tool events, issue, reviewed exact scope, native rule/readback, fresh target refusal and inspected control fixture | Manual native UI/verified CLI application is core. No invented REST mutation, investigator-only trigger-key scope, full-agent containment or successful result inferred from DONE/status/bytes. |
-| **Semgrep: conditional finding opportunity** | Genuine interesting issue discovered in ordinarily generated **same ScopeWatch workflow**; bounded consequence and correction | Default cut: no finding beat. If earned, **1:25–1:50** in alternate two-minute cut | Original prompt/model/tool/source hash/reference, unchanged real detector/rule/file/line/scan surface and chronology; owned reproduction/control; corrected source and actual rescan | No finding currently. Scan quality, clean scan, custom-rule confirmation or capability audit alone is not an authentic finding-prize entry. Route/eligibility remain conditional. |
+| **Semgrep: active finding target** | Genuine interesting issue discovered in ordinarily generated **same ScopeWatch workflow**; bounded consequence and correction | If earned, **1:25–1:50** in alternate two-minute cut | Original prompt/model/tool/source hash/reference, unchanged real detector/rule/file/line/scan surface and chronology; owned reproduction/control; corrected source and actual rescan | No finding currently. Scan quality, clean scan, custom-rule confirmation or capability audit alone is not an authentic finding-prize entry. Route/eligibility remain conditional. |
 | **Pi: prize-only opportunity** | Innovation framing around the specific useful operator decision and surviving-work proof | Opening/final operator outcome; no dedicated integration beat | Actual case/effect evidence; concise explanation of useful differentiator and limits | No event runtime access is supplied and no integration is planned. Budgets/selective policy/security memory/scan-fix-retest are established categories; novelty is uncertain. |
 
 **Firecrawl is research tooling, outside the live detection/investigation/enforcement path.** Mention it as research if actually used; do not present it as a required runtime sponsor integration. Reference docs and public release records are implementation inputs, not tested event-account capabilities.
@@ -36,6 +36,32 @@ Build the strongest feasible ClickHouse/Guild core first, with a real decision a
 First prove hosted calls, exact subject/shared credential/operation/unit/clock, qualified finite source capture, selected native DENY, both fresh effects and actual ClickHouse insert/query. Restore the known trial rule and prove the main baseline. Then complete the full case loop, independently test/review the UI/backend and preserve actual demo/evidence/access. Optional outcome matching and measured replay follow their readiness prerequisites. Start now or anytime and continue until the required work is complete; no scheduled start, overall duration cap, phase deadline or build cutoff applies.
 
 ## Semgrep: evidence earns the third track
+
+**Human direction, 10 October 2026:** actively target Semgrep alongside ClickHouse/Guild in this same project.
+The current-source scan at `d5ed715` used local CLI CE with `p/guardian-default` and `p/ai-best-practices`:
+70 files, 165 applicable rules, zero findings and zero errors. The [scan ledger](../../evidence/semgrep/README.md)
+preserves the receipt. Earlier completeness-audit defects were manually diagnosed; preserve that chronology.
+
+Complete this lane through these evidence milestones:
+
+1. Connect and authenticate the actual sponsor Guardian route, verify the account and capture an actual scan.
+   The [current official setup](https://docs.semgrep.dev/semgrep-guardian/quickstart) supports Claude Code and Codex
+   with browser OAuth. Local CLI scanning can proceed independently, with its surface labeled accurately.
+2. Scan unchanged ordinary ScopeWatch code and new required implementation before remediation. Prioritize the
+   operator HTTP/auth boundary, native HTTP handling, exports, launch routing and investigator inputs. These
+   are hunt hypotheses, not declared findings; do not add insecure code to create a match.
+3. For a real finding, preserve rule ID, output, source revision/hash and discovery origin. Establish a reachable
+   owned-fixture consequence and a legitimate permitted control. Select the case from results rather than
+   promising a particular vulnerability in advance.
+4. Repair it, repeat both consequence/control checks and rescan. Preserve the actual patch and receipts, then
+   add a compact finding → impact → repair beat to ScopeWatch's demo and submission.
+5. Confirm the event's interpretation of local stock scans, custom rules and manual-first discoveries before
+   claiming eligibility. A custom rule for an audit-known defect is useful regression coverage; its origin
+   must remain manual-first unless the detector independently originates a different finding.
+
+The remote Guardian hooks use fixed `guardian-default`; organization Policies do not apply there, according to
+the [current rule configuration docs](https://docs.semgrep.dev/semgrep-guardian/rules-and-configuration).
+Custom-rule scans must use an explicitly supported separate route. No eligible finding has been established.
 
 Focused discovery remains within the scenario owner's lane, with narrow objectives and diagnostic checkpoints rather than a timed cap. Start the supplied Guardian setup during ordinary generation of this product's support/controller/collector code. Ask for correct authenticated behavior, bounded query handling and sound token/admin handling. Candidate review areas are hypotheses, not existing findings. Do not insert a defect, request an insecure implementation, switch framework just to trigger a rule, create a separate vulnerable app or run a 28-generation portfolio.
 
