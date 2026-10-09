@@ -112,6 +112,12 @@ ScopeWatch is security tooling largely written with AI assistance, so its own co
 Requirements: Node ≥ 24, npm, and Docker (or any local ClickHouse 25.8).
 
 ```bash
+./run.sh    # installs deps, starts local ClickHouse, provisions users, builds, serves replay mode on :4317
+```
+
+`run.sh` prints the operator secret (generated once into `runtime/operator-secret`) and never reads `.env`, so it cannot touch ClickHouse Cloud. The same steps by hand:
+
+```bash
 npm ci
 npm run ch:up && npm run ch:setup        # local ClickHouse 25.8 + least-privilege users per mode
 npm run build
