@@ -611,6 +611,33 @@ export interface CaseSummary {
   updatedAt: UtcNanoText;
 }
 
+/** Bounded per-session source evidence for the timeline inspector (no raw payloads). */
+export interface SessionEvidence {
+  sessionId: string;
+  workspaceId: string;
+  coverageState: CoverageState;
+  policySubjectId: string | null;
+  bindingStates: Record<BindingState, number>;
+  mappingMethods: string[];
+  proofRefs: string[];
+  /** Canonical selected ALLOW identity keys from this session (bounded; total given separately). */
+  identityKeys: string[];
+  identityKeyTotal: number;
+  pageRefs: string[];
+  completionRef: string;
+}
+
+/**
+ * Native-receipt POST is accepted only from these action states (lead decision D8).
+ * scope_mismatch allows recording a corrected native rule observation.
+ */
+export const RECEIPT_ACCEPTING_STATES: ActionState[] = [
+  'approved',
+  'native_application_pending',
+  'native_application_unknown',
+  'scope_mismatch',
+];
+
 export interface CaseDetail extends CaseSummary {
   generation: GenerationReceipt;
   readiness: ReadinessReport;
@@ -621,6 +648,10 @@ export interface CaseDetail extends CaseSummary {
   uncertainty: string[];
   investigation: InvestigationReceipt | null;
   proposedScope: ProposedScope | null;
+  /** Exact digest input + digest the server will bind on approval (same bytes; preview for review). */
+  proposedScopeDigestInput: ScopeDigestInput | null;
+  proposedScopeDigest: Sha256Hex | null;
+  sessions: SessionEvidence[];
   actions: ActionRecord[];
   timeline: TimelineEntry[];
   /** Why the action CTA is disabled, if it is. */
