@@ -8,8 +8,8 @@ import { ErrorNotice, useOp, type Ops } from './ops.js';
 export function InvestigationPanel({ detail, ops }: { detail: CaseDetail; ops: Ops }) {
   const inv = detail.investigation;
   const { busy, error, run } = useOp(ops);
-  const startable = (detail.evidenceState === 'review_ready' || detail.provenance !== 'native') && (!inv || inv.state === 'not_started' || inv.state === 'failed' || inv.state === 'unavailable');
-  const reason = detail.provenance !== 'native' ? `Hosted investigation is unavailable for ${detail.provenance} provenance; no model text is produced.` : detail.evidenceState !== 'review_ready' ? 'Investigation needs a case that is ready for review.' : inv && !startable ? `Investigation state is ${inv.state}.` : null;
+  const startable = (detail.evidenceState === 'review_ready' || detail.provenance === 'replay') && (!inv || inv.state === 'not_started' || inv.state === 'failed' || inv.state === 'unavailable');
+  const reason = detail.provenance === 'replay' ? 'Hosted investigation is unavailable for replay provenance; no model text is produced.' : detail.evidenceState !== 'review_ready' ? 'Investigation needs a case that is ready for review.' : inv && !startable ? `Investigation state is ${inv.state}.` : null;
   return (
     <section className="panel" aria-labelledby="inv-h">
       <header>
@@ -23,6 +23,9 @@ export function InvestigationPanel({ detail, ops }: { detail: CaseDetail; ops: O
           {inv?.grounded === true ? <Badge tone="ok">Claims checked against evidence</Badge> : null}
         </div>
         {inv?.unavailableReason ? <p className="small">Unavailable: {inv.unavailableReason}</p> : null}
+        {inv?.narrative && inv.provenance === 'contract_test' ? (
+          <p className="small" role="note"><strong>Mock incident text from contract-test Guild mock — not model output, not evidence.</strong></p>
+        ) : null}
         {inv?.narrative ? (
           <blockquote style={{ margin: 0, padding: 'var(--s-3)', borderLeft: '4px solid var(--line-strong)', background: 'var(--surface-2)', overflowWrap: 'anywhere', whiteSpace: 'pre-wrap' }} data-testid="narrative" aria-label="Untrusted investigator narrative">
             {inv.narrative}

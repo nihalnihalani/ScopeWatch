@@ -115,7 +115,7 @@ function RemovalForm({ action, ops }: { action: ActionRecord; ops: Ops }) {
   );
 }
 
-function ActionCard({ action, detail, ops, onOpenHandoff }: { action: ActionRecord; detail: CaseDetail; ops: Ops; onOpenHandoff: () => void }) {
+function ActionCard({ action, ops, onOpenHandoff }: { action: ActionRecord; ops: Ops; onOpenHandoff: () => void }) {
   const { busy, error, run } = useOp(ops);
   const tone = toneOf(action.state);
   const isRestr = action.kind === 'restriction';
@@ -185,11 +185,11 @@ export function EffectPanel({ detail, ops, onOpenReview, onOpenHandoff }: { deta
             <GuardedButton id="open-review" variant="primary" reason={elig} onClick={onOpenReview}>Review restriction</GuardedButton>
           </div>
         ) : null}
-        {restr ? <ActionCard action={restr} detail={detail} ops={ops} onOpenHandoff={onOpenHandoff} /> : null}
+        {restr ? <ActionCard action={restr} ops={ops} onOpenHandoff={onOpenHandoff} /> : null}
         {restr ? (
           <div className="stack" style={{ borderTop: '1px solid var(--line)', paddingTop: 'var(--s-3)' }}>
             <h3 style={{ fontSize: 'var(--t-md)' }}>Recovery (separate review)</h3>
-            {rec ? <ActionCard action={rec} detail={detail} ops={ops} onOpenHandoff={onOpenHandoff} /> : <p className="small muted">No recovery has been started. A falling count never releases a restriction automatically.</p>}
+            {rec ? <ActionCard action={rec} ops={ops} onOpenHandoff={onOpenHandoff} /> : <p className="small muted">No recovery has been started. A falling count never releases a restriction automatically.</p>}
             {error ? <ErrorNotice error={error} onReload={() => void ops.reload()} /> : null}
             {!rec || ['rejected', 'recovered', 'simulated_recovered'].includes(rec.state) ? (
               <ReasonInline id="rcv" label="Reason to start recovery review" cta="Start recovery review" reason={recoverReason} busy={busy} onSubmit={(r) => void run(() => ops.createRecovery(restr.actionId, { expectedVersion: restr.version, reason: r }), 'Recovery review started. Nothing is released yet.')} />

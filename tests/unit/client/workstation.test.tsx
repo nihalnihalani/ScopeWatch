@@ -228,3 +228,15 @@ describe('non-native polish and session evidence', () => {
     expect(screen.getByTestId('digest-input').textContent).toContain('"intendedMutation":"add_deny_rule"');
   });
 });
+
+describe('contract-test investigation', () => {
+  it('allows running and labels mock narrative as not model output', () => {
+    const base = makeDetail({}, 'contract_test');
+    const detail = { ...base, investigation: { investigationId: 'i', caseId: 'c', caseRevision: 3, provenance: 'contract_test' as const, state: 'created' as const, contextSha256: '0'.repeat(64), nativeSessionId: null, nativeTaskId: null, contextReadRef: null, incidentUrl: null, narrative: 'canned', grounded: null, checks: [], unavailableReason: null, updatedAt: 'x' } };
+    render(<InvestigationPanel detail={detail} ops={fakeOps()} />);
+    expect(screen.getByText(/Mock incident text from contract-test Guild mock — not model output, not evidence/)).toBeTruthy();
+    cleanup();
+    render(<InvestigationPanel detail={makeDetail({}, 'contract_test')} ops={fakeOps()} />);
+    expect(screen.getByRole('button', { name: 'Run investigation' }).getAttribute('aria-disabled')).toBe('false');
+  });
+});
