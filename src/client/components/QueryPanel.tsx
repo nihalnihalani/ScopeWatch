@@ -26,7 +26,7 @@ export function QueryPanel({ detail }: { detail: CaseDetail }) {
         ) : null}
         {synthetic ? (
           <p className="small muted" data-testid="timing-label">
-            Timings below are a {detail.provenance === 'replay' ? 'replay measurement on a synthetic fixture' : 'contract-test measurement against a mock'}; they say nothing about a native account. Client round trip and server duration are separate numbers.
+            Timings below are a {detail.provenance === 'replay' ? 'replay measurement on a synthetic fixture' : 'sandbox measurement'}; they say nothing about a native account. Client round trip and server duration are separate numbers.
           </p>
         ) : (
           <p className="small muted">Client round trip and server duration are separate numbers; neither includes Guild collection.</p>

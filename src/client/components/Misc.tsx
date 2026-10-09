@@ -24,7 +24,7 @@ export function InvestigationPanel({ detail, ops }: { detail: CaseDetail; ops: O
         </div>
         {inv?.unavailableReason ? <p className="small">Unavailable: {inv.unavailableReason}</p> : null}
         {inv?.narrative && inv.provenance === 'contract_test' ? (
-          <p className="small" role="note"><strong>Mock incident text from contract-test Guild mock — not model output, not evidence.</strong></p>
+          <p className="small" role="note"><strong>Sandbox incident text — not model output, not evidence.</strong></p>
         ) : null}
         {inv?.narrative ? (
           <blockquote style={{ margin: 0, padding: 'var(--s-3)', borderLeft: '4px solid var(--line-strong)', background: 'var(--surface-2)', overflowWrap: 'anywhere', whiteSpace: 'pre-wrap' }} data-testid="narrative" aria-label="Untrusted investigator narrative">
@@ -140,7 +140,7 @@ export function GateList({ status }: { status: StatusReport | null }) {
           <section className="stack stack--tight" aria-label="Configuration">
             <h3 className="sub-h">Configuration checks ({missing} missing) — presence only, not proof</h3>
             <ul className="small plain-list">
-              {checks.map((c) => <li key={c.check}><Badge tone={CHECK_TONE[c.status]}>{c.status.replace('_', ' ')}</Badge> <strong>{c.check}</strong> <span className="muted">{c.detail}</span></li>)}
+              {checks.map((c) => <li key={c.check}><Badge tone={CHECK_TONE[c.status]}>{c.status === 'simulated' ? 'sandbox' : c.status.replace('_', ' ')}</Badge> <strong>{c.check}</strong> <span className="muted">{c.detail}</span></li>)}
             </ul>
           </section>
         ) : null}

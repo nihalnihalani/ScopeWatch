@@ -74,7 +74,7 @@ describe('EffectPanel gating', () => {
   it('labels simulated verdicts as simulated and never as verified', () => {
     const action = makeAction({ provenance: 'contract_test', state: 'simulated_restriction_observed' });
     render(<EffectPanel detail={makeDetail({ actions: [action] }, 'contract_test')} ops={fakeOps()} onOpenReview={() => {}} onOpenHandoff={() => {}} />);
-    expect(screen.getAllByText(/SIMULATED|Simulated/).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Sandbox/).length).toBeGreaterThan(0);
     expect(screen.queryByText('Restriction verified')).toBeNull();
   });
 
@@ -159,9 +159,9 @@ describe('App states', () => {
     render(<App client={fakeClient()} />);
     await screen.findByText('Subject versus control');
     const strip = screen.getByRole('region', { name: 'Provenance' });
-    expect(strip.textContent).toContain('Contract test — mock Guild API, not native evidence');
+    expect(strip.textContent).toContain('Sandbox Guild workspace — separate from the native account, not native evidence');
     expect(screen.getByRole('button', { name: 'Review restriction' }).getAttribute('aria-disabled')).toBe('false');
-    expect(screen.getAllByText(/Simulated — contract test against mock Guild API; not native evidence/).length).toBeGreaterThan(0);
+    expect(screen.getAllByText(/Sandbox run — separate from the native Guild account/).length).toBeGreaterThan(0);
   });
 
   it('shows login-required with the provenance strip when unauthenticated', async () => {
@@ -236,7 +236,7 @@ describe('contract-test investigation', () => {
     const base = makeDetail({}, 'contract_test');
     const detail = { ...base, investigation: { investigationId: 'i', caseId: 'c', caseRevision: 3, provenance: 'contract_test' as const, state: 'created' as const, contextSha256: '0'.repeat(64), nativeSessionId: null, nativeTaskId: null, contextReadRef: null, incidentUrl: null, narrative: 'canned', grounded: null, checks: [], unavailableReason: null, updatedAt: 'x' } };
     render(<InvestigationPanel detail={detail} ops={fakeOps()} />);
-    expect(screen.getByText(/Mock incident text from contract-test Guild mock — not model output, not evidence/)).toBeTruthy();
+    expect(screen.getByText(/Sandbox incident text — not model output, not evidence/)).toBeTruthy();
     cleanup();
     render(<InvestigationPanel detail={makeDetail({}, 'contract_test')} ops={fakeOps()} />);
     expect(screen.getByRole('button', { name: 'Run investigation' }).getAttribute('aria-disabled')).toBe('false');
@@ -251,7 +251,7 @@ describe('contract-test review dialog', () => {
     opener.focus();
     fireEvent.click(opener);
     const dlg = await screen.findByRole('dialog');
-    expect(within(dlg).getAllByText(/Simulated — contract test against mock Guild API; not native evidence/).length).toBeGreaterThan(0);
+    expect(within(dlg).getAllByText(/Sandbox run — separate from the native Guild account/).length).toBeGreaterThan(0);
     expect(dlg.contains(document.activeElement)).toBe(true);
     const f = Array.from(dlg.querySelectorAll<HTMLElement>('button, textarea'));
     f[f.length - 1]!.focus();
@@ -343,7 +343,7 @@ describe('workflow stepper, earlier attempts, grouped timeline, environment pane
     const sim = makeAction({ provenance: 'contract_test', state: 'simulated_restriction_observed' });
     const r2 = render(<WorkflowStepper detail={makeDetail({ actions: [sim] }, 'contract_test')} />);
     const verify = r2.container.querySelector('[data-step="verify"]')!.textContent!;
-    expect(verify).toContain('Simulated');
+    expect(verify).toContain('sandbox');
     expect(verify).not.toMatch(/^.*Verified/);
     cleanup();
     const nat = render(<WorkflowStepper detail={makeDetail({ actions: [makeAction({ state: 'approved' })] })} />);

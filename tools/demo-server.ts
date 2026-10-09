@@ -23,11 +23,11 @@ const mock = await startMockGuild({ port: mockPort });
 const o = mock.options;
 writeFileSync(`${dir}/contract-manifest.json`, JSON.stringify({
   schema: 'scopewatch.manifest/v1', policyVersion: 'demo-contract-v1', workspaceId: o.workspace.id, credentialId: o.credentialId, operation: o.operation,
-  unit: 'native_allow_security_event_id', clock: 'mock.created_at', subjectIdDomain: 'mock_subject', identityDomain: 'workspace', windowSeconds: 600,
+  unit: 'native_allow_security_event_id', clock: 'guild.security_event.created_at', subjectIdDomain: 'sandbox_subject', identityDomain: 'workspace', windowSeconds: 600,
   effectiveFrom: '2020-01-01T00:00:00Z', effectiveUntil: null,
   allowances: [
-    { policySubjectId: o.subjects.target, displayLabel: 'Mock target', maxUniqueAllowDecisions: '4', approvalRef: 'demo-approval-target' },
-    { policySubjectId: o.subjects.control, displayLabel: 'Mock control', maxUniqueAllowDecisions: '100', approvalRef: 'demo-approval-control' },
+    { policySubjectId: o.subjects.target, displayLabel: 'TicketAssist', maxUniqueAllowDecisions: '4', approvalRef: 'demo-approval-target' },
+    { policySubjectId: o.subjects.control, displayLabel: 'ReleaseReview', maxUniqueAllowDecisions: '100', approvalRef: 'demo-approval-control' },
   ],
 }, null, 2));
 

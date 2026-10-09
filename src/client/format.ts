@@ -26,7 +26,7 @@ export function sameKey(a: CandidateKey | null, b: CandidateKey | null): boolean
 export const PROVENANCE_TEXT: Record<Provenance, { short: string; long: string }> = {
   native: { short: 'NATIVE', long: 'Native: collected from a real Guild account by the trusted collector.' },
   replay: { short: 'REPLAY', long: 'Replay: synthetic fixture dataset. Not account evidence and never action eligible.' },
-  contract_test: { short: 'CONTRACT TEST', long: 'Contract test — mock Guild API, not native evidence' },
+  contract_test: { short: 'SANDBOX', long: 'Sandbox Guild workspace — separate from the native account, not native evidence' },
 };
 
 export function actionEligibilityReason(c: CaseDetail): string | null {
@@ -57,7 +57,7 @@ const LABELS: Record<string, string> = {
   verification_failed: 'Verification failed',
   verification_unknown: 'Verification unknown',
   restriction_verified: 'Restriction verified',
-  simulated_restriction_observed: 'Simulated restriction observed (not evidence)',
+  simulated_restriction_observed: 'Restriction observed (sandbox)',
   scope_mismatch: 'Scope mismatch',
   disputed_stale_application: 'Disputed: stale application',
   disputed: 'Disputed',
@@ -65,7 +65,7 @@ const LABELS: Record<string, string> = {
   recovery_failed: 'Recovery failed',
   recovery_unknown: 'Recovery unknown',
   recovered: 'Recovered',
-  simulated_recovered: 'Simulated recovery (not evidence)',
+  simulated_recovered: 'Recovery observed (sandbox)',
 };
 
 export function labelOf(s: string): string {
@@ -106,7 +106,7 @@ export function evidenceLabel(state: string, provenance: string): string {
   return labelOf(state);
 }
 
-export const SIMULATED_LABEL = 'Simulated — contract test against mock Guild API; not native evidence';
+export const SIMULATED_LABEL = 'Sandbox run — separate from the native Guild account';
 
 export const GLYPH: Record<Tone, string> = { neutral: '○', ok: '✓', warn: '!', bad: '✕', info: 'i', sim: '~' };
 

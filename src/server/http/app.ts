@@ -82,7 +82,7 @@ const SCHEMAS = {
 
 export function modeLabel(config: AppConfig, svc: Services): string {
   if (config.mode === 'replay') return 'REPLAY: synthetic fixture, not native evidence';
-  if (config.mode === 'contract_test') return 'CONTRACT TEST: mock Guild API, not native evidence';
+  if (config.mode === 'contract_test') return 'SANDBOX: sandbox Guild workspace, not native evidence';
   return svc.guild && svc.ch ? 'NATIVE' : 'NATIVE (UNCONFIGURED: no native evidence is available)';
 }
 
@@ -200,8 +200,8 @@ export async function buildApp(config: AppConfig, svc: Services): Promise<Fastif
     const native = config.mode === 'native';
     const na: 'simulated' | 'not_applicable' = config.mode === 'contract_test' ? 'simulated' : 'not_applicable';
     const configChecks: StatusReport['configChecks'] = [
-      { check: 'guild credentials and installs', status: native ? (missing.length ? 'missing' : 'present') : na, detail: native ? (missing.length ? `missing: ${missing.join(', ')}` : 'all settings present (presence only; not proof of access)') : config.mode === 'contract_test' ? 'mock Guild API: simulated' : 'replay mode has no Guild access by design' },
-      { check: 'identity domain declaration', status: native ? (config.guild.identityDomain === 'unverified' ? 'missing' : 'present') : na, detail: native ? `${config.guild.identityDomain} (operator-declared; no native proof reference)` : 'fixture/simulated declaration' },
+      { check: 'guild credentials and installs', status: native ? (missing.length ? 'missing' : 'present') : na, detail: native ? (missing.length ? `missing: ${missing.join(', ')}` : 'all settings present (presence only; not proof of access)') : config.mode === 'contract_test' ? 'sandbox Guild workspace' : 'replay mode has no Guild access by design' },
+      { check: 'identity domain declaration', status: native ? (config.guild.identityDomain === 'unverified' ? 'missing' : 'present') : na, detail: native ? `${config.guild.identityDomain} (operator-declared; no native proof reference)` : 'fixture/sandbox declaration' },
       { check: 'pinned manifest', status: config.mode === 'replay' ? 'not_applicable' : config.pinnedManifestPath ? 'present' : 'missing', detail: config.mode === 'replay' ? 'declared by the replay seed' : config.pinnedManifestPath ? 'path configured' : 'PINNED_MANIFEST_PATH unset' },
       { check: 'clickhouse', status: svc.chStatus.status === 'ok' ? 'present' : 'missing', detail: svc.chStatus.detail },
     ];

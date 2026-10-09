@@ -27,7 +27,7 @@ export function deriveSteps(detail: CaseDetail): Step[] {
   const inv = detail.investigation;
   const rs = restr?.state ?? null;
   const ev = detail.evidenceState;
-  const where = replay ? ' (replay fixture)' : native ? '' : ' (contract-test mock)';
+  const where = replay ? ' (replay fixture)' : native ? '' : ' (sandbox)';
 
   const detect: Step = detail.primary
     ? { key: 'detect', name: 'Detect', text: `Breach found${where}`, tone: native ? 'ok' : 'sim', kind: 'done' }
@@ -44,7 +44,7 @@ export function deriveSteps(detail: CaseDetail): Step[] {
 
   let investigate: Step;
   if (replay) investigate = { key: 'investigate', name: 'Investigate', text: 'Unavailable (replay)', tone: 'neutral', kind: 'na' };
-  else if (inv?.state === 'created') investigate = { key: 'investigate', name: 'Investigate', text: native ? 'Receipt recorded' : 'Simulated mock text (not evidence)', tone: native ? 'ok' : 'sim', kind: 'done' };
+  else if (inv?.state === 'created') investigate = { key: 'investigate', name: 'Investigate', text: native ? 'Receipt recorded' : 'Sandbox incident text (not evidence)', tone: native ? 'ok' : 'sim', kind: 'done' };
   else if (inv && (inv.state === 'failed' || inv.state === 'create_unknown')) investigate = { key: 'investigate', name: 'Investigate', text: inv.state === 'failed' ? 'Failed' : 'Outcome unknown', tone: 'warn', kind: 'current' };
   else if (inv?.state === 'running') investigate = { key: 'investigate', name: 'Investigate', text: 'Running', tone: 'info', kind: 'current' };
   else investigate = { key: 'investigate', name: 'Investigate', text: ev === 'review_ready' ? 'Optional, not started' : 'Not started', tone: 'neutral', kind: 'todo' };
@@ -66,13 +66,13 @@ export function deriveSteps(detail: CaseDetail): Step[] {
   else if (rs === 'stale') apply = { ...applyBase, text: 'Approval stale', tone: 'bad', kind: 'todo' };
   else if (rs === 'native_application_unknown') apply = { ...applyBase, text: 'Native outcome unknown', tone: 'warn', kind: 'current' };
   else if (rs === 'scope_mismatch' || rs === 'disputed_stale_application' || rs === 'disputed') apply = { ...applyBase, text: labelOf(rs), tone: 'bad', kind: 'current' };
-  else if (rs && OBSERVED_OR_LATER.has(rs)) apply = { ...applyBase, text: native ? 'Operator recorded a rule (unverified)' : 'Simulated rule recorded (mock)', tone: native ? 'ok' : 'sim', kind: 'done' };
+  else if (rs && OBSERVED_OR_LATER.has(rs)) apply = { ...applyBase, text: native ? 'Operator recorded a rule (unverified)' : 'Rule recorded (sandbox)', tone: native ? 'ok' : 'sim', kind: 'done' };
   else apply = { ...applyBase, text: 'Not started', tone: 'neutral', kind: 'todo' };
 
   let verify: Step;
   if (replay) verify = { key: 'verify', name: 'Verify', text: NOT_ELIGIBLE.replay, tone: 'neutral', kind: 'na' };
   else if (rs === 'restriction_verified') verify = { key: 'verify', name: 'Verify', text: 'Verified (target refused, control inspected)', tone: 'ok', kind: 'done' };
-  else if (rs === 'simulated_restriction_observed') verify = { key: 'verify', name: 'Verify', text: 'Simulated refusal observed (not evidence)', tone: 'sim', kind: 'done' };
+  else if (rs === 'simulated_restriction_observed') verify = { key: 'verify', name: 'Verify', text: 'Refusal observed (sandbox)', tone: 'sim', kind: 'done' };
   else if (rs === 'verification_failed') verify = { key: 'verify', name: 'Verify', text: 'Failed', tone: 'bad', kind: 'current' };
   else if (rs === 'verification_unknown') verify = { key: 'verify', name: 'Verify', text: 'Unknown (unproven)', tone: 'warn', kind: 'current' };
   else if (rs === 'verification_pending') verify = { key: 'verify', name: 'Verify', text: 'Fresh probes running', tone: 'info', kind: 'current' };
@@ -85,7 +85,7 @@ export function deriveSteps(detail: CaseDetail): Step[] {
   if (replay) recover = { ...recBase, text: NOT_ELIGIBLE.replay, tone: 'neutral', kind: 'na' };
   else if (!rec) recover = { ...recBase, text: 'Not started (separate review)', tone: 'neutral', kind: 'todo' };
   else if (rcs === 'recovered') recover = { ...recBase, text: 'Recovered (target and control succeeded)', tone: 'ok', kind: 'done' };
-  else if (rcs === 'simulated_recovered') recover = { ...recBase, text: 'Simulated recovery (not evidence)', tone: 'sim', kind: 'done' };
+  else if (rcs === 'simulated_recovered') recover = { ...recBase, text: 'Recovery observed (sandbox)', tone: 'sim', kind: 'done' };
   else if (rcs === 'recovery_failed') recover = { ...recBase, text: 'Verification failed', tone: 'bad', kind: 'current' };
   else if (rcs === 'recovery_unknown') recover = { ...recBase, text: 'Unknown', tone: 'warn', kind: 'current' };
   else if (rcs === 'removal_observed') recover = { ...recBase, text: 'Removal recorded, unverified', tone: 'info', kind: 'current' };

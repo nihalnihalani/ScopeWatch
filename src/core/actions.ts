@@ -109,7 +109,7 @@ export function restrictionVerdict(
     }
     return isNativeActionEligible(provenance)
       ? { verdict: 'restriction_verified', explanation: 'fresh target refused by native policy DENY for the bound subject; fresh control returned inspected expected content' }
-      : { verdict: 'simulated_restriction_observed', explanation: 'SIMULATED/NON-NATIVE: target refusal and control content observed through a non-native source; not evidence of account behavior' };
+      : { verdict: 'simulated_restriction_observed', explanation: 'SANDBOX/NON-NATIVE: target refusal and control content observed in the sandbox workspace; not evidence of native account behavior' };
   }
   return { verdict: 'policy_refusal_unproved', explanation: 'target failed or was refused for a reason not proved to be the policy DENY; control succeeded' };
 }
@@ -133,7 +133,7 @@ export function recoveryVerdict(
     }
     return isNativeActionEligible(provenance)
       ? { verdict: 'recovered', explanation: 'restored target and control both returned inspected expected content' }
-      : { verdict: 'simulated_recovered', explanation: 'SIMULATED/NON-NATIVE: both probes succeeded through a non-native source' };
+      : { verdict: 'simulated_recovered', explanation: 'SANDBOX/NON-NATIVE: both probes succeeded in the sandbox workspace' };
   }
   return { verdict: 'recovery_failed', explanation: `recovery requires both target and control to succeed with expected content (target ${target.outcome}, control ${control.outcome}); a falling count never authorizes release` };
 }

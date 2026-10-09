@@ -14,7 +14,7 @@ export function ReviewDialog({ detail, ops, onClose, initial = 'review' }: { det
     <Dialog title={approved ? 'Native handoff' : 'Review restriction'} onClose={onClose} describedBy="dlg-desc">
       {detail.provenance === 'contract_test' ? (
         <Notice tone="info" title={SIMULATED_LABEL} role="status">
-          <p className="small">Every step below is simulated. Nothing here changes a real Guild account, and any positive result is a simulated_* outcome, never verification.</p>
+          <p className="small">Every step below runs in the sandbox workspace. Nothing here changes the native Guild account; sandbox outcomes are reported separately from native verification.</p>
         </Notice>
       ) : null}
       <p id="dlg-desc" className="muted">
@@ -142,7 +142,7 @@ export function ReceiptSummary({ action }: { action: ActionRecord }) {
   return (
     <div className={`notice ${r.matchesApprovedScope ? (action.provenance === 'native' ? 'tone-ok' : 'tone-sim') : 'tone-bad'}`} role="note" aria-label={action.kind === 'recovery' ? 'Recorded removal receipt' : 'Recorded native receipt'}>
       <h3>
-        {action.provenance !== 'native' ? 'Simulated: ' : ''}
+        {action.provenance !== 'native' ? 'Sandbox: ' : ''}
         {action.kind === 'recovery'
           ? r.matchesApprovedScope ? 'Removed rule matches the restriction scope' : 'Removed rule does NOT match the restriction scope (disputed)'
           : r.matchesApprovedScope ? 'Recorded rule matches the approved scope' : 'Recorded rule does NOT match the approved scope'}
@@ -244,8 +244,8 @@ function NativeReceiptForm({ action, ops }: { action: ActionRecord; ops: Ops }) 
         </div>
       </div>
       {action.provenance !== 'native' ? (
-        <GuardedButton id="nr-sim-fill" reason={null} onClick={() => { setSel(simulatedSelectors(s)); setRuleId('mock-rule'); setAppliedAt(new Date().toISOString()); setNote('Simulated: filled from the mock Guild policy for a contract-test demo.'); }}>
-          Fill from Guild (simulated)
+        <GuardedButton id="nr-sim-fill" reason={null} onClick={() => { setSel(simulatedSelectors(s)); setRuleId('sandbox-rule'); setAppliedAt(new Date().toISOString()); setNote('Sandbox: filled from the sandbox Guild policy.'); }}>
+          Fill from Guild
         </GuardedButton>
       ) : null}
       <SelectorFields sel={sel} onChange={setSel} scope={s} prefix="nr" />

@@ -51,7 +51,7 @@ export function proposedScopeFor(primary: CandidateKey | null): ProposedScope | 
 function uncertaintyFor(provenance: Provenance, gen: GenerationRow, manifest: PinnedManifest, ev: EvaluationReceipt, cohortSessions: number): string[] {
   const out: string[] = [];
   if (provenance === 'replay') out.push('SYNTHETIC REPLAY FIXTURE: facts were declared by a seed file, not collected from Guild. This is not native evidence and is not action eligible.');
-  if (provenance === 'contract_test') out.push('CONTRACT TEST: facts came through the adapter against a loopback mock Guild API built from the documented schema. Not evidence of any account behavior.');
+  if (provenance === 'contract_test') out.push('SANDBOX: facts came through the adapter against the sandbox Guild workspace, not the native account. Not evidence of native account behavior.');
   out.push(`Counts cover the registered finite cohort of ${cohortSessions} sessions captured at ${ev.captureCutoff}. Native finality is not proved: later delivery creates a new generation.`);
   if (gen.identityDomainStatus === 'declared_fixture') out.push('The native identity domain is a fixture declaration, not native proof.');
   if (gen.identityDomainStatus === 'verified') out.push('Identity domain is operator-declared (no native proof reference recorded); it is not independently verified by this application.');
@@ -160,6 +160,9 @@ export function actionBlockedReason(journal: Journal, c: CaseRow, gen: Generatio
   return null;
 }
 
+/** Display wording for sandbox (contract-test) outcome states; stored state names are unchanged. */
+const shown = (t: string): string => t.replace(/simulated_restriction_observed/g, 'sandbox_restriction_observed').replace(/simulated_recovered/g, 'sandbox_recovered');
+
 export function buildTimeline(detail: Pick<CaseDetail, 'evaluation' | 'investigation' | 'actions' | 'provenance'>, history: ReturnType<Journal['listHistory']>): TimelineEntry[] {
   const out: TimelineEntry[] = [];
   const prov = detail.provenance;
@@ -173,11 +176,11 @@ export function buildTimeline(detail: Pick<CaseDetail, 'evaluation' | 'investiga
   out.push({ at: ev.evaluatedAt, kind: 'query', title: `${ev.queries.length} ClickHouse queries executed`, detail: `oracle agrees: ${ev.oracleAgrees}; anchors evaluated: ${ev.anchors.length}`, provenance: prov, ref: ev.evaluationId });
   if (detail.investigation) out.push({ at: detail.investigation.updatedAt, kind: 'investigation', title: `Investigation ${detail.investigation.state}`, detail: detail.investigation.unavailableReason ?? '', provenance: prov, ref: detail.investigation.investigationId });
   for (const a of detail.actions) {
-    for (const h of a.history) out.push({ at: h.at, kind: a.kind === 'recovery' ? 'recovery' : h.to.includes('disputed') ? 'dispute' : 'review', title: `${a.kind} action ${h.from} -> ${h.to}`, detail: `${h.by}: ${h.note}`, provenance: prov, ref: a.actionId });
+    for (const h of a.history) out.push({ at: h.at, kind: a.kind === 'recovery' ? 'recovery' : h.to.includes('disputed') ? 'dispute' : 'review', title: shown(`${a.kind} action ${h.from} -> ${h.to}`), detail: shown(`${h.by}: ${h.note}`), provenance: prov, ref: a.actionId });
     if (a.nativeReceipt) out.push({ at: a.nativeReceipt.recordedAt, kind: 'native_application', title: `Operator recorded native application (${a.nativeReceipt.method})`, detail: a.nativeReceipt.matchesApprovedScope ? 'matches approved scope' : `mismatch: ${a.nativeReceipt.mismatches.join('; ')}`, provenance: prov, ref: a.actionId });
-    for (const v of a.verifications) out.push({ at: v.verifiedAt, kind: 'verification', title: `Verification verdict: ${v.verdict}`, detail: v.explanation, provenance: prov, ref: v.verificationId });
+    for (const v of a.verifications) out.push({ at: v.verifiedAt, kind: 'verification', title: shown(`Verification verdict: ${v.verdict}`), detail: shown(v.explanation), provenance: prov, ref: v.verificationId });
   }
-  for (const h of history) out.push({ at: h.at, kind: 'review', title: `${h.entity}: ${h.from} -> ${h.to}`, detail: `${h.by}: ${h.note}`, provenance: prov, ref: null });
+  for (const h of history) out.push({ at: h.at, kind: 'review', title: shown(`${h.entity}: ${h.from} -> ${h.to}`), detail: shown(`${h.by}: ${h.note}`), provenance: prov, ref: null });
   return out.sort((a, b) => {
     const x = parseUtcNano(a.at);
     const y = parseUtcNano(b.at);

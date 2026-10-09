@@ -328,7 +328,7 @@ function CaseView({ detail, status, client, ops, onOpen, onRerun, rerunBusy, run
       <section className="panel statepanel" aria-label="Case state">
         <div className="stateline">
           <dl className="kvs kvs--state">
-            <div className="kv"><dt>Action</dt><dd>{!restr && detail.provenance !== 'native' ? <Badge tone="neutral">Not action eligible ({detail.provenance === 'replay' ? 'replay' : 'contract test'})</Badge> : <Badge tone={toneOf(restr?.state ?? detail.actionState)}>{labelOf(restr?.state ?? detail.actionState)}</Badge>}</dd></div>
+            <div className="kv"><dt>Action</dt><dd>{!restr && detail.provenance !== 'native' ? <Badge tone="neutral">Not action eligible ({detail.provenance === 'replay' ? 'replay' : 'sandbox'})</Badge> : <Badge tone={toneOf(restr?.state ?? detail.actionState)}>{labelOf(restr?.state ?? detail.actionState)}</Badge>}</dd></div>
             <div className="kv"><dt>Captured up to</dt><dd className="mono">{detail.generation.captureCutoff}{captureAge ? ` (${captureAge})` : ''}</dd></div>
             <div className="kv"><dt>Last queried</dt><dd className="mono">{detail.evaluation.evaluatedAt}{queryAge ? ` (${queryAge})` : ''}</dd></div>
             <div className="kv"><dt>Generation</dt><dd><span className="id" title={detail.generation.generationId}>{shortId(detail.generation.generationId, 20)}</span> · {detail.generation.state.replace(/_/g, ' ')}</dd></div>

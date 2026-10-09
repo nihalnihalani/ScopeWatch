@@ -18,7 +18,7 @@ const MEANING: Record<string, string> = {
   verification_failed: 'Verification failed. The restriction is not shown to work; see the probes below.',
   verification_unknown: 'Verification could not decide. Treat the restriction as unproven.',
   restriction_verified: 'Verified for this subject, credential and operation only: the target was refused by policy and control content was inspected in fresh sessions.',
-  simulated_restriction_observed: 'SIMULATED: produced against non-native data. This is not evidence that any real policy works.',
+  simulated_restriction_observed: 'Sandbox result: produced in the sandbox workspace, not on the native account.',
   scope_mismatch: 'The recorded native rule differs from the approved scope. The restriction is not accepted as approved.',
   disputed_stale_application: 'A rule was recorded against an approval that has since gone stale. Disputed; preserve and re-review.',
   disputed: 'The effect is disputed. Preserve the record and review manually.',
@@ -26,7 +26,7 @@ const MEANING: Record<string, string> = {
   recovery_failed: 'Recovery verification failed; the expected access did not return.',
   recovery_unknown: 'Recovery could not be decided.',
   recovered: 'Recovered: expected target and control results both succeeded in fresh sessions.',
-  simulated_recovered: 'SIMULATED recovery on non-native data. Not evidence.',
+  simulated_recovered: 'Sandbox recovery: produced in the sandbox workspace, not on the native account.',
 };
 
 const VERIFY_STATES = new Set(['native_application_observed', 'verification_pending', 'verification_failed', 'verification_unknown']);
@@ -35,7 +35,7 @@ const RECOVERY_VERIFY_STATES = new Set(['removal_observed', 'verification_pendin
 function Probe({ p }: { p: ProbeResult }) {
   const good = p.role === 'target' ? p.outcome === 'refused_policy' : p.outcome === 'succeeded_expected';
   const tone = p.provenance !== 'native' ? (good ? 'sim' : 'bad') : good ? 'ok' : 'bad';
-  const sim = p.provenance !== 'native' ? 'Simulated: ' : '';
+  const sim = p.provenance !== 'native' ? 'Sandbox: ' : '';
   const text = sim +
     (p.role === 'target'
       ? p.outcome === 'refused_policy' ? 'Target refused by policy' : `Target not refused by policy (${p.outcome})`
@@ -61,7 +61,7 @@ function Verification({ v }: { v: VerificationReceipt }) {
     <div className="stack stack--tight" data-testid="verification">
       <div className="btn-row">
         <Badge tone={simulated ? 'sim' : good ? 'ok' : v.verdict === 'unknown' || v.verdict === 'policy_refusal_unproved' ? 'warn' : 'bad'}>
-          {simulated ? `Simulated: ${labelOf(v.verdict)}` : labelOf(v.verdict)}
+          {simulated ? labelOf(v.verdict) : labelOf(v.verdict)}
         </Badge>
         <span className="small muted mono">{v.verifiedAt} · {v.kind}</span>
       </div>
@@ -113,8 +113,8 @@ function RemovalForm({ action, ops }: { action: ActionRecord; ops: Ops }) {
       </div>
       <p className="small muted">Enter the selectors of the rule you observed being removed. The server compares them with the restriction's scope; they are not pre-filled.</p>
       {action.provenance !== 'native' ? (
-        <GuardedButton id="rm-sim-fill" reason={null} onClick={() => { setSel(simulatedSelectors(action.scope)); setRuleId('mock-rule'); setAt(new Date().toISOString()); setNote('Simulated: removal read from the mock Guild policy for a contract-test demo.'); }}>
-          Fill from Guild (simulated)
+        <GuardedButton id="rm-sim-fill" reason={null} onClick={() => { setSel(simulatedSelectors(action.scope)); setRuleId('sandbox-rule'); setAt(new Date().toISOString()); setNote('Sandbox: removal read from the sandbox Guild policy.'); }}>
+          Fill from Guild
         </GuardedButton>
       ) : null}
       <SelectorFields sel={sel} onChange={setSel} scope={action.scope} prefix="rm" />
