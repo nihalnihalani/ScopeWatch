@@ -79,4 +79,8 @@ describe('bindEvents', () => {
     expect(r.bindings[0]!.bindingState).toBe('conflict');
     expect(r.diagnostics.some((d) => d.nativeIdentityKey.startsWith('observation:'))).toBe(true);
   });
+  it('a root without entity_type is unknown and binding stays unresolved', () => {
+    const root = normalizeTask({ id: 'root', parent_task_id: null, agent: { id: 'instA' }, status: 'DONE', session_id: S }, S)!;
+    expect(run([obs('e1', 'tool1')], [root, tool('tool1', 'root')]).bindings[0]!.bindingState).toBe('unresolved');
+  });
 });

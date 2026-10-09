@@ -61,4 +61,9 @@ describe('normalizeTask', () => {
     expect(agent.agentRef).toBe('inst-1');
     expect(agent.versionId).toBe('v1');
   });
+  it('without entity_type a node with agent/version_id/null parent is NOT an agent (unknown)', () => {
+    const n = normalizeTask({ id: 'x', parent_task_id: null, agent: { id: 'inst-1' }, version_id: 'v1', status: 'DONE' }, 's')!;
+    expect(n.kind).toBe('unknown');
+    expect(n.agentRef).toBeNull();
+  });
 });

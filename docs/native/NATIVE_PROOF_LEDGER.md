@@ -45,6 +45,9 @@ Investigator installed agent runs with compact facts, creates exactly one issue 
 5. `GET /v1/workspaces/{ws}/sessions` and `GET /v1/sessions/{id}/events?types=trigger_message` are documented and are used only for launch reconciliation (the launch input embeds `scopewatch-ref: <ref>`).
 6. The trigger-created session response exposes `trigger.agent` fields used for `returnedAgentRef`/`returnedVersionId`; both are best-effort and null when absent.
 
+7. **Native gate (task classification):** a task node is treated as an AGENT task only when its `entity_type` says so (e.g. `EntTaskAgent`); it is a TOOL task when `tool_name` or an `EntTaskTool` entity type is present. Presence of `agent`, `version_id` or a null `parent_task_id` alone is not enough. If the real account omits `entity_type`, nodes classify `unknown` and every binding is `unresolved` until this gate is resolved by inspecting real task payloads.
+8. Recovery probes: a target ALLOW is `allowed`; only `response_data` containing the server-held `SCOPEWATCH_TARGET_EXPECTED_MARKER` is `succeeded_expected`. The same `response_data` availability caveat (item 4) applies.
+
 ## CLI-surface findings (Guild CLI v0.17.0, `--help` only, not executed against an account)
 - `guild auth login | logout | status | token`
 - `guild credentials list [--owner --search --limit --offset]`

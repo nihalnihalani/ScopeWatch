@@ -112,13 +112,15 @@ export function normalizeTask(t: Record<string, unknown>, sessionId: string): Ta
   const id = str(t.id);
   if (!id) return null;
   const isTool = typeof t.tool_name === 'string' || (typeof t.entity_type === 'string' && /Tool/i.test(t.entity_type));
-  const isAgent = !isTool && ((typeof t.entity_type === 'string' && /Agent/i.test(t.entity_type)) || 'version_id' in t || 'agent' in t || t.parent_task_id === null);
+  // Native gate: a node is an AGENT task only when entity_type says so. Presence of `agent`, `version_id`
+  // or a null parent is not enough; without entity_type the node stays 'unknown' and binding is unresolved.
+  const isAgent = !isTool && typeof t.entity_type === 'string' && /Agent/i.test(t.entity_type);
   return {
     taskId: id,
     sessionId: str(t.session_id) ?? sessionId,
     parentTaskId: str(t.parent_task_id),
     kind: isTool ? 'tool' : isAgent ? 'agent' : 'unknown',
-    agentRef: isTool ? null : agentRefOf(t),
+    agentRef: isAgent ? agentRefOf(t) : null,
     versionId: isTool ? null : str(t.version_id),
     toolName: str(t.tool_name),
     toolCallId: str(t.tool_call_id),

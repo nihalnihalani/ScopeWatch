@@ -24,6 +24,7 @@ export interface MockOptions {
   operation?: string;
   ownedRepo?: string;
   controlMarker?: string;
+  targetMarker?: string;
 }
 
 export const MOCK_DEFAULTS = {
@@ -36,6 +37,7 @@ export const MOCK_DEFAULTS = {
   operation: 'issues_get',
   ownedRepo: 'acme/harbordesk-synthetic',
   controlMarker: 'CONTROL-MARKER-7f3a9c',
+  targetMarker: 'TARGET-MARKER-51d2e8',
 };
 
 export interface Scenario {
@@ -55,6 +57,7 @@ export interface Scenario {
   missingClock: boolean;
   omitResponseData: boolean;
   controlWrongContent: boolean;
+  targetWrongContent: boolean;
   /** target decision becomes ERROR/CREDENTIAL_UNAVAILABLE when no policy applies */
   credentialError: boolean;
   investigatorMode: 'ok' | 'no_issue' | 'duplicate' | 'no_html_url';
@@ -77,6 +80,7 @@ const defaultScenario = (): Scenario => ({
   missingClock: false,
   omitResponseData: false,
   controlWrongContent: false,
+  targetWrongContent: false,
   credentialError: false,
   investigatorMode: 'ok',
   keepRunning: false,
@@ -127,6 +131,7 @@ export async function startMockGuild(opts: MockOptions = {}): Promise<{ url: str
     operation: opts.operation ?? MOCK_DEFAULTS.operation,
     ownedRepo: opts.ownedRepo ?? MOCK_DEFAULTS.ownedRepo,
     controlMarker: opts.controlMarker ?? MOCK_DEFAULTS.controlMarker,
+    targetMarker: opts.targetMarker ?? MOCK_DEFAULTS.targetMarker,
   };
   let scenario = defaultScenario();
   let sessions = new Map<string, Sess>();
@@ -202,7 +207,7 @@ export async function startMockGuild(opts: MockOptions = {}): Promise<{ url: str
         actor = o.subjects.control;
       }
       const d = decide(actor);
-      const content = isControl && !scenario.controlWrongContent ? { title: 'Synthetic control ticket', body: `fixture ${o.controlMarker}` } : { title: `Synthetic ticket ${i + 1}`, body: 'harmless fixture' };
+      const content = isControl && !scenario.controlWrongContent ? { title: 'Synthetic control ticket', body: `fixture ${o.controlMarker}` } : { title: `Synthetic ticket ${i + 1}`, body: scenario.targetWrongContent ? 'harmless fixture' : `fixture ${o.targetMarker}` };
       const tid = toolCall(parent, actor, o.operation, content, d.decision === 'ALLOW' ? 'ok' : 'deny');
       const ev = security(tid, d.decision, d.reason);
       first ??= ev;

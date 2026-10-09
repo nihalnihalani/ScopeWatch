@@ -120,16 +120,37 @@ export async function runProbe(a: AdapterContext, req: ProbeRequest, opt: ProbeO
   if (verdict === 'missing') return finish('missing', 'decision missing on selected event', patch);
 
   // ALLOW
-  if (req.role === 'target') return finish('allowed', 'target call was ALLOWED by native policy (restriction not in effect for this scope)', patch);
-  const marker = g.controlExpectedMarker as string;
-  const toolNodes = ids.length ? selected.map((o) => col.tasks.find((t) => t.taskId === o.nativeTaskId)) : [];
+  if (req.role === 'target') {
+    if (req.purpose !== 'recovery') return finish('allowed', 'target call was ALLOWED by native policy (restriction not in effect for this scope)', patch);
+    const tm = g.targetExpectedMarker;
+    if (!tm) return finish('missing', 'recovery probe needs the server-held target marker, which is not configured', patch);
+    return inspectContent(selected, col.tasks, tm, patch, finish, 'target');
+  }
+  return inspectContent(selected, col.tasks, g.controlExpectedMarker as string, patch, finish, 'control');
+}
+
+function inspectContent(
+  selected: RawObservation[],
+  tasks: TaskNode[],
+  marker: string,
+  patch: Partial<ProbeResult>,
+  finish: (o: ProbeOutcome, i: string, p?: Partial<ProbeResult>) => ProbeResult,
+  who: 'target' | 'control',
+): ProbeResult {
+  const toolNodes = selected.map((o) => tasks.find((t) => t.taskId === o.nativeTaskId));
   const states = toolNodes.map((n) => inspectMarker(n, marker));
   if (states.includes('present')) {
     const n = toolNodes[states.indexOf('present')] as TaskNode;
-    return finish('succeeded_expected', `tool task ${n.taskId} response_data contains the server-held marker (sha256 ${sha256Hex(marker).slice(0, 12)})`, patch);
+    return finish('succeeded_expected', `${who} tool task ${n.taskId} response_data contains the server-held marker (sha256 ${sha256Hex(marker).slice(0, 12)})`, patch);
   }
-  if (states.every((s) => s === 'no_data')) return finish('missing', 'ALLOW observed but tool task response_data is absent (documented: stored only when projected); content not inspectable', patch);
-  return finish('succeeded_unexpected_content', 'ALLOW observed but tool response_data does not contain the expected marker', patch);
+  if (states.every((s) => s === 'no_data')) {
+    return who === 'target'
+      ? finish('allowed', 'ALLOW observed but tool task response_data is absent; target content not inspectable, recovery not proven', patch)
+      : finish('missing', 'ALLOW observed but tool task response_data is absent (documented: stored only when projected); content not inspectable', patch);
+  }
+  return who === 'target'
+    ? finish('allowed', 'ALLOW observed but target response_data does not contain the expected marker; recovery not proven', patch)
+    : finish('succeeded_unexpected_content', 'ALLOW observed but tool response_data does not contain the expected marker', patch);
 }
 
 function parseNs(t: string): bigint | null {

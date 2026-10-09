@@ -16,8 +16,9 @@ async function env(...args: Parameters<typeof setup>) {
   return e;
 }
 
-const probeReq = (mock: Mock, role: 'target' | 'control', ref: string, notBefore = '2000-01-01T00:00:00Z'): ProbeRequest => ({
+const probeReq = (mock: Mock, role: 'target' | 'control', ref: string, notBefore = '2000-01-01T00:00:00Z', purpose: 'restriction' | 'recovery' = 'restriction'): ProbeRequest => ({
   role,
+  purpose,
   notBefore,
   idempotencyRef: ref,
   scope: {
@@ -352,5 +353,31 @@ describe('probe freshness and attribution', () => {
     const l = (adapter as unknown as { launcher: { isFreshSession(s: string, r: string): boolean } }).launcher;
     expect(l.isFreshSession(first.nativeSessionId!, 'ref-a')).toBe(true);
     expect(l.isFreshSession(first.nativeSessionId!, 'ref-b')).toBe(false);
+  });
+});
+
+describe('recovery target probe', () => {
+  it('ALLOW alone is `allowed`; recovery succeeds only with the server-held target marker', async () => {
+    const a = await env();
+    expect((await a.adapter.runProbe(probeReq(a.mock, 'target', 'r-0'))).outcome).toBe('allowed');
+    const ok = await a.adapter.runProbe(probeReq(a.mock, 'target', 'r-1', undefined, 'recovery'));
+    expect(ok.outcome).toBe('succeeded_expected');
+    expect(ok.inspection).not.toContain(a.mock.options.targetMarker);
+    expect(a.mock.control.inputs.join('\n')).not.toContain(a.mock.options.targetMarker);
+  });
+  it('recovery with wrong content, absent response_data, or no configured marker is not success', async () => {
+    const w = await env();
+    w.mock.control.setScenario({ targetWrongContent: true });
+    expect((await w.adapter.runProbe(probeReq(w.mock, 'target', 'r-w', undefined, 'recovery'))).outcome).toBe('allowed');
+    const n = await env();
+    n.mock.control.setScenario({ omitResponseData: true });
+    expect((await n.adapter.runProbe(probeReq(n.mock, 'target', 'r-n', undefined, 'recovery'))).outcome).toBe('allowed');
+    const u = await env({}, {}, { targetExpectedMarker: null });
+    expect((await u.adapter.runProbe(probeReq(u.mock, 'target', 'r-u', undefined, 'recovery'))).outcome).toBe('missing');
+  });
+  it('recovery probe under a DENY is still a policy refusal', async () => {
+    const { mock, adapter } = await env();
+    mock.control.applyDeny();
+    expect((await adapter.runProbe(probeReq(mock, 'target', 'r-d', undefined, 'recovery'))).outcome).toBe('refused_policy');
   });
 });

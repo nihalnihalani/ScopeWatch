@@ -36,6 +36,7 @@ export function makeConfig(m: Mock, over: Partial<AppConfig['guild']> = {}): App
       verifiedOperation: o.operation,
       ownedRepo: o.ownedRepo,
       controlExpectedMarker: o.controlMarker,
+      targetExpectedMarker: o.targetMarker,
       agentSubjectMap: { [o.installed.target]: o.subjects.target, [o.installed.control]: o.subjects.control },
       identityDomain: 'workspace',
       probeTicketNumber: null,
