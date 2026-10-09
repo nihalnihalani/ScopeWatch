@@ -68,8 +68,15 @@ const SCHEMAS = {
   recovery: body({ expectedVersion: int, reason: str(500, 1) }, ['expectedVersion', 'reason']),
   actionReview: body({ expectedVersion: int, decision: { enum: ['approve', 'reject'] }, reason: str(500, 1) }, ['expectedVersion', 'decision', 'reason']),
   removal: body(
-    { expectedVersion: int, method: { enum: ['guild_ui', 'guild_cli_verified'] }, nativeRuleId: nullableStr(200), removedAt: str(40, 1), evidenceNote: str(1000) },
-    ['expectedVersion', 'method', 'nativeRuleId', 'removedAt', 'evidenceNote'],
+    {
+      expectedVersion: int, method: { enum: ['guild_ui', 'guild_cli_verified'] }, nativeRuleId: nullableStr(200),
+      observedSelectors: body(
+        { credentialId: str(300), operation: str(200), policySubjectId: str(300), workspaceId: str(300), decision: str(30), resources: nullableStr(500) },
+        ['credentialId', 'operation', 'policySubjectId', 'workspaceId', 'decision', 'resources'],
+      ),
+      removedAt: str(40, 1), evidenceNote: str(1000),
+    },
+    ['expectedVersion', 'method', 'nativeRuleId', 'observedSelectors', 'removedAt', 'evidenceNote'],
   ),
 } as const;
 
@@ -190,14 +197,23 @@ export async function buildApp(config: AppConfig, svc: Services): Promise<Fastif
       guildHealth = { at: Date.now(), value: guild };
     }
     const t = j.lastTimes();
-    const gates: StatusReport['nativeGates'] = [];
-    if (config.mode === 'replay') gates.push({ gate: 'native evidence', status: 'pending', detail: 'replay mode cannot produce native evidence' });
-    else {
-      gates.push({ gate: 'guild credentials and installs', status: missing.length ? 'pending' : 'passed', detail: missing.length ? `missing: ${missing.join(', ')}` : 'all configured (presence only)' });
-      gates.push({ gate: 'native identity domain', status: config.guild.identityDomain === 'unverified' ? 'pending' : 'passed', detail: config.guild.identityDomain });
-      gates.push({ gate: 'pinned manifest', status: config.pinnedManifestPath ? 'passed' : 'pending', detail: config.pinnedManifestPath ? 'path configured' : 'PINNED_MANIFEST_PATH unset' });
-    }
-    gates.push({ gate: 'clickhouse', status: svc.chStatus.status === 'ok' ? 'passed' : 'pending', detail: svc.chStatus.detail });
+    const native = config.mode === 'native';
+    const na: 'simulated' | 'not_applicable' = config.mode === 'contract_test' ? 'simulated' : 'not_applicable';
+    const configChecks: StatusReport['configChecks'] = [
+      { check: 'guild credentials and installs', status: native ? (missing.length ? 'missing' : 'present') : na, detail: native ? (missing.length ? `missing: ${missing.join(', ')}` : 'all settings present (presence only; not proof of access)') : config.mode === 'contract_test' ? 'mock Guild API: simulated' : 'replay mode has no Guild access by design' },
+      { check: 'identity domain declaration', status: native ? (config.guild.identityDomain === 'unverified' ? 'missing' : 'present') : na, detail: native ? `${config.guild.identityDomain} (operator-declared; no native proof reference)` : 'fixture/simulated declaration' },
+      { check: 'pinned manifest', status: config.mode === 'replay' ? 'not_applicable' : config.pinnedManifestPath ? 'present' : 'missing', detail: config.mode === 'replay' ? 'declared by the replay seed' : config.pinnedManifestPath ? 'path configured' : 'PINNED_MANIFEST_PATH unset' },
+      { check: 'clickhouse', status: svc.chStatus.status === 'ok' ? 'present' : 'missing', detail: svc.chStatus.detail },
+    ];
+    // never derived from env presence: no sanitized native receipt reference mechanism exists yet
+    const gateDetail: Record<'G1' | 'G1b' | 'G2', string> = {
+      G1: 'native proof of identity domain, binding and trial DENY: requires a sanitized native receipt reference; none recorded',
+      G1b: 'restored-baseline proof: requires a sanitized native receipt reference; none recorded',
+      G2: 'main native readiness: requires a sanitized native receipt reference; none recorded',
+    };
+    const gates: StatusReport['nativeGates'] = (['G1', 'G1b', 'G2'] as const).map((g) => ({
+      gate: g, status: native ? ('pending' as const) : ('not_applicable' as const), detail: native ? gateDetail[g] : `${config.mode} mode cannot produce native evidence`, receiptRef: null,
+    }));
     return {
       mode: config.mode,
       modeLabel: modeLabel(config, svc),
@@ -207,6 +223,7 @@ export async function buildApp(config: AppConfig, svc: Services): Promise<Fastif
       journal: { status: 'ok', path: config.sqlitePath, detail: `${config.mode} journal` },
       lastCaptureAt: t.lastCaptureAt,
       lastEvaluationAt: t.lastEvaluationAt,
+      configChecks,
       nativeGates: gates,
     };
   });

@@ -54,6 +54,7 @@ function uncertaintyFor(provenance: Provenance, gen: GenerationRow, manifest: Pi
   if (provenance === 'contract_test') out.push('CONTRACT TEST: facts came through the adapter against a loopback mock Guild API built from the documented schema. Not evidence of any account behavior.');
   out.push(`Counts cover the registered finite cohort of ${cohortSessions} sessions captured at ${ev.captureCutoff}. Native finality is not proved: later delivery creates a new generation.`);
   if (gen.identityDomainStatus === 'declared_fixture') out.push('The native identity domain is a fixture declaration, not native proof.');
+  if (gen.identityDomainStatus === 'verified') out.push('Identity domain is operator-declared (no native proof reference recorded); it is not independently verified by this application.');
   out.push(`Counted unit: ${manifest.document.unit}; clock: ${manifest.document.clock}. Window is (T-600s, T] truncated at the manifest effective start.`);
   const primary = ev.candidates.find((c) => ev.primary && c.policySubjectId === ev.primary.policySubjectId);
   if (primary?.firstCrossing && BigInt(primary.currentCount) <= BigInt(primary.allowance)) {
@@ -149,8 +150,10 @@ function receiptOf(g: GenerationRow): GenerationReceipt {
 
 export function actionBlockedReason(journal: Journal, c: CaseRow, gen: GenerationRow): string | null {
   if (c.provenance === 'replay') return 'Replay cases are synthetic fixtures and are not action eligible; no native action can be approved from a replay case.';
-  if (!c.primary) return 'No candidate crossed its allowance; there is nothing to restrict.';
   if (c.evidenceState === 'evidence_disputed') return 'Evidence is disputed by a later integrity conflict; resolve it before any further action.';
+  const sup = journal.supersededBy(c.caseId);
+  if (sup) return `Superseded: newer generation ${sup.generationId} (${sup.state}) exists for this manifest; this case no longer reflects the latest evidence. Re-run and review the newest result.`;
+  if (!c.primary) return 'No candidate crossed its allowance; there is nothing to restrict.';
   if (gen.state !== 'evaluated') return `Generation is ${gen.state}, not evaluated.`;
   const active = journal.listActions(c.caseId).find((a) => a.kind === 'restriction' && a.caseRevision === c.revision && ACTIVE_RESTRICTION.includes(a.state as never));
   if (active) return `An action is already ${active.state.replaceAll('_', ' ')} for this revision.`;

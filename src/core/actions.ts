@@ -54,6 +54,9 @@ const RECOVERY_TRANSITIONS: Partial<Record<RecoveryState, RecoveryState[]>> = {
 export function canTransition(kind: 'restriction' | 'recovery', from: AnyState, to: AnyState): boolean {
   if (kind === 'restriction') return (RESTRICTION_TRANSITIONS[from as ActionState] ?? []).includes(to as ActionState);
   if (to === ('rejected' as AnyState)) return from === 'review_ready';
+  // a removal receipt whose observed selectors differ from the restriction scope is a mismatch (blocks recovery verify)
+  if (to === ('scope_mismatch' as AnyState)) return from === 'approved' || from === 'scope_mismatch';
+  if (from === ('scope_mismatch' as AnyState)) return to === ('removal_observed' as AnyState);
   return (RECOVERY_TRANSITIONS[from as RecoveryState] ?? []).includes(to as RecoveryState);
 }
 
@@ -116,20 +119,23 @@ export function recoveryVerdict(
   provenance: Provenance,
   target: ProbeResult | null,
   control: ProbeResult | null,
-  expect: { targetSubjectId: string },
+  expect: { targetSubjectId: string; controlSubjectId?: string | null },
 ): { verdict: VerificationVerdict; explanation: string } {
   if (!target || !control || target.outcome === 'missing' || control.outcome === 'missing') {
     return { verdict: 'unknown', explanation: 'a probe result is missing; recovery is unknown' };
   }
-  if ((target.outcome === 'succeeded_expected' || target.outcome === 'allowed') && control.outcome === 'succeeded_expected') {
+  if (target.outcome === 'succeeded_expected' && control.outcome === 'succeeded_expected') {
     if (target.boundSubjectId !== expect.targetSubjectId) {
       return { verdict: 'unknown', explanation: 'target success is not bound to the approved subject' };
+    }
+    if (expect.controlSubjectId && control.boundSubjectId !== expect.controlSubjectId) {
+      return { verdict: 'unknown', explanation: 'control success is not bound to the approved control subject' };
     }
     return isNativeActionEligible(provenance)
       ? { verdict: 'recovered', explanation: 'restored target and control both returned inspected expected content' }
       : { verdict: 'simulated_recovered', explanation: 'SIMULATED/NON-NATIVE: both probes succeeded through a non-native source' };
   }
-  return { verdict: 'recovery_failed', explanation: `recovery requires both target and control to succeed (target ${target.outcome}, control ${control.outcome}); a falling count never authorizes release` };
+  return { verdict: 'recovery_failed', explanation: `recovery requires both target and control to succeed with expected content (target ${target.outcome}, control ${control.outcome}); a falling count never authorizes release` };
 }
 
 export function restrictionStateFor(v: VerificationVerdict): ActionState {

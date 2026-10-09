@@ -16,7 +16,7 @@ function observed(svc: ReturnType<typeof services>) {
   const { caseId, revision } = seedCase(svc);
   reviewCase(svc, caseId, { expectedRevision: revision, decision: 'approve', reason: 'ok' }, 'op');
   const a = svc.journal.listActions(caseId)[0] as ActionRecord;
-  recordNativeReceipt(svc, a.actionId, { expectedVersion: a.version, method: 'guild_ui', nativeRuleId: 'r', observedSelectors: sel, appliedAt: '2099-01-01T00:00:00Z', evidenceNote: '' }, 'op');
+  recordNativeReceipt(svc, a.actionId, { expectedVersion: a.version, method: 'guild_ui', nativeRuleId: 'r', observedSelectors: sel, appliedAt: new Date().toISOString(), evidenceNote: '' }, 'op');
   return { caseId, actionId: a.actionId };
 }
 
@@ -97,7 +97,7 @@ describe('late integrity conflict on an existing case', () => {
     const first = seedCase(svc);
     reviewCase(svc, first.caseId, { expectedRevision: first.revision, decision: 'approve', reason: 'ok' }, 'op');
     const a = svc.journal.listActions(first.caseId)[0]!;
-    recordNativeReceipt(svc, a.actionId, { expectedVersion: a.version, method: 'guild_ui', nativeRuleId: 'r', observedSelectors: sel, appliedAt: '2099-01-01T00:00:00Z', evidenceNote: 'x' }, 'op');
+    recordNativeReceipt(svc, a.actionId, { expectedVersion: a.version, method: 'guild_ui', nativeRuleId: 'r', observedSelectors: sel, appliedAt: new Date().toISOString(), evidenceNote: 'x' }, 'op');
     await conflictingGeneration(svc, first.generationId);
     const after = svc.journal.getAction(a.actionId)!;
     expect(after.state).toBe('disputed');
@@ -170,7 +170,7 @@ describe('receipt precision and routing fixes', () => {
     const app = await buildApp(testConfig('contract_test'), svc);
     const login = await app.inject({ method: 'POST', url: '/api/login', headers: { host: HOST, origin: 'http://127.0.0.1:4317' }, payload: { secret: 'test-operator-secret-0123456789' } });
     const headers = { host: HOST, origin: 'http://127.0.0.1:4317', cookie: `${login.cookies[0]!.name}=${login.cookies[0]!.value}`, 'x-csrf-token': login.json().csrfToken };
-    const body = { expectedVersion: a.version, method: 'guild_ui', nativeRuleId: null, removedAt: '2099-01-01T00:00:00Z', evidenceNote: '' };
+    const body = { expectedVersion: a.version, method: 'guild_ui', nativeRuleId: null, removedAt: new Date().toISOString(), observedSelectors: { ...sel, decision: 'REMOVED' }, evidenceNote: '' };
     expect((await app.inject({ method: 'POST', url: `/api/actions/${a.actionId}/removal-receipt`, headers, payload: body })).statusCode).toBe(409);
     expect((await app.inject({ method: 'POST', url: '/api/actions/nope/removal-receipt', headers, payload: body })).statusCode).toBe(404);
     await app.close();

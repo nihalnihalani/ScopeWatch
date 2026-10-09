@@ -25,7 +25,7 @@ import {
   restrictionStateFor,
   restrictionVerdict,
 } from '../../core/actions.js';
-import { nowUtcNano, tryParseUtcNano } from '../../core/time.js';
+import { nowNs, nowUtcNano, formatUtcNano, tryParseUtcNano } from '../../core/time.js';
 import { actionBlockedReason, buildCaseDetail, proposedScopeFor, scopeDigestOf } from './cases.js';
 import type { Services } from './context.js';
 import { HttpError, conflict, invalid, notEligible, notFound, staleRevision, unavailable } from './errors.js';
@@ -40,6 +40,14 @@ function wrapStale<T>(fn: () => T): T {
     if (e instanceof IllegalTransitionError) throw conflict(e.message);
     throw e;
   }
+}
+
+const SKEW_NS = 60_000_000_000n;
+function boundedOperatorTime(text: string, field: string): bigint {
+  const ns = tryParseUtcNano(text);
+  if (ns === null) throw invalid(`${field} must be strict UTC RFC3339 text`);
+  if (ns > nowNs() + SKEW_NS) throw invalid(`${field} is in the future (more than 60s ahead of the controller clock)`);
+  return ns;
 }
 
 export function selectorText(s: ProposedScope['resourceSelector']): string | null {
@@ -80,14 +88,15 @@ export function reviewCase(svc: Services, caseId: string, body: ReviewBody, oper
   });
 }
 
-function compareSelectors(a: ActionRecord, obs: NativeReceiptBody['observedSelectors']): string[] {
+function compareSelectors(a: ActionRecord, obs: NativeReceiptBody['observedSelectors'], removal = false): string[] {
   const s = a.scope;
   const out: string[] = [];
   if (obs.workspaceId !== s.workspaceId) out.push(`workspace ${obs.workspaceId} != approved ${s.workspaceId}`);
   if (obs.policySubjectId !== s.policySubjectId) out.push(`subject ${obs.policySubjectId} != approved ${s.policySubjectId}`);
   if (obs.credentialId !== s.credentialId) out.push(`credential ${obs.credentialId} != approved ${s.credentialId}`);
   if (obs.operation !== s.operation) out.push(`operation ${obs.operation} != approved ${s.operation}`);
-  if (obs.decision.toUpperCase() !== 'DENY') out.push(`decision ${obs.decision} != DENY`);
+  const dec = obs.decision.toUpperCase();
+  if (removal ? dec !== 'REMOVED' && dec !== 'DENY' : dec !== 'DENY') out.push(`decision ${obs.decision} != ${removal ? 'REMOVED (or the DENY rule being removed)' : 'DENY'}`);
   const want = selectorText(s.resourceSelector);
   const got = obs.resources === null || obs.resources === '' ? null : obs.resources;
   if (want !== got) out.push(`resource selector ${got ?? '(unrestricted)'} != approved ${want ?? '(unrestricted)'}`);
@@ -104,8 +113,7 @@ export function recordNativeReceipt(svc: Services, actionId: string, body: Nativ
       if (a.provenance === 'replay') throw notEligible('replay actions do not exist');
       if (a.version !== body.expectedVersion) throw new StaleVersionError(body.expectedVersion, a.version);
       if (![...RECEIPT_ACCEPTING_STATES, 'stale'].includes(a.state as never)) throw conflict(`action is ${a.state}; a native receipt is not accepted in this state`);
-      const appliedNs = tryParseUtcNano(body.appliedAt);
-      if (appliedNs === null) throw invalid('appliedAt must be strict UTC RFC3339 text');
+      const appliedNs = boundedOperatorTime(body.appliedAt, 'appliedAt');
       const c = j.getCase(a.caseId);
       if (!c) throw notFound('case');
       const mismatches = compareSelectors(a, body.observedSelectors);
@@ -137,7 +145,7 @@ async function probeSafely(svc: Services, role: 'target' | 'control', a: ActionR
     boundSubjectId: null, credentialId: null, inspection: why, outcome: 'missing', startedAt: nowUtcNano(), completedAt: null,
   });
   try {
-    const r = await (svc.guild as NonNullable<Services['guild']>).runProbe({ role, scope: a.scope, notBefore, idempotencyRef: ref });
+    const r = await (svc.guild as NonNullable<Services['guild']>).runProbe({ role, purpose: a.kind === 'restriction' ? 'restriction' : 'recovery', scope: a.scope, notBefore, idempotencyRef: ref });
     const started = tryParseUtcNano(r.startedAt);
     const floor = tryParseUtcNano(notBefore);
     if (started === null || floor === null || started <= floor) {
@@ -206,7 +214,10 @@ export async function verifyAction(svc: Services, actionId: string, expectedVers
   if (!a0.nativeReceipt) throw conflict('no native receipt recorded');
   if (!svc.guild) throw unavailable('Guild adapter is not configured; fresh probes cannot be launched (never faked)');
   if (!a0.nativeReceipt.matchesApprovedScope) throw conflict('native receipt does not match the approved scope; verification of an unapproved rule is refused');
-  const notBefore = a0.nativeReceipt.recordedAt;
+  // freshness floor: controller receipt time, or the operator-stated application time if (sensibly) later
+  const appliedNs = tryParseUtcNano(a0.nativeReceipt.appliedAt);
+  const recNs = tryParseUtcNano(a0.nativeReceipt.recordedAt) as bigint;
+  const notBefore = appliedNs !== null && appliedNs > recNs ? formatUtcNano(appliedNs) : a0.nativeReceipt.recordedAt;
 
   const pendingState = 'verification_pending';
   const pending = wrapStale(() => {
@@ -233,12 +244,20 @@ export async function verifyAction(svc: Services, actionId: string, expectedVers
     verificationId: `ver-${randomBytes(6).toString('hex')}`, provenance: pending.provenance, actionId, kind: pending.kind, target, control, verdict, explanation,
     residualScope: pending.scope.residualCapability, verifiedAt: nowUtcNano(),
   };
-  const finalState = pending.kind === 'restriction' ? restrictionStateFor(verdict) : recoveryStateFor(verdict);
+  let finalState: ActionRecord['state'] = pending.kind === 'restriction' ? restrictionStateFor(verdict) : recoveryStateFor(verdict);
+  let finalNote = `${verdict}: ${explanation}`;
+  if (pending.kind === 'restriction' && (finalState === 'restriction_verified' || finalState === 'simulated_restriction_observed')) {
+    const c = j.getCase(pending.caseId);
+    if (!c || c.revision !== pending.caseRevision || c.evidenceState === 'evidence_disputed') {
+      finalState = 'disputed';
+      finalNote = `${finalNote}; success claim withheld: case revision changed or evidence disputed since approval (receipts preserved)`;
+    }
+  }
   return wrapStale(() =>
     j.tx(() => {
       j.saveVerification(receipt);
       const cur = j.getAction(actionId) as ActionRecord;
-      const next = applyTransition(cur, finalState, operator, `${verdict}: ${explanation}`, pending.version);
+      const next = applyTransition(cur, finalState, operator, finalNote, pending.version);
       j.casAction(next, pending.version);
       return j.getAction(actionId) as ActionRecord;
     }),
@@ -297,15 +316,15 @@ export function recordRemovalReceipt(svc: Services, actionId: string, body: Remo
       if (!a) throw notFound('action');
       if (a.kind !== 'recovery') throw conflict('removal receipts apply only to recovery actions; this is a restriction action');
       if (a.version !== body.expectedVersion) throw new StaleVersionError(body.expectedVersion, a.version);
-      if (a.state !== 'approved') throw conflict(`recovery is ${a.state}; a removal receipt is accepted only after approval`);
-      if (tryParseUtcNano(body.removedAt) === null) throw invalid('removedAt must be strict UTC RFC3339 text');
-      const s = a.scope;
+      if (a.state !== 'approved' && a.state !== 'scope_mismatch') throw conflict(`recovery is ${a.state}; a removal receipt is accepted only after approval`);
+      boundedOperatorTime(body.removedAt, 'removedAt');
+      const mismatches = compareSelectors(a, body.observedSelectors, true);
       const receipt: NativeApplicationReceipt = {
         recordedBy: operator, recordedAt: nowUtcNano(), method: body.method, nativeRuleId: body.nativeRuleId,
-        observedSelectors: { credentialId: s.credentialId, operation: s.operation, policySubjectId: s.policySubjectId, workspaceId: s.workspaceId, decision: 'REMOVED', resources: selectorText(s.resourceSelector) },
-        appliedAt: body.removedAt, evidenceNote: body.evidenceNote, matchesApprovedScope: true, mismatches: [],
+        observedSelectors: body.observedSelectors, appliedAt: body.removedAt, evidenceNote: body.evidenceNote,
+        matchesApprovedScope: mismatches.length === 0, mismatches,
       };
-      const next = applyTransition(a, 'removal_observed', operator, `removal receipt recorded via ${body.method}`, body.expectedVersion, { nativeReceipt: receipt });
+      const next = applyTransition(a, mismatches.length ? ('scope_mismatch' as never) : 'removal_observed', operator, `removal receipt recorded via ${body.method}${mismatches.length ? `; ${mismatches.join('; ')}` : ''}`, body.expectedVersion, { nativeReceipt: receipt });
       j.casAction(next, body.expectedVersion);
       return j.getAction(actionId) as ActionRecord;
     }),

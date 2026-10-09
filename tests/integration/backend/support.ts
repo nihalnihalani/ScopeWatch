@@ -94,16 +94,17 @@ function w(o: OracleWitness | null, allowance: bigint): Witness | null {
 }
 
 /** Create a fully evaluated case (generation evaluated, readiness ready) from oracle output. No ClickHouse involved. */
-export function seedCase(svc: Services, opts: { subject?: string; n?: number; allowance?: string } = {}): { caseId: string; generationId: string; revision: number } {
+export function seedCase(svc: Services, opts: { subject?: string; n?: number; allowance?: string; allowances?: Array<[string, string, string]>; groups?: Array<[string, number]> } = {}): { caseId: string; generationId: string; revision: number } {
   const j = svc.journal;
   const prov = j.mode;
   const subject = opts.subject ?? 'subj-a';
   const gen = `gen-${Math.random().toString(36).slice(2, 8)}`;
-  const doc = manifestDoc([[subject, 'Subject A', opts.allowance ?? '5'], ['subj-ok', 'Control', '50']]);
+  const doc = manifestDoc(opts.allowances ?? [[subject, 'Subject A', opts.allowance ?? '5'], ['subj-ok', 'Control', '50']]);
   const manifest = pinned(doc, prov);
   j.saveManifest(manifest);
   const sessions = ['s1', 's2'];
-  const b = build(gen, run('a', subject, sessions, opts.n ?? 8, T0, 10), sessions, { provenance: prov });
+  const groups = opts.groups ?? [[subject, opts.n ?? 8]];
+  const b = build(gen, groups.flatMap(([sub, n], i) => run(`g${i}`, sub, sessions, n, T0, 10)), sessions, { provenance: prov });
   const cutoff = '2026-10-09T12:09:00Z';
   j.saveScenario({ scenarioId: `sc-${gen}`, provenance: prov, manifestId: manifest.manifestId, identityDomainStatus: 'declared_fixture', captureCutoff: cutoff, source: 'test', createdAt: nowUtcNano() }, registry(sessions));
   j.createGeneration({ generationId: gen, provenance: prov, manifestId: manifest.manifestId, manifestSha256: manifest.sha256, captureCutoff: cutoff, identityDomainStatus: 'declared_fixture', scenarioId: `sc-${gen}`, parentGenerationId: null });

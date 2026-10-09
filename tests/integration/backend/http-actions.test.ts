@@ -158,7 +158,7 @@ describe('review, native receipt, verification and recovery (contract_test prove
   });
 
   const selectors = (over: Record<string, unknown> = {}) => ({ credentialId: 'cred-test', operation: 'issues_get', policySubjectId: 'subj-a', workspaceId: 'ws-test', decision: 'DENY', resources: null, ...over });
-  const receipt = (v: number, over: Record<string, unknown> = {}, sel: Record<string, unknown> = {}) => ({ expectedVersion: v, method: 'guild_ui', nativeRuleId: 'rule-1', observedSelectors: selectors(sel), appliedAt: '2099-01-01T00:00:00Z', evidenceNote: 'seen in UI', ...over });
+  const receipt = (v: number, over: Record<string, unknown> = {}, sel: Record<string, unknown> = {}) => ({ expectedVersion: v, method: 'guild_ui', nativeRuleId: 'rule-1', observedSelectors: selectors(sel), appliedAt: new Date().toISOString(), evidenceNote: 'seen in UI', ...over });
   async function approve(): Promise<ActionRecord> {
     const r = await ctx.post(`/api/cases/${caseId}/review`, { expectedRevision: revision, decision: 'approve', reason: 'reviewed evidence' });
     expect(r.status).toBe(200);
@@ -298,7 +298,7 @@ describe('review, native receipt, verification and recovery (contract_test prove
     expect((await ctx.post(`/api/actions/${rec.body.actionId}/verify`, { expectedVersion: 1 })).status).toBe(409);
     const ap = await ctx.post(`/api/actions/${rec.body.actionId}/review`, { expectedVersion: 1, decision: 'approve', reason: 'ok' });
     expect(ap.body.state).toBe('approved');
-    const rm = await ctx.post(`/api/actions/${rec.body.actionId}/removal-receipt`, { expectedVersion: ap.body.version, method: 'guild_ui', nativeRuleId: 'rule-1', removedAt: '2099-01-02T00:00:00Z', evidenceNote: 'removed' });
+    const rm = await ctx.post(`/api/actions/${rec.body.actionId}/removal-receipt`, { expectedVersion: ap.body.version, method: 'guild_ui', nativeRuleId: 'rule-1', removedAt: new Date().toISOString(), observedSelectors: selectors({ decision: 'REMOVED' }), evidenceNote: 'removed' });
     expect(rm.body.state).toBe('removal_observed');
     guild.probeScript = { target: { outcome: 'succeeded_expected', decision: 'ALLOW', boundSubjectId: 'subj-a' } };
     const ok = await ctx.post(`/api/actions/${rec.body.actionId}/verify`, { expectedVersion: rm.body.version });
@@ -311,7 +311,7 @@ describe('review, native receipt, verification and recovery (contract_test prove
     const rc = await ctx.post(`/api/actions/${a.actionId}/native-receipt`, receipt(a.version));
     const rec = await ctx.post(`/api/actions/${a.actionId}/recovery`, { expectedVersion: rc.body.version, reason: 'try' });
     const ap = await ctx.post(`/api/actions/${rec.body.actionId}/review`, { expectedVersion: 1, decision: 'approve', reason: 'ok' });
-    const rm = await ctx.post(`/api/actions/${rec.body.actionId}/removal-receipt`, { expectedVersion: ap.body.version, method: 'guild_ui', nativeRuleId: null, removedAt: '2099-01-02T00:00:00Z', evidenceNote: '' });
+    const rm = await ctx.post(`/api/actions/${rec.body.actionId}/removal-receipt`, { expectedVersion: ap.body.version, method: 'guild_ui', nativeRuleId: null, removedAt: new Date().toISOString(), observedSelectors: selectors({ decision: 'REMOVED' }), evidenceNote: '' });
     const v = await ctx.post(`/api/actions/${rec.body.actionId}/verify`, { expectedVersion: rm.body.version }); // fake target stays refused
     expect(v.body.state).toBe('recovery_failed');
   });

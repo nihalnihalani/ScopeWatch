@@ -358,6 +358,10 @@ export class Journal {
         'UPDATE generations SET state = ?, raw_count = ?, canonical_key_count = ?, semantic_digest = ?, binding_digest = ?, coverage_digest = ?, manifest_digest = ?, sealed_at = ? WHERE generation_id = ? AND state = ?',
         'sealed', d.rawCount, d.canonicalKeyCount, d.semanticDigest, d.bindingDigest, d.coverageDigest, d.manifestDigest, nowUtcNano(), id, 'collecting',
       );
+      // sealing a newer generation supersedes every older one: un-applied approvals on their cases become stale
+      const g = this.getGeneration(id) as GenerationRow;
+      const stale = this.supersedeOlderCases(g.manifestSha256, id);
+      if (stale.length) this.run('INSERT INTO history (at, entity, entity_id, provenance, from_state, to_state, by, note) VALUES (?,?,?,?,?,?,?,?)', nowUtcNano(), 'generation', id, this.mode, 'sealed', 'sealed', 'system', `superseded ${stale.length} un-applied approvals of older generations`);
     });
   }
   /** Forward-only generation state transitions with from-state CAS. */
@@ -493,6 +497,32 @@ export class Journal {
         cases.push(cur.caseId);
       }
       return { cases, actions: this.markEffectActionsDisputed(manifestSha256, note) };
+    });
+  }
+  /** Newer non-collecting generation for the same provenance + manifest than the one behind this case, if any. */
+  supersededBy(caseId: string): { generationId: string; state: GenerationState } | null {
+    const c = this.getCase(caseId);
+    if (!c) return null;
+    const mine = this.get('SELECT seq, manifest_sha256, provenance FROM generations WHERE generation_id = ?', c.generationId);
+    if (!mine) return null;
+    const r = this.get("SELECT generation_id, state FROM generations WHERE manifest_sha256 = ? AND provenance = ? AND seq > ? AND state != 'collecting' ORDER BY seq DESC LIMIT 1", String(mine['manifest_sha256']), String(mine['provenance']), Number(mine['seq']));
+    return r ? { generationId: String(r['generation_id']), state: r['state'] as GenerationState } : null;
+  }
+  /** A newer generation exists: un-applied approvals on every case built from an older generation become stale. */
+  supersedeOlderCases(manifestSha256: string, newGenerationId: string): string[] {
+    return this.tx(() => {
+      const newSeq = Number((this.get('SELECT seq FROM generations WHERE generation_id = ?', newGenerationId) as Row)['seq']);
+      const touched: string[] = [];
+      for (const c of this.all('SELECT c.case_id AS id FROM cases c JOIN generations g ON g.generation_id = c.generation_id WHERE c.manifest_sha256 = ? AND g.seq < ?', manifestSha256, newSeq)) {
+        for (const act of this.listActions(String(c['id']))) {
+          if (act.kind === 'restriction' && ['review_ready', 'approved', 'native_application_pending', 'native_application_unknown'].includes(act.state)) {
+            const now = nowUtcNano();
+            this.casAction({ ...act, state: 'stale', version: act.version + 1, history: [...act.history, { at: now, from: act.state, to: 'stale', by: 'system', note: `superseded by newer generation ${newGenerationId}` }] }, act.version);
+            touched.push(act.actionId);
+          }
+        }
+      }
+      return touched;
     });
   }
   caseForGeneration(generationId: string): string | null {
