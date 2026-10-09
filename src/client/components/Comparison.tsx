@@ -120,7 +120,7 @@ export function Comparison({ detail, onSelectCandidate }: { detail: CaseDetail; 
         ) : null}
         <h3 style={{ fontSize: 'var(--t-md)' }}>All candidates ({detail.candidates.length})</h3>
         <div className="table-wrap" tabIndex={0} role="region" aria-label="All candidates table, scrollable">
-          <table>
+          <table className="cand">
             <thead>
               <tr>
                 <th scope="col">Subject</th>
@@ -145,8 +145,8 @@ export function Comparison({ detail, onSelectCandidate }: { detail: CaseDetail; 
                     <td className="num-c">{c.allowance}</td>
                     <td className="num-c">{c.currentCount}</td>
                     <td className="num-c">{c.peakCount}</td>
-                    <td className="mono">{c.firstCrossing ? c.firstCrossing.anchor : '—'}</td>
-                    <td>
+                    <td className="mono fc">{c.firstCrossing ? c.firstCrossing.anchor : '—'}</td>
+                    <td className="st">
                       {breachedHistorically(c) ? <Badge tone="warn">Exceeded{isP ? ' (selected)' : ''}</Badge> : <Badge tone="ok">Within</Badge>}
                       {c.readiness !== 'ready' ? <> <Badge tone="warn">Incomplete</Badge></> : null}
                     </td>

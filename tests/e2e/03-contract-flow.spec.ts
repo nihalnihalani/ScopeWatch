@@ -274,6 +274,10 @@ test('contract_test export is marked non-evidence and carries no native verdicts
 
 test('status separates configuration checks (presence only) from native proof gates', async ({ page }) => {
   await signInOk(page, CONTRACT);
+  // one collapsed "Environment & native gates" panel; its one-line summary is visible, the detail opens on demand
+  const env = page.getByLabel('Environment and native gates');
+  await expect(env.getByText(/\d+ missing settings?/)).toBeVisible();
+  await env.getByText('Environment & native gates').click();
   await expect(page.getByText(/Configuration checks \(\d+ missing\)/)).toBeVisible();
   await expect(page.getByText(/Native proof gates/)).toBeVisible();
   await expect(page.locator('body')).not.toContainText(/\d+ of \d+ passed/);

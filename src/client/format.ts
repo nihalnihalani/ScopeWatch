@@ -100,6 +100,12 @@ export function toneOf(s: ActionState | RecoveryState | EvidenceState): Tone {
   }
 }
 
+/** Replay evidence is never "ready for review": it can never be approved (lead fix, demo finding). */
+export function evidenceLabel(state: string, provenance: string): string {
+  if (state === 'review_ready' && provenance === 'replay') return 'Breach evidence complete (replay, not reviewable)';
+  return labelOf(state);
+}
+
 export const SIMULATED_LABEL = 'Simulated — contract test against mock Guild API; not native evidence';
 
 export const GLYPH: Record<Tone, string> = { neutral: '○', ok: '✓', warn: '!', bad: '✕', info: 'i', sim: '~' };

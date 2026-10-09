@@ -115,34 +115,49 @@ export function StatusNotices({ status }: { status: StatusReport | null }) {
 const CHECK_TONE = { present: 'neutral', missing: 'warn', simulated: 'sim', not_applicable: 'neutral' } as const;
 const GATE_TONE = { passed: 'ok', failed: 'bad', pending: 'warn', not_applicable: 'neutral' } as const;
 
-/** Configuration presence (not proof) and native proof gates, kept strictly separate. */
+function gateSummary(gates: NonNullable<StatusReport['nativeGates']>): string {
+  if (!gates.length) return 'no gates reported';
+  const by = new Map<string, string[]>();
+  for (const g of gates) by.set(g.status, [...(by.get(g.status) ?? []), g.gate]);
+  return [...by.entries()].map(([st, names]) => `gate${names.length === 1 ? '' : 's'} ${names.join('/')} ${st.replace('_', ' ')}`).join(' · ');
+}
+
+/** Configuration presence (not proof) and native proof gates, kept strictly separate inside one collapsed panel. */
 export function GateList({ status }: { status: StatusReport | null }) {
   if (!status) return null;
   const checks = status.configChecks ?? [];
   const gates = status.nativeGates ?? [];
+  if (!checks.length && !gates.length) return null;
+  const missing = checks.filter((c) => c.status === 'missing').length;
   return (
-    <div className="stack">
-      {checks.length ? (
-        <details>
-          <summary>Configuration checks ({checks.filter((c) => c.status === 'missing').length} missing) — presence only, not proof</summary>
-          <ul className="small" style={{ listStyle: 'none', padding: 0, display: 'grid', gap: 'var(--s-1)' }}>
-            {checks.map((c) => <li key={c.check}><Badge tone={CHECK_TONE[c.status]}>{c.status.replace('_', ' ')}</Badge> <strong>{c.check}</strong> <span className="muted">{c.detail}</span></li>)}
-          </ul>
-        </details>
-      ) : null}
-      {gates.length ? (
-        <details>
-          <summary>Native proof gates (G1, G1b, G2)</summary>
-          <ul className="small" style={{ listStyle: 'none', padding: 0, display: 'grid', gap: 'var(--s-1)' }}>
-            {gates.map((g) => (
-              <li key={g.gate}>
-                <Badge tone={GATE_TONE[g.status]}>{g.status === 'passed' && !g.receiptRef ? 'passed without receipt (invalid)' : g.status.replace('_', ' ')}</Badge> <strong>{g.gate}</strong> <span className="muted">{g.detail}</span>
-                {g.receiptRef ? <> <span className="muted">receipt:</span> <span className="id">{g.receiptRef}</span></> : null}
-              </li>
-            ))}
-          </ul>
-        </details>
-      ) : null}
-    </div>
+    <details className="panel env-panel" aria-label="Environment and native gates">
+      <summary>
+        <span className="env-title">Environment &amp; native gates</span>
+        <span className="env-sum muted">{missing} missing setting{missing === 1 ? '' : 's'} · {gateSummary(gates)}</span>
+      </summary>
+      <div className="panel-body">
+        {checks.length ? (
+          <section className="stack stack--tight" aria-label="Configuration">
+            <h3 className="sub-h">Configuration checks ({missing} missing) — presence only, not proof</h3>
+            <ul className="small plain-list">
+              {checks.map((c) => <li key={c.check}><Badge tone={CHECK_TONE[c.status]}>{c.status.replace('_', ' ')}</Badge> <strong>{c.check}</strong> <span className="muted">{c.detail}</span></li>)}
+            </ul>
+          </section>
+        ) : null}
+        {gates.length ? (
+          <section className="stack stack--tight" aria-label="Native proof gates">
+            <h3 className="sub-h">Native proof gates ({gates.map((g) => g.gate).join(', ')})</h3>
+            <ul className="small plain-list">
+              {gates.map((g) => (
+                <li key={g.gate}>
+                  <Badge tone={GATE_TONE[g.status]}>{g.status === 'passed' && !g.receiptRef ? 'passed without receipt (invalid)' : g.status.replace('_', ' ')}</Badge> <strong>{g.gate}</strong> <span className="muted">{g.detail}</span>
+                  {g.receiptRef ? <> <span className="muted">receipt:</span> <span className="id">{g.receiptRef}</span></> : null}
+                </li>
+              ))}
+            </ul>
+          </section>
+        ) : null}
+      </div>
+    </details>
   );
 }

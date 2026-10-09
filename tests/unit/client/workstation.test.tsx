@@ -330,3 +330,56 @@ describe('dialog never offers Approve while a non-rejected action exists', () =>
     expect(screen.getByRole('button', { name: 'Approve exact scope' })).toBeTruthy();
   });
 });
+
+describe('workflow stepper, earlier attempts, grouped timeline, environment panel', () => {
+  it('derives steps from the record: replay steps are not eligible, simulated outcomes are labeled', async () => {
+    const { WorkflowStepper } = await import('../../../src/client/components/Stepper.js');
+    const { container } = render(<WorkflowStepper detail={makeDetail({}, 'replay')} />);
+    const step = (k: string) => container.querySelector(`[data-step="${k}"]`)!.textContent!;
+    expect(step('review')).toContain('Not eligible (replay)');
+    expect(step('apply')).toContain('human, in Guild UI');
+    expect(step('verify')).toContain('Not eligible (replay)');
+    cleanup();
+    const sim = makeAction({ provenance: 'contract_test', state: 'simulated_restriction_observed' });
+    const r2 = render(<WorkflowStepper detail={makeDetail({ actions: [sim] }, 'contract_test')} />);
+    const verify = r2.container.querySelector('[data-step="verify"]')!.textContent!;
+    expect(verify).toContain('Simulated');
+    expect(verify).not.toMatch(/^.*Verified/);
+    cleanup();
+    const nat = render(<WorkflowStepper detail={makeDetail({ actions: [makeAction({ state: 'approved' })] })} />);
+    expect(nat.container.querySelector('[data-step="apply"]')!.getAttribute('aria-current')).toBe('step');
+    expect(nat.container.querySelector('[data-step="verify"]')!.textContent).toContain('Not started');
+  });
+
+  it('keeps the latest verification visible and collapses earlier attempts', () => {
+    const probe = (role: 'target' | 'control') => ({ role, outcome: role === 'target' ? 'not_refused' : 'succeeded_expected', decision: 'ALLOW', reasonCode: null, boundSubjectId: null, credentialId: null, nativeSessionId: null, provenance: 'native' as const, inspection: 'x' });
+    const v = (id: string) => ({ verificationId: id, verdict: 'verification_failed', kind: 'restriction', verifiedAt: 't', explanation: `explain-${id}`, target: probe('target'), control: probe('control'), residualScope: [] }) as unknown as import('../../../src/shared/contracts.js').VerificationReceipt;
+    const action = makeAction({ state: 'verification_failed', verifications: [v('v1'), v('v2'), v('v3')] });
+    render(<EffectPanel detail={makeDetail({ actions: [action] })} ops={fakeOps()} onOpenReview={() => {}} onOpenHandoff={() => {}} />);
+    expect(screen.getByText('Earlier attempts (2)')).toBeTruthy();
+    const latest = screen.getAllByTestId('verification')[0]!;
+    expect(latest.textContent).toContain('explain-v3');
+    expect(latest.closest('details')).toBeNull();
+    expect(screen.getByText('explain-v1').closest('details')).toBeTruthy();
+  });
+
+  it('groups consecutive session entries into one timeline entry and keeps selection working', async () => {
+    const { Timeline } = await import('../../../src/client/components/Timeline.js');
+    const d = makeDetail();
+    const mk = (id: string) => ({ at: '2026-10-09T18:01:00.000000000Z', kind: 'session' as const, title: `Session ${id}: 3 counted ALLOW identities`, detail: '', provenance: d.provenance, ref: id });
+    const detail = { ...d, timeline: [mk('sess-a'), mk('sess-b'), mk('sess-c')] };
+    const { container } = render(<Timeline detail={detail} />);
+    expect(container.querySelectorAll('ol.timeline > li').length).toBe(1);
+    expect(screen.getByText('Sessions (3)')).toBeTruthy();
+    fireEvent.click(screen.getAllByRole('button', { name: /Session sess-a: 3 counted/ })[0]!);
+    expect(screen.getByTestId('inspector').textContent).toContain('sess-a');
+  });
+
+  it('collapses config checks and gates into one environment panel with a one-line summary', async () => {
+    render(<App client={fakeClient({ status: async () => makeStatus({ configChecks: [{ check: 'A', status: 'missing', detail: 'unset' }], nativeGates: [{ gate: 'G1', status: 'pending', detail: 'd', receiptRef: null }, { gate: 'G2', status: 'pending', detail: 'd', receiptRef: null }] }) })} />);
+    const panel = await screen.findByLabelText('Environment and native gates');
+    expect(panel.tagName).toBe('DETAILS');
+    expect((panel as HTMLDetailsElement).open).toBe(false);
+    expect(panel.querySelector('summary')!.textContent).toContain('1 missing setting · gates G1/G2 pending');
+  });
+});

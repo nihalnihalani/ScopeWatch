@@ -6,7 +6,7 @@
 
 | Status | Meaning |
 |---|---|
-| **LOCAL_READY** | All local checks pass on `main` (typecheck, lint, 250 tests, 37 ClickHouse tests, 37 browser tests, replay vs independent oracle). Receipts: [docs/BUILD_STATUS.md](docs/BUILD_STATUS.md) |
+| **LOCAL_READY** | All local checks pass on `main` (typecheck, lint, 254 tests, 37 ClickHouse tests, 37 browser tests, replay vs independent oracle). Receipts: [docs/BUILD_STATUS.md](docs/BUILD_STATUS.md) |
 | **NATIVE_PENDING** | The live Guild loop has not been run. Guild account, private agents, fixture repo and trigger exist; three web-UI steps remain. See [native proof ledger](docs/native/NATIVE_PROOF_LEDGER.md) |
 | VERIFIED_LIVE | **Not claimed.** Nothing in this repository is native proof |
 

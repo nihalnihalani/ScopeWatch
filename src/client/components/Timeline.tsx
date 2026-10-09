@@ -21,6 +21,19 @@ export function Timeline({ detail }: { detail: CaseDetail }) {
   const primary = detail.candidates.find((c) => sameKey(c, detail.primary)) ?? null;
   const entries = useMemo(() => [...detail.timeline].sort((a, b) => (a.at < b.at ? -1 : a.at > b.at ? 1 : 0)), [detail.timeline]);
 
+  /** Consecutive session entries collapse into one group so repeated near-identical lines read as one event. */
+  const rows = useMemo(() => {
+    const out: Array<{ type: 'group'; items: TimelineEntry[] } | { type: 'single'; item: TimelineEntry }> = [];
+    for (const e of entries) {
+      const prev = out[out.length - 1];
+      if (e.kind === 'session' && e.ref) {
+        if (prev?.type === 'group') prev.items.push(e);
+        else out.push({ type: 'group', items: [e] });
+      } else out.push({ type: 'single', item: e });
+    }
+    return out;
+  }, [entries]);
+
   const sessionEntries = new Map<string, TimelineEntry>();
   for (const e of entries) if (e.kind === 'session' && e.ref) sessionEntries.set(e.ref, e);
 
@@ -88,26 +101,48 @@ export function Timeline({ detail }: { detail: CaseDetail }) {
             ) : null}
           </div>
         ) : null}
-        <ol className="timeline" aria-label="Case events">
-          {entries.length === 0 ? <li className="muted">No timeline entries yet.</li> : null}
-          {entries.map((e, i) => (
-            <li key={`${e.at}-${i}`} className="tl-item" data-kind={e.kind}>
-              <div className="tl-head">
-                <span className="tl-kind">{KIND_LABEL[e.kind]}</span>
-                <time className="mono muted small" dateTime={e.at}>{e.at}</time>
-              </div>
-              {e.kind === 'session' && e.ref ? (
-                <button type="button" className="tl-select" aria-pressed={sel === e.ref} onClick={() => setSelected(sel === e.ref ? null : (e.ref as string))}>
-                  {e.title}
-                </button>
-              ) : (
-                <div className="tl-title">{e.title}</div>
-              )}
-              <div className="small" style={{ overflowWrap: 'anywhere' }}>{e.detail}</div>
-              {e.provenance !== detail.provenance ? <div className="small muted">source: {e.provenance}</div> : null}
-            </li>
-          ))}
-        </ol>
+        <div className={rows.length > 12 ? 'timeline-scroll' : undefined} tabIndex={rows.length > 12 ? 0 : undefined} role={rows.length > 12 ? 'region' : undefined} aria-label={rows.length > 12 ? 'Case events, scrollable' : undefined}>
+          <ol className="timeline" aria-label="Case events">
+            {entries.length === 0 ? <li className="muted">No timeline entries yet.</li> : null}
+            {rows.map((r, i) => {
+              if (r.type === 'group') {
+                const first = r.items[0]!;
+                const last = r.items[r.items.length - 1]!;
+                return (
+                  <li key={`g-${first.at}-${i}`} className="tl-item" data-kind="session">
+                    <div className="tl-head">
+                      <span className="tl-kind">Sessions ({r.items.length})</span>
+                      <time className="mono muted small" dateTime={first.at}>{first.at}</time>
+                      {last.at !== first.at ? <span className="mono muted small">to <time dateTime={last.at}>{last.at}</time></span> : null}
+                    </div>
+                    <ul className="tl-sessions">
+                      {r.items.map((e, j) => (
+                        <li key={`${e.ref}-${j}`}>
+                          <button type="button" className="tl-select" aria-pressed={sel === e.ref} onClick={() => setSelected(sel === e.ref ? null : (e.ref as string))}>
+                            {e.title}
+                          </button>
+                          {e.detail ? <span className="small muted tl-note">{e.detail}</span> : null}
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                );
+              }
+              const e = r.item;
+              return (
+                <li key={`${e.at}-${i}`} className="tl-item" data-kind={e.kind}>
+                  <div className="tl-head">
+                    <span className="tl-kind">{KIND_LABEL[e.kind]}</span>
+                    <time className="mono muted small" dateTime={e.at}>{e.at}</time>
+                  </div>
+                  <div className="tl-title">{e.title}</div>
+                  {e.detail ? <div className="small" style={{ overflowWrap: 'anywhere' }}>{e.detail}</div> : null}
+                  {e.provenance !== detail.provenance ? <div className="small muted">source: {e.provenance}</div> : null}
+                </li>
+              );
+            })}
+          </ol>
+        </div>
       </div>
     </section>
   );

@@ -41,9 +41,9 @@ function Probe({ p }: { p: ProbeResult }) {
       ? p.outcome === 'refused_policy' ? 'Target refused by policy' : `Target not refused by policy (${p.outcome})`
       : p.outcome === 'succeeded_expected' ? 'Control content inspected, as expected' : `Control not confirmed (${p.outcome})`);
   return (
-    <div className="inspector" aria-label={`${p.role} probe`}>
+    <div className="inspector probe" aria-label={`${p.role} probe`}>
       <Badge tone={tone}>{text}</Badge>
-      <dl className="kvs">
+      <dl className="kvs kvs--tight">
         <div className="kv"><dt>Decision / reason</dt><dd className="mono">{p.decision ?? 'none'} / {p.reasonCode ?? 'none'}</dd></div>
         <div className="kv"><dt>Bound subject</dt><dd>{p.boundSubjectId ? <Id value={p.boundSubjectId} /> : 'unresolved'}</dd></div>
         <div className="kv"><dt>Credential</dt><dd>{p.credentialId ? <Id value={p.credentialId} /> : 'unresolved'}</dd></div>
@@ -58,7 +58,7 @@ function Verification({ v }: { v: VerificationReceipt }) {
   const simulated = v.verdict.startsWith('simulated_');
   const good = v.verdict === 'restriction_verified' || v.verdict === 'recovered';
   return (
-    <div className="stack" data-testid="verification">
+    <div className="stack stack--tight" data-testid="verification">
       <div className="btn-row">
         <Badge tone={simulated ? 'sim' : good ? 'ok' : v.verdict === 'unknown' || v.verdict === 'policy_refusal_unproved' ? 'warn' : 'bad'}>
           {simulated ? `Simulated: ${labelOf(v.verdict)}` : labelOf(v.verdict)}
@@ -66,7 +66,7 @@ function Verification({ v }: { v: VerificationReceipt }) {
         <span className="small muted mono">{v.verifiedAt} · {v.kind}</span>
       </div>
       <p className="small" style={{ overflowWrap: 'anywhere' }}>{v.explanation}</p>
-      <div className="stack"><Probe p={v.target} /><Probe p={v.control} /></div>
+      <div className="stack stack--tight"><Probe p={v.target} /><Probe p={v.control} /></div>
       {v.residualScope.length ? <p className="small muted">Residual scope: {v.residualScope.join('; ')}</p> : null}
     </div>
   );
@@ -128,7 +128,7 @@ function ActionCard({ action, ops, onOpenHandoff }: { action: ActionRecord; ops:
   const latestV = action.verifications[action.verifications.length - 1] ?? null;
   const sim = action.provenance !== 'native';
   return (
-    <div className="stack" data-testid={`action-${action.kind}`} aria-label={`${action.kind} action`}>
+    <div className="stack stack--tight" data-testid={`action-${action.kind}`} aria-label={`${action.kind} action`}>
       <div className="btn-row">
         <Badge tone={tone}>{labelOf(action.state)}</Badge>
         <span className="small muted">{action.kind} · version {action.version}{sim ? ` · ${action.provenance} (not native)` : ''}</span>
@@ -137,7 +137,18 @@ function ActionCard({ action, ops, onOpenHandoff }: { action: ActionRecord; ops:
       {action.rejectionReason ? <p className="small" style={{ overflowWrap: 'anywhere' }}>Rejection reason: {action.rejectionReason}</p> : null}
       <ReceiptSummary action={action} />
       {action.verifications.length ? (
-        <div className="stack">{[...action.verifications].reverse().map((v) => <Verification key={v.verificationId} v={v} />)}</div>
+        <div className="stack stack--tight">
+          <h4 className="sub-h">Latest verification attempt</h4>
+          <Verification v={latestV!} />
+          {action.verifications.length > 1 ? (
+            <details className="earlier">
+              <summary>Earlier attempts ({action.verifications.length - 1})</summary>
+              <div className="stack stack--tight earlier-list">
+                {[...action.verifications].slice(0, -1).reverse().map((v) => <Verification key={v.verificationId} v={v} />)}
+              </div>
+            </details>
+          ) : null}
+        </div>
       ) : latestV === null && (action.state === 'verification_unknown' || action.state === 'verification_failed') ? (
         <p className="small">No verification receipt is attached; the reason is unknown.</p>
       ) : null}
@@ -198,8 +209,8 @@ export function EffectPanel({ detail, ops, onOpenReview, onOpenHandoff }: { deta
         ) : null}
         {restr ? <ActionCard action={restr} ops={ops} onOpenHandoff={onOpenHandoff} /> : null}
         {restr ? (
-          <div className="stack" style={{ borderTop: '1px solid var(--line)', paddingTop: 'var(--s-3)' }}>
-            <h3 style={{ fontSize: 'var(--t-md)' }}>Recovery (separate review)</h3>
+          <div className="stack stack--tight sect-rule">
+            <h3 className="sub-h">Recovery (separate review)</h3>
             {rec ? <ActionCard action={rec} ops={ops} onOpenHandoff={onOpenHandoff} /> : <p className="small muted">No recovery has been started. A falling count never releases a restriction automatically.</p>}
             {error ? <ErrorNotice error={error} onReload={() => void ops.reload()} /> : null}
             {!rec || ['rejected', 'recovered', 'simulated_recovered'].includes(rec.state) ? (

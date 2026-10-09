@@ -9,11 +9,15 @@ Maya is the on-call operator. She opens a case after a breach was detected from 
 ## Hierarchy (top to bottom, left to right at 1440px)
 
 1. Header: product, project/case, operator, run mode. Provenance strip directly under it is persistent on every view.
-2. Case state line: evidence state, action state, revision, capture cutoff, query time, age.
+2. Sticky chrome (768+): the provenance strip plus a compact case bar (provenance tag, subject, evidence badge, case id, revision) stay in view while scrolling. Below 768 they scroll with the page.
+   Workflow stepper, derived only from record state (evidence, investigation, restriction and recovery actions): Detect, Evidence admitted, Investigate, Review & approve, Apply in Guild (marked "human, in Guild UI"), Verify, Recover. Replay steps read "Not eligible (replay)"; non-native outcomes read "Simulated ..." and are never shown as native; a step is "done" only when the record says so.
+   Case state line: action state, capture cutoff, query time and age, generation, re-run.
 3. Primary comparison (the memorable view): breached subject beside the busiest compliant control, each against its OWN allowance. All candidates table under it. Uncertainty sits next to the claim it affects.
 4. Evidence timeline with selectable contributing sessions, and a bounded evidence inspector.
-5. Right column: Effect panel (native application, verification, recovery) and Query panel (executed SQL receipts, oracle agreement).
-6. Export panel (sanitized read-only bundle and its limits).
+5. Right column: Effect panel (native application, verification, recovery; the latest verification attempt is shown in full and older attempts sit under "Earlier attempts (N)", each still fully readable) and Query panel (dense per-family table: receipts, rows, client ms max, server ms max, target/version; oracle badge; the "All N executed receipts" disclosure keeps query ids, hashes and params).
+   Timeline: consecutive session entries are grouped into one entry listing sessions with counts; each stays selectable for the evidence inspector.
+6. Environment & native gates: one collapsed panel at the foot of the workbench with a one-line summary (missing settings, gate states); configuration checks (presence only) and native proof gates stay separate inside it.
+7. Export panel (sanitized read-only bundle and its limits).
 
 Wording rule: the counted unit is native permission ALLOW decisions. "ALLOW" never means "successful read". The UI states this next to counts.
 

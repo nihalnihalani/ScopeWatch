@@ -4,6 +4,7 @@ import type { CaseDetail, CaseSummary, Provenance, SessionInfo, StatusReport } f
 import { ApiClientError, createApiClient, type ApiClient } from './http-client.js';
 import { Comparison } from './components/Comparison.js';
 import { Badge, Notice, ProvenanceStrip } from './components/common.js';
+import { WorkflowStepper } from './components/Stepper.js';
 import { EffectPanel } from './components/EffectPanel.js';
 import { ExportPanel, GateList, InvestigationPanel, StatusNotices } from './components/Misc.js';
 import { ErrorNotice, type Ops } from './components/ops.js';
@@ -11,19 +12,13 @@ import { GenerationsPanel } from './components/Generations.js';
 import { QueryPanel } from './components/QueryPanel.js';
 import { ReviewDialog } from './components/ReviewDialog.js';
 import { Timeline } from './components/Timeline.js';
-import { ageText, labelOf, latestAction, shortId, toneOf } from './format.js';
+import { ageText, evidenceLabel, labelOf, latestAction, PROVENANCE_TEXT, shortId, toneOf } from './format.js';
 
 type Boot =
   | { phase: 'loading' }
   | { phase: 'error'; error: ApiClientError }
   | { phase: 'login'; session: SessionInfo; error?: ApiClientError }
   | { phase: 'ready'; session: SessionInfo };
-
-/** Replay evidence is never "ready for review": it can never be approved (lead fix, demo finding). */
-function evidenceLabel(state: string, provenance: string): string {
-  if (state === 'review_ready' && provenance === 'replay') return 'Breach evidence complete (replay, not reviewable)';
-  return labelOf(state);
-}
 
 export function App({ client: injected }: { client?: ApiClient }) {
   const csrf = useRef<string | null>(null);
@@ -193,7 +188,6 @@ export function App({ client: injected }: { client?: ApiClient }) {
       <header className="app-header">
         <div className="brand"><span>ScopeWatch</span><span className="brand-mark">operator case</span></div>
         <div className="header-meta">
-          {detail ? <span>Case <strong className="id" title={detail.caseId}>{shortId(detail.caseId, 22)}</strong> · rev <strong>{detail.revision}</strong></span> : <span>No case open</span>}
           {boot.phase === 'ready' && boot.session.operator ? <span>Operator <strong>{boot.session.operator}</strong></span> : null}
           {status ? <span>Server time <span className="mono">{status.serverTime}</span></span> : null}
         </div>
@@ -204,9 +198,12 @@ export function App({ client: injected }: { client?: ApiClient }) {
           </div>
         ) : null}
       </header>
-      {modeKnown ? <ProvenanceStrip mode={mode} caseProvenance={detail?.provenance ?? null} /> : (
-        <div className="prov prov--native" role="region" aria-label="Provenance"><span className="prov-tag">UNKNOWN</span><span>Run mode not yet reported by the server.</span></div>
-      )}
+      <div className="chrome">
+        {modeKnown ? <ProvenanceStrip mode={mode} caseProvenance={detail?.provenance ?? null} /> : (
+          <div className="prov prov--native" role="region" aria-label="Provenance"><span className="prov-tag">UNKNOWN</span><span>Run mode not yet reported by the server.</span></div>
+        )}
+        {boot.phase === 'ready' && detail ? <CaseBar detail={detail} /> : null}
+      </div>
 
       <div className="live" role="status" aria-live="polite" aria-atomic="true">{live}</div>
 
@@ -229,9 +226,13 @@ export function App({ client: injected }: { client?: ApiClient }) {
                 {(cases ?? []).map((c) => (
                   <li key={c.caseId}>
                     <button type="button" className="case-btn" aria-current={c.caseId === caseId ? 'true' : undefined} onClick={() => { window.location.hash = `#/case/${encodeURIComponent(c.caseId)}`; setCaseId(c.caseId); }}>
-                      <span className="id" title={c.caseId}>{shortId(c.caseId, 26)}</span>
-                      <span>{c.primaryLabel ?? 'no selected subject'}</span>
-                      <span className="small muted">{c.provenance} · {evidenceLabel(c.evidenceState, c.provenance)} · rev {c.revision}</span>
+                      <span className="case-subject">{c.primaryLabel ?? 'no selected subject'}</span>
+                      <span className="id muted" title={c.caseId}>{shortId(c.caseId, 26)}</span>
+                      <span className="case-meta">
+                        <span className={`prov-chip prov-chip--${c.provenance}`}>{PROVENANCE_TEXT[c.provenance].short}</span>
+                        <Badge tone={toneOf(c.evidenceState)}>{evidenceLabel(c.evidenceState, c.provenance)}</Badge>
+                      </span>
+                      <span className="small muted">rev {c.revision}</span>
                     </button>
                   </li>
                 ))}
@@ -241,7 +242,6 @@ export function App({ client: injected }: { client?: ApiClient }) {
 
           <div className="workbench">
             <StatusNotices status={status} />
-            <GateList status={status} />
             {cases && cases.length === 0 && !listError ? (
               <EmptyState mode={mode} busy={runBusy} onRun={() => void runPipeline()} error={runError} status={status} />
             ) : null}
@@ -251,6 +251,7 @@ export function App({ client: injected }: { client?: ApiClient }) {
             {detail ? (
               <CaseView detail={detail} status={status} client={client} ops={ops} onOpen={setDialog} onRerun={() => void runPipeline()} rerunBusy={runBusy} runError={runError} />
             ) : null}
+            <GateList status={status} />
           </div>
           {dialog && detail ? <ReviewDialog detail={detail} ops={ops} initial={dialog} onClose={() => setDialog(null)} /> : null}
         </main>
@@ -322,16 +323,20 @@ function CaseView({ detail, status, client, ops, onOpen, onRerun, rerunBusy, run
   const conflictGaps = gaps.filter((g) => g.kind.endsWith('conflict'));
   return (
     <>
-      <section className="panel" aria-label="Case state">
+      <WorkflowStepper detail={detail} />
+
+      <section className="panel statepanel" aria-label="Case state">
         <div className="stateline">
-          <dl className="kvs" style={{ flex: 1 }}>
-            <div className="kv"><dt>Subject</dt><dd><strong>{detail.primaryLabel ?? 'No subject selected'}</strong></dd></div>
-            <div className="kv"><dt>Evidence</dt><dd><Badge tone={toneOf(detail.evidenceState)}>{evidenceLabel(detail.evidenceState, detail.provenance)}</Badge></dd></div>
+          <dl className="kvs kvs--state">
             <div className="kv"><dt>Action</dt><dd>{!restr && detail.provenance !== 'native' ? <Badge tone="neutral">Not action eligible ({detail.provenance === 'replay' ? 'replay' : 'contract test'})</Badge> : <Badge tone={toneOf(restr?.state ?? detail.actionState)}>{labelOf(restr?.state ?? detail.actionState)}</Badge>}</dd></div>
             <div className="kv"><dt>Captured up to</dt><dd className="mono">{detail.generation.captureCutoff}{captureAge ? ` (${captureAge})` : ''}</dd></div>
             <div className="kv"><dt>Last queried</dt><dd className="mono">{detail.evaluation.evaluatedAt}{queryAge ? ` (${queryAge})` : ''}</dd></div>
             <div className="kv"><dt>Generation</dt><dd><span className="id" title={detail.generation.generationId}>{shortId(detail.generation.generationId, 20)}</span> · {detail.generation.state.replace(/_/g, ' ')}</dd></div>
           </dl>
+          <div className="rerun">
+            <button type="button" className="btn" onClick={onRerun} disabled={rerunBusy} aria-describedby="rerun-note">{rerunBusy ? 'Running…' : status?.mode === 'replay' ? 'Re-run replay pipeline' : 'Re-collect registered cohort'}</button>
+            <span id="rerun-note" className="small muted">Creates a new generation; existing approvals stay bound to their revision.</span>
+          </div>
         </div>
       </section>
 
@@ -356,11 +361,6 @@ function CaseView({ detail, status, client, ops, onOpen, onRerun, rerunBusy, run
         <Notice tone="bad" title="Analytical readback failed" role="alert"><p>The published facts did not read back equal to the journal: {(detail.generation.readback?.mismatches ?? []).join('; ') || 'no detail'}.</p></Notice>
       ) : null}
       {runError ? <ErrorNotice error={runError} /> : null}
-      <div className="btn-row">
-        <button type="button" className="btn" onClick={onRerun} disabled={rerunBusy} aria-describedby="rerun-note">{rerunBusy ? 'Running…' : status?.mode === 'replay' ? 'Re-run replay pipeline' : 'Re-collect registered cohort'}</button>
-        <span id="rerun-note" className="small muted">Creates a new generation; existing approvals stay bound to their revision.</span>
-      </div>
-
       <div className="cols">
         <div className="stack">
           <Comparison detail={detail} />
@@ -374,5 +374,17 @@ function CaseView({ detail, status, client, ops, onOpen, onRerun, rerunBusy, run
         </aside>
       </div>
     </>
+  );
+}
+
+/** Sticky compact case header: identity, subject, evidence state and provenance stay in view while scrolling. */
+function CaseBar({ detail }: { detail: CaseDetail }) {
+  return (
+    <div className="casebar" role="group" aria-label="Case summary">
+      <span className={`prov-chip prov-chip--${detail.provenance}`}>{PROVENANCE_TEXT[detail.provenance].short}</span>
+      <span className="casebar-subject">{detail.primaryLabel ?? 'No subject selected'}</span>
+      <Badge tone={toneOf(detail.evidenceState)}>{evidenceLabel(detail.evidenceState, detail.provenance)}</Badge>
+      <span className="casebar-id muted">case <strong className="id" title={detail.caseId}>{shortId(detail.caseId, 22)}</strong> · rev <strong>{detail.revision}</strong></span>
+    </div>
   );
 }

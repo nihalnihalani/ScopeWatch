@@ -4,6 +4,8 @@ import { Badge, Id } from './common.js';
 export function QueryPanel({ detail }: { detail: CaseDetail }) {
   const ev = detail.evaluation;
   const groups = Object.entries(ev.queries.reduce<Record<string, typeof ev.queries>>((m, q) => { (m[q.queryClass] ??= []).push(q); return m; }, {}));
+  const targets = [...new Set(ev.queries.map((q) => `${q.target} · ${q.serverVersion}`))];
+  const oneTarget = targets.length === 1 ? targets[0]! : null;
   const synthetic = detail.provenance !== 'native';
   return (
     <section className="panel" aria-labelledby="q-h">
@@ -29,18 +31,33 @@ export function QueryPanel({ detail }: { detail: CaseDetail }) {
         ) : (
           <p className="small muted">Client round trip and server duration are separate numbers; neither includes Guild collection.</p>
         )}
-        <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'grid', gap: 'var(--s-2)' }} aria-label="Query classes">
-          {groups.map(([cls, qs]) => (
-            <li key={cls} className="inspector" data-testid={`qclass-${cls}`}>
-              <div className="btn-row"><strong>{cls}</strong><span className="small muted">{qs.length} receipt{qs.length === 1 ? '' : 's'} · {qs.reduce((n, q) => n + q.rowCount, 0)} rows</span></div>
-              <dl className="kvs">
-                <div className="kv"><dt>Client round trip (max)</dt><dd className="mono">{Math.max(...qs.map((q) => q.clientMs))} ms</dd></div>
-                <div className="kv"><dt>Server duration (max)</dt><dd className="mono">{qs.some((q) => q.serverMs !== null) ? `${Math.max(...qs.map((q) => q.serverMs ?? 0))} ms` : 'n/a'}</dd></div>
-                <div className="kv"><dt>Target / version</dt><dd className="mono">{qs[0]!.target} · {qs[0]!.serverVersion}</dd></div>
-              </dl>
-            </li>
-          ))}
-        </ul>
+        {oneTarget ? <p className="small" data-testid="query-target">Target: <span className="mono">{oneTarget}</span></p> : null}
+        <div className="table-wrap" tabIndex={0} role="region" aria-label="Executed query families, scrollable">
+          <table className="dense">
+            <thead>
+              <tr>
+                <th scope="col">Family</th>
+                <th scope="col" className="r">Receipts</th>
+                <th scope="col" className="r">Rows</th>
+                <th scope="col" className="r">Client ms (max)</th>
+                <th scope="col" className="r">Server ms (max)</th>
+                {oneTarget ? null : <th scope="col">Target / version</th>}
+              </tr>
+            </thead>
+            <tbody>
+              {groups.map(([cls, qs]) => (
+                <tr key={cls} data-testid={`qclass-${cls}`}>
+                  <th scope="row" className="fam" title={cls}>{cls}</th>
+                  <td className="num-c" data-col="receipts">{qs.length}</td>
+                  <td className="num-c" data-col="rows">{qs.reduce((n, q) => n + q.rowCount, 0)}</td>
+                  <td className="num-c" data-col="client-ms">{Math.max(...qs.map((q) => q.clientMs))}</td>
+                  <td className="num-c" data-col="server-ms">{qs.some((q) => q.serverMs !== null) ? Math.max(...qs.map((q) => q.serverMs ?? 0)) : 'n/a'}</td>
+                  {oneTarget ? null : <td className="mono tgt" data-col="target"><span>{qs[0]!.target}</span> <span className="muted">· {qs[0]!.serverVersion}</span></td>}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
         <details>
           <summary>All {ev.queries.length} executed receipts</summary>
           <div className="scroll-box" tabIndex={0} role="region" aria-label="All query receipts, scrollable">

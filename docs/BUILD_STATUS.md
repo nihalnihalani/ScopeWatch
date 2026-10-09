@@ -27,7 +27,7 @@ Still **local** ClickHouse, not Cloud.
 | `npm ci` | 0 | lockfile install |
 | `npm run typecheck` | 0 | TypeScript strict, whole repo |
 | `npm run lint` | 0 | ESLint, 0 errors / 0 warnings |
-| `npm test` (unit + client + integration + adversarial) | 0 | 18 files, **250 passed** |
+| `npm test` (unit + client + integration + adversarial) | 0 | 18 files, **250 passed** (254 after the UI redesign, `npm test` exit 0) |
 | `npm run test:ch` (local ClickHouse 25.8.33.6) | 0 | 4 files, **37 passed** |
 | `npm run build` | 0 | server (tsc) + client (vite) |
 | `npm run test:e2e` (Playwright, real local server) | 0 | **37 passed**; screenshots refreshed from this run |

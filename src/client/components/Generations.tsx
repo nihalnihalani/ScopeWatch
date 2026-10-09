@@ -16,6 +16,14 @@ export function GenerationsPanel({ items }: { items: GenerationSummary[] | null 
   if (items === null) return null;
   const blocked = items.filter((g) => g.caseId === null);
   if (items.length === 0) return null;
+  if (blocked.length === 0) {
+    return (
+      <section className="panel panel-slim" aria-labelledby="gen-h">
+        <h2 id="gen-h">Evidence generations</h2>
+        <span className="hint">{items.length} total, 0 not admitted to a case. Every generation was admitted to a case.</span>
+      </section>
+    );
+  }
   return (
     <section className="panel" aria-labelledby="gen-h">
       <header>
@@ -23,7 +31,6 @@ export function GenerationsPanel({ items }: { items: GenerationSummary[] | null 
         <span className="hint">{items.length} total, {blocked.length} not admitted to a case. Missing or conflicting evidence stays unknown; no case is created for it.</span>
       </header>
       <div className="panel-body">
-        {blocked.length === 0 ? <p className="small muted">Every generation was admitted to a case.</p> : null}
         {blocked.map((g) => {
           const r = g.readiness;
           const conflict = !!r && (r.conflictKeys > 0 || r.gaps.some((x) => x.kind.endsWith('conflict')));

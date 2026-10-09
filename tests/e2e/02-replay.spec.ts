@@ -77,7 +77,10 @@ test.describe('replay mode against the real local backend', () => {
     for (const r of q) byClass.set(r.queryClass, (byClass.get(r.queryClass) ?? 0) + 1);
     for (const [cls, n] of byClass) {
       const rows = q.filter((r: any) => r.queryClass === cls).reduce((a: number, r: any) => a + r.rowCount, 0);
-      await expect(page.getByTestId(`qclass-${cls}`)).toContainText(`${n} receipt${n === 1 ? '' : 's'} · ${rows} rows`);
+      const row = page.getByTestId(`qclass-${cls}`);
+      await expect(row).toContainText(cls);
+      await expect(row.locator('[data-col="receipts"]')).toHaveText(String(n));
+      await expect(row.locator('[data-col="rows"]')).toHaveText(String(rows));
     }
     await expect(page.getByTestId('timing-label')).toContainText('replay measurement on a synthetic fixture');
     await page.getByText(`All ${q.length} executed receipts`).click();
