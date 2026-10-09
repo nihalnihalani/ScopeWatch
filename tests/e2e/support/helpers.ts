@@ -78,8 +78,3 @@ export async function pageOverflow(page: Page): Promise<{ scrollWidth: number; c
 
 export const SHOTS = 'evidence/screenshots';
 
-/** Advance the MOCK Guild's virtual clock (harness side channel on port+3) so fresh probes start after real-time receipts. */
-export async function tickMock(ms = 3 * 3600_000): Promise<void> {
-  const r = await fetch(`http://127.0.0.1:${PORT + 3}/tick?ms=${ms}`);
-  if (!r.ok) throw new Error(`tick failed ${r.status}`);
-}

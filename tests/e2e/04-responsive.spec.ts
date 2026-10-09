@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { expect, test } from '@playwright/test';
 import { CONTRACT, REPLAY, SHOTS, VIEWPORTS, pageOverflow, signInOk, watch } from './support/helpers.js';
 

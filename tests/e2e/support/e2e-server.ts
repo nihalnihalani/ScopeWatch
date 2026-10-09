@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { createServer } from 'node:http';
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { loadConfig } from '../../../src/server/config.js';
 import { parseEnvFile } from '../../../src/server/services/envfile.js';
@@ -31,15 +29,6 @@ writeFileSync(`${dir}/contract-manifest.json`, JSON.stringify({
     { policySubjectId: o.subjects.control, displayLabel: 'Mock control', maxUniqueAllowDecisions: '100', approvalRef: 'e2e-approval-control' },
   ],
 }, null, 2));
-
-// Harness-only side channel (NOT part of the app): the mock's virtual clock starts at a fixed past instant, so probes
-// launched in real time would be discarded as stale by the app's freshness rule. Tests advance the mock clock explicitly.
-const tickServer = createServer((req, res) => {
-  const ms = Number(new URL(req.url ?? '/', 'http://x').searchParams.get('ms') ?? 0);
-  if (Number.isFinite(ms) && ms > 0) mock.control.tick(ms);
-  res.end('ok');
-});
-await new Promise<void>((r) => tickServer.listen(port + 3, '127.0.0.1', r));
 
 const contractEnv = {
   ...base,
@@ -78,7 +67,6 @@ const stop = async () => {
   await closeServices(replaySvc).catch(() => undefined);
   await closeServices(contractSvc).catch(() => undefined);
   await mock.close().catch(() => undefined);
-  tickServer.close();
   process.exit(0);
 };
 process.on('SIGINT', stop);

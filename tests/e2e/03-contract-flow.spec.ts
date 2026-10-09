@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { expect, test, type Page } from '@playwright/test';
-import { CONTRACT, SHOTS, apiGet, apiPost, mockControl, signInOk, tickMock, watch } from './support/helpers.js';
+import { CONTRACT, SHOTS, apiGet, apiPost, mockControl, signInOk, watch } from './support/helpers.js';
 
 /**
  * contract_test: the app talks to the loopback CONTRACT-TEST MOCK Guild API. Everything here is simulated
@@ -23,11 +23,6 @@ async function recoveryAction(page: Page): Promise<any> {
   const d = await detail(page);
   return [...d.actions].reverse().find((a: any) => a.kind === 'recovery');
 }
-const reload = async (page: Page) => {
-  await page.reload();
-  await expect(page.getByRole('main', { name: 'Case workstation' })).toBeVisible();
-};
-
 test('pipeline run from the UI produces a labeled contract_test case', async ({ page }) => {
   const w = watch(page);
   await mockControl('undeny');
@@ -50,25 +45,31 @@ test('pipeline run from the UI produces a labeled contract_test case', async ({ 
   expect(w.unexpected()).toEqual([]);
 });
 
-test('UI blocks review for contract_test provenance with a visible reason', async ({ page }) => {
-  await signInOk(page, CONTRACT);
-  await expect(page.locator('#open-review')).toHaveAttribute('aria-disabled', 'true');
-  await expect(page.locator('#open-review-why')).toContainText('Contract-test provenance is not action eligible');
-});
-
-test('server-side approve of the exact scope (API; UI path is blocked by design) and verdict naming', async ({ page }) => {
+test('review is reachable in the UI for contract_test with explicit SIMULATED labels; approve exact scope through the UI', async ({ page }) => {
+  const w = watch(page);
   await signInOk(page, CONTRACT);
   const d = await detail(page);
   expect(d.proposedScope).toBeTruthy();
-  const r = await apiPost(page, CONTRACT, `/api/cases/${caseId}/review`, { expectedRevision: d.revision, decision: 'approve', reason: 'e2e: approve exact scope on contract_test case' });
-  expect(r.status(), await r.text()).toBe(200);
+  await expect(page.locator('#open-review')).toHaveAttribute('aria-disabled', 'false');
+  await page.locator('#open-review').click();
+  const dlg = page.getByRole('dialog');
+  await expect(dlg).toBeVisible();
+  await expect(dlg).toContainText(/simulated/i);
+  await expect(dlg).toContainText(/not (native )?evidence|nothing here changes a real Guild/i);
+  await expect(page.getByTestId('dlg-revision')).toHaveText(String(d.revision));
+  await page.screenshot({ path: `${SHOTS}/contract-test-review-dialog-1440.png` });
+  await page.locator('#rv-reason').fill('e2e: approve exact scope on contract_test case');
+  await page.locator('#rv-approve').click();
+  await expect(dlg.getByRole('heading', { name: 'Native handoff' })).toBeVisible();
   const a = await restrictionAction(page);
   actionId = a.actionId;
   expect(a.provenance).toBe('contract_test');
   expect(['approved', 'native_application_pending']).toContain(a.state);
   expect(a.scopeDigest).toBe(d.proposedScopeDigest);
-  await reload(page);
-  await expect(page.getByRole('button', { name: 'Open native handoff and record receipt' })).toBeVisible();
+  expect(a.approvedBy).toBe('e2e-operator');
+  await page.keyboard.press('Escape');
+  await expect(dlg).toHaveCount(0);
+  expect(w.unexpected()).toEqual([]);
 });
 
 test('handoff dialog: focus moves in, Tab/Shift+Tab are trapped, Escape closes and restores focus to opener', async ({ page }) => {
@@ -136,7 +137,6 @@ test('correct native receipt moves to native_application_observed (still unverif
   expect(a.verifications).toHaveLength(0);
   await page.keyboard.press('Escape');
   await expect(page.getByRole('button', { name: 'Verify restriction with fresh sessions' })).toBeVisible();
-  await tickMock(); // harness: move the mock Guild clock past real time so probe sessions are fresh
 });
 
 test('stale action version (409) is visible in the UI and does not change state', async ({ page }) => {

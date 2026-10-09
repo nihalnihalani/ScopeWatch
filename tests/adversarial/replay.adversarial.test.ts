@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { HOST, ORIGIN, chRowCounts, startStack, type Stack } from './support.js';
 

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { expect, test } from '@playwright/test';
 import { CONTRACT, REPLAY, SECRET, signIn, watch } from './support/helpers.js';
 
@@ -34,7 +33,7 @@ for (const [label, base] of [['replay', REPLAY], ['contract-test', CONTRACT]] as
       const sess = await page.request.get(`${base}/api/session`);
       expect(await sess.text()).not.toContain(SECRET);
       const cookies = await page.context().cookies(base);
-      const c = cookies.find((x) => x.name === 'sw_session');
+      const c = cookies.find((x) => x.name === `sw_session_${new URL(base).port}`);
       expect(c?.httpOnly).toBe(true);
       expect(c?.sameSite).toBe('Strict');
     });

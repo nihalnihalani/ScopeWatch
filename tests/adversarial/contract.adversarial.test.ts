@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { chRowCounts, startStack, type Body, type Stack } from './support.js';
 
@@ -85,10 +84,6 @@ describe('contract_test revision/state guards', () => {
 });
 
 describe('contract_test verdicts are never native', () => {
-  beforeAll(() => {
-    // the mock's virtual clock starts in the past; move it past real time so fresh probes are strictly after receipts
-    s.mock!.control.tick(3 * 3600_000);
-  });
 
   it('receipt with wrong scope -> scope_mismatch; mismatch cannot be verified', async () => {
     const d = (await s.get(`/api/cases/${caseId}`)).body;
