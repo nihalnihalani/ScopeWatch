@@ -8,7 +8,7 @@ import { type Task, agent, consoleTools, pick } from "@guildai/agents-sdk";
 import { gitHubTools } from "@guildai-services/guildai~github";
 import { z } from "zod";
 
-const OWNER = "nihalnihalani";
+const OWNER = "charliegillet";
 const REPO = "scopewatch-fixtures";
 const MAX_READS = 12;
 
