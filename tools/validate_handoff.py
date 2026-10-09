@@ -6,10 +6,18 @@ import re
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
+# Event-build dependency/output/runtime directories are not packaged handoff documentation.
+GENERATED_DIRS = {'.git', 'node_modules', 'dist', 'runtime', 'test-results', 'playwright-report', '.scopewatch-run'}
+
+
+def skipped(path):
+    return any(part in GENERATED_DIRS for part in path.relative_to(ROOT).parts)
+
+
 errors = []
 markdown_count = 0
 for path in ROOT.rglob('*.md'):
-    if '.git' in path.parts:
+    if skipped(path):
         continue
     markdown_count += 1
     text = re.sub(r'```[\s\S]*?```', '', path.read_text())
@@ -34,7 +42,7 @@ for row in manifest['files']:
 
 json_count = 0
 for path in ROOT.rglob('*.json'):
-    if '.git' in path.parts:
+    if skipped(path):
         continue
     if path == ROOT / 'provenance/HANDOFF_VALIDATION.json':
         continue
@@ -81,7 +89,7 @@ patterns = {
     'private key': r'-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----\s+(?:[A-Za-z0-9+/]{40,}=?=?\s+){2,}',
 }
 for path in ROOT.rglob('*'):
-    if not path.is_file() or '.git' in path.parts or path.suffix in ['.png', '.jpg', '.jpeg']:
+    if not path.is_file() or any(p in ('.git', 'node_modules', 'dist') for p in path.relative_to(ROOT).parts) or path.suffix in ['.png', '.jpg', '.jpeg']:
         continue
     try:
         text = path.read_text()
