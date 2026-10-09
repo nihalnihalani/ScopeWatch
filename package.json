@@ -30,7 +30,8 @@
     "doctor": "tsx tools/doctor.ts",
     "scenario": "tsx tools/run-scenario.ts",
     "bench": "tsx tools/bench.ts",
-    "demo:record": "tsx tools/demo-record.ts"
+    "demo:record": "tsx tools/demo-record.ts",
+    "demo": "npm run build && tsx tools/demo-server.ts"
   },
   "dependencies": {
     "@clickhouse/client": "1.24.0",

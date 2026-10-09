@@ -4,7 +4,7 @@ import type { ActionRecord, CaseDetail, ProbeResult, VerificationReceipt } from 
 import { actionEligibilityReason, labelOf, latestAction, SIMULATED_LABEL, toneOf } from '../format.js';
 import { Badge, GuardedButton, Id } from './common.js';
 import { ErrorNotice, useOp, type Ops } from './ops.js';
-import { EMPTY_SELECTORS, ReceiptSummary, SelectorFields, selectorsMissing, type SelectorState } from './ReviewDialog.js';
+import { EMPTY_SELECTORS, ReceiptSummary, SelectorFields, selectorsMissing, simulatedSelectors, type SelectorState } from './ReviewDialog.js';
 
 const MEANING: Record<string, string> = {
   review_ready: 'Waiting for a reviewer decision. Nothing is approved.',
@@ -112,6 +112,11 @@ function RemovalForm({ action, ops }: { action: ActionRecord; ops: Ops }) {
         <div className="field"><label htmlFor="rm-a">Removed at (UTC)</label><input id="rm-a" value={at} onChange={(e) => setAt(e.target.value)} placeholder="2026-10-09T19:10:00Z" autoComplete="off" /></div>
       </div>
       <p className="small muted">Enter the selectors of the rule you observed being removed. The server compares them with the restriction's scope; they are not pre-filled.</p>
+      {action.provenance !== 'native' ? (
+        <GuardedButton id="rm-sim-fill" reason={null} onClick={() => { setSel(simulatedSelectors(action.scope)); setRuleId('mock-rule'); setAt(new Date().toISOString()); setNote('Simulated: removal read from the mock Guild policy for a contract-test demo.'); }}>
+          Fill from Guild (simulated)
+        </GuardedButton>
+      ) : null}
       <SelectorFields sel={sel} onChange={setSel} scope={action.scope} prefix="rm" />
       <div className="field"><label htmlFor="rm-n">Evidence note</label><textarea id="rm-n" rows={2} value={note} onChange={(e) => setNote(e.target.value)} /></div>
       {error ? <ErrorNotice error={error} onReload={() => void ops.reload()} /> : null}

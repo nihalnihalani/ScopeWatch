@@ -60,6 +60,24 @@ const replayApp = await buildApp(replaySvc.config, replaySvc);
 await replayApp.listen({ host: '127.0.0.1', port });
 console.log(`[demo] replay on :${port}; clickhouse replay: ${replaySvc.chStatus.status}, contract: ${contractSvc.chStatus.status}`);
 
+// Demo-only stand-in for the HUMAN step in the Guild UI: once the operator records a native receipt for a restriction,
+// apply the matching DENY in the MOCK; once a removal receipt is recorded, remove it. The app itself never calls the mock control.
+let mockDenied = false;
+setInterval(() => {
+  const j = contractSvc.journal;
+  const acts = j.listCases().flatMap((c) => j.listActions(c.caseId));
+  const want = acts.some((a) => a.kind === 'restriction' && a.nativeReceipt) && !acts.some((a) => a.kind === 'recovery' && a.nativeReceipt);
+  if (want && !mockDenied) {
+    mock.control.applyDeny({});
+    mockDenied = true;
+    console.log('[demo] simulated human: mock Guild DENY applied');
+  } else if (!want && mockDenied) {
+    mock.control.removeDeny();
+    mockDenied = false;
+    console.log('[demo] simulated human: mock Guild DENY removed');
+  }
+}, 500).unref();
+
 let stopping = false;
 const stop = async () => {
   if (stopping) return;

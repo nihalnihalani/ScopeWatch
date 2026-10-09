@@ -157,6 +157,11 @@ export function ReceiptSummary({ action }: { action: ActionRecord }) {
 export type SelectorState = { workspaceId: string; policySubjectId: string; credentialId: string; operation: string; decision: string; resources: string };
 export const EMPTY_SELECTORS: SelectorState = { workspaceId: '', policySubjectId: '', credentialId: '', operation: '', decision: '', resources: '' };
 
+/** Contract-test demo only: stands in for reading the rule back from the MOCK Guild. Never offered for native actions. */
+export function simulatedSelectors(scope: ProposedScope): SelectorState {
+  return { workspaceId: scope.workspaceId, policySubjectId: scope.policySubjectId, credentialId: scope.credentialId, operation: scope.operation, decision: scope.decision, resources: '' };
+}
+
 export function selectorsMissing(sel: SelectorState): boolean {
   return !sel.workspaceId || !sel.policySubjectId || !sel.credentialId || !sel.operation || !sel.decision;
 }
@@ -238,6 +243,11 @@ function NativeReceiptForm({ action, ops }: { action: ActionRecord; ops: Ops }) 
           <input id="nr-at" value={appliedAt} onChange={(e) => setAppliedAt(e.target.value)} placeholder="2026-10-09T18:42:01Z" autoComplete="off" spellCheck={false} />
         </div>
       </div>
+      {action.provenance !== 'native' ? (
+        <GuardedButton id="nr-sim-fill" reason={null} onClick={() => { setSel(simulatedSelectors(s)); setRuleId('mock-rule'); setAppliedAt(new Date().toISOString()); setNote('Simulated: filled from the mock Guild policy for a contract-test demo.'); }}>
+          Fill from Guild (simulated)
+        </GuardedButton>
+      ) : null}
       <SelectorFields sel={sel} onChange={setSel} scope={s} prefix="nr" />
       <div className="field">
         <label htmlFor="nr-note">Evidence note</label>
